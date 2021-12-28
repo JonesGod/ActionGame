@@ -15,10 +15,14 @@ public class PlayerControl : MonoBehaviour
     public float groundDistance = 0.2f;
     private Transform groundChecker;
     public LayerMask checkGroundLayerMask;
+
+    private Animator m_Am;
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
-        groundChecker = transform.GetChild(0);    
+        groundChecker = transform.GetChild(0);
+
+        m_Am = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,6 +37,12 @@ public class PlayerControl : MonoBehaviour
             move = transform.forward * Mathf.Abs(v);
             move += transform.forward * Mathf.Abs(h);
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
+
+            m_Am.SetBool("RunBool", true);
+        }
+        else
+        {
+            m_Am.SetBool("RunBool", false);
         }
         characterController.Move(move);   
 
@@ -40,8 +50,8 @@ public class PlayerControl : MonoBehaviour
         // if (isGrounded && velocity.y < 0)
         //     velocity.y = 0f;        
 
-        velocity.y += gravity * Time.deltaTime; 
-        characterController.Move(velocity * Time.deltaTime);          
+        //velocity.y += gravity * Time.deltaTime; 
+        //characterController.Move(velocity * Time.deltaTime);          
     }
     void Rotating(float moveH, float moveV)
     {
