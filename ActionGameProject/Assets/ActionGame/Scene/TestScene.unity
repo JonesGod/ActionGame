@@ -585,7 +585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1476082981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,12 +599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
-  speed: 4
-  gravity: -9.81
-  groundDistance: 0.2
-  checkGroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!143 &1476082982
 CharacterController:
   m_ObjectHideFlags: 0
@@ -754,12 +748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
-  speed: 4
-  gravity: 0
-  groundDistance: 0.2
-  checkGroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!143 &1523242044
 CharacterController:
   m_ObjectHideFlags: 0
@@ -778,6 +766,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.94, z: 0}
+--- !u!114 &1523242045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523242040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a465090dcc12f7249965d318f74bfe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followCamera: {fileID: 1867982629}
+  speed: 4
+  gravity: -9.81
+  groundDistance: 0.2
+  attack: 0
 --- !u!1 &1703439013
 GameObject:
   m_ObjectHideFlags: 0
