@@ -29,8 +29,8 @@ public class FolowCamera : MonoBehaviour
         float yAngle = Input.GetAxis("Mouse Y");
         horizontalAngle = xAngle;
         verticalAngle += yAngle;        
-        Debug.Log("horizontalAngle"+horizontalAngle); 
-        Debug.Log("verticalAngle"+verticalAngle); 
+        //Debug.Log("horizontalAngle"+horizontalAngle); 
+        //Debug.Log("verticalAngle"+verticalAngle); 
 
         //vector = Quaternion.AngleAxis(角度, 旋轉軸向量) * 欲旋轉向量;
         horizontalVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * horizontalVector;
@@ -45,7 +45,7 @@ public class FolowCamera : MonoBehaviour
         {
             Vector3 hitRayDir = rh.point - lookTarget.position;
             float hitRayLength = hitRayDir.magnitude;
-            Debug.Log("hitLength:" + hitRayLength);
+            //Debug.Log("hitLength:" + hitRayLength);
 
             Vector3 newCameraPosition = rh.point + cameraForward * 0.3f;//固定住攝影機的位置(不要再後退了)     
 

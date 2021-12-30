@@ -7,58 +7,40 @@ public class PlayerControl : MonoBehaviour
     private CharacterController characterController;
     public FolowCamera followCamera;
 
-    public float speed = 4;
-    private Vector3 velocity;
-    public float gravity = -9.81f;
-
-    private bool isGrounded = true;
-    public float groundDistance = 0.2f;
-    private Transform groundChecker;
-    public LayerMask checkGroundLayerMask;
-
     private Animator m_Am;
+    private PlayerInput m_Input; //準備獲取玩家輸入
+
+    readonly int m_StateTime = Animator.StringToHash("statetime");
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
-        groundChecker = transform.GetChild(0);
-
+       
         m_Am = GetComponent<Animator>();
+        m_Input = GetComponent<PlayerInput>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        Vector3 move = Vector3.zero;
-        Debug.Log(v);
-        if(Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") !=0)
+        if (m_Input.Move != Vector3.zero)
         {
-            Rotating(h, v);
-            move = transform.forward * Mathf.Abs(v);
-            move += transform.forward * Mathf.Abs(h);
-            move = Vector3.Normalize(move) * speed * Time.deltaTime;
-
+            characterController.Move(m_Input.Move);
             m_Am.SetBool("RunBool", true);
         }
         else
         {
             m_Am.SetBool("RunBool", false);
         }
-        characterController.Move(move);   
 
-        // isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, checkGroundLayerMask, QueryTriggerInteraction.Ignore);
-        // if (isGrounded && velocity.y < 0)
-        //     velocity.y = 0f;        
+        m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
+        m_Am.ResetTrigger("attack");
 
-        //velocity.y += gravity * Time.deltaTime; 
-        //characterController.Move(velocity * Time.deltaTime);          
-    }
-    void Rotating(float moveH, float moveV)
-    {
-        // 建立角色目標方向的向量
-        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
-        Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-        transform.rotation = newRotation;
+        if(m_Input.attack)   //左鍵攻擊
+        {           
+            m_Am.SetBool("RunBool", false);
+            m_Am.SetTrigger("attack");            
+            m_Input.attack = false;
+        }
+                
     }
     private void OnDrawGizmos()
     {
