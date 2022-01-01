@@ -779,9 +779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
-  speed: 4
+  speed: 15
   gravity: -9.81
   groundDistance: 0.2
+  moveFlag: 0
   attack: 0
 --- !u!1 &1703439013
 GameObject:

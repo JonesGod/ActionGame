@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviour
 
     public FolowCamera followCamera;
 
-    public float speed = 4;
+    public float speed = 15;
     private Vector3 velocity;
     //Vector3 move = Vector3.zero;
     public float gravity = -9.81f;
@@ -24,13 +24,13 @@ public class PlayerInput : MonoBehaviour
 
     private Animator m_Am;
 
-    private bool attackFlag = false;  //§ðÀ»ºX¼Ð
+    public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
     public bool attack = false;
-
-   
+  
     void Start()
     {
-        m_Am = GetComponent<Animator>();
+        m_Am = GetComponent<Animator>();       
+
     }
 
     // Update is called once per frame
@@ -38,25 +38,34 @@ public class PlayerInput : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-         
-        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
+        bool a = GetAttackState();
+
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            
-            Rotating(h, v);
-            move = transform.forward * Mathf.Abs(v);
-            move += transform.forward * Mathf.Abs(h);
-            move = Vector3.Normalize(move) * speed * Time.deltaTime;
-           
+            moveFlag = true;
         }
         else
         {
-            move = Vector3.zero;
+            moveFlag = false;
+        }
+
+        if ((h!=0 || v!=0)
+            && !a)
+        {            
+            Rotating(h, v);
+            move = transform.forward * Mathf.Abs(v);
+            move += transform.forward * Mathf.Abs(h);
+            move = Vector3.Normalize(move) * speed * Time.deltaTime;           
+        }
+        else 
+        {
+            move = Vector3.zero;           
         }
 
         if (Input.GetButtonDown("Fire1"))
-        {
-            attack = true;          
-        }
+        {            
+            attack = true;            
+        }       
     }
     void Rotating(float moveH, float moveV)
     {
@@ -70,7 +79,17 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public Vector3 Move  
     {
-        get { return move; }
+        get { return move ; }
     }
-    
+    /// <summary>
+    /// §PÂ_¬O§_¦b§ðÀ»ª¬ºA¤¤
+    /// </summary>
+    /// <returns></returns>
+    bool GetAttackState()
+    {
+        bool a01 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack01");
+        bool a02 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack02");
+        var a = a01 || a02;
+        return a;
+    }
 }

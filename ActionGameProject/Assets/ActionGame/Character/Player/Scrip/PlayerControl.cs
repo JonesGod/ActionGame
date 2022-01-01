@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    readonly int m_StateTime = Animator.StringToHash("statetime");
+    readonly int m_StateTime = Animator.StringToHash("StateTime");
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
@@ -21,7 +21,9 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (m_Input.Move != Vector3.zero)
+        
+
+        if (m_Input.moveFlag)
         {
             characterController.Move(m_Input.Move);
             m_Am.SetBool("RunBool", true);
@@ -29,15 +31,17 @@ public class PlayerControl : MonoBehaviour
         else
         {
             m_Am.SetBool("RunBool", false);
+                      
         }
 
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
-        m_Am.ResetTrigger("attack");
+        m_Am.ResetTrigger("AttackTrigger");
 
         if(m_Input.attack)   //左鍵攻擊
         {           
             m_Am.SetBool("RunBool", false);
-            m_Am.SetTrigger("attack");            
+
+            m_Am.SetTrigger("AttackTrigger");            
             m_Input.attack = false;
         }
                 
@@ -49,5 +53,5 @@ public class PlayerControl : MonoBehaviour
 
         // Gizmos.color = Color.red;
         // Gizmos.DrawSphere(groundChecker.position, groundDistance);
-    }
+    }    
 }
