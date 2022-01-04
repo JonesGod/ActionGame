@@ -35,14 +35,27 @@ public class PlayerControl : MonoBehaviour
         }
 
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
+       
         m_Am.ResetTrigger("AttackTrigger");
+        m_Am.ResetTrigger("SpecialAttackTrigger");
+        m_Am.ResetTrigger("AvoidTrigger");
 
-        if(m_Input.attack)   //左鍵攻擊
+        if (m_Input.attack)   //左鍵攻擊
         {           
             m_Am.SetBool("RunBool", false);
 
             m_Am.SetTrigger("AttackTrigger");            
             m_Input.attack = false;
+        }
+        if(m_Input.specialAttack)
+        {
+            m_Am.SetTrigger("SpecialAttackTrigger");
+            m_Input.specialAttack = false;
+        }
+        if(m_Input.avoid)
+        {            
+            m_Am.SetTrigger("AvoidTrigger");
+            m_Input.avoid = false;
         }
                 
     }

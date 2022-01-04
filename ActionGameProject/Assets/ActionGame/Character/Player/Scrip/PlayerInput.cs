@@ -26,7 +26,10 @@ public class PlayerInput : MonoBehaviour
 
     public bool moveFlag = false;    //WASD移動旗標   
     public bool attack = false;
-  
+    public bool specialAttack = false;
+    public bool avoid = false;
+
+
     void Start()
     {
         m_Am = GetComponent<Animator>();       
@@ -38,7 +41,7 @@ public class PlayerInput : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        bool a = GetAttackState();
+        bool State = GetState();
 
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -49,8 +52,8 @@ public class PlayerInput : MonoBehaviour
             moveFlag = false;
         }
 
-        if ((h!=0 || v!=0)
-            && !a)
+        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            && !State)
         {            
             Rotating(h, v);
             move = transform.forward * Mathf.Abs(v);
@@ -58,14 +61,25 @@ public class PlayerInput : MonoBehaviour
             move = Vector3.Normalize(move) * speed * Time.deltaTime;           
         }
         else 
-        {
+        {           
             move = Vector3.zero;           
         }
 
         if (Input.GetButtonDown("Fire1"))
         {            
             attack = true;            
-        }       
+        }
+        if(Input.GetButtonDown("Fire2"))
+        {
+            specialAttack = true;
+        }
+
+        bool specialAttackState = m_Am.GetCurrentAnimatorStateInfo(0).IsName("specialAttack");
+        if (Input.GetButtonDown("Avoid") && !specialAttackState)
+        {
+            avoid = true;
+            Rotating(h, v);
+        }
     }
     void Rotating(float moveH, float moveV)
     {
@@ -85,11 +99,20 @@ public class PlayerInput : MonoBehaviour
     /// 判斷是否在攻擊狀態中
     /// </summary>
     /// <returns></returns>
-    bool GetAttackState()
+    bool GetState()
     {
-        bool a01 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack01");
-        bool a02 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack02");
-        var a = a01 || a02;
-        return a;
+        
+        bool nextAttackState= m_Am.GetNextAnimatorStateInfo(0).IsName("attack01");
+        bool nextAvoidState = m_Am.GetNextAnimatorStateInfo(0).IsName("Roll");
+
+        bool specialAttackState = m_Am.GetCurrentAnimatorStateInfo(0).IsName("specialAttack");
+        bool avoid = m_Am.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+        bool attack01 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack01");
+        bool attack02 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack02");
+        bool attack03 = m_Am.GetCurrentAnimatorStateInfo(0).IsName("attack03");
+
+        var attackstate = nextAvoidState || nextAttackState || avoid
+                       || specialAttackState || attack01 || attack02 || attack03;        
+        return attackstate;
     }
 }
