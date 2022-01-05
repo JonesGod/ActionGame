@@ -73,12 +73,15 @@ public class PlayerInput : MonoBehaviour
         {
             specialAttack = true;
         }
-
-        bool specialAttackState = m_Am.GetCurrentAnimatorStateInfo(0).IsName("specialAttack");
-        if (Input.GetButtonDown("Avoid") && !specialAttackState)
+        
+        if (Input.GetButtonDown("Avoid") )
         {
-            avoid = true;
-            Rotating(h, v);
+            float f=m_Am.GetFloat("StateTime");
+            if (f >= 0.5f)
+            {
+                avoid = true;
+                Rotating(h, v);
+            }
         }
     }
     void Rotating(float moveH, float moveV)

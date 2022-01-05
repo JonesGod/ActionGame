@@ -33,7 +33,7 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetBool("RunBool", false);
                       
         }
-
+        
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
        
         m_Am.ResetTrigger("AttackTrigger");
