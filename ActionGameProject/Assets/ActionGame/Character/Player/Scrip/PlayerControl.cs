@@ -40,6 +40,11 @@ public class PlayerControl : MonoBehaviour
         m_Am.ResetTrigger("SpecialAttackTrigger");
         m_Am.ResetTrigger("AvoidTrigger");
 
+        if (m_Input.avoid)      //迴避
+        {
+            m_Am.SetTrigger("AvoidTrigger");
+            m_Input.avoid = false;
+        }
         if (m_Input.attack)   //左鍵攻擊
         {           
             m_Am.SetBool("RunBool", false);
@@ -51,13 +56,7 @@ public class PlayerControl : MonoBehaviour
         {
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
-        }
-        if(m_Input.avoid)
-        {            
-            m_Am.SetTrigger("AvoidTrigger");
-            m_Input.avoid = false;
-        }
-                
+        }                       
     }
     private void OnDrawGizmos()
     {
