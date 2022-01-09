@@ -9,6 +9,9 @@ public class PlayerControl : MonoBehaviour
 
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
+    private float speed = 4.0f;
+
+    Vector3 move = Vector3.zero;
 
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     void Start()
@@ -25,7 +28,7 @@ public class PlayerControl : MonoBehaviour
 
         if (m_Input.moveFlag)
         {
-            characterController.Move(m_Input.Move);
+            //characterController.Move(move);
             m_Am.SetBool("RunBool", true);
         }
         else
@@ -56,7 +59,17 @@ public class PlayerControl : MonoBehaviour
         {
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
-        }                       
+        }           
+    }
+    void OnAnimatorMove()
+    {
+        Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+
+        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
+        move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
+        move = Vector3.Normalize(move) * speed * Time.deltaTime;
+
+        characterController.Move(move);
     }
     private void OnDrawGizmos()
     {
@@ -65,5 +78,12 @@ public class PlayerControl : MonoBehaviour
 
         // Gizmos.color = Color.red;
         // Gizmos.DrawSphere(groundChecker.position, groundDistance);
-    }    
+    }
+    void Rotating(float moveH, float moveV)
+    {
+        // 建立角色目標方向的向量
+        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
+        Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
+        transform.rotation = newRotation;
+    }
 }

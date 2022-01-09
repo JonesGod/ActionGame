@@ -21,6 +21,7 @@ public class PlayerInput : MonoBehaviour
     private bool isGrounded = true;
     public float groundDistance = 0.2f;
     Vector3 move = Vector3.zero;
+    private Vector2 m_Movement;
 
     private Animator m_Am;
     float rollTime;
@@ -29,21 +30,29 @@ public class PlayerInput : MonoBehaviour
     public bool attack = false;
     public bool specialAttack = false;
     public bool avoid = false;
+    public bool cantMoveState= false;
 
-
+    public Vector2 MoveInput
+    {
+        get
+        {
+            if (!moveFlag || cantMoveState)
+                return Vector2.zero;
+            return m_Movement;
+        }
+    }
     void Start()
     {
-        m_Am = GetComponent<Animator>();       
+        m_Am = GetComponent<Animator>();     
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
 
         float stateTime = m_Am.GetFloat("StateTime");
-        bool cantMoveState = GetCantMoveState();
+        cantMoveState = GetCantMoveState();
         
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -54,18 +63,18 @@ public class PlayerInput : MonoBehaviour
             moveFlag = false;
         }
 
-        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-            && !cantMoveState)
-        {            
-            Rotating(h, v);
-            move = transform.forward * Mathf.Abs(v);
-            move += transform.forward * Mathf.Abs(h);
-            move = Vector3.Normalize(move) * speed * Time.deltaTime;           
-        }
-        else 
-        {           
-            move = Vector3.zero;           
-        }
+        //if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        //    && !cantMoveState)
+        //{
+        //    Rotating(h, v);
+        //    move = transform.forward * Mathf.Abs(v);
+        //    move += transform.forward * Mathf.Abs(h);
+        //    move = Vector3.Normalize(move) * speed * Time.deltaTime;
+        //}
+        //else 
+        //{           
+        //    move = Vector3.zero;           
+        //}
 
         if (Input.GetButtonDown("Fire1"))
         {            
@@ -83,17 +92,17 @@ public class PlayerInput : MonoBehaviour
             if (rollTime>=0.5f)
             {
                 avoid = true;
-                Rotating(h, v);
+                //Rotating(h, v);
             }
         }
     }
-    void Rotating(float moveH, float moveV)
-    {
-        // 建立角色目標方向的向量
-        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
-        Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-        transform.rotation = newRotation;
-    }
+    //void Rotating(float moveH, float moveV)
+    //{
+    //    建立角色目標方向的向量
+    //   Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
+    //    Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
+    //    transform.rotation = newRotation;
+    //}
     /// <summary>
     /// 讓move給PlayerControl呼叫使用
     /// </summary>
