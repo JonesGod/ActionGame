@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     Vector3 move = Vector3.zero;
 
     private Animator m_Am;
-    
+    float rollTime;
 
     public bool moveFlag = false;    //WASD移動旗標   
     public bool attack = false;
@@ -34,7 +34,6 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         m_Am = GetComponent<Animator>();       
-
     }
 
     // Update is called once per frame
@@ -42,8 +41,10 @@ public class PlayerInput : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        bool noRunState = GetState();
 
+        float stateTime = m_Am.GetFloat("StateTime");
+        bool cantMoveState = GetCantMoveState();
+        
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             moveFlag = true;
@@ -54,7 +55,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-            && !noRunState)
+            && !cantMoveState)
         {            
             Rotating(h, v);
             move = transform.forward * Mathf.Abs(v);
@@ -76,9 +77,14 @@ public class PlayerInput : MonoBehaviour
         }
         
         if (Input.GetButtonDown("Avoid") )
-        {                     
-                avoid = true;                
+        {
+            if (cantMoveState) rollTime = stateTime; else rollTime = 1.0f;
+
+            if (rollTime>=0.5f)
+            {
+                avoid = true;
                 Rotating(h, v);
+            }
         }
     }
     void Rotating(float moveH, float moveV)
@@ -99,7 +105,7 @@ public class PlayerInput : MonoBehaviour
     /// 判斷是否在攻擊狀態中
     /// </summary>
     /// <returns></returns>
-    bool GetState()
+    bool GetCantMoveState()
     {
         AnimatorStateInfo stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
@@ -118,4 +124,5 @@ public class PlayerInput : MonoBehaviour
         
         return attackstate;
     }
+    
 }
