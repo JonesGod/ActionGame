@@ -13,30 +13,29 @@ public class PlayerInput : MonoBehaviour
 
     public FolowCamera followCamera;
 
-    public float speed = 15;
     private Vector3 velocity;
-    //Vector3 move = Vector3.zero;
-    public float gravity = -9.81f;
 
-    private bool isGrounded = true;
     public float groundDistance = 0.2f;
     Vector3 move = Vector3.zero;
     private Vector2 m_Movement;
 
     private Animator m_Am;
-    float rollTime;
 
+    private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
+    private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
     public bool moveFlag = false;    //WASD移動旗標   
     public bool attack = false;
     public bool specialAttack = false;
     public bool avoid = false;
-    public bool cantMoveState= false;
+    private float statetime;
+
+    private bool attackState;
 
     public Vector2 MoveInput
     {
         get
         {
-            if (!moveFlag || cantMoveState)
+            if (!moveFlag )
                 return Vector2.zero;
             return m_Movement;
         }
@@ -49,10 +48,13 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AnimatorStateInfo stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
+
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
 
         float stateTime = m_Am.GetFloat("StateTime");
-        cantMoveState = GetCantMoveState();
+        //cantMoveState = GetCantMoveState();
         
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -75,25 +77,20 @@ public class PlayerInput : MonoBehaviour
         //{           
         //    move = Vector3.zero;           
         //}
+        attackState = GetAttackState(stateinfo, nextStateinfo);
+        statetime=GetStateTime();
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && statetime >= attackTime)
         {            
             attack = true;            
         }
-        if(Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
             specialAttack = true;
-        }
-        
-        if (Input.GetButtonDown("Avoid") )
-        {
-            if (cantMoveState) rollTime = stateTime; else rollTime = 1.0f;
-
-            if (rollTime>=0.5f)
-            {
-                avoid = true;
-                //Rotating(h, v);
-            }
+        }        
+        if (Input.GetButtonDown("Avoid") && statetime>= dodgeTime)
+        {          
+                avoid = true;            
         }
     }
     //void Rotating(float moveH, float moveV)
@@ -110,28 +107,26 @@ public class PlayerInput : MonoBehaviour
     {
         get { return move ; }
     }
-    /// <summary>
-    /// 判斷是否在攻擊狀態中
-    /// </summary>
-    /// <returns></returns>
-    bool GetCantMoveState()
+    float GetStateTime()
     {
-        AnimatorStateInfo stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
-
-        bool nextAttackState= nextStateinfo.IsName("attack01");
-        bool nextAvoidState = nextStateinfo.IsName("Roll");
+        if (attackState)
+            statetime = m_Am.GetFloat("StateTime");
+        else
+            statetime = 1.0f;
+        return statetime;
+    }
+    public bool GetAttackState(AnimatorStateInfo stateinfo, AnimatorStateInfo nextStateinfo)
+    {
+        bool nextAttackState = nextStateinfo.IsName("attack01");
 
         bool specialAttackState = stateinfo.IsName("specialAttack");
-        bool avoid = stateinfo.IsName("Roll");
         bool attack01 = stateinfo.IsName("attack01");
         bool attack02 = stateinfo.IsName("attack02");
         bool attack03 = stateinfo.IsName("attack03");
 
-        var attackstate = nextAvoidState || nextAttackState || avoid
-                       || specialAttackState || attack01 || attack02 || attack03; 
-        
+        var attackstate = nextAttackState
+                       || specialAttackState || attack01 || attack02 || attack03;
+
         return attackstate;
     }
-    
 }
