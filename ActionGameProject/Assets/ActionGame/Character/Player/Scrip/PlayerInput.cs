@@ -23,10 +23,14 @@ public class PlayerInput : MonoBehaviour
 
     private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
     private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
+
     public bool moveFlag = false;    //WASD移動旗標   
     public bool attack = false;
     public bool specialAttack = false;
     public bool avoid = false;
+    public bool nextIsRoll = false;
+    public bool isTrasition = false;
+
     private float statetime;
 
     private bool attackState;
@@ -35,7 +39,7 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (!moveFlag )
+            if (!moveFlag || nextIsRoll)
                 return Vector2.zero;
             return m_Movement;
         }
@@ -44,17 +48,16 @@ public class PlayerInput : MonoBehaviour
     {
         m_Am = GetComponent<Animator>();     
     }
-
-    // Update is called once per frame
     void Update()
     {
         AnimatorStateInfo stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
+        AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);        
+
+        nextIsRoll = nextStateinfo.IsName("Roll");
 
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
 
         float stateTime = m_Am.GetFloat("StateTime");
-        //cantMoveState = GetCantMoveState();
         
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -65,18 +68,6 @@ public class PlayerInput : MonoBehaviour
             moveFlag = false;
         }
 
-        //if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        //    && !cantMoveState)
-        //{
-        //    Rotating(h, v);
-        //    move = transform.forward * Mathf.Abs(v);
-        //    move += transform.forward * Mathf.Abs(h);
-        //    move = Vector3.Normalize(move) * speed * Time.deltaTime;
-        //}
-        //else 
-        //{           
-        //    move = Vector3.zero;           
-        //}
         attackState = GetAttackState(stateinfo, nextStateinfo);
         statetime=GetStateTime();
 
@@ -92,17 +83,7 @@ public class PlayerInput : MonoBehaviour
         {          
                 avoid = true;            
         }
-    }
-    //void Rotating(float moveH, float moveV)
-    //{
-    //    建立角色目標方向的向量
-    //   Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
-    //    Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-    //    transform.rotation = newRotation;
-    //}
-    /// <summary>
-    /// 讓move給PlayerControl呼叫使用
-    /// </summary>
+    }   
     public Vector3 Move  
     {
         get { return move ; }
