@@ -18,11 +18,7 @@ public class PlayerControl : MonoBehaviour
     private float totalSpeed;
 
     AnimatorStateInfo stateinfo;
-    AnimatorStateInfo nextStateinfo;
-    
-    private bool roll;
-    private bool nextRoll;
-    private bool idle;
+    AnimatorStateInfo nextStateinfo;       
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
@@ -30,6 +26,7 @@ public class PlayerControl : MonoBehaviour
     readonly int hashSpecialAttackState=Animator.StringToHash("specialAttackState");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
+    readonly int m_StateTime = Animator.StringToHash("StateTime");
 
     private bool isGrounded = true;
     private bool attackState;
@@ -38,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     private bool nextIsRoll;
 
     Vector3 move = Vector3.zero;
-    readonly int m_StateTime = Animator.StringToHash("StateTime");
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
