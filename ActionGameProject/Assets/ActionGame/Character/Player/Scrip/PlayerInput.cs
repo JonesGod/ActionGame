@@ -49,65 +49,26 @@ public class PlayerInput : MonoBehaviour
         m_Am = GetComponent<Animator>();     
     }
     void Update()
-    {
-        AnimatorStateInfo stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);        
-
-        nextIsRoll = nextStateinfo.IsName("Roll");
-
+    {                      
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
 
         float stateTime = m_Am.GetFloat("StateTime");
         
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        {
-            moveFlag = true;
-        }
-        else
-        {
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))        
+            moveFlag = true;        
+        else        
             moveFlag = false;
-        }
-
-        attackState = GetAttackState(stateinfo, nextStateinfo);
-        statetime=GetStateTime();
-
-        if (Input.GetButtonDown("Fire1") && statetime >= attackTime)
-        {            
-            attack = true;            
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            specialAttack = true;
-        }        
-        if (Input.GetButtonDown("Avoid") && statetime>= dodgeTime)
-        {          
-                avoid = true;            
-        }
+        
+        if (Input.GetButtonDown("Fire1"))                    
+            attack = true;                    
+        if (Input.GetButtonDown("Fire2"))        
+            specialAttack = true;                
+        if (Input.GetButtonDown("Avoid") )                  
+            avoid = true;            
+        
     }   
     public Vector3 Move  
     {
         get { return move ; }
-    }
-    float GetStateTime()
-    {
-        if (attackState)
-            statetime = m_Am.GetFloat("StateTime");
-        else
-            statetime = 1.0f;
-        return statetime;
-    }
-    public bool GetAttackState(AnimatorStateInfo stateinfo, AnimatorStateInfo nextStateinfo)
-    {
-        bool nextAttackState = nextStateinfo.IsName("attack01");
-
-        bool specialAttackState = stateinfo.IsName("specialAttack");
-        bool attack01 = stateinfo.IsName("attack01");
-        bool attack02 = stateinfo.IsName("attack02");
-        bool attack03 = stateinfo.IsName("attack03");
-
-        var attackstate = nextAttackState
-                       || specialAttackState || attack01 || attack02 || attack03;
-
-        return attackstate;
-    }
+    }    
 }
