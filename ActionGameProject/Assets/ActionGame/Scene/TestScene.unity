@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5792449
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_LocalPosition.y
@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.248386
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_LocalRotation.w
@@ -378,13 +378,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617231476}
-  m_LocalRotation: {x: 0.2636373, y: -0, z: -0, w: 0.9646219}
-  m_LocalPosition: {x: 0, y: 5.7065, z: -24.27}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalPosition: {x: 0, y: 5.7065, z: -19.79}
   m_LocalScale: {x: 2.5734, y: 2.5734, z: 2.5734}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 30.572, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &636040982
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,14 +791,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
-  speed: 4
-  gravity: -9.8
   groundDistance: 0.2
   moveFlag: 0
   attack: 0
   specialAttack: 0
   avoid: 0
-  cantMoveState: 0
+  nextIsRoll: 0
+  isTrasition: 0
 --- !u!1 &1703439013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 1523242042}
   followDistance: 5
-  minMaxFollowDistance: {x: 3, y: 0}
+  minMaxFollowDistance: {x: 2.5, y: 0}
   horizontalVector: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   checkHitLayerMask:
