@@ -10,7 +10,6 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    private float attackMoveSpeed=5.0f;
     private float speed = 5.0f;
     private float gravity=20.0f;
     private float rollSpeed=3.0f;
@@ -38,7 +37,6 @@ public class PlayerControl : MonoBehaviour
     private bool isTrasition;
 
     Vector3 move = Vector3.zero;
-    Vector3 attackMove = Vector3.zero;
 
     void Start()
     {
@@ -102,8 +100,8 @@ public class PlayerControl : MonoBehaviour
         {
             move= Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-       
         move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
+       
         move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
         if (rollState || nextIsRoll)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
@@ -116,12 +114,7 @@ public class PlayerControl : MonoBehaviour
         move +=fallSpeed * Vector3.up * Time.deltaTime;
 
         if(!attackState || nextIsRoll)
-            characterController.Move(move);
-        if (attackState)
-        {
-            attackMove = transform.forward * attackMoveSpeed * Time.deltaTime;
-            characterController.Move(attackMove);
-        }
+            characterController.Move(move);       
     }
     void CalculateGravity()
     {

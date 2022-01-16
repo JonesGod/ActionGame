@@ -72,7 +72,7 @@ public class FolowCamera : MonoBehaviour
         }
 
         transform.forward = cameraForward;
-        transform.position = cameraPosition;
+        transform.position = cameraPosition;       
     }
 
     void OnDrawGizmos()
