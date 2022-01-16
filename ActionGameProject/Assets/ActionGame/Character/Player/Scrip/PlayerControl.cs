@@ -22,7 +22,8 @@ public class PlayerControl : MonoBehaviour
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
-    readonly int hashAttack03 = Animator.StringToHash("attack03");    
+    readonly int hashAttack03 = Animator.StringToHash("attack03");
+    readonly int hashAttack04 = Animator.StringToHash("attack04");
     readonly int hashSpecialAttackState=Animator.StringToHash("specialAttackState");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
@@ -33,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     private bool rollState;
     private bool nextIsIdle;
     private bool nextIsRoll;
+    private bool isTrasition;
 
     Vector3 move = Vector3.zero;
     
@@ -49,6 +51,7 @@ public class PlayerControl : MonoBehaviour
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
+        isTrasition = m_Am.IsInTransition(0);
 
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
 
@@ -63,8 +66,10 @@ public class PlayerControl : MonoBehaviour
         if (m_Input.avoid)      //迴避
         {
             statetime = m_Am.GetFloat("StateTime");
-            if (statetime >= 0.5f)            
+            if (statetime >= 0.5f && !isTrasition)
+            {
                 Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+            }
 
             m_Am.SetTrigger("AvoidTrigger"); 
             m_Input.avoid = false;
@@ -83,7 +88,7 @@ public class PlayerControl : MonoBehaviour
         GetAttackState();
         GetRollState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !rollState)
+        if (m_Input.moveFlag && !attackState && !rollState && !isTrasition)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
     }
     
