@@ -21,14 +21,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LinkFaceMat
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: f0aabfbb9d443a2438d725e2bf21c8ba, type: 3}
+  m_ShaderKeywords: _UseAlphaClip _UseFringeShadow _UseRim
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -93,8 +92,8 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _CelShadeArea: -0.16
-    - _CelShadeGradient: 0.418
+    - _CelShadeArea: -0.67
+    - _CelShadeGradient: 0.106
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -105,7 +104,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FresnelPow: 0
-    - _FringeShadowOffset: 0
+    - _FringeShadowOffset: 0.0018
     - _FringeShadowThreshold: 0.001
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -113,12 +112,12 @@ Material:
     - _IsFace: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 1
+    - _OutlineWidth: 0.28
     - _OutlineZOffsetAmount: 0.029
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadowMappingAmount: 0.16
-    - _ReceiveShadowMappingOffset: 0
+    - _ReceiveShadowMappingOffset: -0.78
     - _ReceiveShadows: 1
     - _RimColorBrightness: 4
     - _RimWidth: 0.0011
@@ -129,8 +128,8 @@ Material:
     - _Surface: 0
     - _Threshold: 0.09
     - _UseAlphaClip: 1
-    - _UseBackRim: 1
-    - _UseFringeShadow: 0
+    - _UseBackRim: 0
+    - _UseFringeShadow: 1
     - _UseRim: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -141,6 +140,6 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _RimColorBack: {r: 1, g: 1, b: 1, a: 1}
     - _RimColorFront: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowPartColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ShadowPartColor: {r: 0.8490566, g: 0.5403816, b: 0.38848346, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

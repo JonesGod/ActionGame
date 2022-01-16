@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5844997397404430459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836fba37e8552f541abf20055e192196, type: 3}
+  m_Name: NewAtmosphericFogRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    color: {r: 0.29803923, g: 0.6039216, b: 0.69803923, a: 1}
+    sunColor: {r: 0.48235297, g: 0.5764706, b: 0.7372549, a: 1}
+    fogDensity: 0.015
+    fogDensityPower: 14.9
+    skyAlpha: 0.946
+    useHeightFog: 0
+    fogHeightStart: 0
+    fogHeightEnd: 30
+    fogHeightPower: 0.5
+    extraFogHeightEnd: 0
+    extraFogHeightPower: 0.5
+    directionalIntesity: 1
+    directionalPower: 1
+    fogMaterial: {fileID: 2100000, guid: 39e0dc4bc7017be498814375f5033d21, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +40,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: 2015390839941955991}
+  - {fileID: 9023383167564348174}
+  - {fileID: -5844997397404430459}
+  m_RendererFeatureMap: 9701517a4a1bf81b0e7be9d62e7f397d854fa0ced565e2ae
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -42,3 +73,47 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
+--- !u!114 &2015390839941955991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e168bfd68678a44aab768c74ca6871, type: 3}
+  m_Name: NewToonHairShadowRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    renderPassEvent: 250
+    hairLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    faceLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    QueueMin: 2000
+    QueueMax: 2500
+    passMaterial: {fileID: 2100000, guid: 176408721f6b7bf4e94791a7b96649d5, type: 2}
+--- !u!114 &9023383167564348174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db033f711729174e816d8cccd1d7626, type: 3}
+  m_Name: NewKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    renderPassEvent: 550
+    blurMaterial: {fileID: 2100000, guid: 704bf2bbb2115014f8f4408f69a4c968, type: 2}
+    downsample: 1
+    loop: 4
+    blur: 0.37
+    passTag: mypassTag
