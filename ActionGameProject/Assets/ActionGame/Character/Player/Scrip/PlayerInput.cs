@@ -24,12 +24,12 @@ public class PlayerInput : MonoBehaviour
     private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
     private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
 
-    public bool moveFlag = false;    //WASD移動旗標   
-    public bool attack = false;
-    public bool specialAttack = false;
-    public bool avoid = false;
-    public bool nextIsRoll = false;
-    public bool isTrasition = false;
+    [HideInInspector] public bool moveFlag = false;    //WASD移動旗標   
+    [HideInInspector] public bool attack = false;
+    [HideInInspector] public bool specialAttack = false;
+    [HideInInspector] public bool avoid = false;
+    [HideInInspector] public bool nextIsRoll = false;
+    [HideInInspector] public bool isTrasition = false;
 
     private float statetime;
 
