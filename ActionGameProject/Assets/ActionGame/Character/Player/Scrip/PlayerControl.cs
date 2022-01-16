@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
+    private float attackMoveSpeed=5.0f;
     private float speed = 5.0f;
     private float gravity=20.0f;
     private float rollSpeed=3.0f;
@@ -37,7 +38,8 @@ public class PlayerControl : MonoBehaviour
     private bool isTrasition;
 
     Vector3 move = Vector3.zero;
-    
+    Vector3 attackMove = Vector3.zero;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
@@ -54,6 +56,7 @@ public class PlayerControl : MonoBehaviour
         isTrasition = m_Am.IsInTransition(0);
 
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
+        statetime = m_Am.GetFloat("StateTime");
 
         CalculateGravity();
 
@@ -64,8 +67,7 @@ public class PlayerControl : MonoBehaviour
 
         ResetTrigger();
         if (m_Input.avoid)      //迴避
-        {
-            statetime = m_Am.GetFloat("StateTime");
+        {            
             if (statetime >= 0.5f && !isTrasition)
             {
                 Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
@@ -115,6 +117,11 @@ public class PlayerControl : MonoBehaviour
 
         if(!attackState || nextIsRoll)
             characterController.Move(move);
+        if (attackState)
+        {
+            attackMove = transform.forward * attackMoveSpeed * Time.deltaTime;
+            characterController.Move(attackMove);
+        }
     }
     void CalculateGravity()
     {
@@ -141,6 +148,7 @@ public class PlayerControl : MonoBehaviour
         if(stateinfo.shortNameHash == hashAttack01 ||
            stateinfo.shortNameHash == hashAttack02 ||
            stateinfo.shortNameHash == hashAttack03 ||
+           stateinfo.shortNameHash == hashAttack04 ||
            stateinfo.shortNameHash == hashSpecialAttackState||
            nextStateinfo.shortNameHash== hashAttack01)
         {

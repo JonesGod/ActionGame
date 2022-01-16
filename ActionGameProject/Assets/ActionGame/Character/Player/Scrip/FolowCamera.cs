@@ -5,23 +5,26 @@ using UnityEngine;
 public class FolowCamera : MonoBehaviour
 {
     public Transform lookTarget;
+    Vector3 lookTargetPosition;
     public float followDistance;
     public Vector2 minMaxFollowDistance;
+    public float cameraHeight;
     private float horizontalAngle;
     private float verticalAngle;
-    [HideInInspector]public Vector3 horizontalVector;
-    [HideInInspector]public Vector3 cameraRight;
+    [HideInInspector] public Vector3 horizontalVector;
+    [HideInInspector] public Vector3 cameraRight;
     public LayerMask checkHitLayerMask;
 
     Vector3 cameraPosition;
     void Start()
     {
         horizontalVector = lookTarget.transform.forward;
+        lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     void Update()
     {
-        UpdateCamera();        
+        UpdateCamera();
     }
 
     void UpdateCamera()
@@ -30,28 +33,27 @@ public class FolowCamera : MonoBehaviour
         float yAngle = Input.GetAxis("Mouse Y");
         horizontalAngle = xAngle;
         verticalAngle += yAngle;
-        
-        //Debug.Log("horizontalAngle"+horizontalAngle); 
-        //Debug.Log("verticalAngle"+verticalAngle);
+
         if (verticalAngle > 20.0f)
-            verticalAngle=20.0f;
+            verticalAngle = 20.0f;
         if (verticalAngle < -60.0f)
             verticalAngle = -60.0f;
         //vector = Quaternion.AngleAxis(角度, 旋轉軸向量) * 欲旋轉向量;
         horizontalVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * horizontalVector;
         horizontalVector.Normalize();
-        
+
         cameraRight = Vector3.Cross(Vector3.up, horizontalVector);
         Vector3 cameraForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * horizontalVector;
         cameraForward.Normalize();
-        
+
         //牆壁檢測
-        if (Physics.Raycast(lookTarget.position+new Vector3(0.0f,1.0f,0.0f), -cameraForward , out RaycastHit rh, followDistance+1.0f, checkHitLayerMask))
+        lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
+        if (Physics.Raycast(lookTargetPosition, -cameraForward, out RaycastHit rh, followDistance, checkHitLayerMask))
         {
-            Vector3 hitRayDir = rh.point - lookTarget.position ;
+            Vector3 hitRayDir = rh.point - lookTarget.position;
             float hitRayLength = hitRayDir.magnitude;
-            //Debug.Log("hitLength:" + hitRayLength);
-            Vector3 newCameraPosition = rh.point+ cameraForward*1.0f+ new Vector3(0.0f, 0.5f, 0.0f);//固定住攝影機的位置(不要再後退了)                        
+
+            Vector3 newCameraPosition = rh.point + cameraForward * 0.5f + new Vector3(0.0f, 0.2f, 0.0f);//固定住攝影機的位置(不要再後退了)                        
 
             if (hitRayLength < minMaxFollowDistance.x)
             {
@@ -62,23 +64,22 @@ public class FolowCamera : MonoBehaviour
             {
                 cameraPosition = newCameraPosition;
             }
-            cameraForward = lookTarget.position + new Vector3(0.0f, 1.5f, 0.0f) - cameraPosition;
+            cameraForward = lookTargetPosition - cameraPosition;
         }
         else
         {
-            cameraPosition = lookTarget.position+ new Vector3(0.0f, 1.5f, 0.0f) 
-                            - (cameraForward * followDistance);
+            cameraPosition = lookTarget.position + new Vector3(0.0f, cameraHeight, 0.0f) - (cameraForward * followDistance);
         }
-        
+
         transform.forward = cameraForward;
         transform.position = cameraPosition;
     }
 
-    void OnDrawGizmos() 
+    void OnDrawGizmos()
     {
         Gizmos.color = new Color(1.0f, 0.0f, 0.0f);
-        Gizmos.DrawLine(cameraRight, cameraRight * 3); 
-        Gizmos.color = new Color(0.0f, 1.0f, 0.0f);    
-        Gizmos.DrawLine(horizontalVector, horizontalVector * 3);    
+        Gizmos.DrawLine(cameraRight, cameraRight * 3);
+        Gizmos.color = new Color(0.0f, 1.0f, 0.0f);
+        Gizmos.DrawLine(horizontalVector, horizontalVector * 3);
     }
 }
