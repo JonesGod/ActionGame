@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
+    private float rotateSpeed = 10.0f;
     private float speed = 5.0f;
     private float gravity=20.0f;
     private float rollSpeed=3.0f;
@@ -100,14 +101,20 @@ public class PlayerControl : MonoBehaviour
     
     void OnAnimatorMove()
     {
-        
+        stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
+        bool a=stateinfo.IsName("attack01");
+        if (a)
+        {
+            Debug.Log(m_Am.deltaPosition);
+            Debug.Log(m_Am.deltaRotation);
+        }
         RaycastHit hit;
-        Ray ray = new Ray(transform.position+Vector3.up,-Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
+        Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
         {
-            move= Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
+            move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);       
+        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
         move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
         if (rollState || rollIsNext)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
@@ -115,12 +122,12 @@ public class PlayerControl : MonoBehaviour
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
         if (idleIsNext)
-            move = transform.forward*0.0f;
+            move = transform.forward * 0.0f;
 
-        move +=fallSpeed * Vector3.up * Time.deltaTime;
+        move += fallSpeed * Vector3.up * Time.deltaTime;
 
-        if(!attackState || rollIsNext)
-            characterController.Move(move);       
+        if (!attackState || rollIsNext)
+            characterController.Move(move);
     }
     void CalculateGravity()
     {        
@@ -145,25 +152,11 @@ public class PlayerControl : MonoBehaviour
     }
     void Rotating(float moveH, float moveV)
     {
-        float soomthH = 0.2f - Mathf.Abs(moveH)/5 ;       
-        float soomthV = 0.2f - Mathf.Abs(moveV)/5 ; 
-        // 建立角色目標方向的向量       
-        if (Vector3.Dot(followCamera.horizontalVector, characterController.transform.forward)<0.0f)
-        {
-            soomthH = -soomthH;
-        }
-        if(Vector3.Dot(followCamera.cameraRight,characterController.transform.forward)< 0.0f)
-        {
-            soomthV = -soomthV;
-        }
-
-        Vector3 newDirectionVector = followCamera.horizontalVector * (moveV+ soomthH) + followCamera.cameraRight * (moveH+ soomthV);        
-
-        if (newDirectionVector == Vector3.zero)
-            newDirectionVector = transform.forward;
-
+        // 建立角色目標方向的向量                  
+        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH;        
+        
         Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-        characterController.transform.rotation = newRotation;
+        characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
     }
     
     void GetAttackState()
