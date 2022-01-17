@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    color: {r: 0.29803923, g: 0.6039216, b: 0.69803923, a: 1}
-    sunColor: {r: 0.48235297, g: 0.5764706, b: 0.7372549, a: 1}
+    color: {r: 0.29803923, g: 0.6039216, b: 0.69803923, a: 0.9490196}
+    sunColor: {r: 0.48235297, g: 0.5764706, b: 0.7372549, a: 0.85882354}
     fogDensity: 0.015
-    fogDensityPower: 14.9
+    fogDensityPower: 7.1
     skyAlpha: 0.946
     useHeightFog: 0
     fogHeightStart: 0
@@ -109,11 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db033f711729174e816d8cccd1d7626, type: 3}
   m_Name: NewKawaseBlur
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
-    renderPassEvent: 550
+    renderPassEvent: 500
     blurMaterial: {fileID: 2100000, guid: 704bf2bbb2115014f8f4408f69a4c968, type: 2}
     downsample: 1
-    loop: 4
-    blur: 0.37
+    loop: 3
+    blur: 0.2
     passTag: mypassTag

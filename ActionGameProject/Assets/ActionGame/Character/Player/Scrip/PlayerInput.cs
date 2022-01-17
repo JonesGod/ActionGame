@@ -21,10 +21,10 @@ public class PlayerInput : MonoBehaviour
 
     private Animator m_Am;
 
-    private float dodgeTime = 0.5f; //§ðÀ»®É¡A³Ì¤p¥i°jÁ×®É¶¡
-    private float attackTime = 0.4f; //§ðÀ»®É¡A³Ì¤p¥i¦A§ðÀ»®É¶¡
+    private float dodgeTime = 0.5f; //ï¿½ï¿½ï¿½ï¿½ï¿½É¡Aï¿½Ì¤pï¿½iï¿½jï¿½×®É¶ï¿½
+    private float attackTime = 0.4f; //ï¿½ï¿½ï¿½ï¿½ï¿½É¡Aï¿½Ì¤pï¿½iï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½
 
-    [HideInInspector] public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
+    [HideInInspector] public bool moveFlag = false;    //WASDï¿½ï¿½ï¿½ÊºXï¿½ï¿½   
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;
@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
     }
     void Update()
     {                      
-        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
+        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
 
         float stateTime = m_Am.GetFloat("StateTime");
         

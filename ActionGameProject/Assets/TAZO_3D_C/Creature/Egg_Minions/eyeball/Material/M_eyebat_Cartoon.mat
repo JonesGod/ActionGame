@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_eyebat_Cartoon
   m_Shader: {fileID: 4800000, guid: f0aabfbb9d443a2438d725e2bf21c8ba, type: 3}
-  m_ShaderKeywords: _EMISSION _UseAlphaClip _UseRim
+  m_ShaderKeywords: _EMISSION _UseAlphaClip _UseBackRim _UseRim
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -106,12 +106,12 @@ Material:
     - _ReceiveShadowMappingOffset: 0
     - _RimColorBrightness: 3.39
     - _RimPower: 4.56
-    - _RimWidth: 0.0129
+    - _RimWidth: 0.003
     - _SrcBlend: 1
     - _Threshold: 0.055
     - _UVSec: 0
     - _UseAlphaClip: 1
-    - _UseBackRim: 0
+    - _UseBackRim: 1
     - _UseFringeShadow: 0
     - _UseRim: 1
     - _ZWrite: 1
