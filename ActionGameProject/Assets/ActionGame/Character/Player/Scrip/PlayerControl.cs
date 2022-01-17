@@ -28,7 +28,6 @@ public class PlayerControl : MonoBehaviour
     readonly int hashSpecialAttackState=Animator.StringToHash("specialAttackState");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
-    readonly int hashRun = Animator.StringToHash("Run");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
 
     private bool isGrounded = true;
@@ -36,9 +35,7 @@ public class PlayerControl : MonoBehaviour
     private bool rollState;
     private bool idleIsNext;
     private bool rollIsNext;
-    private bool runIsNext;
     private bool isTrasition;
-    bool xx=true;
 
     Vector3 move = Vector3.zero;
 
@@ -93,7 +90,6 @@ public class PlayerControl : MonoBehaviour
         GetAttackState();
         GetRollState();
         GetNextState();
-        ResetInput();
         if (m_Input.moveFlag && !attackState && !rollState)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
         
@@ -140,16 +136,6 @@ public class PlayerControl : MonoBehaviour
             fallSpeed -= gravity * Time.deltaTime;
         }
     }
-    void ResetInput()
-    {       
-        if (attackState && runIsNext && xx)
-        {
-            xx = false;
-            Input.ResetInputAxes();
-        }
-        if(!(attackState && runIsNext))
-            xx = true;
-    }
     void Rotating(float moveH, float moveV)
     {
         // 建立角色目標方向的向量                  
@@ -191,10 +177,6 @@ public class PlayerControl : MonoBehaviour
             idleIsNext = true;
         else
             idleIsNext = false;
-        if (nextStateinfo.shortNameHash == hashRun)
-            runIsNext = true;
-        else
-            runIsNext = false;
     }
     void ResetTrigger()
     {
