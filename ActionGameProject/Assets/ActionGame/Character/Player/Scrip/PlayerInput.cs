@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
     }
     void Update()
     {                      
-        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));        
+        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         float stateTime = m_Am.GetFloat("StateTime");
         

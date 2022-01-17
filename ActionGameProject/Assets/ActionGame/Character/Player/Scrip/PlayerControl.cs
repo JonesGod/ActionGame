@@ -27,14 +27,17 @@ public class PlayerControl : MonoBehaviour
     readonly int hashSpecialAttackState=Animator.StringToHash("specialAttackState");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
+    readonly int hashRun = Animator.StringToHash("Run");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
 
     private bool isGrounded = true;
     private bool attackState;
     private bool rollState;
-    private bool nextIsIdle;
-    private bool nextIsRoll;
+    private bool idleIsNext;
+    private bool rollIsNext;
+    private bool runIsNext;
     private bool isTrasition;
+    bool xx=true;
 
     Vector3 move = Vector3.zero;
 
@@ -49,7 +52,7 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(Vector3.Dot(followCamera.horizontalVector, characterController.transform.forward));
+
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -85,41 +88,43 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
         }
-
+        
         GetAttackState();
         GetRollState();
         GetNextState();
+        ResetInput();
         if (m_Input.moveFlag && !attackState && !rollState)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+        
     }
     
     void OnAnimatorMove()
     {
+        
         RaycastHit hit;
         Ray ray = new Ray(transform.position+Vector3.up,-Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
         {
             move= Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
-       
+        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);       
         move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
-        if (rollState || nextIsRoll)
+        if (rollState || rollIsNext)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (nextIsIdle)
+        if (idleIsNext)
             move = transform.forward*0.0f;
 
         move +=fallSpeed * Vector3.up * Time.deltaTime;
 
-        if(!attackState || nextIsRoll)
+        if(!attackState || rollIsNext)
             characterController.Move(move);       
     }
     void CalculateGravity()
-    {
-        if (isGrounded)
+    {        
+        if (characterController.isGrounded)
         {
             fallSpeed = -gravity * 0.3f;
         }
@@ -128,10 +133,20 @@ public class PlayerControl : MonoBehaviour
             fallSpeed -= gravity * Time.deltaTime;
         }
     }
+    void ResetInput()
+    {       
+        if (attackState && runIsNext && xx)
+        {
+            xx = false;
+            Input.ResetInputAxes();
+        }
+        if(!(attackState && runIsNext))
+            xx = true;
+    }
     void Rotating(float moveH, float moveV)
     {
-        float soomthH = 0.25f - Mathf.Abs(moveH)/4 ;       
-        float soomthV = 0.25f - Mathf.Abs(moveV)/4 ; 
+        float soomthH = 0.2f - Mathf.Abs(moveH)/5 ;       
+        float soomthV = 0.2f - Mathf.Abs(moveV)/5 ; 
         // 建立角色目標方向的向量       
         if (Vector3.Dot(followCamera.horizontalVector, characterController.transform.forward)<0.0f)
         {
@@ -146,6 +161,7 @@ public class PlayerControl : MonoBehaviour
 
         if (newDirectionVector == Vector3.zero)
             newDirectionVector = transform.forward;
+
         Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
         characterController.transform.rotation = newRotation;
     }
@@ -174,14 +190,18 @@ public class PlayerControl : MonoBehaviour
     void GetNextState()
     {
         if (nextStateinfo.shortNameHash == hashRoll)
-            nextIsRoll = true;
+            rollIsNext = true;
         else
-            nextIsRoll = false;
+            rollIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashIdle)
-            nextIsIdle = true;
+            idleIsNext = true;
         else
-            nextIsIdle = false;
+            idleIsNext = false;
+        if (nextStateinfo.shortNameHash == hashRun)
+            runIsNext = true;
+        else
+            runIsNext = false;
     }
     void ResetTrigger()
     {
