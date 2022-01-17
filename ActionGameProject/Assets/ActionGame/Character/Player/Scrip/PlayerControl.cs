@@ -49,6 +49,7 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(Vector3.Dot(followCamera.horizontalVector, characterController.transform.forward));
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -88,7 +89,7 @@ public class PlayerControl : MonoBehaviour
         GetAttackState();
         GetRollState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !rollState && !isTrasition)
+        if (m_Input.moveFlag && !attackState && !rollState)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
     }
     
@@ -129,13 +130,26 @@ public class PlayerControl : MonoBehaviour
     }
     void Rotating(float moveH, float moveV)
     {
-        // 建立角色目標方向的向量
-        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
+        float soomthH = 0.25f - Mathf.Abs(moveH)/4 ;       
+        float soomthV = 0.25f - Mathf.Abs(moveV)/4 ; 
+        // 建立角色目標方向的向量       
+        if (Vector3.Dot(followCamera.horizontalVector, characterController.transform.forward)<0.0f)
+        {
+            soomthH = -soomthH;
+        }
+        if(Vector3.Dot(followCamera.cameraRight,characterController.transform.forward)< 0.0f)
+        {
+            soomthV = -soomthV;
+        }
+
+        Vector3 newDirectionVector = followCamera.horizontalVector * (moveV+ soomthH) + followCamera.cameraRight * (moveH+ soomthV);        
+
         if (newDirectionVector == Vector3.zero)
             newDirectionVector = transform.forward;
         Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
         characterController.transform.rotation = newRotation;
     }
+    
     void GetAttackState()
     {                                 
         if(stateinfo.shortNameHash == hashAttack01 ||

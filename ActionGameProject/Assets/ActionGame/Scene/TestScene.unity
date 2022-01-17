@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f6c65edb314fce04c8c69f7d0cf8fe76, type: 2}
+      objectReference: {fileID: 9100000, guid: 4bc95c81e79a02b49a52a2739990e658, type: 2}
     - target: {fileID: 5866666021909216657, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
       propertyPath: m_UpdateMode
       value: 1
@@ -737,7 +737,7 @@ Animator:
   m_GameObject: {fileID: 1412369526}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
-  m_Controller: {fileID: 9100000, guid: f6c65edb314fce04c8c69f7d0cf8fe76, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4bc95c81e79a02b49a52a2739990e658, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
