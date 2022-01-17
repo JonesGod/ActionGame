@@ -11,6 +11,7 @@ public class FolowCamera : MonoBehaviour
     public float cameraHeight;
     private float horizontalAngle;
     private float verticalAngle;
+    private PlayerInput m_Input;
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
     public LayerMask checkHitLayerMask;
@@ -18,6 +19,7 @@ public class FolowCamera : MonoBehaviour
     Vector3 cameraPosition;
     void Start()
     {
+        m_Input= GetComponent<PlayerInput>();
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
     }
