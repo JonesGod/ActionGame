@@ -110,8 +110,9 @@ public class PlayerControl : MonoBehaviour
         {
             move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
-        move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
+        // move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
+        // move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
+        move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
         if (rollState || rollIsNext)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
         else
@@ -139,10 +140,12 @@ public class PlayerControl : MonoBehaviour
     void Rotating(float moveH, float moveV)
     {
         // 建立角色目標方向的向量                  
-        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH;        
-        
-        Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-        characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
+        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH;       
+        if(newDirectionVector != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
+            characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
+        }    
     }
     
     void GetAttackState()
