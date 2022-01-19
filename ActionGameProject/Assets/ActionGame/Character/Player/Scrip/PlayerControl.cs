@@ -99,11 +99,7 @@ public class PlayerControl : MonoBehaviour
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         bool a=stateinfo.IsName("attack01");
-        if (a)
-        {
-            Debug.Log(m_Am.deltaPosition);
-            Debug.Log(m_Am.deltaRotation);
-        }
+ 
         RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
@@ -112,7 +108,11 @@ public class PlayerControl : MonoBehaviour
         }
         // move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
         // move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
-        move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
+        if (!attackState || rollIsNext)
+            move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
+        else
+            move = Vector3.zero;
+
         if (rollState || rollIsNext)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
         else
@@ -122,8 +122,8 @@ public class PlayerControl : MonoBehaviour
             move = transform.forward * 0.0f;
 
         move += fallSpeed * Vector3.up * Time.deltaTime;
-
-        if (!attackState || rollIsNext)
+        move += m_Am.deltaPosition;
+        
             characterController.Move(move);
     }
     void CalculateGravity()
@@ -147,7 +147,10 @@ public class PlayerControl : MonoBehaviour
             characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
         }    
     }
-    
+    void RollRotating()
+    {
+
+    }
     void GetAttackState()
     {                                 
         if(stateinfo.shortNameHash == hashAttack01 ||
