@@ -7,6 +7,11 @@ public class FolowCamera : MonoBehaviour
     //156132156
     //000000000
     public float cameraSpeed = 10.0f;
+=======
+    //testtest11
+    
+    public float cameraSpeed = 20.0f;
+>>>>>>> Stashed changes
     public Transform lookTarget;
     Vector3 lookTargetPosition;
     public float followDistance;
@@ -24,6 +29,7 @@ public class FolowCamera : MonoBehaviour
     {
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
+        Debug.Log("fas");
     }
     
     void Update()
