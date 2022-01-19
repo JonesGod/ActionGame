@@ -45,8 +45,10 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (!moveFlag && !attackState)
+            if (!moveFlag || attackState)
+            {
                 return Vector2.zero;
+            }
             return m_Movement;
         }
     }
@@ -63,7 +65,7 @@ public class PlayerInput : MonoBehaviour
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
-
+        GetAttackState();
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         float stateTime = m_Am.GetFloat("StateTime");
