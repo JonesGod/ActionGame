@@ -20,6 +20,8 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;
 
     private Animator m_Am;
+    AnimatorStateInfo stateinfo;
+    AnimatorStateInfo nextStateinfo;
 
     private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
     private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
@@ -31,7 +33,11 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool nextIsRoll = false;
     [HideInInspector] public bool isTrasition = false;
 
-    private float statetime;
+    readonly int hashAttack01 = Animator.StringToHash("attack01");
+    readonly int hashAttack02 = Animator.StringToHash("attack02");
+    readonly int hashAttack03 = Animator.StringToHash("attack03");
+    readonly int hashAttack04 = Animator.StringToHash("attack04");
+    readonly int hashSpecialAttackState = Animator.StringToHash("specialAttackState");
 
     private bool attackState;
 
@@ -39,7 +45,7 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (!moveFlag )
+            if (!moveFlag && !attackState)
                 return Vector2.zero;
             return m_Movement;
         }
@@ -54,7 +60,10 @@ public class PlayerInput : MonoBehaviour
        
     }
     void Update()
-    {                      
+    {
+        stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
+        nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
+
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         float stateTime = m_Am.GetFloat("StateTime");
@@ -75,5 +84,19 @@ public class PlayerInput : MonoBehaviour
     public Vector3 Move  
     {
         get { return move ; }
-    }    
+    }
+    void GetAttackState()
+    {
+        if (stateinfo.shortNameHash == hashAttack01 ||
+           stateinfo.shortNameHash == hashAttack02 ||
+           stateinfo.shortNameHash == hashAttack03 ||
+           stateinfo.shortNameHash == hashAttack04 ||
+           stateinfo.shortNameHash == hashSpecialAttackState ||
+           nextStateinfo.shortNameHash == hashAttack01)
+        {
+            attackState = true;
+        }
+        else
+            attackState = false;
+    }
 }

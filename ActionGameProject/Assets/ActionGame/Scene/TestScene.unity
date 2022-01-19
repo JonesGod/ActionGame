@@ -737,7 +737,7 @@ Animator:
   m_GameObject: {fileID: 1412369526}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 41a957e672a9ca647b8c77927199a832, type: 3}
-  m_Controller: {fileID: 9100000, guid: f6c65edb314fce04c8c69f7d0cf8fe76, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4bc95c81e79a02b49a52a2739990e658, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -779,23 +779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be5798cf7c010642bf0b562b7b6d461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  followCamera: {fileID: 1867982629}
-  m_Am: {fileID: 0}
-  m_Input: {fileID: 0}
-  speed: 10
-  gravity: 20
-  rollSpeed: 3
-  statetime: 0
-  fallSpeed: 0
-  totalSpeed: 0
-  isGrounded: 1
-  attackState: 0
-  rollState: 0
-  nextIsIdle: 0
-  nextIsRoll: 0
-  isTrasition: 0
-  move: {x: 0, y: 0, z: 0}
 --- !u!143 &1476082982
 CharacterController:
   m_ObjectHideFlags: 0
@@ -939,23 +922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be5798cf7c010642bf0b562b7b6d461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  followCamera: {fileID: 1867982629}
-  m_Am: {fileID: 0}
-  m_Input: {fileID: 0}
-  speed: 10
-  gravity: 20
-  rollSpeed: 3
-  statetime: 0
-  fallSpeed: 0
-  totalSpeed: 0
-  isGrounded: 1
-  attackState: 0
-  rollState: 0
-  nextIsIdle: 0
-  nextIsRoll: 0
-  isTrasition: 0
-  move: {x: 0, y: 0, z: 0}
 --- !u!143 &1523242044
 CharacterController:
   m_ObjectHideFlags: 0
@@ -986,22 +952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a465090dcc12f7249965d318f74bfe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followCamera: {fileID: 1867982629}
-  velocity: {x: 0, y: 0, z: 0}
-  groundDistance: 0.2
-  move: {x: 0, y: 0, z: 0}
-  m_Movement: {x: 0, y: 0}
-  m_Am: {fileID: 0}
-  dodgeTime: 0.5
-  attackTime: 0.4
-  moveFlag: 0
-  attack: 0
-  specialAttack: 0
-  avoid: 0
-  nextIsRoll: 0
-  isTrasition: 0
-  statetime: 0
-  attackState: 0
 --- !u!1 &1703439013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d244da47b12d0a49b5a2fcc4917bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraSpeed: 40
   lookTarget: {fileID: 1412369527}
   followDistance: 5
   minMaxFollowDistance: {x: 2.5, y: 0}
