@@ -39,14 +39,19 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (!moveFlag || nextIsRoll)
+            if (!moveFlag )
                 return Vector2.zero;
             return m_Movement;
         }
     }
+    private void Awake()
+    {
+        s_Instance = this;
+    }
     void Start()
     {
-        m_Am = GetComponent<Animator>();     
+        m_Am = GetComponent<Animator>();
+       
     }
     void Update()
     {                      

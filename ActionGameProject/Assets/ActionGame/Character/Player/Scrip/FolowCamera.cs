@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FolowCamera : MonoBehaviour
 {
+    public float cameraSpeed = 40.0f;
     public Transform lookTarget;
     Vector3 lookTargetPosition;
     public float followDistance;
@@ -11,7 +12,7 @@ public class FolowCamera : MonoBehaviour
     public float cameraHeight;
     private float horizontalAngle;
     private float verticalAngle;
-    private PlayerInput m_Input;
+    
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
     public LayerMask checkHitLayerMask;
@@ -19,14 +20,13 @@ public class FolowCamera : MonoBehaviour
     Vector3 cameraPosition;
     void Start()
     {
-        m_Input= GetComponent<PlayerInput>();
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
     }
-
+    
     void Update()
     {
-        UpdateCamera();
+        UpdateCamera();       
     }
 
     void UpdateCamera()
@@ -36,18 +36,19 @@ public class FolowCamera : MonoBehaviour
         horizontalAngle = xAngle;
         verticalAngle += yAngle;
 
+       Vector2 moveInput = PlayerInput.Instance.MoveInput/ cameraSpeed;
+
         if (verticalAngle > 20.0f)
             verticalAngle = 20.0f;
         if (verticalAngle < -60.0f)
             verticalAngle = -60.0f;
         //vector = Quaternion.AngleAxis(角度, 旋轉軸向量) * 欲旋轉向量;
-        horizontalVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * horizontalVector;
+        horizontalVector = Quaternion.AngleAxis(horizontalAngle + moveInput.x, Vector3.up) * horizontalVector;
         horizontalVector.Normalize();
 
         cameraRight = Vector3.Cross(Vector3.up, horizontalVector);
         Vector3 cameraForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * horizontalVector;
-        cameraForward.Normalize();
-
+        cameraForward.Normalize();        
         //牆壁檢測
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
         if (Physics.Raycast(lookTargetPosition, -cameraForward, out RaycastHit rh, followDistance, checkHitLayerMask))
