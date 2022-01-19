@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476120208145009788}
   - component: {fileID: 2022016264109054648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TallTree03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 6389953132324026035}
   - component: {fileID: 6872200976820412703}
   - component: {fileID: 5839945284921467523}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TallTree03_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 8958108994975902822}
   - component: {fileID: 421078737857053113}
   - component: {fileID: 7300305559903578716}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TallTree03_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

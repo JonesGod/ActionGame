@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272458198260344818}
   - component: {fileID: 5016421612769890435}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OakTreeDead01_Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 8169466687549267002}
   - component: {fileID: 5198322185190874876}
   - component: {fileID: 8820939356481505661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OakTreeDead01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -136,6 +137,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &8820939356481505661
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -161,7 +163,7 @@ GameObject:
   - component: {fileID: 1417149992564665565}
   - component: {fileID: 2796680248643872084}
   - component: {fileID: 9157486904275892035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OakTreeDead01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +207,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -229,3 +232,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
