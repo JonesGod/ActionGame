@@ -66,11 +66,11 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetBool("RunBool", false);                    
 
         ResetTrigger();
-        if (m_Input.avoid)      //迴避
+        if (m_Input.avoid )      //迴避
         {            
-            if (statetime >= 0.5f && !isTrasition)
+            if (statetime >= 0.5f && !isTrasition && !rollState)
             {
-                Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+                RollRotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
             }
 
             m_Am.SetTrigger("AvoidTrigger"); 
@@ -90,7 +90,7 @@ public class PlayerControl : MonoBehaviour
         GetAttackState();
         GetRollState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !rollState)
+        if (m_Input.moveFlag && !attackState && !rollState && !rollIsNext)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
         
     }
@@ -147,9 +147,14 @@ public class PlayerControl : MonoBehaviour
             characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
         }    
     }
-    void RollRotating()
+    void RollRotating(float moveH, float moveV)
     {
-
+        Vector3 newDirectionVector = (followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH).normalized;
+        if (newDirectionVector != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
+            characterController.transform.rotation = newRotation;
+        }
     }
     void GetAttackState()
     {                                 
