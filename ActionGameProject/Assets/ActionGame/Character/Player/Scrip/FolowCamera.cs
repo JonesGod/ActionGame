@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FolowCamera : MonoBehaviour
 {
-    public float cameraSpeed = 40.0f;
+    //156132156
+    //000000000
+    public float cameraSpeed = 10.0f;
     public Transform lookTarget;
     Vector3 lookTargetPosition;
     public float followDistance;

@@ -3,9 +3,4 @@ Cmd: initializeCompiler
 
 Cmd: shutdown
 
-<<<<<<< Updated upstream
-=======
-Cmd: shutdown
-
->>>>>>> Stashed changes
 Quitting shader compiler process
