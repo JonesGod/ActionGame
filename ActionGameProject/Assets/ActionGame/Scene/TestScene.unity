@@ -685,7 +685,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1412369526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a465090dcc12f7249965d318f74bfe36, type: 3}
+  m_Script: {fileID: 11500000, guid: c1c4e7adbc2b97749a95c17ff0be815e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followCamera: {fileID: 1867982629}
+--- !u!114 &1412369529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412369526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21830eb29b7262439cb2e4a40ab7731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
@@ -696,19 +709,6 @@ MonoBehaviour:
   avoid: 0
   nextIsRoll: 0
   isTrasition: 0
---- !u!114 &1412369529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412369526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be5798cf7c010642bf0b562b7b6d461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followCamera: {fileID: 1867982629}
 --- !u!143 &1412369530
 CharacterController:
   m_ObjectHideFlags: 0
@@ -779,7 +779,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be5798cf7c010642bf0b562b7b6d461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
   followCamera: {fileID: 1867982629}
+  m_Am: {fileID: 0}
+  m_Input: {fileID: 0}
+  speed: 10
+  gravity: 20
+  rollSpeed: 3
+  statetime: 0
+  fallSpeed: 0
+  totalSpeed: 0
+  isGrounded: 1
+  attackState: 0
+  rollState: 0
+  nextIsIdle: 0
+  nextIsRoll: 0
+  isTrasition: 0
+  move: {x: 0, y: 0, z: 0}
 --- !u!143 &1476082982
 CharacterController:
   m_ObjectHideFlags: 0
@@ -923,7 +939,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be5798cf7c010642bf0b562b7b6d461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
   followCamera: {fileID: 1867982629}
+  m_Am: {fileID: 0}
+  m_Input: {fileID: 0}
+  speed: 10
+  gravity: 20
+  rollSpeed: 3
+  statetime: 0
+  fallSpeed: 0
+  totalSpeed: 0
+  isGrounded: 1
+  attackState: 0
+  rollState: 0
+  nextIsIdle: 0
+  nextIsRoll: 0
+  isTrasition: 0
+  move: {x: 0, y: 0, z: 0}
 --- !u!143 &1523242044
 CharacterController:
   m_ObjectHideFlags: 0
@@ -955,13 +987,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
+  velocity: {x: 0, y: 0, z: 0}
   groundDistance: 0.2
+  move: {x: 0, y: 0, z: 0}
+  m_Movement: {x: 0, y: 0}
+  m_Am: {fileID: 0}
+  dodgeTime: 0.5
+  attackTime: 0.4
   moveFlag: 0
   attack: 0
   specialAttack: 0
   avoid: 0
   nextIsRoll: 0
   isTrasition: 0
+  statetime: 0
+  attackState: 0
 --- !u!1 &1703439013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867982624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938ba0558510eb441a65b24e4994d65c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d244da47b12d0a49b5a2fcc4917bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 1412369527}

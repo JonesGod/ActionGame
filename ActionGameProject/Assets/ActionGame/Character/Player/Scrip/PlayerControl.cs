@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    private float speed = 10.0f;
+    private float rotateSpeed = 10.0f;
+    private float speed = 5.0f;
     private float gravity=20.0f;
     private float rollSpeed=3.0f;
     private float statetime;
@@ -32,8 +33,8 @@ public class PlayerControl : MonoBehaviour
     private bool isGrounded = true;
     private bool attackState;
     private bool rollState;
-    private bool nextIsIdle;
-    private bool nextIsRoll;
+    private bool idleIsNext;
+    private bool rollIsNext;
     private bool isTrasition;
 
     Vector3 move = Vector3.zero;
@@ -49,6 +50,7 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
+
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -84,41 +86,49 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
         }
-
+        
         GetAttackState();
         GetRollState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !rollState && !isTrasition)
+        if (m_Input.moveFlag && !attackState && !rollState)
             Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+        
     }
     
     void OnAnimatorMove()
     {
+        stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
+        bool a=stateinfo.IsName("attack01");
+        if (a)
+        {
+            Debug.Log(m_Am.deltaPosition);
+            Debug.Log(m_Am.deltaRotation);
+        }
         RaycastHit hit;
-        Ray ray = new Ray(transform.position+Vector3.up,-Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
+        Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
         {
-            move= Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
+            move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-        move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
-       
-        move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
-        if (rollState || nextIsRoll)
+        // move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
+        // move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
+        move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
+        if (rollState || rollIsNext)
             move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (nextIsIdle)
-            move = transform.forward*0.0f;
+        if (idleIsNext)
+            move = transform.forward * 0.0f;
 
-        move +=fallSpeed * Vector3.up * Time.deltaTime;
+        move += fallSpeed * Vector3.up * Time.deltaTime;
 
-        if(!attackState || nextIsRoll)
-            characterController.Move(move);       
+        if (!attackState || rollIsNext)
+            characterController.Move(move);
     }
     void CalculateGravity()
-    {
-        if (isGrounded)
+    {        
+        if (characterController.isGrounded)
         {
             fallSpeed = -gravity * 0.3f;
         }
@@ -129,13 +139,15 @@ public class PlayerControl : MonoBehaviour
     }
     void Rotating(float moveH, float moveV)
     {
-        // 建立角色目標方向的向量
-        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + (followCamera.cameraRight * moveH);
-        if (newDirectionVector == Vector3.zero)
-            newDirectionVector = transform.forward;
-        Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
-        characterController.transform.rotation = newRotation;
+        // 建立角色目標方向的向量                  
+        Vector3 newDirectionVector = followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH;       
+        if(newDirectionVector != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
+            characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
+        }    
     }
+    
     void GetAttackState()
     {                                 
         if(stateinfo.shortNameHash == hashAttack01 ||
@@ -160,14 +172,14 @@ public class PlayerControl : MonoBehaviour
     void GetNextState()
     {
         if (nextStateinfo.shortNameHash == hashRoll)
-            nextIsRoll = true;
+            rollIsNext = true;
         else
-            nextIsRoll = false;
+            rollIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashIdle)
-            nextIsIdle = true;
+            idleIsNext = true;
         else
-            nextIsIdle = false;
+            idleIsNext = false;
     }
     void ResetTrigger()
     {
