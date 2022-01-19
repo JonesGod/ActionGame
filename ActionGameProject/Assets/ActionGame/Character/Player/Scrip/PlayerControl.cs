@@ -106,8 +106,7 @@ public class PlayerControl : MonoBehaviour
         {
             move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
-        // move = transform.forward * Mathf.Abs(m_Input.MoveInput.y);
-        // move += transform.forward * Mathf.Abs(m_Input.MoveInput.x);
+
         if (!attackState || rollIsNext)
             move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
         else
