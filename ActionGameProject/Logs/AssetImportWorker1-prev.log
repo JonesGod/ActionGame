@@ -1,16 +1,25 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.22f1 (e1a7f79fd887) revision 14788599'; Using compiler version '192528614'; Build Type 'Release'
+<<<<<<< Updated upstream
 OS: 'Windows 10 Home; OS build 19043.1466; Version 2009; 64bit' Language: 'zh' Physical Memory: 16299 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity 2020.3.22f1\Editor\Unity.exe
+=======
+OS: 'Windows 10 Pro; OS build 19042.1466; Version 2009; 64bit' Language: 'zh' Physical Memory: 16083 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+D:\Unity\2020.3.22f1\Editor\Unity.exe
+>>>>>>> Stashed changes
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker1
 -projectPath
+<<<<<<< Updated upstream
 C:/Users/andyf/Documents/GitHub/ActionGame2/ActionGameProject
 -logFile
 Logs/AssetImportWorker1.log
@@ -48,11 +57,51 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (863ms)
 		BeginReloadAssembly (46ms)
+=======
+D:/GitHub/ActionGame/ActionGameProject
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+65129
+Successfully changed project path to: D:/GitHub/ActionGame/ActionGameProject
+D:/GitHub/ActionGame/ActionGameProject
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 54.39 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.22f1 (e1a7f79fd887)
+[Subsystems] Discovering subsystems at path D:/Unity/2020.3.22f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/GitHub/ActionGame/ActionGameProject/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2070 SUPER (ID=0x1e84)
+    Vendor:   
+    VRAM:     8011 MB
+    Driver:   30.0.14.7247
+Initialize mono
+Mono path[0] = 'D:/Unity/2020.3.22f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/2020.3.22f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/Unity/2020.3.22f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56808
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity/2020.3.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000823 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 53.98 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.757 seconds
+Domain Reload Profiling:
+	ReloadAssembly (758ms)
+		BeginReloadAssembly (44ms)
+>>>>>>> Stashed changes
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
+<<<<<<< Updated upstream
 		EndReloadAssembly (406ms)
 			LoadAssemblies (44ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
@@ -67,12 +116,29 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (15ms)
 				ProcessInitializeOnLoadAttributes (71ms)
 				ProcessInitializeOnLoadMethodAttributes (26ms)
+=======
+		EndReloadAssembly (400ms)
+			LoadAssemblies (43ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (133ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (161ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (54ms)
+				BeforeProcessingInitializeOnLoad (11ms)
+				ProcessInitializeOnLoadAttributes (68ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+>>>>>>> Stashed changes
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
+<<<<<<< Updated upstream
 Registered in 0.003929 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
@@ -83,10 +149,23 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1005ms)
 		BeginReloadAssembly (124ms)
+=======
+Registered in 0.002953 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 54.79 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.138 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1143ms)
+		BeginReloadAssembly (125ms)
+>>>>>>> Stashed changes
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
+<<<<<<< Updated upstream
 			CreateAndSetChildDomain (16ms)
 		EndReloadAssembly (830ms)
 			LoadAssemblies (79ms)
@@ -118,6 +197,39 @@ System memory in use after: 136.8 MB.
 
 Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 3316.
 Total: 3.581500 ms (FindLiveObjects: 0.229900 ms CreateObjectMapping: 0.125400 ms MarkObjects: 3.144800 ms  DeleteObjects: 0.080700 ms)
+=======
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (970ms)
+			LoadAssemblies (78ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (284ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (454ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (55ms)
+				BeforeProcessingInitializeOnLoad (69ms)
+				ProcessInitializeOnLoadAttributes (316ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.16 seconds
+Refreshing native plugins compatible for Editor in 0.68 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2883 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 139.5 MB.
+System memory in use after: 139.7 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 3326.
+Total: 4.309600 ms (FindLiveObjects: 0.434100 ms CreateObjectMapping: 0.239500 ms MarkObjects: 3.503100 ms  DeleteObjects: 0.131400 ms)
+>>>>>>> Stashed changes
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,6 +243,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
+<<<<<<< Updated upstream
   path: Assets/ActionGame/Character/Player/linkProject/Animator/linkanimator.controller
   artifactKey: Guid(4bc95c81e79a02b49a52a2739990e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/ActionGame/Character/Player/linkProject/Animator/linkanimator.controller using Guid(4bc95c81e79a02b49a52a2739990e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f0bbf9cf787cbc4680899c7fc37f07f') in 0.054498 seconds 
@@ -1872,4 +1985,547 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+=======
+  path: Assets/PureNature/Prefabs/Rocks/Boulders/Boulder05.prefab
+  artifactKey: Guid(2b95f06b9759a014db840cb89f599592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Boulders/Boulder05.prefab using Guid(2b95f06b9759a014db840cb89f599592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7eb214c61db00592d82203cf83c346a0') in 0.608052 seconds 
+  Import took 0.630320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Grass/Fern01.prefab
+  artifactKey: Guid(a3f1d093a61a0a5459dc83ce89a7a44e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Grass/Fern01.prefab using Guid(a3f1d093a61a0a5459dc83ce89a7a44e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ff20c659aab6da0233dc4d76d5d1a3b') in 0.132334 seconds 
+  Import took 0.158821 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Grass/Grass01.prefab
+  artifactKey: Guid(578123d3a120d6f4fac04dcc74c84cde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Grass/Grass01.prefab using Guid(578123d3a120d6f4fac04dcc74c84cde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e08e1f0294f47fcb535749118fc93fba') in 0.111444 seconds 
+  Import took 0.135110 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000330 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Boulders/Boulder04.prefab
+  artifactKey: Guid(cb60d84f9f769514f91e4d22a8b66900) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Boulders/Boulder04.prefab using Guid(cb60d84f9f769514f91e4d22a8b66900) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cb64a64fbfa61e9ba0f4a8b8f4246ff') in 0.193345 seconds 
+  Import took 0.206949 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000343 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Boulders/Boulder02.prefab
+  artifactKey: Guid(760613e793a663a48bf77d5b1fcdc89a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Boulders/Boulder02.prefab using Guid(760613e793a663a48bf77d5b1fcdc89a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c94fe9dd590dc215ad87cf5820ffaf6c') in 0.256173 seconds 
+  Import took 0.278988 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000505 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Grass/Grass01b.prefab
+  artifactKey: Guid(d2e2585e5a4ba2d46b2e2b4d901d3003) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Grass/Grass01b.prefab using Guid(d2e2585e5a4ba2d46b2e2b4d901d3003) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94c7f3f1824c7fe69bf8541fa242d76c') in 0.115660 seconds 
+  Import took 0.132278 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000405 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Boulders/Boulder03.prefab
+  artifactKey: Guid(415651c5e216f044c96f1cd705d2eafd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Boulders/Boulder03.prefab using Guid(415651c5e216f044c96f1cd705d2eafd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25123d2a06fc61b3fbedc994727fe2a1') in 0.195113 seconds 
+  Import took 0.206827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Grass/Flowers01.prefab
+  artifactKey: Guid(cd5d42404560c514e93b92d4e894b09c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Grass/Flowers01.prefab using Guid(cd5d42404560c514e93b92d4e894b09c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68a611b1a7e2576d2276a72f13056e49') in 0.068750 seconds 
+  Import took 0.074106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000420 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Boulders/Boulder01.prefab
+  artifactKey: Guid(89a8916d8f22dda41b2c11c562fa376c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Boulders/Boulder01.prefab using Guid(89a8916d8f22dda41b2c11c562fa376c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4eb7c7fdfd2017c018fbb944ede093e4') in 0.205337 seconds 
+  Import took 0.226654 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 154.063717 seconds.
+  path: Assets/PureNature/Prefabs/Environment Manager.prefab
+  artifactKey: Guid(f8e4ed5f108f01d4f8a3113e26ddb3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Environment Manager.prefab using Guid(f8e4ed5f108f01d4f8a3113e26ddb3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c10e7e455678ebe8e6fd0640febe042') in 0.009262 seconds 
+  Import took 0.199051 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.382066 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs_Snow/Cliff02c_Snow.prefab
+  artifactKey: Guid(1162a402be393634da19c96b5e9cc41f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs_Snow/Cliff02c_Snow.prefab using Guid(1162a402be393634da19c96b5e9cc41f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '607e8477caee452101863c514bd336f7') in 0.577407 seconds 
+  Import took 0.586056 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000394 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03c.prefab
+  artifactKey: Guid(fb82ba3b96007de488aa68e84e82ce70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03c.prefab using Guid(fb82ba3b96007de488aa68e84e82ce70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba0d371adef9c50aabf168867992675b') in 0.141911 seconds 
+  Import took 0.164826 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02b.prefab
+  artifactKey: Guid(1b514a044dc270a42b5b595f63d66a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02b.prefab using Guid(1b514a044dc270a42b5b595f63d66a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc52add0410155056feb36d2892f6c39') in 0.090575 seconds 
+  Import took 0.109268 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02d.prefab
+  artifactKey: Guid(d253517fde7e7484fa165d4ac25ec3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02d.prefab using Guid(d253517fde7e7484fa165d4ac25ec3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dc39cfa9cd280c3eb79580019a7cfd0') in 0.085256 seconds 
+  Import took 0.100893 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03g.prefab
+  artifactKey: Guid(974ad29ad136cae4385e6a3da9f8f8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03g.prefab using Guid(974ad29ad136cae4385e6a3da9f8f8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7f9ab3045d8109b98a17f323403f81d') in 0.068161 seconds 
+  Import took 0.076949 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000203 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03f.prefab
+  artifactKey: Guid(f0ea5e9974da8c94898ed6da8a496d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff03f.prefab using Guid(f0ea5e9974da8c94898ed6da8a496d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fa22f89a8644e3270e896766b97ecb5') in 0.061499 seconds 
+  Import took 0.070357 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02c.prefab
+  artifactKey: Guid(f963ce743045dbd469fb5eb55d796d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02c.prefab using Guid(f963ce743045dbd469fb5eb55d796d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b41effaa367f1caa9f6625c72f7693f9') in 0.053514 seconds 
+  Import took 0.074198 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000336 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff01.prefab
+  artifactKey: Guid(52202b428c93675499f1d787e93be31b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff01.prefab using Guid(52202b428c93675499f1d787e93be31b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e983a278e9909928a9db4304a5968a89') in 0.480976 seconds 
+  Import took 0.495701 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000318 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock05.prefab
+  artifactKey: Guid(68ebb50b534c55949ba67834bd30f310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock05.prefab using Guid(68ebb50b534c55949ba67834bd30f310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7def83d339c4d53d6363dd93a671a1c') in 0.224543 seconds 
+  Import took 0.230276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock09.prefab
+  artifactKey: Guid(164a8be4f1d656d4dbdfa93c83987bb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock09.prefab using Guid(164a8be4f1d656d4dbdfa93c83987bb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21bedc3246ff64bee0e2441fead497ad') in 0.046183 seconds 
+  Import took 0.064691 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock12.prefab
+  artifactKey: Guid(7f16ab3e3a7705b44a369f388e2a0472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock12.prefab using Guid(7f16ab3e3a7705b44a369f388e2a0472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd691dcb7b8897c29f2f817aec660117') in 0.056986 seconds 
+  Import took 0.062857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000358 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock10.prefab
+  artifactKey: Guid(6e587ac5aaaaa094383ec5f5749b0f3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock10.prefab using Guid(6e587ac5aaaaa094383ec5f5749b0f3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56dbac7bc5a44b5a451e94f5f6945ab0') in 0.060298 seconds 
+  Import took 0.076037 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff04.prefab
+  artifactKey: Guid(06ce404f8f042b4409195b56db7ea6f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff04.prefab using Guid(06ce404f8f042b4409195b56db7ea6f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cbda74b69225fb515bee1b8110f3f7d') in 0.456352 seconds 
+  Import took 0.486196 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000307 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs_Snow/Cliff04_Snow.prefab
+  artifactKey: Guid(985a0294d1e94a54a8552d011c99e253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs_Snow/Cliff04_Snow.prefab using Guid(985a0294d1e94a54a8552d011c99e253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'add7055c1b6be6f432037374009f3e85') in 0.136581 seconds 
+  Import took 0.161957 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000291 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02.prefab
+  artifactKey: Guid(54d9f8a7e45bf2b45bd950c3d6602823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02.prefab using Guid(54d9f8a7e45bf2b45bd950c3d6602823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2215348d1fb11e03eed405f7f8faef73') in 0.085221 seconds 
+  Import took 0.093548 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock08.prefab
+  artifactKey: Guid(e198fab53f70a25478a00348862a707e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock08.prefab using Guid(e198fab53f70a25478a00348862a707e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f8c1b5af8a0c89fa427efe8de036743') in 0.056298 seconds 
+  Import took 0.069293 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock01.prefab
+  artifactKey: Guid(e3f3b69dfdc28044aa96a1b4b5c14cfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock01.prefab using Guid(e3f3b69dfdc28044aa96a1b4b5c14cfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8776c78716e7ca8cb31d488efe9bc3c') in 0.057143 seconds 
+  Import took 0.075099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000323 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock07.prefab
+  artifactKey: Guid(f1ed2daa7f20b8446a5449d79d39e243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock07.prefab using Guid(f1ed2daa7f20b8446a5449d79d39e243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0356d5e8522f5a60ec2e55b894afc0b') in 0.054442 seconds 
+  Import took 0.060791 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000259 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02f.prefab
+  artifactKey: Guid(9e31d6d9401ccb84999ae6527f00513a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02f.prefab using Guid(9e31d6d9401ccb84999ae6527f00513a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1893303a7a290461806ae5b9689bc8d') in 0.085116 seconds 
+  Import took 0.093491 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock02.prefab
+  artifactKey: Guid(98e111bd0ee494347950aecd6570b461) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock02.prefab using Guid(98e111bd0ee494347950aecd6570b461) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58e86d168d04ee8fd428aea677efee40') in 0.052389 seconds 
+  Import took 0.065408 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000325 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock04.prefab
+  artifactKey: Guid(dc732e75e4d437e4f9c6a38bcaa1603b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock04.prefab using Guid(dc732e75e4d437e4f9c6a38bcaa1603b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e2487898b3027ee50fc1a82f5d12e98') in 0.057329 seconds 
+  Import took 0.063170 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000398 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock11.prefab
+  artifactKey: Guid(e27902ea3559a414bb814a35631790fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock11.prefab using Guid(e27902ea3559a414bb814a35631790fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6f66d89a6de6a5cff8614360b1baffa') in 0.053472 seconds 
+  Import took 0.066301 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular04.prefab
+  artifactKey: Guid(ba1180cbdffd6e842b52e0af24f51aac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular04.prefab using Guid(ba1180cbdffd6e842b52e0af24f51aac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dcce360017fd231ade71bc7ecda73d8') in 0.232445 seconds 
+  Import took 0.239140 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000339 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular07.prefab
+  artifactKey: Guid(15884183362e1654487ff58bfdc3966c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular07.prefab using Guid(15884183362e1654487ff58bfdc3966c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca424a06f31063895f9aa38cd5ed5b16') in 0.059217 seconds 
+  Import took 0.065662 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular02.prefab
+  artifactKey: Guid(bcaa1650c18aef643963fc0f48366198) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular02.prefab using Guid(bcaa1650c18aef643963fc0f48366198) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6771612b4afd11484e76405b6699fa09') in 0.055008 seconds 
+  Import took 0.067683 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000256 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02e.prefab
+  artifactKey: Guid(e872d9b0791ea9443bd17ba7e34b7dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Cliffs/Cliff02e.prefab using Guid(e872d9b0791ea9443bd17ba7e34b7dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '074a7c0543bc68f4aef815fa1ecbf5ba') in 0.069825 seconds 
+  Import took 0.078151 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000385 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/Rocks/Rock06.prefab
+  artifactKey: Guid(b60347736c79d6144bf2745550e33349) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/Rocks/Rock06.prefab using Guid(b60347736c79d6144bf2745550e33349) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '412b70a4447705f7792a444b78043062') in 0.059159 seconds 
+  Import took 0.065537 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular08.prefab
+  artifactKey: Guid(bbe01da462ebacd418b30f7b3c6deaae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Rocks/RocksModular/RockModular08.prefab using Guid(bbe01da462ebacd418b30f7b3c6deaae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84ca4d2470d271e14ca70a9194afb51c') in 0.049562 seconds 
+  Import took 0.056592 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 93.294886 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01.prefab
+  artifactKey: Guid(53e4b7bd860b8fe44ac9f86cb03861d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01.prefab using Guid(53e4b7bd860b8fe44ac9f86cb03861d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec7c34ea96144741242a61b013a0483f') in 1.175985 seconds 
+  Import took 1.199685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000403 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04b.prefab
+  artifactKey: Guid(ae8423b0ec0511b45a734a1a54992b1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04b.prefab using Guid(ae8423b0ec0511b45a734a1a54992b1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eace175bea00c483b3df352b047827c4') in 2.026191 seconds 
+  Import took 2.062651 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000354 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/OakTree04.prefab
+  artifactKey: Guid(7836fe73991d47f438b48060514f50a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/OakTree04.prefab using Guid(7836fe73991d47f438b48060514f50a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed963ff056a4691a159af33f5b9a6760') in 1.153990 seconds 
+  Import took 1.185307 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000263 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree04.prefab
+  artifactKey: Guid(3aca7702975f4f0478b74b22f4d9ff47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree04.prefab using Guid(3aca7702975f4f0478b74b22f4d9ff47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '214090c0bbf469d0f7c1d3005d96b7b7') in 1.033331 seconds 
+  Import took 1.052272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000276 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush02_Snow.prefab
+  artifactKey: Guid(73956e97d7c6bf848992a020d0d25c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush02_Snow.prefab using Guid(73956e97d7c6bf848992a020d0d25c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f3f1868d3a27cb2d6c313cd2be06119') in 0.577979 seconds 
+  Import took 0.595643 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000203 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02b.prefab
+  artifactKey: Guid(eb58429af5e241648a1a284160de9aae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02b.prefab using Guid(eb58429af5e241648a1a284160de9aae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3749ae2dcd877e52a367ec6d5745f77') in 0.081131 seconds 
+  Import took 0.114849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000306 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02.prefab
+  artifactKey: Guid(2e2392f0b4defbc4fbd0ab3b8ded54e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02.prefab using Guid(2e2392f0b4defbc4fbd0ab3b8ded54e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0548e4c05c955f173f4d94763a661402') in 0.072443 seconds 
+  Import took 0.088720 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01b.prefab
+  artifactKey: Guid(083304648d7bdfb429c16807e0342852) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01b.prefab using Guid(083304648d7bdfb429c16807e0342852) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5b4331282619a3234585d8fa1801fdb') in 0.053006 seconds 
+  Import took 0.073831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush02.prefab
+  artifactKey: Guid(96278438a4c726e4690a2e779e0b26dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush02.prefab using Guid(96278438a4c726e4690a2e779e0b26dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8adba3484b06239fc386a93026ba5402') in 0.533377 seconds 
+  Import took 0.553880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000451 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/OakTree02.prefab
+  artifactKey: Guid(85b67c305e731644981723bb07cc1a46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/OakTree02.prefab using Guid(85b67c305e731644981723bb07cc1a46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc1c7bbeac7d140861ab073e27656d96') in 0.266318 seconds 
+  Import took 0.284903 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/TallTree02.prefab
+  artifactKey: Guid(4b75ac9271b448e46affdc010a9cc421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/TallTree02.prefab using Guid(4b75ac9271b448e46affdc010a9cc421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85582b57865c0ea16bdc7b09028acbd1') in 0.069865 seconds 
+  Import took 0.087004 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000349 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02c.prefab
+  artifactKey: Guid(8a910e6cb72592945a884457364a70e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree02c.prefab using Guid(8a910e6cb72592945a884457364a70e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec6cb529eba05092563bf1837361b0fc') in 0.515747 seconds 
+  Import took 0.521093 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/TallTree03.prefab
+  artifactKey: Guid(51bf915a95610d94ab00048c35708163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/TallTree03.prefab using Guid(51bf915a95610d94ab00048c35708163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9bb5c98ddc8c51c86452153a3e2f3a4c') in 0.074674 seconds 
+  Import took 0.098753 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000308 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree01.prefab
+  artifactKey: Guid(fbdf8cd6c19062b42b8cefa161a38c0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree01.prefab using Guid(fbdf8cd6c19062b42b8cefa161a38c0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adf7ef21c381752ee208a4bfbf52b369') in 0.024968 seconds 
+  Import took 0.030741 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000236 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree03.prefab
+  artifactKey: Guid(ecac3f65091069245a01303633219238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree03.prefab using Guid(ecac3f65091069245a01303633219238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89a11f58b0c6a38defea52132c49f38d') in 0.038597 seconds 
+  Import took 0.064082 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01c.prefab
+  artifactKey: Guid(8913a11423e8b8c4fba34e08bb92e340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree01c.prefab using Guid(8913a11423e8b8c4fba34e08bb92e340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7edfccf943c95c8e76ab0e3ecb8839da') in 0.059573 seconds 
+  Import took 0.064698 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/TallTree01.prefab
+  artifactKey: Guid(876ef929cda978e45afec4d83a2b4f1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/TallTree01.prefab using Guid(876ef929cda978e45afec4d83a2b4f1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '619903d25b910aaf3beb77e47641d4fb') in 0.067778 seconds 
+  Import took 0.081960 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000271 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04.prefab
+  artifactKey: Guid(492af20740d5e0f49a43c5d98bc920b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04.prefab using Guid(492af20740d5e0f49a43c5d98bc920b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '381ea3648ad68d42e14873ad19016eaa') in 0.064101 seconds 
+  Import took 0.088526 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000348 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush01_Snow.prefab
+  artifactKey: Guid(090a42034728ac041811fb574ecfcb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush01_Snow.prefab using Guid(090a42034728ac041811fb574ecfcb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5076d833a674058c4270ba2ed120a5d3') in 0.059323 seconds 
+  Import took 0.077893 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush03_Snow.prefab
+  artifactKey: Guid(45ecdbc41e3a69e47af42a2c6e11e7bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush03_Snow.prefab using Guid(45ecdbc41e3a69e47af42a2c6e11e7bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6223db16c2424880891ece2dd888511b') in 0.054289 seconds 
+  Import took 0.058909 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03c.prefab
+  artifactKey: Guid(112f172386ca37e4c8b4cd31a8d64ff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03c.prefab using Guid(112f172386ca37e4c8b4cd31a8d64ff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b1e8db39da7ab72c58141987ae74f4d') in 0.066085 seconds 
+  Import took 0.101263 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush01.prefab
+  artifactKey: Guid(14babb438b254654495b18071dceadf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush01.prefab using Guid(14babb438b254654495b18071dceadf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '425c2f5fb972d42d843d53db8fc61e4a') in 0.013941 seconds 
+  Import took 0.018912 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000312 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree02.prefab
+  artifactKey: Guid(9780b9e80e69ce54f8afb874779a8943) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/BirchTree02.prefab using Guid(9780b9e80e69ce54f8afb874779a8943) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80eeae3a14bb1298d59c79aa688e0120') in 0.033433 seconds 
+  Import took 0.039300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03.prefab
+  artifactKey: Guid(b13dcd970c44e014ea28271f7208a529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03.prefab using Guid(b13dcd970c44e014ea28271f7208a529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92e8e012d24b4859f41631eb32af3437') in 0.047203 seconds 
+  Import took 0.069019 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000279 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03b.prefab
+  artifactKey: Guid(691d6a013134cf643851db70996ca9df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree03b.prefab using Guid(691d6a013134cf643851db70996ca9df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84c6939923f700fca2c70bd57f055810') in 0.059873 seconds 
+  Import took 0.065195 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04c.prefab
+  artifactKey: Guid(e940f03a53598114d82a13259cc8a2a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/PineTree04c.prefab using Guid(e940f03a53598114d82a13259cc8a2a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cedb8d9e187b60c8a48326ee685c8037') in 0.060142 seconds 
+  Import took 0.082270 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/OakTreeDead01.prefab
+  artifactKey: Guid(be8551c551cbeae48a33eb963131894a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/OakTreeDead01.prefab using Guid(be8551c551cbeae48a33eb963131894a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a4bf60e9ce0df1332aa32ef7d446fb0') in 0.653695 seconds 
+  Import took 0.670103 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000307 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/OakTree03.prefab
+  artifactKey: Guid(5079d986313fb994b9b1b05919eaef66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/OakTree03.prefab using Guid(5079d986313fb994b9b1b05919eaef66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07e2de29b61a3b76e67d025b01bcd9e7') in 0.109717 seconds 
+  Import took 0.146931 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000271 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Bushes/Bush03.prefab
+  artifactKey: Guid(900e756d070e0224ca717c851e8a0df7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Bushes/Bush03.prefab using Guid(900e756d070e0224ca717c851e8a0df7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd43d878e2006d8f66b09d7702129d9ee') in 0.013198 seconds 
+  Import took 0.028407 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000314 seconds.
+  path: Assets/PureNature/Prefabs/Vegetation/Trees/OakTree01.prefab
+  artifactKey: Guid(d5a56c692aa62f940b7143e26cd75980) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PureNature/Prefabs/Vegetation/Trees/OakTree01.prefab using Guid(d5a56c692aa62f940b7143e26cd75980) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0bad9dc691d22838dee252075955084') in 0.229094 seconds 
+  Import took 0.246660 seconds .
+
+>>>>>>> Stashed changes
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
