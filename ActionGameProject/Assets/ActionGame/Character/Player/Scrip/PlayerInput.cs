@@ -35,6 +35,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool nextIsRoll = false;
     [HideInInspector] public bool isTrasition = false;
     [HideInInspector] public bool bowState = false;
+    [HideInInspector] public bool attackState;
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
@@ -42,13 +43,13 @@ public class PlayerInput : MonoBehaviour
     readonly int hashAttack04 = Animator.StringToHash("attack04");
     readonly int hashSpecialAttackState = Animator.StringToHash("specialAttackState");
 
-    private bool attackState;
+
 
     public Vector2 MoveInput
     {
         get
         {
-            if (!moveFlag || attackState)
+            if (!moveFlag )
             {
                 return Vector2.zero;
             }
@@ -58,7 +59,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MouseInput
     {
         get
-        {
+        { 
             return m_Mouse;
         }
     }
