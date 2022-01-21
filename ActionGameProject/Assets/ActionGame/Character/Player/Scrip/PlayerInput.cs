@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     public float groundDistance = 0.2f;
     Vector3 move = Vector3.zero;
     private Vector2 m_Movement;
+    private Vector2 m_Mouse;
 
     private Animator m_Am;
     AnimatorStateInfo stateinfo;
@@ -25,6 +26,7 @@ public class PlayerInput : MonoBehaviour
 
     private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
     private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
+    private bool isBow=false;
 
     [HideInInspector] public bool moveFlag = false;    //WASD移動旗標   
     [HideInInspector] public bool attack = false;
@@ -32,6 +34,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool avoid = false;
     [HideInInspector] public bool nextIsRoll = false;
     [HideInInspector] public bool isTrasition = false;
+    [HideInInspector] public bool bowState = false;
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
@@ -52,6 +55,13 @@ public class PlayerInput : MonoBehaviour
             return m_Movement;
         }
     }
+    public Vector2 MouseInput
+    {
+        get
+        {
+            return m_Mouse;
+        }
+    }
     private void Awake()
     {
         s_Instance = this;
@@ -67,6 +77,7 @@ public class PlayerInput : MonoBehaviour
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         GetAttackState();
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         float stateTime = m_Am.GetFloat("StateTime");
         
@@ -80,8 +91,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))        
             specialAttack = true;                
         if (Input.GetButtonDown("Avoid") )                  
-            avoid = true;            
-        
+            avoid = true;
+
+        if (Input.GetButtonDown("Switch") && !isBow)
+        {
+            isBow = true;
+            bowState = true;
+        }
+        else if(Input.GetButtonDown("Switch") && isBow)
+        {
+            isBow = false;
+            bowState = false;
+        }
+
     }   
     public Vector3 Move  
     {

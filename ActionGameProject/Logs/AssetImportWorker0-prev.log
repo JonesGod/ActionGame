@@ -1,0 +1,331 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.22f1 (e1a7f79fd887) revision 14788599'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19043.1466; Version 2009; 64bit' Language: 'zh' Physical Memory: 16299 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity 2020.3.22f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/andyf/Documents/GitHub/ActionGame2/ActionGameProject
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+60656
+Successfully changed project path to: C:/Users/andyf/Documents/GitHub/ActionGame2/ActionGameProject
+C:/Users/andyf/Documents/GitHub/ActionGame2/ActionGameProject
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 54.34 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.22f1 (e1a7f79fd887)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity 2020.3.22f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/andyf/Documents/GitHub/ActionGame2/ActionGameProject/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1660 (ID=0x2184)
+    Vendor:   
+    VRAM:     5991 MB
+    Driver:   27.21.14.6172
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity 2020.3.22f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity 2020.3.22f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity 2020.3.22f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56408
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity 2020.3.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001392 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 50.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.844 seconds
+Domain Reload Profiling:
+	ReloadAssembly (844ms)
+		BeginReloadAssembly (47ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (404ms)
+			LoadAssemblies (45ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (126ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (166ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (51ms)
+				BeforeProcessingInitializeOnLoad (15ms)
+				ProcessInitializeOnLoadAttributes (71ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003832 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 51.75 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.009 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1010ms)
+		BeginReloadAssembly (125ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (17ms)
+		EndReloadAssembly (833ms)
+			LoadAssemblies (83ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (269ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (42ms)
+			SetupLoadedEditorAssemblies (330ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (52ms)
+				BeforeProcessingInitializeOnLoad (75ms)
+				ProcessInitializeOnLoadAttributes (187ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.54 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2882 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 136.3 MB.
+System memory in use after: 136.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 3316.
+Total: 3.338400 ms (FindLiveObjects: 0.256600 ms CreateObjectMapping: 0.117400 ms MarkObjects: 2.883700 ms  DeleteObjects: 0.079700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_shadowmask.png
+  artifactKey: Guid(722eafe14ef17b44bbf701b7fa838c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_shadowmask.png using Guid(722eafe14ef17b44bbf701b7fa838c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dfaba5ec3ecc87d2487963f9677eb03') in 0.096782 seconds 
+  Import took 0.100678 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000269 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/LightingData.asset
+  artifactKey: Guid(ffcaddc2f7acee04f82d4d1813b20c3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/LightingData.asset using Guid(ffcaddc2f7acee04f82d4d1813b20c3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ad68878f1677cd16e56caa14644c6fa') in 0.007285 seconds 
+  Import took 0.011159 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_dir.png
+  artifactKey: Guid(5af129a3af35e6d4280fc6d52cd46734) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_dir.png using Guid(5af129a3af35e6d4280fc6d52cd46734) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20ce34da5d464b90b2088660c9c9d0fd') in 0.020414 seconds 
+  Import took 0.024581 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/ActionGame/AtmosphericFog/OD_AtmosphericFog.mat
+  artifactKey: Guid(39e0dc4bc7017be498814375f5033d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/AtmosphericFog/OD_AtmosphericFog.mat using Guid(39e0dc4bc7017be498814375f5033d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15468b25e43fec932744da2e640ffdc8') in 0.306768 seconds 
+  Import took 0.311022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000268 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_light.exr
+  artifactKey: Guid(685283257962d624885fbb03b3b876a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/Lightmap-0_comp_light.exr using Guid(685283257962d624885fbb03b3b876a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4229f0ae160c4324809ff7fa4971542c') in 0.017510 seconds 
+  Import took 0.021365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000263 seconds.
+  path: Assets/ActionGame/AtmosphericFog
+  artifactKey: Guid(074ab5871d6ebb743be548bd6c697728) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/AtmosphericFog using Guid(074ab5871d6ebb743be548bd6c697728) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44868c0c116e9fca1ca871a94dc3cb1f') in 0.005626 seconds 
+  Import took 0.009989 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/ReflectionProbe-0.exr
+  artifactKey: Guid(e106a3593149a07459827acb52f4e91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/ReflectionProbe-0.exr using Guid(e106a3593149a07459827acb52f4e91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f44610727163496e7c8c015900e83cc9') in 0.025331 seconds 
+  Import took 0.029613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/ReflectionProbe-2.exr
+  artifactKey: Guid(fac75d04fb2ff2d4ab49cf4d76f9fb07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/ReflectionProbe-2.exr using Guid(fac75d04fb2ff2d4ab49cf4d76f9fb07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67921b20078836df383da21d6eaac9ef') in 0.016123 seconds 
+  Import took 0.019879 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/ReflectionProbe-1.exr
+  artifactKey: Guid(343883fffbb4b184f911c6a70135f404) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/ReflectionProbe-1.exr using Guid(343883fffbb4b184f911c6a70135f404) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62feecaa946ec2131d58a9603f8abd1c') in 0.022018 seconds 
+  Import took 0.026034 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/ActionGame/ActionSceneFinal/ReflectionProbe-3.exr
+  artifactKey: Guid(b63abdb16356dff4f82cdef3534be553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal/ReflectionProbe-3.exr using Guid(b63abdb16356dff4f82cdef3534be553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79c811163e20caae3d3bcb5ea71dd80e') in 0.015409 seconds 
+  Import took 0.019224 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/ActionGame/ActionSceneFinal
+  artifactKey: Guid(e7a145d05be220b46a590f01cfc810d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/ActionSceneFinal using Guid(e7a145d05be220b46a590f01cfc810d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c84db160cfbd6b54fa5c0b80f356fc45') in 0.004863 seconds 
+  Import took 0.008706 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.086158 seconds.
+  path: Assets/ActionGame/Character
+  artifactKey: Guid(e161ecb6c2ca3e3408aee5711ac66e54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character using Guid(e161ecb6c2ca3e3408aee5711ac66e54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9e797d5dc9299acbfcaf9066539fe2d') in 0.006030 seconds 
+  Import took 0.010513 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046369 seconds.
+  path: Assets/ActionGame/Character/Leg.mask
+  artifactKey: Guid(a455227b8a8296c428795f42ca916ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Leg.mask using Guid(a455227b8a8296c428795f42ca916ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4285f879b26b612026ec2c7be878a53d') in 0.006799 seconds 
+  Import took 0.011045 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.001456 seconds.
+  path: Assets/ActionGame/Character/Player
+  artifactKey: Guid(b05f6dfb9866b9d4ea929a27552ea580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player using Guid(b05f6dfb9866b9d4ea929a27552ea580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54820778c6b32b6a04257e099e63eb8c') in 0.005366 seconds 
+  Import took 0.009599 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.704990 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject
+  artifactKey: Guid(a0fa8e0698771c142acd53f538e3f657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject using Guid(a0fa8e0698771c142acd53f538e3f657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc23d7fad54aaf71657f1d49e4ba8250') in 0.005561 seconds 
+  Import took 0.010277 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.589916 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animator
+  artifactKey: Guid(df461949e73ef5f4d89a474d0ad340df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animator using Guid(df461949e73ef5f4d89a474d0ad340df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b263549012eed5991f6c4f940806e4b7') in 0.004955 seconds 
+  Import took 0.009432 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.010013 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animator/linkanimator.controller
+  artifactKey: Guid(4bc95c81e79a02b49a52a2739990e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animator/linkanimator.controller using Guid(4bc95c81e79a02b49a52a2739990e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb24dc96eccd28b707eec12f0194561c') in 0.015452 seconds 
+  Import took 0.020050 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.144167 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation
+  artifactKey: Guid(2d3aca995fedf0947abbfa6e4d455414) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation using Guid(2d3aca995fedf0947abbfa6e4d455414) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8f41266ffb7b62cb76a9469552eec01') in 0.005769 seconds 
+  Import took 0.010263 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.893563 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse
+  artifactKey: Guid(4aa267706eb13f74b9099c546649863a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse using Guid(4aa267706eb13f74b9099c546649863a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d82dd3cfa85abbbe0ec2351a17777c7') in 0.004975 seconds 
+  Import took 0.009811 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.238688 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming-Fire.FBX
+  artifactKey: Guid(99dd2c4ecb93da143a260d426fd7b12a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming-Fire.FBX using Guid(99dd2c4ecb93da143a260d426fd7b12a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03aa9c20159470b77dbce474b3e7a679') in 0.026738 seconds 
+  Import took 0.032377 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000271 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-DiveRoll-Forward1.FBX
+  artifactKey: Guid(2ae64e03645758f4bbddf6ac645f5335) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-DiveRoll-Forward1.FBX using Guid(2ae64e03645758f4bbddf6ac645f5335) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45282e179e148748251997b5941c9090') in 0.010495 seconds 
+  Import took 0.014510 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming-Pull.FBX
+  artifactKey: Guid(d3e5b168e6bbe7d459e4e61994f3bd9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming-Pull.FBX using Guid(d3e5b168e6bbe7d459e4e61994f3bd9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2aaf9a27888e934e83c2abf9fed3ea1') in 0.011741 seconds 
+  Import took 0.016203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@Ledge-Drop.FBX
+  artifactKey: Guid(8dd974d459a47934796dcd1b179a3050) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@Ledge-Drop.FBX using Guid(8dd974d459a47934796dcd1b179a3050) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1de7fa9731691262a88a31ebce4a4a5f') in 0.010630 seconds 
+  Import took 0.014514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@Unarmed-Fall.FBX
+  artifactKey: Guid(8164d5f25ce079442917b5582dfdbf2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@Unarmed-Fall.FBX using Guid(8164d5f25ce079442917b5582dfdbf2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f90f484672004fbcc5267a2fec4ef738') in 0.010212 seconds 
+  Import took 0.014180 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming.FBX
+  artifactKey: Guid(2300aaa3b3d27bf4b95b44ea0090beda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/linkProject/Animation/ArcharUse/RPG-Character@2Hand-Bow-Aiming.FBX using Guid(2300aaa3b3d27bf4b95b44ea0090beda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2cf9fc12b4b2985bbd74a9fb0c02817') in 0.011983 seconds 
+  Import took 0.016305 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

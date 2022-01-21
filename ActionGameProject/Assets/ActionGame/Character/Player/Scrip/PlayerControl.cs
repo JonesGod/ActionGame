@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
+    readonly int hashBow = Animator.StringToHash("bow");
 
     private bool isGrounded = true;
     private bool attackState;
@@ -87,6 +88,15 @@ public class PlayerControl : MonoBehaviour
             m_Input.specialAttack = false;
         }
         
+        if(m_Input.bowState)
+        {
+            m_Am.SetBool("BowBool",true);
+        }
+        else
+        {
+            m_Am.SetBool("BowBool", false);
+        }
+
         GetAttackState();
         GetRollState();
         GetNextState();

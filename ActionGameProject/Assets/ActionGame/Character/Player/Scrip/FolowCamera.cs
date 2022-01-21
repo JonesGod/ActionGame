@@ -30,13 +30,12 @@ public class FolowCamera : MonoBehaviour
     }
 
     void UpdateCamera()
-    {
-        float xAngle = Input.GetAxis("Mouse X");
-        float yAngle = Input.GetAxis("Mouse Y");
-        horizontalAngle = xAngle;
-        verticalAngle += yAngle;
-
-       Vector2 moveInput = PlayerInput.Instance.MoveInput/ cameraSpeed;
+    { 
+        Vector2 mouseInput = PlayerInput.Instance.MouseInput;
+        horizontalAngle = mouseInput.x;
+        verticalAngle += mouseInput.y;
+       
+        Vector2 moveInput = PlayerInput.Instance.MoveInput/ cameraSpeed;
 
         if (verticalAngle > 20.0f)
             verticalAngle = 20.0f;
