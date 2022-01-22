@@ -19,11 +19,10 @@ public class FolowCamera : MonoBehaviour
     Vector2 moveInput;
 
     Vector3 lookTargetPosition;
-    Vector3 bowTargetPosition;
     Vector3 cameraForward;
     Vector3 relativeVector;
-    Vector3 relativeRight;
     Vector3 relativePoint;
+    Vector3 relativeForward;
 
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
@@ -59,7 +58,7 @@ public class FolowCamera : MonoBehaviour
         BowCameraRotate();
         if (PlayerInput.Instance.bowState)
         {
-            cameraPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeVector * relativeDistance;
+            cameraPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
 
             var xc = Quaternion.LookRotation(horizontalVector);
             lookTarget.rotation = xc;
@@ -112,7 +111,8 @@ public class FolowCamera : MonoBehaviour
     {     
         relativeVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * relativeVector;
         relativeVector.Normalize();
-        
+        relativeForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * relativeVector;
+        relativeForward.Normalize();
     }
     /// <summary>
     /// vector = Quaternion.AngleAxis(角度, 旋轉軸向量) * 欲旋轉向量;
