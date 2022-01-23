@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.499505
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalScale.z
@@ -890,9 +890,7 @@ MonoBehaviour:
   minMaxFollowDistance: {x: 5, y: 0}
   cameraHeight: 2
   relativeDistance: 2
-  bowStateX: -1.6
   bowStateY: 2.25
-  bowStateZ: -0.4
   horizontalVector: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   checkHitLayerMask:

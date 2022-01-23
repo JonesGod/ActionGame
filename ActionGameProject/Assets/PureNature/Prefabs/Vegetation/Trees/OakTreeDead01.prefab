@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7922635805152374140}
   - component: {fileID: 6383761210124444917}
   - component: {fileID: 93886143388563170}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: OakTreeDead01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1083018447449005467}
   - component: {fileID: 3926091441309474653}
   - component: {fileID: 302344519673809116}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: OakTreeDead01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9052119152509396563}
   - component: {fileID: 4307000084666224930}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: OakTreeDead01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

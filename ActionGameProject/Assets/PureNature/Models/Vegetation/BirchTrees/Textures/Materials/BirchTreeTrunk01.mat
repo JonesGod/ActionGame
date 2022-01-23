@@ -86,6 +86,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _2ndNormalPower: 1
+    - _AlphaCutoff: 0.5
     - _BaseWind: 2
     - _BaseWindChannel: 2
     - _BlendNormals: 1
@@ -133,7 +134,7 @@ Material:
     - _Position: 6.2
     - _SeeVertexColor: 0
     - _SeeVertexColor1: 0
-    - _SmoothnessPower: 1
+    - _SmoothnessPower: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -163,3 +164,4 @@ Material:
     - _2ndColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

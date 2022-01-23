@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3437888096162313602}
   - component: {fileID: 1759089210157971561}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PineTree01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4058612038939439525}
   - component: {fileID: 4297841357547049759}
   - component: {fileID: 5983949572805646558}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PineTree01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8069581803349424533}
   - component: {fileID: 4501039975585655320}
   - component: {fileID: 3871243089498643075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PineTree01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

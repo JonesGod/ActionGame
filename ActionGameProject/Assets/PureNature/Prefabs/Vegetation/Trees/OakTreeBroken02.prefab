@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5047458346036103740}
   - component: {fileID: 7333561729013714814}
   - component: {fileID: 2263364306475718638}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: OakTreeBroken02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

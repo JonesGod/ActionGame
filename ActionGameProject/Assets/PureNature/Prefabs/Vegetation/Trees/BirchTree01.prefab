@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3587043166703649043}
   - component: {fileID: 7494108869418000752}
   - component: {fileID: 1443864338943275899}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BirchTree01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6653253010026410358}
   - component: {fileID: 6063679955100116914}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BirchTree01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4619490920293288667}
   - component: {fileID: 6810589404459572458}
   - component: {fileID: 9030840132988820721}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BirchTree01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
