@@ -34,7 +34,7 @@ public class FolowCamera : MonoBehaviour
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
 
-        relativePoint = lookTarget.position+ new Vector3(-1.6f, 0.0f, -0.4f);       
+        relativePoint = lookTarget.position + new Vector3(-1.6f, 0.0f, -0.4f);       
         relativeVector = relativePoint-lookTarget.position;
     }
 
@@ -88,7 +88,7 @@ public class FolowCamera : MonoBehaviour
             Vector3 hitRayDir = rh.point - lookTarget.position;
             float hitRayLength = hitRayDir.magnitude;
 
-            Vector3 newCameraPosition = rh.point + rh.normal * 0.2f;//固定住攝影機的位置(不要再後退了) 
+            Vector3 newCameraPosition = rh.point + rh.normal * 0.5f;//固定住攝影機的位置(不要再後退了) 
 
             if (hitRayLength < minMaxFollowDistance.x)
             {

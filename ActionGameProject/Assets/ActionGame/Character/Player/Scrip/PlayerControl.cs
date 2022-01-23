@@ -11,9 +11,9 @@ public class PlayerControl : MonoBehaviour
     private PlayerInput m_Input; //準備獲取玩家輸入
 
     private float rotateSpeed = 10.0f;
-    private float speed = 5.0f;
-    private float gravity=20.0f;
-    private float rollSpeed=3.0f;
+    private float speed = 10.0f;
+    private float gravity = 20.0f;
+    private float rollSpeed = 3.0f;
     private float statetime;
     private float fallSpeed;
     private float totalSpeed;
