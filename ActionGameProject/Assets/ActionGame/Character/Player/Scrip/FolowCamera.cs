@@ -17,6 +17,8 @@ public class FolowCamera : MonoBehaviour
 
     private bool isSwitch=false;
 
+    Quaternion playerRotate;
+
     Vector2 mouseInput;
     Vector2 moveInput;
 
@@ -26,6 +28,9 @@ public class FolowCamera : MonoBehaviour
     Vector3 relativePoint;
     Vector3 relativeForward;
     Vector3 bowPosition;
+    Vector3 normalPosition;
+    Vector3 nextPosition;
+    Vector3 lastPosition;
 
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
@@ -60,26 +65,29 @@ public class FolowCamera : MonoBehaviour
         CameraRotate();
         BowCameraRotate();
 
-        if (Input.GetButtonDown("Switch") && !isSwitch)
+        if (PlayerInput.Instance.bowState)
         {
-            isSwitch = true;
-            StartCoroutine(BowSwitch());
+            lastPosition = normalPosition;
+            nextPosition = bowPosition;
+            if (!isSwitch)
+                cameraPosition = bowPosition;
+            playerRotate = Quaternion.LookRotation(horizontalVector);
+            lookTarget.rotation = playerRotate;
         }
         else
         {
-            if (PlayerInput.Instance.bowState)
-            {
-                bowPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
-                cameraPosition = bowPosition;
-
-                var xc = Quaternion.LookRotation(horizontalVector);
-                lookTarget.rotation = xc;
-            }
-            else
-            {
-                WallDetect(); //牆壁檢測
-            }
+            lastPosition = bowPosition;
+            nextPosition = normalPosition;
+           
+            if (!isSwitch)
+                cameraPosition = normalPosition;
+            WallDetect(); //牆壁檢測
         }
+        if (Input.GetButtonDown("Switch") && !isSwitch)
+        {
+            isSwitch = true;           
+            StartCoroutine(CameraSwitch());
+        }   
 
         transform.forward = cameraForward;
         transform.position = cameraPosition;
@@ -114,10 +122,6 @@ public class FolowCamera : MonoBehaviour
             }
             cameraForward = lookTargetPosition - cameraPosition;
         }
-        else
-        {
-            cameraPosition = lookTarget.position + new Vector3(0.0f, cameraHeight, 0.0f) - (cameraForward * followDistance);
-        }
     }
     void BowCameraRotate()
     {     
@@ -125,6 +129,7 @@ public class FolowCamera : MonoBehaviour
         relativeVector.Normalize();
         relativeForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * relativeVector;
         relativeForward.Normalize();
+        bowPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
     }
     /// <summary>
     /// vector = Quaternion.AngleAxis(角度, 旋轉軸向量) * 欲旋轉向量;
@@ -139,17 +144,25 @@ public class FolowCamera : MonoBehaviour
         cameraRight = Vector3.Cross(Vector3.up, horizontalVector);
         cameraForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * horizontalVector;
         cameraForward.Normalize();
+        normalPosition = lookTarget.position + new Vector3(0.0f, cameraHeight, 0.0f) - (cameraForward * followDistance);
     }
-    IEnumerator BowSwitch()
+    IEnumerator CameraSwitch()
     {
+        float a = 0f;          
         float time = 0.0f;
-        while (time <= 0.5f)
+        while (time <= 0.3f)
         {
             time += Time.deltaTime;
-            cameraPosition = Vector3.Lerp(cameraPosition, bowPosition, 0.2f);
-            Debug.Log(time);
+
+            Vector3 x = nextPosition-lastPosition;
+            float dis = x.magnitude;
+            x.Normalize();
+    
+            a = Mathf.Lerp(a, dis, 0.1f);
+            cameraPosition = lastPosition + x * a;
+            Debug.Log(dis);
             yield return null;
         }
-        isSwitch = false;
+        isSwitch = false;        
     }
 }
