@@ -92,8 +92,8 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _CelShadeArea: -0.3
-    - _CelShadeGradient: 0.06
+    - _CelShadeArea: 0
+    - _CelShadeGradient: 0.033
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2

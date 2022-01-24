@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    color: {r: 0.29803923, g: 0.6039216, b: 0.69803923, a: 0.9490196}
-    sunColor: {r: 0.48235297, g: 0.5764706, b: 0.7372549, a: 0.85882354}
+    color: {r: 0.29803923, g: 0.5617089, b: 0.69803923, a: 0.92156863}
+    sunColor: {r: 0.48235297, g: 0.5764706, b: 0.7372549, a: 0.9137255}
     fogDensity: 0.015
     fogDensityPower: 7.1
-    skyAlpha: 0.946
+    skyAlpha: 0.405
     useHeightFog: 0
     fogHeightStart: 0
     fogHeightEnd: 30
@@ -26,7 +26,7 @@ MonoBehaviour:
     extraFogHeightEnd: 0
     extraFogHeightPower: 0.5
     directionalIntesity: 1
-    directionalPower: 1
+    directionalPower: 3.19
     fogMaterial: {fileID: 2100000, guid: 39e0dc4bc7017be498814375f5033d21, type: 2}
 --- !u!114 &-1051590253777677871
 MonoBehaviour:

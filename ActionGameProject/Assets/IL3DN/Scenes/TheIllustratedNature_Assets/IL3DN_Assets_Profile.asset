@@ -16,7 +16,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.7
     min: 0
   intensity:
     m_OverrideState: 1
@@ -68,19 +68,19 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.6787938, y: 0.6859399, z: 1, w: 0}
+    m_Value: {x: 0.70840645, y: 0.73335207, z: 1, w: 6.0861116e-10}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.95506185, y: 0.892279, z: 1, w: 0}
+    m_Value: {x: 0.7805416, y: 0.77320015, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.060120247}
   shadowsStart:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
     min: 0
   shadowsEnd:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.3
     min: 0
   highlightsStart:
@@ -129,7 +129,7 @@ MonoBehaviour:
     m_Value: 1
   contrast:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 7
     min: -100
     max: 100
   colorFilter:
@@ -140,7 +140,7 @@ MonoBehaviour:
     showEyeDropper: 1
   hueShift:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 82
     min: -180
     max: 180
   saturation:
@@ -177,8 +177,8 @@ MonoBehaviour:
     min: 0
     max: 1
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 0.223
     min: 0.01
     max: 1
   rounded:
@@ -218,7 +218,7 @@ MonoBehaviour:
   master:
     m_OverrideState: 0
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 3
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -228,6 +228,15 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.6851852
+          value: 0.6851852
           inSlope: 1
           outSlope: 1
           tangentMode: 0
@@ -238,7 +247,7 @@ MonoBehaviour:
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -353,7 +362,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   hueVsSat:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value:
       <length>k__BackingField: 6
       m_Loop: 1
@@ -433,7 +442,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   lumVsSat:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value:
       <length>k__BackingField: 2
       m_Loop: 0
