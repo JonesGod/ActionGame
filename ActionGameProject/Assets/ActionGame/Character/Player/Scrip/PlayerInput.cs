@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
     private bool isBow=false;
 
+    [HideInInspector] public PlayerMode playerState;
     [HideInInspector] public bool moveFlag = false;    //WASD移動旗標   
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
@@ -43,7 +44,11 @@ public class PlayerInput : MonoBehaviour
     readonly int hashAttack04 = Animator.StringToHash("attack04");
     readonly int hashSpecialAttackState = Animator.StringToHash("specialAttackState");
 
-
+    public enum PlayerMode
+    {
+        normal = 1,
+        Bow = 2
+    }
 
     public Vector2 MoveInput
     {

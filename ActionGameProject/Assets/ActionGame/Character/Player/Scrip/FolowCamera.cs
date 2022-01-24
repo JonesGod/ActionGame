@@ -10,10 +10,12 @@ public class FolowCamera : MonoBehaviour
     public Vector2 minMaxFollowDistance;
     public float cameraHeight;
     public float relativeDistance=2.0f;
+    public float bowStateY = 2.25f;
+
     private float horizontalAngle;
     private float verticalAngle;
 
-    public float bowStateY = 2.25f;
+    private bool isSwitch=false;
 
     Vector2 mouseInput;
     Vector2 moveInput;
@@ -23,6 +25,7 @@ public class FolowCamera : MonoBehaviour
     Vector3 relativeVector;
     Vector3 relativePoint;
     Vector3 relativeForward;
+    Vector3 bowPosition;
 
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
@@ -56,18 +59,28 @@ public class FolowCamera : MonoBehaviour
         
         CameraRotate();
         BowCameraRotate();
-        if (PlayerInput.Instance.bowState)
-        {
-            cameraPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
 
-            var xc = Quaternion.LookRotation(horizontalVector);
-            lookTarget.rotation = xc;
+        if (Input.GetButtonDown("Switch") && !isSwitch)
+        {
+            isSwitch = true;
+            StartCoroutine(BowSwitch());
         }
         else
-        {            
-            WallDetect(); //牆壁檢測
-        }      
-        
+        {
+            if (PlayerInput.Instance.bowState)
+            {
+                bowPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
+                cameraPosition = bowPosition;
+
+                var xc = Quaternion.LookRotation(horizontalVector);
+                lookTarget.rotation = xc;
+            }
+            else
+            {
+                WallDetect(); //牆壁檢測
+            }
+        }
+
         transform.forward = cameraForward;
         transform.position = cameraPosition;
     }
@@ -126,5 +139,17 @@ public class FolowCamera : MonoBehaviour
         cameraRight = Vector3.Cross(Vector3.up, horizontalVector);
         cameraForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * horizontalVector;
         cameraForward.Normalize();
+    }
+    IEnumerator BowSwitch()
+    {
+        float time = 0.0f;
+        while (time <= 0.5f)
+        {
+            time += Time.deltaTime;
+            cameraPosition = Vector3.Lerp(cameraPosition, bowPosition, 0.2f);
+            Debug.Log(time);
+            yield return null;
+        }
+        isSwitch = false;
     }
 }
