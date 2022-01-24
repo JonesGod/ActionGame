@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21830eb29b7262439cb2e4a40ab7731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followCamera: {fileID: 1867982629}
   groundDistance: 0.2
+  playerState: 0
   moveFlag: 0
   attack: 0
   specialAttack: 0
@@ -891,6 +891,7 @@ MonoBehaviour:
   cameraHeight: 2
   relativeDistance: 2
   bowStateY: 2.25
+  isSwitch: 0
   horizontalVector: {x: 0, y: 0, z: 0}
   cameraRight: {x: 0, y: 0, z: 0}
   checkHitLayerMask:

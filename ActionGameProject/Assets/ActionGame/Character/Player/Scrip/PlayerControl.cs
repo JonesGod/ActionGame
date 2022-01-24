@@ -88,7 +88,7 @@ public class PlayerControl : MonoBehaviour
             m_Input.specialAttack = false;
         }
         
-        if(m_Input.bowState)
+        if(m_Input.bowState && !attackState)
         {
             m_Am.SetBool("BowBool",true);
         }
@@ -108,7 +108,6 @@ public class PlayerControl : MonoBehaviour
     void OnAnimatorMove()
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
-        bool a=stateinfo.IsName("attack01");
  
         RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
@@ -177,7 +176,9 @@ public class PlayerControl : MonoBehaviour
             attackState = true;
         }
         else        
-            attackState = false;                
+            attackState = false;
+
+        PlayerInput.Instance.attackState = attackState;
     }
     void GetRollState()
     {        
@@ -185,6 +186,8 @@ public class PlayerControl : MonoBehaviour
             rollState = true;
         else
             rollState = false;
+
+        PlayerInput.Instance.rollState = rollState;
     }    
     void GetNextState()
     {
@@ -197,6 +200,8 @@ public class PlayerControl : MonoBehaviour
             idleIsNext = true;
         else
             idleIsNext = false;
+
+        PlayerInput.Instance.rollIsNext = rollIsNext;
     }
     void ResetTrigger()
     {

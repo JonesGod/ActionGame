@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class FolowCamera : MonoBehaviour
 {
+    public static FolowCamera Instance
+    {
+        get { return s_Instance; }
+    }
+
+    protected static FolowCamera s_Instance;
+
     public float cameraSpeed = 20.0f;
     public Transform lookTarget;
     public float followDistance;
@@ -12,10 +19,12 @@ public class FolowCamera : MonoBehaviour
     public float relativeDistance=2.0f;
     public float bowStateY = 2.25f;
 
+    public bool isSwitch = false;
+
     private float horizontalAngle;
     private float verticalAngle;
-
-    private bool isSwitch=false;
+    private float zeroPoint;
+    private float distance;
 
     Quaternion playerRotate;
 
@@ -31,12 +40,18 @@ public class FolowCamera : MonoBehaviour
     Vector3 normalPosition;
     Vector3 nextPosition;
     Vector3 lastPosition;
+    Vector3 direct;
+
 
     [HideInInspector] public Vector3 horizontalVector;
     [HideInInspector] public Vector3 cameraRight;
     public LayerMask checkHitLayerMask;
 
     Vector3 cameraPosition;
+    private void Awake()
+    {
+        s_Instance = this;
+    }
     void Start()
     {
         horizontalVector = lookTarget.transform.forward;
@@ -65,12 +80,18 @@ public class FolowCamera : MonoBehaviour
         CameraRotate();
         BowCameraRotate();
 
+        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState)
+        {
+            isSwitch = true;
+            zeroPoint = 0f;
+        }
         if (PlayerInput.Instance.bowState)
         {
             lastPosition = normalPosition;
             nextPosition = bowPosition;
-            if (!isSwitch)
-                cameraPosition = bowPosition;
+
+            Switch();
+
             playerRotate = Quaternion.LookRotation(horizontalVector);
             lookTarget.rotation = playerRotate;
         }
@@ -78,16 +99,12 @@ public class FolowCamera : MonoBehaviour
         {
             lastPosition = bowPosition;
             nextPosition = normalPosition;
-           
-            if (!isSwitch)
-                cameraPosition = normalPosition;
+
+            Switch();
+
             WallDetect(); //牆壁檢測
         }
-        if (Input.GetButtonDown("Switch") && !isSwitch)
-        {
-            isSwitch = true;           
-            StartCoroutine(CameraSwitch());
-        }   
+       
 
         transform.forward = cameraForward;
         transform.position = cameraPosition;
@@ -129,6 +146,7 @@ public class FolowCamera : MonoBehaviour
         relativeVector.Normalize();
         relativeForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * relativeVector;
         relativeForward.Normalize();
+
         bowPosition = lookTarget.position + new Vector3(0.0f, bowStateY, 0.0f) + relativeForward * relativeDistance;
     }
     /// <summary>
@@ -144,25 +162,22 @@ public class FolowCamera : MonoBehaviour
         cameraRight = Vector3.Cross(Vector3.up, horizontalVector);
         cameraForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * horizontalVector;
         cameraForward.Normalize();
+
         normalPosition = lookTarget.position + new Vector3(0.0f, cameraHeight, 0.0f) - (cameraForward * followDistance);
     }
-    IEnumerator CameraSwitch()
+    void Switch()
     {
-        float a = 0f;          
-        float time = 0.0f;
-        while (time <= 0.3f)
-        {
-            time += Time.deltaTime;
+        direct = nextPosition - lastPosition;
+        distance = direct.magnitude;
+        direct.Normalize();
+        zeroPoint = Mathf.Lerp(zeroPoint, distance, 0.1f);
+        cameraPosition = lastPosition + zeroPoint * direct;
 
-            Vector3 x = nextPosition-lastPosition;
-            float dis = x.magnitude;
-            x.Normalize();
-    
-            a = Mathf.Lerp(a, dis, 0.1f);
-            cameraPosition = lastPosition + x * a;
-            Debug.Log(dis);
-            yield return null;
-        }
-        isSwitch = false;        
+        if ((cameraPosition- nextPosition).magnitude < 0.01f)
+        {
+            isSwitch = false;
+            cameraPosition = nextPosition;
+        }     
     }
+   
 }

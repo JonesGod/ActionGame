@@ -11,9 +11,6 @@ public class PlayerInput : MonoBehaviour
 
     protected static PlayerInput s_Instance;
 
-    public FolowCamera followCamera;
-
-    private Vector3 velocity;
 
     public float groundDistance = 0.2f;
     Vector3 move = Vector3.zero;
@@ -24,8 +21,6 @@ public class PlayerInput : MonoBehaviour
     AnimatorStateInfo stateinfo;
     AnimatorStateInfo nextStateinfo;
 
-    private float dodgeTime = 0.5f; //攻擊時，最小可迴避時間
-    private float attackTime = 0.4f; //攻擊時，最小可再攻擊時間
     private bool isBow=false;
 
     [HideInInspector] public PlayerMode playerState;
@@ -33,16 +28,12 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;
-    [HideInInspector] public bool nextIsRoll = false;
     [HideInInspector] public bool isTrasition = false;
     [HideInInspector] public bool bowState = false;
+    [HideInInspector] public bool cantBowState;
     [HideInInspector] public bool attackState;
-
-    readonly int hashAttack01 = Animator.StringToHash("attack01");
-    readonly int hashAttack02 = Animator.StringToHash("attack02");
-    readonly int hashAttack03 = Animator.StringToHash("attack03");
-    readonly int hashAttack04 = Animator.StringToHash("attack04");
-    readonly int hashSpecialAttackState = Animator.StringToHash("specialAttackState");
+    [HideInInspector] public bool rollState;
+    [HideInInspector] public bool rollIsNext;
 
     public enum PlayerMode
     {
@@ -81,7 +72,7 @@ public class PlayerInput : MonoBehaviour
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
-        GetAttackState();
+
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
@@ -99,12 +90,13 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Avoid") )                  
             avoid = true;
 
-        if (Input.GetButtonDown("Switch") && !isBow)
+        CantBow();
+        if (Input.GetButtonDown("Switch") && !isBow && !FolowCamera.Instance.isSwitch && cantBowState)
         {
             isBow = true;
             bowState = true;
         }
-        else if(Input.GetButtonDown("Switch") && isBow)
+        else if(Input.GetButtonDown("Switch") && isBow && !FolowCamera.Instance.isSwitch)
         {
             isBow = false;
             bowState = false;
@@ -115,18 +107,8 @@ public class PlayerInput : MonoBehaviour
     {
         get { return move ; }
     }
-    void GetAttackState()
+    void CantBow()
     {
-        if (stateinfo.shortNameHash == hashAttack01 ||
-           stateinfo.shortNameHash == hashAttack02 ||
-           stateinfo.shortNameHash == hashAttack03 ||
-           stateinfo.shortNameHash == hashAttack04 ||
-           stateinfo.shortNameHash == hashSpecialAttackState ||
-           nextStateinfo.shortNameHash == hashAttack01)
-        {
-            attackState = true;
-        }
-        else
-            attackState = false;
+        cantBowState=!attackState && !rollState && !rollIsNext;
     }
 }
