@@ -16,7 +16,9 @@ public class PlayerControl : MonoBehaviour
     private float rollSpeed = 3.0f;
     private float statetime;
     private float fallSpeed;
-    private float totalSpeed;
+    private float mouse;
+
+    public int sensitivity=20;
 
     AnimatorStateInfo stateinfo;
     AnimatorStateInfo nextStateinfo;       
@@ -48,7 +50,10 @@ public class PlayerControl : MonoBehaviour
         m_Input = GetComponent<PlayerInput>();
        
     }
-
+    void Update()
+    {
+        BowAngle();
+    }
     void FixedUpdate()
     {
 
@@ -87,10 +92,11 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
         }
-        
+
         if(m_Input.bowState && !attackState)
         {
             m_Am.SetBool("BowBool",true);
+            
         }
         else
         {
@@ -208,5 +214,15 @@ public class PlayerControl : MonoBehaviour
         m_Am.ResetTrigger("AttackTrigger");
         m_Am.ResetTrigger("SpecialAttackTrigger");
         m_Am.ResetTrigger("AvoidTrigger");
+    }
+    void BowAngle()
+    {
+        mouse-=PlayerInput.Instance.MouseInput.y*sensitivity;
+        if (mouse > 500f)
+            mouse = 500f;
+        else if (mouse < -240f)
+            mouse = -240f;
+
+        m_Am.SetFloat("BowAngle",mouse+500f);
     }
 }

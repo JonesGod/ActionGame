@@ -16,7 +16,7 @@ public class FolowCamera : MonoBehaviour
     public float followDistance;
     public Vector2 minMaxFollowDistance;
     public float cameraHeight;
-    public float relativeDistance=2.0f;
+    public float relativeDistance = 2.0f;
     public float bowStateY = 2.25f;
 
     public bool isSwitch = false;
@@ -57,8 +57,8 @@ public class FolowCamera : MonoBehaviour
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
 
-        relativePoint = lookTarget.position + new Vector3(-1.6f, 0.0f, -0.4f);       
-        relativeVector = relativePoint-lookTarget.position;
+        relativePoint = lookTarget.position + new Vector3(-1.6f, 0.0f, -0.4f);
+        relativeVector = relativePoint - lookTarget.position;
     }
 
     void Update()
@@ -72,11 +72,7 @@ public class FolowCamera : MonoBehaviour
         moveInput = PlayerInput.Instance.MoveInput / cameraSpeed;
         horizontalAngle = mouseInput.x;
         verticalAngle += mouseInput.y;
-        if (verticalAngle > 20.0f)
-            verticalAngle = 20.0f;
-        if (verticalAngle < -60.0f)
-            verticalAngle = -60.0f;
-        
+
         CameraRotate();
         BowCameraRotate();
 
@@ -87,9 +83,10 @@ public class FolowCamera : MonoBehaviour
         }
         if (PlayerInput.Instance.bowState)
         {
+            BowVisionLimit();
             lastPosition = normalPosition;
             nextPosition = bowPosition;
-
+            
             Switch();
 
             playerRotate = Quaternion.LookRotation(horizontalVector);
@@ -97,6 +94,7 @@ public class FolowCamera : MonoBehaviour
         }
         else
         {
+            NormalVisionLimit();
             lastPosition = bowPosition;
             nextPosition = normalPosition;
 
@@ -104,7 +102,7 @@ public class FolowCamera : MonoBehaviour
 
             WallDetect(); //牆壁檢測
         }
-       
+
 
         transform.forward = cameraForward;
         transform.position = cameraPosition;
@@ -112,7 +110,7 @@ public class FolowCamera : MonoBehaviour
 
     void OnDrawGizmos()
     {
-  
+
         Gizmos.color = new Color(1.0f, 0.0f, 0.0f);
         Gizmos.DrawLine(cameraRight, cameraRight * 3);
         Gizmos.color = new Color(0.0f, 1.0f, 0.0f);
@@ -141,7 +139,7 @@ public class FolowCamera : MonoBehaviour
         }
     }
     void BowCameraRotate()
-    {     
+    {
         relativeVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * relativeVector;
         relativeVector.Normalize();
         relativeForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * relativeVector;
@@ -173,11 +171,24 @@ public class FolowCamera : MonoBehaviour
         zeroPoint = Mathf.Lerp(zeroPoint, distance, 0.1f);
         cameraPosition = lastPosition + zeroPoint * direct;
 
-        if ((cameraPosition- nextPosition).magnitude < 0.01f)
+        if ((cameraPosition - nextPosition).magnitude < 0.01f)
         {
             isSwitch = false;
             cameraPosition = nextPosition;
-        }     
+        }
     }
-   
+    void NormalVisionLimit()
+    {
+        if (verticalAngle > 20.0f)
+            verticalAngle = 20.0f;
+        if (verticalAngle < -60.0f)
+            verticalAngle = -60.0f;
+    }
+    void BowVisionLimit()
+    {
+        if(verticalAngle > 20.0f)
+            verticalAngle = 20.0f;
+        if (verticalAngle < -42f)
+            verticalAngle = -42f;
+    }
 }

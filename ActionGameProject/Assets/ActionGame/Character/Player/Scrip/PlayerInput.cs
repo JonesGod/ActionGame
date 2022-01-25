@@ -76,7 +76,6 @@ public class PlayerInput : MonoBehaviour
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        float stateTime = m_Am.GetFloat("StateTime");
         
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))        
             moveFlag = true;        
@@ -111,4 +110,5 @@ public class PlayerInput : MonoBehaviour
     {
         cantBowState=!attackState && !rollState && !rollIsNext;
     }
+
 }

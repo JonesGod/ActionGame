@@ -600,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCamera: {fileID: 1867982629}
+  sensitivity: 12
 --- !u!114 &1412369529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,15 +614,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDistance: 0.2
+  mouse: 0
   playerState: 0
   moveFlag: 0
   attack: 0
   specialAttack: 0
   avoid: 0
-  nextIsRoll: 0
   isTrasition: 0
   bowState: 0
+  cantBowState: 0
   attackState: 0
+  rollState: 0
+  rollIsNext: 0
 --- !u!143 &1412369530
 CharacterController:
   m_ObjectHideFlags: 0
