@@ -13,10 +13,12 @@ public class PlayerControl : MonoBehaviour
     private float rotateSpeed = 10.0f;
     private float speed = 10.0f;
     private float gravity = 20.0f;
-    private float rollSpeed = 3.0f;
+    private float rollSpeed = 15.0f;
     private float statetime;
     private float fallSpeed;
     private float mouse;
+    private float normalMove;
+    private float bowRightMove;
 
     public int sensitivity=20;
 
@@ -68,8 +70,23 @@ public class PlayerControl : MonoBehaviour
         statetime = m_Am.GetFloat("StateTime");
 
         CalculateGravity();
+       
+        if (m_Input.moveFlag)
+            m_Am.SetBool("RunBool", true);
+        else
+        {
+            moveInput = Vector2.zero;
+            m_Am.SetBool("RunBool", false);
+        }
 
-        Run();
+        if (m_Input.bowState)
+        {
+            BowBasicValue();
+        }
+        else
+        {
+            NormalBasicValue();  
+        }
 
         ResetTrigger();
         if (m_Input.avoid )      //迴避
@@ -128,7 +145,7 @@ public class PlayerControl : MonoBehaviour
             move = Vector3.zero;
 
         if (rollState || rollIsNext)
-            move = transform.forward * (speed + rollSpeed) * Time.deltaTime;
+            move = transform.forward * rollSpeed * Time.deltaTime;
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
@@ -137,8 +154,8 @@ public class PlayerControl : MonoBehaviour
 
         move += fallSpeed * Vector3.up * Time.deltaTime;
         move += m_Am.deltaPosition;
-        
-            characterController.Move(move);
+
+        characterController.Move(move);
     }
     void CalculateGravity()
     {        
@@ -225,18 +242,23 @@ public class PlayerControl : MonoBehaviour
 
         m_Am.SetFloat("BowAngle",mouse+500f);
     }
-    void Run()
+    void NormalBasicValue()
     {
-        if (m_Input.moveFlag)
-            m_Am.SetBool("RunBool", true);
-        else
-        {
-            moveInput = Vector2.zero;
-            m_Am.SetBool("RunBool", false);
-        }
-        var total = (Mathf.Abs(runInput.x) + Mathf.Abs(runInput.y)) * 2;
-        if (total > 1f)
-            total = 1f;
-        m_Am.SetFloat("RunBlend", Mathf.Abs(total));
+        normalMove = (Mathf.Abs(runInput.x) + Mathf.Abs(runInput.y)) * 2;
+        if (normalMove > 1f)
+            normalMove = 1f;
+        m_Am.SetFloat("RunBlend", Mathf.Abs(normalMove));
+
+        speed = 10.0f;
+    }
+    void BowBasicValue()
+    {
+        normalMove = runInput.y;
+        bowRightMove = runInput.x;
+
+        m_Am.SetFloat("RunBlend", normalMove);
+        m_Am.SetFloat("RightRunBlend", bowRightMove);
+        
+        speed = 3.0f;
     }
 }
