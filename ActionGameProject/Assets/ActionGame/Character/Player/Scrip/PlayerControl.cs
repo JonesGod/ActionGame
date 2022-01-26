@@ -80,7 +80,7 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetBool("RunBool", false);
         }
 
-        if (m_Input.bowState)
+        if (m_Input.bowState)   //弓狀態與一般狀態的基本參數改變
         {
             BowBasicValue();
         }
@@ -96,8 +96,9 @@ public class PlayerControl : MonoBehaviour
             {
                 RollRotating(moveInput.x, moveInput.y);
             }
-
-            m_Am.SetTrigger("AvoidTrigger"); 
+           
+            m_Am.SetTrigger("AvoidTrigger");
+            PlayerInput.Instance.bowState = false;
             m_Input.avoid = false;
         }
         if (m_Input.attack)   //左鍵攻擊

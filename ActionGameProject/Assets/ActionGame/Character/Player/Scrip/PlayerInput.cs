@@ -21,8 +21,6 @@ public class PlayerInput : MonoBehaviour
     AnimatorStateInfo stateinfo;
     AnimatorStateInfo nextStateinfo;
 
-    private bool isBow=false;
-
     [HideInInspector] public PlayerMode playerState;
     [HideInInspector] public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
     [HideInInspector] public bool attack = false;
@@ -86,14 +84,12 @@ public class PlayerInput : MonoBehaviour
             avoid = true;
 
         CantBow();
-        if (Input.GetButtonDown("Switch") && !isBow && !FolowCamera.Instance.isSwitch && cantBowState)
+        if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState)
         {
-            isBow = true;
             bowState = true;
         }
-        else if(Input.GetButtonDown("Switch") && isBow && !FolowCamera.Instance.isSwitch)
+        else if(Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch)
         {
-            isBow = false;
             bowState = false;
         }
 
