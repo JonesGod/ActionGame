@@ -41,6 +41,8 @@ public class PlayerControl : MonoBehaviour
     private bool isTrasition;
 
     Vector3 move = Vector3.zero;
+    Vector2 moveInput;
+    Vector2 runInput;
 
     void Start()
     {
@@ -53,10 +55,11 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         BowAngle();
+        moveInput = PlayerInput.Instance.MoveInput;
+        runInput = PlayerInput.Instance.MoveInput;
     }
     void FixedUpdate()
-    {
-
+    {       
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -66,17 +69,14 @@ public class PlayerControl : MonoBehaviour
 
         CalculateGravity();
 
-        if (m_Input.moveFlag)        
-            m_Am.SetBool("RunBool", true);        
-        else        
-            m_Am.SetBool("RunBool", false);                    
+        Run();
 
         ResetTrigger();
         if (m_Input.avoid )      //迴避
         {            
             if (statetime >= 0.5f && !isTrasition && !rollState)
             {
-                RollRotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+                RollRotating(moveInput.x, moveInput.y);
             }
 
             m_Am.SetTrigger("AvoidTrigger"); 
@@ -102,12 +102,12 @@ public class PlayerControl : MonoBehaviour
         {
             m_Am.SetBool("BowBool", false);
         }
-
+        
         GetAttackState();
         GetRollState();
         GetNextState();
         if (m_Input.moveFlag && !attackState && !rollState && !rollIsNext)
-            Rotating(m_Input.MoveInput.x, m_Input.MoveInput.y);
+            Rotating(moveInput.x, moveInput.y);
         
     }
     
@@ -123,7 +123,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         if (!attackState || rollIsNext)
-            move = followCamera.horizontalVector * m_Input.MoveInput.y + followCamera.cameraRight * m_Input.MoveInput.x;
+            move = followCamera.horizontalVector * moveInput.y + followCamera.cameraRight * moveInput.x;
         else
             move = Vector3.zero;
 
@@ -224,5 +224,19 @@ public class PlayerControl : MonoBehaviour
             mouse = -240f;
 
         m_Am.SetFloat("BowAngle",mouse+500f);
+    }
+    void Run()
+    {
+        if (m_Input.moveFlag)
+            m_Am.SetBool("RunBool", true);
+        else
+        {
+            moveInput = Vector2.zero;
+            m_Am.SetBool("RunBool", false);
+        }
+        var total = (Mathf.Abs(runInput.x) + Mathf.Abs(runInput.y)) * 2;
+        if (total > 1f)
+            total = 1f;
+        m_Am.SetFloat("RunBlend", Mathf.Abs(total));
     }
 }

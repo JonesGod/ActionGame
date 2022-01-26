@@ -253,19 +253,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.723795
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.69001514
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c16b283d2fd5e0d48a7eeb0c06acbe12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -614,7 +614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDistance: 0.2
-  mouse: 0
   playerState: 0
   moveFlag: 0
   attack: 0

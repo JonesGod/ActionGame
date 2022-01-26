@@ -34,7 +34,7 @@ public class FolowCamera : MonoBehaviour
     Vector3 lookTargetPosition;
     Vector3 cameraForward;
     Vector3 relativeVector;
-    Vector3 relativePoint;
+
     Vector3 relativeForward;
     Vector3 bowPosition;
     Vector3 normalPosition;
@@ -57,8 +57,7 @@ public class FolowCamera : MonoBehaviour
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
 
-        relativePoint = lookTarget.position + new Vector3(-1.6f, 0.0f, -0.4f);
-        relativeVector = relativePoint - lookTarget.position;
+        relativeVector = Quaternion.AngleAxis(165f, Vector3.up) * horizontalVector;
     }
 
     void Update()
@@ -114,7 +113,7 @@ public class FolowCamera : MonoBehaviour
         Gizmos.color = new Color(1.0f, 0.0f, 0.0f);
         Gizmos.DrawLine(cameraRight, cameraRight * 3);
         Gizmos.color = new Color(0.0f, 1.0f, 0.0f);
-        Gizmos.DrawLine(relativePoint, cameraPosition);
+        Gizmos.DrawLine(transform.position, cameraPosition);
     }
     void WallDetect()
     {

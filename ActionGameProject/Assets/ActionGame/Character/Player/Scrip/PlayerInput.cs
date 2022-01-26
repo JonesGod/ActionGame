@@ -45,10 +45,6 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (!moveFlag )
-            {
-                return Vector2.zero;
-            }
             return m_Movement;
         }
     }
