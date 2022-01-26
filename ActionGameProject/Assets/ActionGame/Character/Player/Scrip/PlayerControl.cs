@@ -57,6 +57,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         BowAngle();
+
         moveInput = PlayerInput.Instance.MoveInput;
         runInput = PlayerInput.Instance.MoveInput;
     }
@@ -235,8 +236,8 @@ public class PlayerControl : MonoBehaviour
     void BowAngle()
     {
         mouse-=PlayerInput.Instance.MouseInput.y*sensitivity;
-        if (mouse > 500f)
-            mouse = 500f;
+        if (mouse > 260f)
+            mouse = 260f;
         else if (mouse < -240f)
             mouse = -240f;
 

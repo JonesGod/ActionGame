@@ -75,7 +75,7 @@ public class FolowCamera : MonoBehaviour
         CameraRotate();
         BowCameraRotate();
 
-        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState)
+        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState)//切換中判斷
         {
             isSwitch = true;
             zeroPoint = 0f;
@@ -187,7 +187,7 @@ public class FolowCamera : MonoBehaviour
     {
         if(verticalAngle > 20.0f)
             verticalAngle = 20.0f;
-        if (verticalAngle < -42f)
-            verticalAngle = -42f;
+        if (verticalAngle < -21f)
+            verticalAngle = -21f;
     }
 }
