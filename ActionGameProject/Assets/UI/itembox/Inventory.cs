@@ -1,71 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject inventory;
-    public GameObject slotHolder;
+    public List<Item> yourInventory = new List<Item>();
 
-    private int slots;
-    private Transform[] slot;
+    public int slotsNumbr;
 
-    private GameObject itemPickedUP;
-    private bool itemAdded;
+    public GameObject x;
+    public int n;
 
-    public void Start()
+    public Image[] slot;
+    public Sprite[] slotSprite;
+   
+    
+
+    public Text[] stackText;
+
+   
+    void Start()
     {
-        slots = slotHolder.transform.childCount;
-
-        slot = new Transform[slots];
-        DetectInventorySlots();
-
+     
     }
 
-    public void Update()
+   
+    void Update()
     {
-
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        //other.tag ==  "Item"
-        if (other.gameObject.GetComponent<Item>())
+        for (int i = 0; i < slotsNumbr; i++)
         {
-            //print("466");
-            itemPickedUP = other.gameObject;
-            AddItem(itemPickedUP); 
+            slot[i].sprite = slotSprite[i];
         }
 
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "item")
+        for (int i = 0; i < slotsNumbr; i++)
         {
-            itemAdded = false;
+            slotSprite[i] = yourInventory[i].itemSprite;
         }
-    }
 
-    public void AddItem(GameObject item)
-    {
-        for (int i = 0; i < slots; i++)
+
+
+
+
+        if (PickingUp.y != null)
         {
-            if (slot[i].GetComponent<Slot>().empty && itemAdded == false)
+            x = PickingUp.y;
+            n = x.GetComponent<ThisItem>().thisId;
+        }
+        else
+        {
+            x = null;
+        }
+
+        if (PickingUp.pick == true)
+        {
+            for (int i = 0; i < slotsNumbr; i++) 
             {
-                slot[i].GetComponent<Slot>().item = itemPickedUP;
-                slot[i].GetComponent<Slot>().itemIcon = itemPickedUP.GetComponent<Item>().icon;
-                itemAdded = true;
+                if (yourInventory[i].id == n)
+                {
+                    yourInventory[i].stack += 1;
+                    i = slotsNumbr;
+                    PickingUp.pick = false;
+                }
             }
-        }
-    }
 
-    public void DetectInventorySlots()
-    {
-        for (int i = 0; i < slots; i++)
+
+            for (int i = 0; i < slotsNumbr; i++)
+            {
+                if (yourInventory[i].id == 0 && PickingUp.pick == true)
+                {
+                    yourInventory[i] = Database.itemList[n];
+
+                    yourInventory[i].stack += i;
+
+                    PickingUp.pick = false;
+                }
+            }
+            PickingUp.pick = false;
+        }
+
+        for (int i = 0; i < slotsNumbr; i++)
         {
-            slot[i] = slotHolder.transform.GetChild(i);
-            
+            stackText[i].text = " " + yourInventory[i].stack;
         }
     }
 }
