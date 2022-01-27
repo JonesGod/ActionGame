@@ -206,6 +206,7 @@ public class PlayerControl : MonoBehaviour
             attackState = false;
 
         PlayerInput.Instance.attackState = attackState;
+        Sword.Instance.attackState = attackState;
     }
     void GetCurrentState()
     {        

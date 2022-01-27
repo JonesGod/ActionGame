@@ -770,8 +770,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.16256158
+      - time: 0.13521783
         functionName: SwordOn
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.22346982
+        functionName: SwordColliderOn
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.34119612
+        functionName: SwordColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
         floatParameter: 0

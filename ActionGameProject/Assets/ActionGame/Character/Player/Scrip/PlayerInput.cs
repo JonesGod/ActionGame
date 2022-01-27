@@ -17,8 +17,6 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;
     private Vector2 m_Mouse;
 
-    private Animator m_Am;
-
     [HideInInspector] public PlayerMode playerState;
     [HideInInspector] public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
     [HideInInspector] public bool attack = false;
@@ -58,8 +56,7 @@ public class PlayerInput : MonoBehaviour
     }
     void Start()
     {
-        m_Am = GetComponent<Animator>();
-       
+        
     }
     void Update()
     {
