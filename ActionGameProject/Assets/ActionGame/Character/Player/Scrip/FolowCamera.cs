@@ -75,7 +75,8 @@ public class FolowCamera : MonoBehaviour
         CameraRotate();
         BowCameraRotate();
 
-        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState)//切換中判斷
+        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState
+            && PlayerInput.Instance.rollToBow)                                   //切換中判斷
         {
             isSwitch = true;
             zeroPoint = 0f;

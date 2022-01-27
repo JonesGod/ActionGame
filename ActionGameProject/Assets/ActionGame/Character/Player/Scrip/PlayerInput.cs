@@ -18,8 +18,6 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Mouse;
 
     private Animator m_Am;
-    AnimatorStateInfo stateinfo;
-    AnimatorStateInfo nextStateinfo;
 
     [HideInInspector] public PlayerMode playerState;
     [HideInInspector] public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
@@ -32,6 +30,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool attackState;
     [HideInInspector] public bool rollState;
     [HideInInspector] public bool rollIsNext;
+    [HideInInspector] public bool rollToBow=false;
 
     public enum PlayerMode
     {
@@ -64,9 +63,6 @@ public class PlayerInput : MonoBehaviour
     }
     void Update()
     {
-        stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
-        nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
-
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
@@ -84,7 +80,8 @@ public class PlayerInput : MonoBehaviour
             avoid = true;
 
         CantBow();
-        if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState)
+        if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState
+            && rollToBow)
         {
             bowState = true;
         }
@@ -100,7 +97,6 @@ public class PlayerInput : MonoBehaviour
     }
     void CantBow()
     {
-        cantBowState=!attackState && !rollState && !rollIsNext;
+        cantBowState=!attackState &&!rollIsNext;
     }
-
 }

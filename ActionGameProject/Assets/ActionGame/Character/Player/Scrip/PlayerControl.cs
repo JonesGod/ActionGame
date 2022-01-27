@@ -33,14 +33,16 @@ public class PlayerControl : MonoBehaviour
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
-    readonly int hashBow = Animator.StringToHash("bow");
+    readonly int hashBowIdle = Animator.StringToHash("BowIdle");
 
     private bool isGrounded = true;
     private bool attackState;
     private bool rollState;
+    private bool bowState;
     private bool idleIsNext;
     private bool rollIsNext;
     private bool isTrasition;
+    private bool bowIsNext;
 
     Vector3 move = Vector3.zero;
     Vector2 moveInput;
@@ -71,14 +73,6 @@ public class PlayerControl : MonoBehaviour
         statetime = m_Am.GetFloat("StateTime");
 
         CalculateGravity();
-       
-        if (m_Input.moveFlag)
-            m_Am.SetBool("RunBool", true);
-        else
-        {
-            moveInput = Vector2.zero;
-            m_Am.SetBool("RunBool", false);
-        }
 
         if (m_Input.bowState)   //弓狀態與一般狀態的基本參數改變
         {
@@ -86,7 +80,25 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            NormalBasicValue();  
+            NormalBasicValue();
+        }
+
+        CantBowToRoll();
+        if (m_Input.bowState && !attackState)
+        {
+            m_Am.SetBool("BowBool", true);
+        }
+        else
+        {
+            m_Am.SetBool("BowBool", false);
+        }
+
+        if (m_Input.moveFlag)
+            m_Am.SetBool("RunBool", true);
+        else
+        {
+            moveInput = Vector2.zero;
+            m_Am.SetBool("RunBool", false);
         }
 
         ResetTrigger();
@@ -111,19 +123,9 @@ public class PlayerControl : MonoBehaviour
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
         }
-
-        if(m_Input.bowState && !attackState)
-        {
-            m_Am.SetBool("BowBool",true);
-            
-        }
-        else
-        {
-            m_Am.SetBool("BowBool", false);
-        }
         
         GetAttackState();
-        GetRollState();
+        GetCurrentState();
         GetNextState();
         if (m_Input.moveFlag && !attackState && !rollState && !rollIsNext)
             Rotating(moveInput.x, moveInput.y);
@@ -141,7 +143,7 @@ public class PlayerControl : MonoBehaviour
             move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
 
-        if (!attackState || rollIsNext)
+        if (!attackState || rollIsNext)//讀取按鍵決定方向
             move = followCamera.horizontalVector * moveInput.y + followCamera.cameraRight * moveInput.x;
         else
             move = Vector3.zero;
@@ -151,7 +153,7 @@ public class PlayerControl : MonoBehaviour
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (idleIsNext)
+        if (idleIsNext || bowIsNext)
             move = transform.forward * 0.0f;
 
         move += fallSpeed * Vector3.up * Time.deltaTime;
@@ -205,12 +207,17 @@ public class PlayerControl : MonoBehaviour
 
         PlayerInput.Instance.attackState = attackState;
     }
-    void GetRollState()
+    void GetCurrentState()
     {        
         if (stateinfo.shortNameHash == hashRoll)
             rollState = true;
         else
             rollState = false;
+
+        if (stateinfo.shortNameHash == hashBowIdle)
+            bowState = true;
+        else
+            bowState = false;
 
         PlayerInput.Instance.rollState = rollState;
     }    
@@ -225,6 +232,11 @@ public class PlayerControl : MonoBehaviour
             idleIsNext = true;
         else
             idleIsNext = false;
+
+        if (nextStateinfo.shortNameHash == hashBowIdle)
+            bowIsNext = true;
+        else
+            bowIsNext = false;
 
         PlayerInput.Instance.rollIsNext = rollIsNext;
     }
@@ -261,6 +273,13 @@ public class PlayerControl : MonoBehaviour
         m_Am.SetFloat("RunBlend", normalMove);
         m_Am.SetFloat("RightRunBlend", bowRightMove);
         
-        speed = 3.0f;
+        speed = 4.0f;
+    }
+    void CantBowToRoll()
+    {
+        if(statetime<0.5f && rollState)
+            PlayerInput.Instance.rollToBow = false;
+        else
+            PlayerInput.Instance.rollToBow = true;
     }
 }
