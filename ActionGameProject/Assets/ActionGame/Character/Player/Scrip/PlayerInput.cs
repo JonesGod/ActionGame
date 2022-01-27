@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Mouse;
 
     [HideInInspector] public PlayerMode playerState;
-    [HideInInspector] public bool moveFlag = false;    //WASD²¾°ÊºX¼Ð   
+    [HideInInspector] public bool moveFlag = false;    //WASDï¿½ï¿½ï¿½ÊºXï¿½ï¿½   
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;

@@ -58,8 +58,7 @@ public class BasicFSM : MonoBehaviour
 	}
     void DoIdleState()
     {
-        Debug.Log("DoIdle");
-
+        //Debug.Log("DoIdle");
     }
     void DoAttackState()
     {
@@ -73,18 +72,23 @@ public class BasicFSM : MonoBehaviour
     {
 
     }
+    void DoDeadState()
+    {
+        //Debug.Log("DoDead");
+        animator.SetBool("Die", true);
+    }
 
     void CheckIdleState()
     {   
         //CheckDead
+        bool attack = false;
         if(data.hp <= 0)
         {
-            currentState = FSMState.Dead;
-            animator.SetBool("Die", true);
-            checkState = null;
-            doState = null;
-        }
-        bool attack = false;
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
         currentEnemyTarget = CheckEnemyInSight(ref attack);
         if(currentEnemyTarget == null)
         {
@@ -113,6 +117,10 @@ public class BasicFSM : MonoBehaviour
 
     }
     void CheckStrafeState()
+    {
+
+    }
+    void CheckDeadState()
     {
 
     }
