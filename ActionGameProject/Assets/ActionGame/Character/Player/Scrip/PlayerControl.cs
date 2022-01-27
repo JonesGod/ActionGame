@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
     private float normalMove;
     private float bowRightMove;
 
-    public int sensitivity=20;
+    public int sensitivity=12;
 
     AnimatorStateInfo stateinfo;
     AnimatorStateInfo nextStateinfo;       

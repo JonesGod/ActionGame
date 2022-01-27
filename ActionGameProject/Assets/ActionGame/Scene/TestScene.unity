@@ -625,6 +625,7 @@ MonoBehaviour:
   attackState: 0
   rollState: 0
   rollIsNext: 0
+  rollToBow: 0
 --- !u!143 &1412369530
 CharacterController:
   m_ObjectHideFlags: 0

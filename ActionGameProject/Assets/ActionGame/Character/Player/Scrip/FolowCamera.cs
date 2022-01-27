@@ -140,7 +140,7 @@ public class FolowCamera : MonoBehaviour
     }
     void BowCameraRotate()
     {
-        relativeVector = Quaternion.AngleAxis(horizontalAngle, Vector3.up) * relativeVector;
+        relativeVector = Quaternion.AngleAxis(horizontalAngle + moveInput.x, Vector3.up) * relativeVector;
         relativeVector.Normalize();
         relativeForward = Quaternion.AngleAxis(verticalAngle, -cameraRight) * relativeVector;
         relativeForward.Normalize();
@@ -171,7 +171,7 @@ public class FolowCamera : MonoBehaviour
         zeroPoint = Mathf.Lerp(zeroPoint, distance, 0.1f);
         cameraPosition = lastPosition + zeroPoint * direct;
 
-        if ((cameraPosition - nextPosition).magnitude < 0.01f)
+        if ((cameraPosition - nextPosition).magnitude < 0.05f)
         {
             isSwitch = false;
             cameraPosition = nextPosition;
