@@ -119,14 +119,14 @@ public class FolowCamera : MonoBehaviour
     void WallDetect()
     {
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
-        if (Physics.Raycast(lookTargetPosition, -cameraForward, out RaycastHit rh, followDistance, checkHitLayerMask))
+        if (Physics.SphereCast(lookTargetPosition, 0.5f ,-cameraForward, out RaycastHit rh, followDistance, checkHitLayerMask))
         {
             Vector3 hitRayDir = rh.point - lookTarget.position;
             float hitRayLength = hitRayDir.magnitude;
 
             Vector3 newCameraPosition = rh.point + rh.normal * 0.5f;//固定住攝影機的位置(不要再後退了) 
-
-            if (hitRayLength < minMaxFollowDistance.x)
+            
+            if (hitRayLength < minMaxFollowDistance.x && (rh.transform.gameObject.layer==8))
             {
                 float upDistance = minMaxFollowDistance.x - hitRayLength;
                 cameraPosition = newCameraPosition + Vector3.up * upDistance;
