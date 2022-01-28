@@ -23,9 +23,9 @@ public class Hurt : MonoBehaviour
     //         animator.SetTrigger("TakeDamage");
     //         Debug.Log("damage");
     // }
-    private void OnTriggerEnter(Collider other) 
-    {
-        if(other.transform.name == "mesh_masterSword")
-            animator.SetTrigger("TakeDamage");    
-    }
+    // private void OnTriggerEnter(Collider other) 
+    // {
+    //     if(other.transform.name == "mesh_masterSword")
+    //         animator.SetTrigger("TakeDamage");    
+    // }
 }

@@ -36,8 +36,11 @@ public class BasicFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkState();
-        doState();        
+        if(currentState != FSMState.Dead)
+        {
+            checkState();
+            doState();    
+        }    
     }
     private GameObject CheckEnemyInSight(ref bool attack)
 	{
@@ -75,7 +78,7 @@ public class BasicFSM : MonoBehaviour
     void DoDeadState()
     {
         //Debug.Log("DoDead");
-        animator.SetBool("Die", true);
+        animator.SetTrigger("Die");
     }
 
     void CheckIdleState()
@@ -124,5 +127,13 @@ public class BasicFSM : MonoBehaviour
     {
 
     }
-    
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.transform.name == "mesh_masterSword" && currentState != FSMState.Dead)
+        {
+            animator.SetTrigger("TakeDamage");
+            Debug.Log("Damage");
+            data.hp -= 30;
+        }
+    }
 }

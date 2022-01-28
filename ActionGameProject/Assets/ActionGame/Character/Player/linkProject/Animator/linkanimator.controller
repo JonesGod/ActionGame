@@ -1724,6 +1724,9 @@ AnimatorTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: BowBool
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: RunBool
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6945205152295847113}
   m_Solo: 0
@@ -1805,6 +1808,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: BowBool
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: RunBool
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
