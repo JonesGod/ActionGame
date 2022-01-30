@@ -33,21 +33,21 @@ public class FolowCamera : MonoBehaviour
 
     Vector3 lookTargetPosition;
     Vector3 cameraForward;
-    Vector3 relativeVector;
+    Vector3 cameraPosition;
+    Vector3 relativeVector;//相對於一般視角的弓視角向量
 
-    Vector3 relativeForward;
-    Vector3 bowPosition;
-    Vector3 normalPosition;
-    Vector3 nextPosition;
-    Vector3 lastPosition;
-    Vector3 direct;
+    Vector3 relativeForward;//相對於一般視角的弓視角正前方
+    Vector3 bowPosition;//弓視角下的攝影機位置
+    Vector3 normalPosition;//一般視角下的攝影機位置
+    Vector3 nextPosition;//下一個攝影機位置
+    Vector3 lastPosition;//上一個攝影機位置
+    Vector3 direct;//上一個攝影機位置到下一個攝影機位置的向量
 
 
-    [HideInInspector] public Vector3 horizontalVector;
-    [HideInInspector] public Vector3 cameraRight;
+    [HideInInspector] public Vector3 horizontalVector;//攝影機正前方向量
+    [HideInInspector] public Vector3 cameraRight;//攝影機側面向量
     public LayerMask checkHitLayerMask;
 
-    Vector3 cameraPosition;
     private void Awake()
     {
         s_Instance = this;
@@ -72,8 +72,8 @@ public class FolowCamera : MonoBehaviour
         horizontalAngle = mouseInput.x;
         verticalAngle += mouseInput.y;
 
-        CameraRotate();
-        BowCameraRotate();
+        CameraRotate();//隨時更新一般狀態的攝影機位置與轉向
+        BowCameraRotate();//隨時更新弓狀態的攝影機位置與轉向
 
         if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState
             && PlayerInput.Instance.rollToBow)                                   //切換中判斷
@@ -163,20 +163,26 @@ public class FolowCamera : MonoBehaviour
 
         normalPosition = lookTarget.position + new Vector3(0.0f, cameraHeight, 0.0f) - (cameraForward * followDistance);
     }
+    /// <summary>
+    /// 攝影機位置切換
+    /// </summary>
     void Switch()
     {
-        direct = nextPosition - lastPosition;
-        distance = direct.magnitude;
-        direct.Normalize();
-        zeroPoint = Mathf.Lerp(zeroPoint, distance, 0.1f);
+        direct = nextPosition - lastPosition;//攝影機移動方向
+        distance = direct.magnitude;//攝影機需移動的總距離
+        direct.Normalize();//將向量單位只當作方向用
+        zeroPoint = Mathf.Lerp(zeroPoint, distance, 0.1f);//攝影機移動距離，從0開始到總距離，並加上內插
         cameraPosition = lastPosition + zeroPoint * direct;
 
-        if ((cameraPosition - nextPosition).magnitude < 0.05f)
+        if ((cameraPosition - nextPosition).magnitude < 0.05f)//快到位置時直接到點
         {
             isSwitch = false;
             cameraPosition = nextPosition;
         }
     }
+    /// <summary>
+    /// 一般狀態下的滑鼠滑動限制
+    /// </summary>
     void NormalVisionLimit()
     {
         if (verticalAngle > 20.0f)
@@ -184,6 +190,9 @@ public class FolowCamera : MonoBehaviour
         if (verticalAngle < -60.0f)
             verticalAngle = -60.0f;
     }
+    /// <summary>
+    /// 弓狀態下的滑鼠滑動限制
+    /// </summary>
     void BowVisionLimit()
     {
         if(verticalAngle > 20.0f)

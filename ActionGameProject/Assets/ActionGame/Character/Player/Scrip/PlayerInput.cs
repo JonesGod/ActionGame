@@ -12,13 +12,10 @@ public class PlayerInput : MonoBehaviour
     protected static PlayerInput s_Instance;
 
 
-    public float groundDistance = 0.2f;
-    Vector3 move = Vector3.zero;
-    private Vector2 m_Movement;
-    private Vector2 m_Mouse;
+    private Vector2 m_Movement;//存取WASD輸入
+    private Vector2 m_Mouse;//存取滑鼠滑動
 
-    [HideInInspector] public PlayerMode playerState;
-    [HideInInspector] public bool moveFlag = false;    //WASD���ʺX��   
+    [HideInInspector] public bool moveFlag = false;
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;
@@ -29,12 +26,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool rollState;
     [HideInInspector] public bool rollIsNext;
     [HideInInspector] public bool rollToBow=false;
-
-    public enum PlayerMode
-    {
-        normal = 1,
-        Bow = 2
-    }
 
     public Vector2 MoveInput
     {
@@ -87,11 +78,11 @@ public class PlayerInput : MonoBehaviour
             bowState = false;
         }
 
-    }   
-    public Vector3 Move  
-    {
-        get { return move ; }
     }
+    /// <summary>
+    /// 不能切到弓的狀態
+    /// 從PlayerControl的Scrip來獲得attackState和rollIsNext
+    /// </summary>
     void CantBow()
     {
         cantBowState=!attackState &&!rollIsNext;

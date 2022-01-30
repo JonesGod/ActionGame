@@ -24,14 +24,6 @@ public class Sword : MonoBehaviour
     }
     void Start()
     {
-        link = GetComponentsInChildren<Transform>(true);
-        foreach(Transform child in link)
-        {
-            if (child.name == "mesh_masterSword")
-            {
-                sword = child;
-            }
-        }
         swordBoxCollider = sword.GetComponent<BoxCollider>();
     }
 

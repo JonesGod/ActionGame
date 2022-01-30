@@ -10,20 +10,20 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    private float rotateSpeed = 10.0f;
-    private float speed = 6.0f;
-    private float gravity = 20.0f;
-    private float rollSpeed = 10.0f;
-    private float statetime;
-    private float fallSpeed;
-    private float mouse;
-    private float normalMove;
-    private float bowRightMove;
+    private float rotateSpeed = 10.0f;//轉向速度
+    private float speed = 6.0f;//移動速度
+    private float gravity = 20.0f;//重力
+    private float rollSpeed = 10.0f;//翻滾速度
+    private float statetime;//動畫進行時間(百分比)
+    private float fallSpeed;//角色落下速度
+    private float mouseSlide;//滑鼠滑動輸入
+    private float normalMove;//一般狀態下的WASD輸入總和
+    private float bowRightMove;//弓狀態下的WASD輸入總和
 
-    public int sensitivity=12;
+    public int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
 
-    AnimatorStateInfo stateinfo;
-    AnimatorStateInfo nextStateinfo;       
+    AnimatorStateInfo stateinfo;//當前Animation存取
+    AnimatorStateInfo nextStateinfo;//下個Animation存取
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
@@ -34,19 +34,18 @@ public class PlayerControl : MonoBehaviour
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
+    
+    /// 動畫播放狀態
+    private bool attackState;//所有一般攻擊Animation
+    private bool rollState;//翻滾Animation
+    private bool idleIsNext;//下個Animation是Idle
+    private bool rollIsNext;//下個Animation是翻滾
+    private bool isTrasition;//混接中
+    private bool bowIsNext;//下個Anuimation是弓
 
-    private bool isGrounded = true;
-    private bool attackState;
-    private bool rollState;
-    private bool bowState;
-    private bool idleIsNext;
-    private bool rollIsNext;
-    private bool isTrasition;
-    private bool bowIsNext;
-
-    Vector3 move = Vector3.zero;
-    Vector2 moveInput;
-    Vector2 runInput;
+    Vector3 move = Vector3.zero;//角色總移動量
+    Vector2 moveInput;//存取按鍵WASD，主要用在轉向，不太需要管Input.GetAxis的數值變化
+    Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
 
     void Start()
     {
@@ -83,7 +82,7 @@ public class PlayerControl : MonoBehaviour
             NormalBasicValue();
         }
 
-        CantBowToRoll();
+        CantRollToBow();
         if (m_Input.bowState && !attackState)
         {
             m_Am.SetBool("BowBool", true);
@@ -148,19 +147,22 @@ public class PlayerControl : MonoBehaviour
         else
             move = Vector3.zero;
 
-        if (rollState || rollIsNext)
+        if (rollState || rollIsNext)//翻滾時採用翻滾速度
             move = transform.forward * rollSpeed * Time.deltaTime;
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (idleIsNext || bowIsNext)
+        if (idleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
-        move += fallSpeed * Vector3.up * Time.deltaTime;
-        move += m_Am.deltaPosition;
+        move += fallSpeed * Vector3.up * Time.deltaTime;//加上落下速度
+        move += m_Am.deltaPosition;//加上美術位移
 
         characterController.Move(move);
     }
+    /// <summary>
+    /// 重力計算
+    /// </summary>
     void CalculateGravity()
     {        
         if (characterController.isGrounded)
@@ -182,6 +184,12 @@ public class PlayerControl : MonoBehaviour
             characterController.transform.rotation = Quaternion.Lerp(characterController.transform.rotation, newRotation, Time.deltaTime * rotateSpeed);
         }    
     }
+    /// <summary>
+    /// 以瞬間轉向為主的翻滾轉向
+    /// 和一般轉向差別為取消了轉向內插
+    /// </summary>
+    /// <param name="moveH"></param>
+    /// <param name="moveV"></param>
     void RollRotating(float moveH, float moveV)
     {
         Vector3 newDirectionVector = (followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH).normalized;
@@ -191,6 +199,9 @@ public class PlayerControl : MonoBehaviour
             characterController.transform.rotation = newRotation;
         }
     }
+    /// <summary>
+    /// 將所有一般攻擊狀態取出，來判斷是否在一般攻擊中
+    /// </summary>
     void GetAttackState()
     {                                 
         if(stateinfo.shortNameHash == hashAttack01 ||
@@ -208,6 +219,9 @@ public class PlayerControl : MonoBehaviour
         PlayerInput.Instance.attackState = attackState;
         Sword.Instance.attackState = attackState;
     }
+    /// <summary>
+    /// 獲取當前Animation
+    /// </summary>
     void GetCurrentState()
     {        
         if (stateinfo.shortNameHash == hashRoll)
@@ -215,13 +229,11 @@ public class PlayerControl : MonoBehaviour
         else
             rollState = false;
 
-        if (stateinfo.shortNameHash == hashBowIdle)
-            bowState = true;
-        else
-            bowState = false;
-
         PlayerInput.Instance.rollState = rollState;
     }    
+    /// <summary>
+    /// 獲取下個Animation
+    /// </summary>
     void GetNextState()
     {
         if (nextStateinfo.shortNameHash == hashRoll)
@@ -241,22 +253,31 @@ public class PlayerControl : MonoBehaviour
 
         PlayerInput.Instance.rollIsNext = rollIsNext;
     }
+    /// <summary>
+    /// 重製輸入觸發
+    /// </summary>
     void ResetTrigger()
     {
         m_Am.ResetTrigger("AttackTrigger");
         m_Am.ResetTrigger("SpecialAttackTrigger");
         m_Am.ResetTrigger("AvoidTrigger");
     }
+    /// <summary>
+    /// 控制角色弓狀態下的上下角度
+    /// </summary>
     void BowAngle()
     {
-        mouse-=PlayerInput.Instance.MouseInput.y*sensitivity;
-        if (mouse > 260f)
-            mouse = 260f;
-        else if (mouse < -240f)
-            mouse = -240f;
+        mouseSlide-=PlayerInput.Instance.MouseInput.y*sensitivity;
+        if (mouseSlide > 260f)
+            mouseSlide = 260f;
+        else if (mouseSlide < -240f)
+            mouseSlide = -240f;
 
-        m_Am.SetFloat("BowAngle",mouse+500f);
+        m_Am.SetFloat("BowAngle",mouseSlide+500f);
     }
+    /// <summary>
+    /// 一般狀態下的基礎參數
+    /// </summary>
     void NormalBasicValue()
     {
         normalMove = (Mathf.Abs(runInput.x) + Mathf.Abs(runInput.y)) * 2;
@@ -266,6 +287,9 @@ public class PlayerControl : MonoBehaviour
 
         speed = 10.0f;
     }
+    /// <summary>
+    /// 弓狀態下的基礎參數
+    /// </summary>
     void BowBasicValue()
     {
         normalMove = runInput.y;
@@ -276,7 +300,10 @@ public class PlayerControl : MonoBehaviour
         
         speed = 4.0f;
     }
-    void CantBowToRoll()
+    /// <summary>
+    /// 時翻滾不能馬上切換到弓狀態
+    /// </summary>
+    void CantRollToBow()
     {
         if(statetime<0.5f && rollState)
             PlayerInput.Instance.rollToBow = false;
