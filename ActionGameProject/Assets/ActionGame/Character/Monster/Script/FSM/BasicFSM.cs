@@ -20,7 +20,7 @@ public class BasicFSM : MonoBehaviour
     private CheckAIState checkState;
 
     public BasicAIData data;
-    private FSMState currentState;
+    public FSMState currentState;
     private GameObject currentEnemyTarget;
     private Animator animator;
 

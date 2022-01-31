@@ -19,6 +19,9 @@ public class PlayerControl : MonoBehaviour
     private float mouseSlide;//滑鼠滑動輸入
     private float normalMove;//一般狀態下的WASD輸入總和
     private float bowRightMove;//弓狀態下的WASD輸入總和
+    private float lockDistancs = 5.0f;//一般攻擊自動鎖定距離
+
+    private List<BasicFSM> monster;//存取怪物資訊
 
     public int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
 
@@ -41,9 +44,11 @@ public class PlayerControl : MonoBehaviour
     private bool idleIsNext;//下個Animation是Idle
     private bool rollIsNext;//下個Animation是翻滾
     private bool isTrasition;//混接中
-    private bool bowIsNext;//下個Anuimation是弓
+    private bool bowIsNext;//下個Animation是弓
 
     Vector3 move = Vector3.zero;//角色總移動量
+    Vector3 targetVector;//自動鎖定的方向
+
     Vector2 moveInput;//存取按鍵WASD，主要用在轉向，不太需要管Input.GetAxis的數值變化
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
 
@@ -53,11 +58,21 @@ public class PlayerControl : MonoBehaviour
        
         m_Am = GetComponent<Animator>();
         m_Input = GetComponent<PlayerInput>();
-       
+
+        monster = new List<BasicFSM>();
+        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");//將場景裡的怪物存起來
+       if(allMonster!=null || allMonster.Length>0)
+       {
+            foreach(GameObject m in allMonster)
+            {
+                monster.Add(m.GetComponent<BasicFSM>());
+            }
+       }
     }
     void Update()
     {
         BowAngle();
+        TargetSearch();
 
         moveInput = PlayerInput.Instance.MoveInput;
         runInput = PlayerInput.Instance.MoveInput;
@@ -67,7 +82,7 @@ public class PlayerControl : MonoBehaviour
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
-
+        
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
         statetime = m_Am.GetFloat("StateTime");
 
@@ -130,7 +145,6 @@ public class PlayerControl : MonoBehaviour
             Rotating(moveInput.x, moveInput.y);
         
     }
-    
     void OnAnimatorMove()
     {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
@@ -198,6 +212,16 @@ public class PlayerControl : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
             characterController.transform.rotation = newRotation;
         }
+    }
+    /// <summary>
+    /// 在Animation的event使用
+    /// 一般攻擊時的自動轉向
+    /// </summary>
+    void AttackRotating()
+    {
+        targetVector.y = 0f;
+        Quaternion newRotation= Quaternion.LookRotation(targetVector, Vector3.up);        
+        characterController.transform.rotation = newRotation;
     }
     /// <summary>
     /// 將所有一般攻擊狀態取出，來判斷是否在一般攻擊中
@@ -309,5 +333,28 @@ public class PlayerControl : MonoBehaviour
             PlayerInput.Instance.rollToBow = false;
         else
             PlayerInput.Instance.rollToBow = true;
+    }
+    /// <summary>
+    /// 尋找距離小於3.0f的最短距離目標
+    /// </summary>
+    void TargetSearch()
+    {
+        Vector3 vec;
+        Vector3 lastVec=transform.forward;
+        float last=100.0f;//比鎖定距離還長的隨意數值用來給迴圈的第一圈比較用
+        for (int i = 0; i < monster.Count; i++)
+        {
+            vec = monster[i].transform.position - transform.position; //獲得鎖定的方向
+            if (vec.magnitude >= lockDistancs || (monster[i].currentState == BasicFSM.FSMState.Dead))
+            {               
+                continue;
+            }
+            if (vec.magnitude < last)
+            {
+                lastVec = vec;
+                last = vec.magnitude;
+            }
+        }
+        targetVector = lastVec;
     }
 }

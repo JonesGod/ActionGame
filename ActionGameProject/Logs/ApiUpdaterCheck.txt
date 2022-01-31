@@ -439,3 +439,23 @@ candidates check time : 26ms
 >>>>>>> Stashed changes
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 2022/1/31 上午 11:38:21 : Starting C:/Program Files/Unity 2020.3.22f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 670.6374ms
+moved types parse time: 49ms
+candidates parse time : 0ms
+C# parse time         : 279ms
+candidates check time : 25ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 2022/1/31 下午 02:16:38 : Starting C:/Program Files/Unity 2020.3.22f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 71.2447ms
+moved types parse time: 42ms
+candidates parse time : 0ms
+C# parse time         : 182ms
+candidates check time : 27ms
+console write time    : 0ms
+
