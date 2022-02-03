@@ -108,7 +108,10 @@ public class PlayerControl : MonoBehaviour
         }
 
         if (m_Input.moveFlag)
+        {
+            ResetAttackTrigger();
             m_Am.SetBool("RunBool", true);
+        }
         else
         {
             moveInput = Vector2.zero;
@@ -117,12 +120,14 @@ public class PlayerControl : MonoBehaviour
 
         ResetTrigger();
         if (m_Input.avoid )      //迴避
-        {            
-            if (statetime >= 0.5f && !isTrasition && !rollState)
+        {   
+            ResetAttackTrigger();         
+
+            if (!(statetime <= 0.5f && attackState) && !isTrasition && !rollState)
             {
                 RollRotating(moveInput.x, moveInput.y);
             }
-           
+            
             m_Am.SetTrigger("AvoidTrigger");
             PlayerInput.Instance.bowState = false;
             m_Input.avoid = false;
@@ -278,13 +283,19 @@ public class PlayerControl : MonoBehaviour
         PlayerInput.Instance.rollIsNext = rollIsNext;
     }
     /// <summary>
-    /// 重製輸入觸發
+    /// 重製迴避觸發
     /// </summary>
     void ResetTrigger()
+    {      
+        m_Am.ResetTrigger("AvoidTrigger");
+    }
+    /// <summary>
+    /// 重製攻擊觸發
+    /// </summary>
+    void ResetAttackTrigger()
     {
         m_Am.ResetTrigger("AttackTrigger");
         m_Am.ResetTrigger("SpecialAttackTrigger");
-        m_Am.ResetTrigger("AvoidTrigger");
     }
     /// <summary>
     /// 控制角色弓狀態下的上下角度
