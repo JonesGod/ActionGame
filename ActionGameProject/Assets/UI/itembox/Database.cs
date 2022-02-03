@@ -6,7 +6,7 @@ public class Database : MonoBehaviour
 {
     public static List<Item> itemList = new List<Item> ();
 
-
+    //道具分配
     void Awake()
     {
         itemList.Add (new Item (0, "None", "None", Resources.Load <Sprite>("0"),0));

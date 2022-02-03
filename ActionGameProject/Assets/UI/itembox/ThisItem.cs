@@ -15,7 +15,7 @@ public class ThisItem : MonoBehaviour
     public string itemDescription;
 
 
-    // Start is called before the first frame update
+    // 讀取道具資料
     void Start()
     {
         thisItem[0] = Database.itemList[thisId];

@@ -25,6 +25,8 @@ public class PickingUp : MonoBehaviour
     {
         if (canPickUp == true)
         {
+            //拾取道具後刪除已拾取的道具物件
+            //並關閉拾取開關
             if (Input.GetKeyDown(KeyCode.E ))
             {
                 Destroy(Item);
@@ -36,6 +38,7 @@ public class PickingUp : MonoBehaviour
             }
         }
 
+
         if (canPickUp == true)
         {
             pickUpText.SetActive(true);
@@ -46,7 +49,7 @@ public class PickingUp : MonoBehaviour
         }
 
     }
-
+    //顯示+執行拾取
      void OnTriggerEnter(Collider col)
     {
         if (col.tag == "item")

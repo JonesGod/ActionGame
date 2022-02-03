@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    //血量增減顯示
     public void ModifyHealth(int amout)
     {
         currentHealth += amout;
@@ -27,7 +28,7 @@ public class Health : MonoBehaviour
         OnHealthPctChanged(currentHealthPct);
     }
 
-    // Update is called once per frame
+    // 空白鍵-10hp
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
