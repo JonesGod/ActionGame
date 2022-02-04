@@ -8,8 +8,11 @@ public class BasicAIData
     public float hp = 100.0f;
     public float speed = 10.0f;
     public GameObject target;
-    public float attackRange = 10.0f;
-    public float sightRange = 50.0f;
+    public Vector3 targetPosition;
+    public float attackRange = 3.0f;
+    public float sightRange = 12.0f;
+    public float strafeRange = 8.0f;
+    public float strafeTime;
 
     
 }
