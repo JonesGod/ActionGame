@@ -24,6 +24,7 @@ public class BasicFSM : MonoBehaviour
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
+    Rigidbody myRigidbody;
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class BasicFSM : MonoBehaviour
         currentState = FSMState.Idle;
         doState = DoIdleState;
         checkState = CheckIdleState;
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,18 +67,18 @@ public class BasicFSM : MonoBehaviour
 		}
 		return false;
 	}
-    private void MoveToStrafeRange(GameObject target)
-    {
-        GameObject go = target;
-		Vector3 v = go.transform.position - this.transform.position;
-		float fDist = v.magnitude;
-        if(fDist > data.strafeRange)
-        {
-            animator.SetBool("IsMoveForward", true);        
-            transform.LookAt(data.target.transform);
-            transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-        }
-    }
+    // private void MoveToStrafeRange(GameObject target)
+    // {
+    //     GameObject go = target;
+	// 	Vector3 v = go.transform.position - this.transform.position;
+	// 	float fDist = v.magnitude;
+    //     if(fDist > data.strafeRange)
+    //     {
+    //         animator.SetBool("IsMoveForward", true);        
+    //         transform.LookAt(data.target.transform);
+    //         transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+    //     }
+    // }
 
     void CheckIdleState()
     {   
@@ -136,12 +137,12 @@ public class BasicFSM : MonoBehaviour
     void DoChaseState()
     {
         Debug.Log("DoChaseState");
-        data.targetPosition = data.target.transform.position;
+        data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
         animator.SetBool("IsMoveRight", false);
-        animator.SetBool("IsMoveForward", true);        
-        transform.LookAt(data.target.transform);
+        animator.SetBool("IsMoveForward", true);
+        transform.LookAt(data.target.transform.position);
         transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         // if (SteeringBehavior.CollisionAvoid(data) == false)
         // {
@@ -183,7 +184,7 @@ public class BasicFSM : MonoBehaviour
     void DoStrafeState()
     {
         Debug.Log("DoStrafe");
-        data.targetPosition = data.target.transform.position;
+        data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 2.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
@@ -192,14 +193,14 @@ public class BasicFSM : MonoBehaviour
         {
             animator.SetBool("IsMoveRight", false); 
             animator.SetBool("IsMoveForward", true);        
-            transform.LookAt(data.target.transform);
+            transform.LookAt(data.target.transform.position);
             transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             currentTime += Time.deltaTime;
             return;
         }
         animator.SetBool("IsMoveForward", false); 
         animator.SetBool("IsMoveRight", true);        
-        transform.LookAt(data.target.transform);
+        transform.LookAt(data.target.transform.position);
         transform.Translate(Vector3.right * data.speed * Time.deltaTime);
 
         currentTime += Time.deltaTime;
@@ -215,15 +216,19 @@ public class BasicFSM : MonoBehaviour
             doState = DoDeadState;
             return;
         }        
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if(animator.IsInTransition(0))
+        {
+            Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             data.strafeTime = Random.Range(3.0f, 5.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoStrafeState;
             checkState = CheckStrafeState;
-        }
-        
+        }        
     }    
     void DoAttackState()
     {   
@@ -240,8 +245,6 @@ public class BasicFSM : MonoBehaviour
             Debug.Log("IsInTransition");
             return;
         }
-        animator.SetBool("IsMoveForward", false);    
-        animator.SetBool("IsMoveRight", false);  
         animator.SetTrigger("AttackTrigger");
     }    
     void CheckDeadState()
@@ -257,7 +260,10 @@ public class BasicFSM : MonoBehaviour
     {
         currentTime = 0.0f;
         animator.SetBool("IsMoveForward", false); 
-        animator.SetBool("IsMoveRight", false);   
+        animator.SetBool("IsMoveRight", false);  
+        data.strafeTime =  data.strafeTime = Random.Range(0.0f, 2.0f);
+        doState = DoStrafeState;
+        checkState = CheckStrafeState;
     }
     private void OnTriggerEnter(Collider other) 
     {

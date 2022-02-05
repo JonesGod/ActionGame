@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6871469169649029204}
   - component: {fileID: 7562537015002374129}
   - component: {fileID: 5699147072614525755}
+  - component: {fileID: 4926444116425432106}
   m_Layer: 0
   m_Name: OeakTreeBroken01
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4926444116425432106
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059466172012350190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2116294, y: 2.8640442, z: 2.05}
+  m_Center: {x: 0, y: 0.18497092, z: -0.32}
