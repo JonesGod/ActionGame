@@ -27,6 +27,7 @@ public class PlayerControl : MonoBehaviour
 
     AnimatorStateInfo stateinfo;//當前Animation存取
     AnimatorStateInfo nextStateinfo;//下個Animation存取
+    AnimatorStateInfo nextStateinfoOne;//第1層的下個Animation存取
 
     readonly int hashAttack01 = Animator.StringToHash("attack01");
     readonly int hashAttack02 = Animator.StringToHash("attack02");
@@ -37,7 +38,8 @@ public class PlayerControl : MonoBehaviour
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
-    
+    readonly int hashBowShoot = Animator.StringToHash("BowShoot");
+
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
     private bool rollState;//翻滾Animation
@@ -45,6 +47,7 @@ public class PlayerControl : MonoBehaviour
     private bool rollIsNext;//下個Animation是翻滾
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
+    private bool bowShoot;//射擊動作
 
     Vector3 move = Vector3.zero;//角色總移動量
     Vector3 targetVector;//自動鎖定的方向
@@ -78,10 +81,11 @@ public class PlayerControl : MonoBehaviour
         runInput = PlayerInput.Instance.MoveInput;
     }
     void FixedUpdate()
-    {       
+    {
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
+        nextStateinfoOne= m_Am.GetNextAnimatorStateInfo(1);
         
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
         statetime = m_Am.GetFloat("StateTime");
@@ -152,7 +156,6 @@ public class PlayerControl : MonoBehaviour
     }
     void OnAnimatorMove()
     {
-        stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
  
         RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up, -Vector3.up);//在林克身上做一條與Y軸平行的雷射用以偵測四周
@@ -258,7 +261,13 @@ public class PlayerControl : MonoBehaviour
         else
             rollState = false;
 
+        if (nextStateinfoOne.shortNameHash == hashBowShoot)
+            bowShoot = true;
+        else
+            bowShoot = false;
+
         PlayerInput.Instance.rollState = rollState;
+        PlayerInput.Instance.bowShoot = bowShoot;
     }    
     /// <summary>
     /// 獲取下個Animation
