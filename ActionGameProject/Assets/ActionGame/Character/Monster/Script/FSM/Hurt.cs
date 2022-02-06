@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class Hurt : MonoBehaviour
 {
-    private Animator animator;
+    public BasicFSM myFSM;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other) 
     {
+        Debug.Log(other.transform.name);
         
+        if(other.transform.name == "mesh_masterSword" && myFSM.currentState != BasicFSM.FSMState.Dead)
+            myFSM.CallHurt();   
     }
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     if(collision.transform.name== "mesh_masterSword")
-    //         animator.SetTrigger("TakeDamage");
-    //         Debug.Log("damage");
-    // }
-    // private void OnTriggerEnter(Collider other) 
-    // {
-    //     if(other.transform.name == "mesh_masterSword")
-    //         animator.SetTrigger("TakeDamage");    
-    // }
 }

@@ -25,6 +25,9 @@ public class BasicFSM : MonoBehaviour
     private Animator animator;
     private float currentTime;
     Rigidbody myRigidbody;
+    private CharacterController characterController;
+    Vector3 move = Vector3.zero;
+    float fallSpeed = -6.0f;
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class BasicFSM : MonoBehaviour
         doState = DoIdleState;
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -42,7 +46,7 @@ public class BasicFSM : MonoBehaviour
         {
             checkState();
             doState();    
-        }    
+        }
     }
     private GameObject CheckEnemyInSight()
 	{
@@ -70,8 +74,8 @@ public class BasicFSM : MonoBehaviour
     // private void MoveToStrafeRange(GameObject target)
     // {
     //     GameObject go = target;
-	// 	Vector3 v = go.transform.position - this.transform.position;
-	// 	float fDist = v.magnitude;
+	// 	   Vector3 v = go.transform.position - this.transform.position;
+	// 	   float fDist = v.magnitude;
     //     if(fDist > data.strafeRange)
     //     {
     //         animator.SetBool("IsMoveForward", true);        
@@ -113,7 +117,7 @@ public class BasicFSM : MonoBehaviour
     }
     void DoIdleState()
     {
-        Debug.Log("DoIdle");
+        //Debug.Log("DoIdle");
     }
     void CheckChaseState()
     {
@@ -136,7 +140,7 @@ public class BasicFSM : MonoBehaviour
     }    
     void DoChaseState()
     {
-        Debug.Log("DoChaseState");
+        //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
@@ -183,7 +187,7 @@ public class BasicFSM : MonoBehaviour
     }
     void DoStrafeState()
     {
-        Debug.Log("DoStrafe");
+        //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 2.0f;
 
@@ -218,7 +222,7 @@ public class BasicFSM : MonoBehaviour
         }        
         if(animator.IsInTransition(0))
         {
-            Debug.Log("IsInTransition");
+            //Debug.Log("IsInTransition");
             return;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
@@ -235,14 +239,14 @@ public class BasicFSM : MonoBehaviour
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            Debug.Log("IsAttack");
+            //Debug.Log("IsAttack");
             // Check enemy damage.
             return;
         }
 
         if(animator.IsInTransition(0))
         {
-            Debug.Log("IsInTransition");
+            //Debug.Log("IsInTransition");
             return;
         }
         animator.SetTrigger("AttackTrigger");
@@ -265,16 +269,23 @@ public class BasicFSM : MonoBehaviour
         doState = DoStrafeState;
         checkState = CheckStrafeState;
     }
-    private void OnTriggerEnter(Collider other) 
+    public void CallHurt()
     {
-        if(other.transform.name == "mesh_masterSword" && currentState != FSMState.Dead)
-        {
-            animator.SetTrigger("TakeDamage");
-            Debug.Log("TakeDamage");
-            data.hp -= 30;
-            ResetState();
-        }
+        animator.SetTrigger("TakeDamage");
+        Debug.Log("TakeDamage");
+        data.hp -= 30;
+        ResetState();
     }
+    // private void OnTriggerEnter(Collider other) 
+    // {
+    //     if(other.transform.name == "mesh_masterSword" && currentState != FSMState.Dead)
+    //     {
+    //         animator.SetTrigger("TakeDamage");
+    //         Debug.Log("TakeDamage");
+    //         data.hp -= 30;
+    //         ResetState();
+    //     }
+    // }
 
 
     private void OnDrawGizmos() 
