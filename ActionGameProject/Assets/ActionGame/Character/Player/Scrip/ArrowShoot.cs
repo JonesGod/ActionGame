@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ArrowShoot : MonoBehaviour
 {
+    Transform cameraTrasform;
     public GameObject prefab;
+
     private ArrowLoad load;
+    private Vector3 targetDirection;//準星目標方向(相機正前方)
+    private Vector3 arrowDirection;//箭矢飛行方向
+    private float targetDistance;//目標到攝影機的距離
 
     private void Awake()
     {
@@ -20,19 +25,26 @@ public class ArrowShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0) && PlayerInput.Instance.bowShoot)
-        //{
-        //    GameObject go = load.LoadArrow();
-        //    go.transform.position = transform.position;
-        //    go.transform.forward = transform.forward;
-        //    go.SetActive(true);
-        //}
+        cameraTrasform = Camera.main.transform;
+        arrowDirection = transform.forward;
+
+        Ray r = new Ray(cameraTrasform.position, cameraTrasform.forward);
+        if(Physics.Raycast(r,out RaycastHit hit,80f))
+        {
+            targetDirection = hit.point - cameraTrasform.position;
+            arrowDirection = targetDirection;
+            targetDistance = targetDirection.magnitude;
+            if(targetDistance<15f)                      //準星目標離太近時
+            {
+                targetDirection = cameraTrasform.position + cameraTrasform.forward * 15f;
+            }
+        }
     }
     void Shoot()
     {
         GameObject go = load.LoadArrow();
         go.transform.position = transform.position;//調整箭矢位置為弓的位置
-        go.transform.forward = transform.forward;//調整箭矢前方為弓得前方
+        go.transform.forward = arrowDirection;//調整箭矢前方為弓得前方
         go.SetActive(true);
     }
 }
