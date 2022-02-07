@@ -92,8 +92,8 @@ public class FolowCamera : MonoBehaviour
             
             Switch();
 
-            //playerRotate = Quaternion.LookRotation(horizontalVector);
-            //lookTarget.rotation = playerRotate;
+            playerRotate = Quaternion.LookRotation(horizontalVector);
+            lookTarget.rotation = playerRotate;
         }
         else
         {
@@ -103,17 +103,6 @@ public class FolowCamera : MonoBehaviour
             Switch();
 
             WallDetect(); //牆壁檢測
-        }
-       
-        //transform.forward = cameraForward;
-        //transform.position = cameraPosition;
-    }
-    private void FixedUpdate()
-    {
-        if (PlayerInput.Instance.bowState)
-        {
-            playerRotate = Quaternion.LookRotation(horizontalVector);
-            lookTarget.rotation = playerRotate;
         }
 
         transform.forward = cameraForward;

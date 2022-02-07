@@ -60,12 +60,18 @@ public class PlayerInput : MonoBehaviour
             moveFlag = true;        
         else        
             moveFlag = false;
-        
-        if (Input.GetButtonDown("Fire1"))                    
-            attack = true;                    
-        if (Input.GetButtonDown("Fire2"))        
-            specialAttack = true;                
-        if (Input.GetButtonDown("Avoid") )                  
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            attack = true;
+            specialAttack = false;
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            specialAttack = true;
+            attack = false;
+        }
+        if (Input.GetButtonDown("Avoid"))                  
             avoid = true;
 
         CantBow();

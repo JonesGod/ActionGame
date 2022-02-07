@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     readonly int hashAttack02 = Animator.StringToHash("attack02");
     readonly int hashAttack03 = Animator.StringToHash("attack03");
     readonly int hashAttack04 = Animator.StringToHash("attack04");
-    readonly int hashSpecialAttackState=Animator.StringToHash("specialAttackState");
+    readonly int hashSpecialAttack=Animator.StringToHash("specialAttack");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
@@ -247,7 +247,7 @@ public class PlayerControl : MonoBehaviour
            stateinfo.shortNameHash == hashAttack02 ||
            stateinfo.shortNameHash == hashAttack03 ||
            stateinfo.shortNameHash == hashAttack04 ||
-           stateinfo.shortNameHash == hashSpecialAttackState||
+           stateinfo.shortNameHash == hashSpecialAttack||
            nextStateinfo.shortNameHash== hashAttack01)
         {
             attackState = true;
