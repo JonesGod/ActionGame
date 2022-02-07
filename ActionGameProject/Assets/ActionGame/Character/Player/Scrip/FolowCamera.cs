@@ -71,6 +71,10 @@ public class FolowCamera : MonoBehaviour
         moveInput = PlayerInput.Instance.MoveInput / cameraSpeed;
         horizontalAngle = mouseInput.x;
         verticalAngle += mouseInput.y;
+        if(PlayerInput.Instance.bowState)
+            BowVisionLimit();
+        else
+            NormalVisionLimit();
 
         CameraRotate();//隨時更新一般狀態的攝影機位置與轉向
         BowCameraRotate();//隨時更新弓狀態的攝影機位置與轉向
@@ -83,18 +87,16 @@ public class FolowCamera : MonoBehaviour
         }
         if (PlayerInput.Instance.bowState)
         {
-            BowVisionLimit();
             lastPosition = normalPosition;
             nextPosition = bowPosition;
             
             Switch();
 
-            playerRotate = Quaternion.LookRotation(horizontalVector);
-            lookTarget.rotation = playerRotate;
+            //playerRotate = Quaternion.LookRotation(horizontalVector);
+            //lookTarget.rotation = playerRotate;
         }
         else
         {
-            NormalVisionLimit();
             lastPosition = bowPosition;
             nextPosition = normalPosition;
 
@@ -102,7 +104,17 @@ public class FolowCamera : MonoBehaviour
 
             WallDetect(); //牆壁檢測
         }
-
+       
+        //transform.forward = cameraForward;
+        //transform.position = cameraPosition;
+    }
+    private void FixedUpdate()
+    {
+        if (PlayerInput.Instance.bowState)
+        {
+            playerRotate = Quaternion.LookRotation(horizontalVector);
+            lookTarget.rotation = playerRotate;
+        }
 
         transform.forward = cameraForward;
         transform.position = cameraPosition;

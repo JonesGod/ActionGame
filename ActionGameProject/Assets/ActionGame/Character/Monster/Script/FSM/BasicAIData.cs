@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class BasicAIData
 {
-    public float hp = 100.0f;
+    public float hp;
     public float speed = 10.0f;
     public GameObject target;
     public Vector3 targetPosition;

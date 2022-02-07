@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
+    public float playerHp = 100;//玩家生命
+    private float playerMaxHp = 100;//玩家最大生命
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
@@ -39,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
     readonly int hashBowShoot = Animator.StringToHash("BowShoot");
+    readonly int hashHurt = Animator.StringToHash("Hurt");
 
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
@@ -48,6 +51,7 @@ public class PlayerControl : MonoBehaviour
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
+    private bool hurt;//受傷動作
 
     Vector3 move = Vector3.zero;//角色總移動量
     Vector3 targetVector;//自動鎖定的方向
@@ -63,7 +67,7 @@ public class PlayerControl : MonoBehaviour
         m_Input = GetComponent<PlayerInput>();
 
         monster = new List<BasicFSM>();
-        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");//將場景裡的怪物存起來
+        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");//將場景裡tag為Monster的物件存起來
        if(allMonster!=null || allMonster.Length>0)
        {
             foreach(GameObject m in allMonster)
@@ -177,9 +181,12 @@ public class PlayerControl : MonoBehaviour
         if (idleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
+        if (hurt)//受傷時移動量為0
+            move = Vector3.zero;
+
         move += fallSpeed * Vector3.up * Time.deltaTime;//加上落下速度
         move += m_Am.deltaPosition;//加上美術位移
-
+       
         characterController.Move(move);
     }
     /// <summary>
@@ -265,6 +272,11 @@ public class PlayerControl : MonoBehaviour
             bowShoot = true;
         else
             bowShoot = false;
+
+        if (stateinfo.shortNameHash == hashHurt)
+            hurt = true;
+        else
+            hurt = false;
 
         PlayerInput.Instance.rollState = rollState;
         PlayerInput.Instance.bowShoot = bowShoot;
@@ -376,5 +388,18 @@ public class PlayerControl : MonoBehaviour
             }
         }
         targetVector = lastVec;
+    }
+    /// <summary>
+    /// 玩家受傷
+    /// </summary>
+    void PlayerHurt(int damage)
+    {
+        playerHp -= damage;
+        if (playerHp <= 0)
+            playerHp = 0;
+        if (playerHp >= playerMaxHp)
+            playerHp = playerMaxHp;
+
+        m_Am.SetTrigger("HurtTrigger");
     }
 }
