@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class BasicFSM : MonoBehaviour
 {
     public enum FSMState//列出怪物所有的狀態
@@ -12,22 +11,32 @@ public class BasicFSM : MonoBehaviour
         Chase,
         Strafe,
         NormalAttack,
+        Hurt,
         Dead
     }
+    // public enum FSMState//列出怪物所有的狀態
+    // {
+    //     NONE = -1,
+    //     Idle,
+    //     Chase,
+    //     Strafe,
+    //     NormalAttack,
+    //     Hurt,
+    //     Dead
+    // }
     private delegate void DoState();
     private DoState doState;
     private delegate void CheckAIState();
     private CheckAIState checkState;
 
-    public BasicAIData data;
+    public BasicMonsterData data;
     public FSMState currentState;
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
     Rigidbody myRigidbody;
     private CharacterController characterController;
-    Vector3 move = Vector3.zero;
-    float fallSpeed = -6.0f;
+    Rigidbody rigidbody;
 
     void Start()
     {
@@ -37,6 +46,7 @@ public class BasicFSM : MonoBehaviour
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -71,18 +81,6 @@ public class BasicFSM : MonoBehaviour
 		}
 		return false;
 	}
-    // private void MoveToStrafeRange(GameObject target)
-    // {
-    //     GameObject go = target;
-	// 	   Vector3 v = go.transform.position - this.transform.position;
-	// 	   float fDist = v.magnitude;
-    //     if(fDist > data.strafeRange)
-    //     {
-    //         animator.SetBool("IsMoveForward", true);        
-    //         transform.LookAt(data.target.transform);
-    //         transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-    //     }
-    // }
 
     void CheckIdleState()
     {   
@@ -147,7 +145,8 @@ public class BasicFSM : MonoBehaviour
         animator.SetBool("IsMoveRight", false);
         animator.SetBool("IsMoveForward", true);
         transform.LookAt(data.target.transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+        rigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
         // {
         //     SteeringBehavior.Seek(data);
@@ -198,7 +197,8 @@ public class BasicFSM : MonoBehaviour
             animator.SetBool("IsMoveRight", false); 
             animator.SetBool("IsMoveForward", true);        
             transform.LookAt(data.target.transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+            rigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
         }
@@ -212,7 +212,6 @@ public class BasicFSM : MonoBehaviour
     void CheckAttackState()
     {
         //CheckDead
-        bool attack = false;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -240,7 +239,6 @@ public class BasicFSM : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             //Debug.Log("IsAttack");
-            // Check enemy damage.
             return;
         }
 
@@ -251,6 +249,44 @@ public class BasicFSM : MonoBehaviour
         }
         animator.SetTrigger("AttackTrigger");
     }    
+    void CheckHurtState()
+    {
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(1.0f, 2.5f);;
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }
+
+    }
+    void DoHurtState()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
+        {
+            //Debug.Log("IsHurt");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+    }
     void CheckDeadState()
     {
         //Dead : Do nothing
@@ -260,33 +296,18 @@ public class BasicFSM : MonoBehaviour
         //Debug.Log("DoDead");
         animator.SetTrigger("Die");
     }
-    private void ResetState()
-    {
-        currentTime = 0.0f;
-        animator.SetBool("IsMoveForward", false); 
-        animator.SetBool("IsMoveRight", false);  
-        data.strafeTime =  data.strafeTime = Random.Range(0.0f, 2.0f);
-        doState = DoStrafeState;
-        checkState = CheckStrafeState;
-    }
     public void CallHurt()
-    {
-        animator.SetTrigger("TakeDamage");
+    {        
         Debug.Log("TakeDamage");
         data.hp -= 30;
-        ResetState();
+        if(data.hp > 0)
+        {
+            currentState = FSMState.Hurt;  
+            animator.SetTrigger("TakeDamage"); 
+            doState = DoHurtState;
+            checkState = CheckHurtState;
+        }                
     }
-    // private void OnTriggerEnter(Collider other) 
-    // {
-    //     if(other.transform.name == "mesh_masterSword" && currentState != FSMState.Dead)
-    //     {
-    //         animator.SetTrigger("TakeDamage");
-    //         Debug.Log("TakeDamage");
-    //         data.hp -= 30;
-    //         ResetState();
-    //     }
-    // }
-
 
     private void OnDrawGizmos() 
     {

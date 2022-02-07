@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class BasicAIData
+public class BasicMonsterData
 {
     public float hp;
     public float speed = 10.0f;
