@@ -399,7 +399,7 @@ public class PlayerControl : MonoBehaviour
     /// <summary>
     /// 玩家受傷
     /// </summary>
-    void PlayerHurt(int damage)
+    public void PlayerHurt(int damage)
     {
         playerHp -= damage;
         if (playerHp <= 0)
