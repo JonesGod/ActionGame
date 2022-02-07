@@ -795,7 +795,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.48295778
-        functionName: AttackRotating
+        functionName: SwordColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c1c4e7adbc2b97749a95c17ff0be815e, type: 3}
         floatParameter: 0

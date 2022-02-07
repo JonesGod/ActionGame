@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db033f711729174e816d8cccd1d7626, type: 3}
   m_Name: NewKawaseBlur
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     renderPassEvent: 500
     blurMaterial: {fileID: 2100000, guid: 704bf2bbb2115014f8f4408f69a4c968, type: 2}

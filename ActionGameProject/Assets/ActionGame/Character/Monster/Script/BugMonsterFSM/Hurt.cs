@@ -10,7 +10,7 @@ public class Hurt : MonoBehaviour
     {
         Debug.Log(other.transform.name);
         
-        if(other.transform.name == "mesh_masterSword" && myFSM.currentState != BasicFSM.FSMState.Dead)
-            myFSM.CallHurt();   
+        if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
+            myFSM.CallHurt(30);   
     }
 }

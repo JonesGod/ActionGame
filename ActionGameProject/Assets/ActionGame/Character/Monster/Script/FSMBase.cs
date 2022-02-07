@@ -1,17 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum FSMState//列出怪物所有的狀態
+{
+    NONE = -1,
+    Idle,
+    Chase,
+    Strafe,
+    NormalAttack,
+    Hurt,
+    Dead
+}
 public class FSMBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public FSMState currentState;
+    public virtual void CheckIdleState()
+    {   
+        
+    }
+    public virtual void DoIdleState()
+    {
+
+    }
+    public virtual void CheckChaseState()
+    {
+        
+    }    
+    public virtual void DoChaseState()
     {
         
     }
+    public virtual void CheckStrafeState()
+    {
+        
+    }
+    public virtual void DoStrafeState()
+    {
+        
+    }
+    public virtual void CheckAttackState()
+    {
+        
+    }    
+    public virtual void DoAttackState()
+    {   
+        
+    }    
+    public virtual void CheckHurtState()
+    {
 
-    // Update is called once per frame
-    void Update()
+    }
+    public virtual void DoHurtState()
+    {
+        
+    }
+    public virtual void CheckDeadState()
+    {
+       
+    }
+    public virtual void DoDeadState()
     {
         
     }

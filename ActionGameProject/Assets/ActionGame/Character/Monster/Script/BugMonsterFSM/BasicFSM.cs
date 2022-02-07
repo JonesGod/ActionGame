@@ -2,35 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicFSM : MonoBehaviour
+public class BasicFSM : FSMBase
 {
-    public enum FSMState//列出怪物所有的狀態
-    {
-        NONE = -1,
-        Idle,
-        Chase,
-        Strafe,
-        NormalAttack,
-        Hurt,
-        Dead
-    }
-    // public enum FSMState//列出怪物所有的狀態
-    // {
-    //     NONE = -1,
-    //     Idle,
-    //     Chase,
-    //     Strafe,
-    //     NormalAttack,
-    //     Hurt,
-    //     Dead
-    // }
     private delegate void DoState();
     private DoState doState;
     private delegate void CheckAIState();
     private CheckAIState checkState;
 
     public BasicMonsterData data;
-    public FSMState currentState;
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
@@ -82,7 +61,7 @@ public class BasicFSM : MonoBehaviour
 		return false;
 	}
 
-    void CheckIdleState()
+    public override void CheckIdleState()
     {   
         //CheckDead
         bool attack = false;
@@ -113,11 +92,11 @@ public class BasicFSM : MonoBehaviour
             return;
         }
     }
-    void DoIdleState()
+    public override void DoIdleState()
     {
         //Debug.Log("DoIdle");
     }
-    void CheckChaseState()
+    public override void CheckChaseState()
     {
         //CheckDead
         bool attack = false;
@@ -136,7 +115,7 @@ public class BasicFSM : MonoBehaviour
             checkState = CheckAttackState;
         }        
     }    
-    void DoChaseState()
+    public override void DoChaseState()
     {
         //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
@@ -154,7 +133,7 @@ public class BasicFSM : MonoBehaviour
 
         // SteeringBehavior.Move(data);
     }
-    void CheckStrafeState()
+    public override void CheckStrafeState()
     {
         //CheckDead
         bool attack = false;
@@ -184,7 +163,7 @@ public class BasicFSM : MonoBehaviour
         }    
         return;
     }
-    void DoStrafeState()
+    public override void DoStrafeState()
     {
         //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
@@ -209,7 +188,7 @@ public class BasicFSM : MonoBehaviour
 
         currentTime += Time.deltaTime;
     }
-    void CheckAttackState()
+    public override void CheckAttackState()
     {
         //CheckDead
         if(data.hp <= 0)
@@ -233,7 +212,7 @@ public class BasicFSM : MonoBehaviour
             checkState = CheckStrafeState;
         }        
     }    
-    void DoAttackState()
+    public override void DoAttackState()
     {   
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -249,7 +228,7 @@ public class BasicFSM : MonoBehaviour
         }
         animator.SetTrigger("AttackTrigger");
     }    
-    void CheckHurtState()
+    public override void CheckHurtState()
     {
         if(data.hp <= 0)
         {
@@ -273,7 +252,7 @@ public class BasicFSM : MonoBehaviour
         }
 
     }
-    void DoHurtState()
+    public override void DoHurtState()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
         {
@@ -287,19 +266,19 @@ public class BasicFSM : MonoBehaviour
             return;
         }
     }
-    void CheckDeadState()
+    public override void CheckDeadState()
     {
         //Dead : Do nothing
     }
-    void DoDeadState()
+    public override void DoDeadState()
     {
         //Debug.Log("DoDead");
         animator.SetTrigger("Die");
     }
-    public void CallHurt()
+    public void CallHurt(float damageAmount)
     {        
         Debug.Log("TakeDamage");
-        data.hp -= 30;
+        data.hp -= damageAmount;
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  

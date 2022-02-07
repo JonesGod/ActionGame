@@ -104,7 +104,14 @@ public class FolowCamera : MonoBehaviour
 
             WallDetect(); //牆壁檢測
         }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+       
+=======
+>>>>>>> Stashed changes
 
+>>>>>>> f521819b9008f4ea9dd3c7cc134e4e434bdfbad0
         transform.forward = cameraForward;
         transform.position = cameraPosition;
     }

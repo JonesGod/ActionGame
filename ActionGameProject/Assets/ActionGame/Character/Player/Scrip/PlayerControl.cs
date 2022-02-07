@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     private float bowRightMove;//弓狀態下的WASD輸入總和
     private float lockDistancs = 5.0f;//一般攻擊自動鎖定距離
 
-    private List<BasicFSM> monster;//存取怪物資訊
+    private List<FSMBase> monster;//存取怪物資訊
 
     public int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
 
@@ -66,13 +66,13 @@ public class PlayerControl : MonoBehaviour
         m_Am = GetComponent<Animator>();
         m_Input = GetComponent<PlayerInput>();
 
-        monster = new List<BasicFSM>();
+        monster = new List<FSMBase>();
         GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");//將場景裡tag為Monster的物件存起來
        if(allMonster!=null || allMonster.Length>0)
-       {
+       {           
             foreach(GameObject m in allMonster)
             {
-                monster.Add(m.GetComponent<BasicFSM>());
+                monster.Add(m.GetComponent<FSMBase>());
             }
        }
     }
@@ -373,11 +373,11 @@ public class PlayerControl : MonoBehaviour
     {
         Vector3 vec;
         Vector3 lastVec=transform.forward;
-        float last=100.0f;//比鎖定距離還長的隨意數值用來給迴圈的第一圈比較用
+        float last = 100.0f;//比鎖定距離還長的隨意數值用來給迴圈的第一圈比較用
         for (int i = 0; i < monster.Count; i++)
         {
             vec = monster[i].transform.position - transform.position; //獲得鎖定的方向
-            if (vec.magnitude >= lockDistancs || (monster[i].currentState == BasicFSM.FSMState.Dead))
+            if (vec.magnitude >= lockDistancs || (monster[i].currentState == FSMState.Dead))
             {               
                 continue;
             }
