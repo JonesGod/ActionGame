@@ -12,5 +12,7 @@ public class Hurt : MonoBehaviour
         
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
             myFSM.CallHurt(30);   
+        if(other.transform.name=="Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
+            myFSM.CallHurt(20);
     }
 }
