@@ -324,8 +324,8 @@ public class PlayerControl : MonoBehaviour
     void BowAngle()
     {
         mouseSlide-=PlayerInput.Instance.MouseInput.y*sensitivity;
-        if (mouseSlide > 260f)
-            mouseSlide = 260f;
+        if (mouseSlide > 250f)
+            mouseSlide = 250f;
         else if (mouseSlide < -240f)
             mouseSlide = -240f;
 
