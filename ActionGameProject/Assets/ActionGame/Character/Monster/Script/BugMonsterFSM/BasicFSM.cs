@@ -166,6 +166,7 @@ public class BasicFSM : FSMBase
     public override void DoStrafeState()
     {
         //Debug.Log("DoStrafe");
+        Debug.Log(data.target);
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 2.0f;
 
@@ -283,6 +284,10 @@ public class BasicFSM : FSMBase
         {
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 
+            if(data.target == null)
+            {
+                data.target = GameManager.Instance.GetPlayer();
+            }
             doState = DoHurtState;
             checkState = CheckHurtState;
         }                
