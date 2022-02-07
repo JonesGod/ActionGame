@@ -142,11 +142,13 @@ public class PlayerControl : MonoBehaviour
         }
         if (m_Input.attack)   //左鍵攻擊
         {
+            m_Am.ResetTrigger("SpecialAttackTrigger");
             m_Am.SetTrigger("AttackTrigger");
             m_Input.attack = false;
         }
         if(m_Input.specialAttack)
         {
+            m_Am.ResetTrigger("AttackTrigger");
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
         }
@@ -203,6 +205,11 @@ public class PlayerControl : MonoBehaviour
             fallSpeed -= gravity * Time.deltaTime;
         }
     }
+    /// <summary>
+    /// 一般轉向
+    /// </summary>
+    /// <param name="moveH"></param>
+    /// <param name="moveV"></param>
     void Rotating(float moveH, float moveV)
     {
         // 建立角色目標方向的向量                  

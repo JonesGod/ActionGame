@@ -768,21 +768,21 @@ ModelImporter:
       - time: 0.17276016
         functionName: SwordOn
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.3972306
         functionName: SwordColliderOn
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.46325964
         functionName: SwordColliderOff
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8ae160746d9fdf74e90fc7a717c7930f, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
