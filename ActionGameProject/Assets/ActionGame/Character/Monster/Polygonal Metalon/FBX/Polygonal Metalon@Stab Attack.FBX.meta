@@ -353,7 +353,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.30446196
+      - time: 0.32020998
         functionName: AttackColliderOn
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 213de3523c36b2245b2e2ee203b56750, type: 3}

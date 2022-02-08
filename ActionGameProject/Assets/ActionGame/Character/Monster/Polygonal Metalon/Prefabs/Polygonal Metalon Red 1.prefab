@@ -59,7 +59,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.15, y: 1.9064039, z: 3.22}
+  m_Size: {x: 1.9, y: 1.9064039, z: 2.42}
   m_Center: {x: 0, y: 1.066798, z: 0}
 --- !u!1 &1932763251988494068
 GameObject:
@@ -809,8 +809,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.37, y: 1.6841673, z: 2.72}
-  m_Center: {x: 0, y: 1.0470836, z: 0.0008303671}
+  m_Size: {x: 2.37, y: 1.5078532, z: 1.9267713}
+  m_Center: {x: 0, y: 1.1379462, z: 0.044935778}
 --- !u!114 &1932400391517903377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,16 +823,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb55acf121a9df4785df6326a749ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   data:
     hp: 200
     speed: 5
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
-    attackRange: 3
+    attackRange: 3.5
     sightRange: 17.87
     strafeRange: 6.59
     strafeTime: 0
-  currentState: 0
+  CharacterCollisionBlocker: {fileID: 2707218841098369799}
+  strafeDirection: 0
 --- !u!114 &5723763932724908821
 MonoBehaviour:
   m_ObjectHideFlags: 0

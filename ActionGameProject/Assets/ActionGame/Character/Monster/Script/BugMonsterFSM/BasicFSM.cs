@@ -13,9 +13,12 @@ public class BasicFSM : FSMBase
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
-    Rigidbody myRigidbody;
     private CharacterController characterController;
     Rigidbody rigidbody;
+    public BoxCollider CharacterCollisionBlocker; 
+    public List<BasicFSM> partnerMonster;
+    private float partnerRange = 30.0f;
+    public int strafeDirection;
 
     void Start()
     {
@@ -26,6 +29,20 @@ public class BasicFSM : FSMBase
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         rigidbody = GetComponent<Rigidbody>();
+        strafeDirection = 0;
+
+        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");
+        if(allMonster != null && allMonster.Length > 0)
+        {           
+            foreach(GameObject m in allMonster)
+            {
+                Vector3 vec = m.transform.position - transform.position;
+                if(vec.magnitude <= partnerRange)
+                {
+                    partnerMonster.Add(m.GetComponent<BasicFSM>());
+                }                
+            }
+        }
     }
 
     // Update is called once per frame
@@ -60,6 +77,34 @@ public class BasicFSM : FSMBase
 		}
 		return false;
 	}
+    public void HelpPartner()
+    {
+        if(currentState == FSMState.Idle)
+        {
+            data.target = GameManager.Instance.GetPlayer(); 
+            if(data.hp <= 0)
+            {
+                currentState = FSMState.Dead;            
+                checkState = CheckDeadState;
+                doState = DoDeadState;
+                return;
+            }        
+            if(animator.IsInTransition(0))
+            {
+                //Debug.Log("IsInTransition");
+                return;
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                data.strafeTime = Random.Range(1.0f, 3.0f);;
+                currentTime = 0.0f;
+                currentState = FSMState.Strafe;
+                strafeDirection = Random.Range(0, 2);
+                doState = DoStrafeState;
+                checkState = CheckStrafeState;
+            }
+        }
+    }
 
     public override void CheckIdleState()
     {   
@@ -94,6 +139,7 @@ public class BasicFSM : FSMBase
     }
     public override void DoIdleState()
     {
+
         //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
@@ -166,7 +212,6 @@ public class BasicFSM : FSMBase
     public override void DoStrafeState()
     {
         //Debug.Log("DoStrafe");
-        Debug.Log(data.target);
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 2.0f;
 
@@ -183,9 +228,17 @@ public class BasicFSM : FSMBase
             return;
         }
         animator.SetBool("IsMoveForward", false); 
-        animator.SetBool("IsMoveRight", true);        
+        animator.SetBool("IsMoveRight", true); 
         transform.LookAt(data.target.transform.position);
-        transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+        if(strafeDirection == 0)
+        {
+            transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+        }
+        
 
         currentTime += Time.deltaTime;
     }
@@ -209,6 +262,8 @@ public class BasicFSM : FSMBase
             data.strafeTime = Random.Range(3.0f, 5.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
+            strafeDirection = Random.Range(0, 2);
+            Debug.Log(strafeDirection);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }        
@@ -248,10 +303,10 @@ public class BasicFSM : FSMBase
             data.strafeTime = Random.Range(1.0f, 2.5f);;
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
+            strafeDirection = Random.Range(0, 2);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }
-
     }
     public override void DoHurtState()
     {
@@ -275,10 +330,16 @@ public class BasicFSM : FSMBase
     {
         //Debug.Log("DoDead");
         animator.SetTrigger("Die");
+        this.rigidbody.isKinematic = true;
+        CharacterCollisionBlocker.enabled = false;
     }
     public void CallHurt(float damageAmount)
     {        
         Debug.Log("TakeDamage");
+        for(int i = 0; i < partnerMonster.Count; i++)
+        {
+            partnerMonster[i].HelpPartner();           
+        }
         data.hp -= damageAmount;
         if(data.hp > 0)
         {
