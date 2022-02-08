@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     private float normalMove;//一般狀態下的WASD輸入總和
     private float bowRightMove;//弓狀態下的WASD輸入總和
     private float lockDistancs = 5.0f;//一般攻擊自動鎖定距離
+    private float attackMoveSpeed;//攻擊時的移動速度
 
     private List<FSMBase> monster;//存取怪物資訊
 
@@ -36,6 +37,11 @@ public class PlayerControl : MonoBehaviour
     readonly int hashAttack03 = Animator.StringToHash("attack03");
     readonly int hashAttack04 = Animator.StringToHash("attack04");
     readonly int hashSpecialAttack=Animator.StringToHash("specialAttack");
+    readonly int hashSpecialAttack1_1 = Animator.StringToHash("specialAttack1_1");
+    readonly int hashSpecialAttack1_2 = Animator.StringToHash("specialAttack1_2");
+    readonly int hashSpecialAttack2_1 = Animator.StringToHash("specialAttack2_1");
+    readonly int hashSpecialAttack2_2 = Animator.StringToHash("specialAttack2_2");
+    readonly int hashSpecialAttack2_3 = Animator.StringToHash("specialAttack2_3");
     readonly int hashRoll=Animator.StringToHash("Roll");
     readonly int hashIdle= Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
@@ -117,7 +123,9 @@ public class PlayerControl : MonoBehaviour
 
         if (m_Input.moveFlag)
         {
-            ResetAttackTrigger();
+            if(statetime<=0.4f)
+                ResetAttackTrigger();
+
             m_Am.SetBool("RunBool", true);
         }
         else
@@ -188,7 +196,8 @@ public class PlayerControl : MonoBehaviour
 
         move += fallSpeed * Vector3.up * Time.deltaTime;//加上落下速度
         move += m_Am.deltaPosition;//加上美術位移
-       
+        move += transform.forward*attackMoveSpeed*Time.deltaTime;//加上攻擊時的移動速度
+
         characterController.Move(move);
     }
     /// <summary>
@@ -254,7 +263,12 @@ public class PlayerControl : MonoBehaviour
            stateinfo.shortNameHash == hashAttack02 ||
            stateinfo.shortNameHash == hashAttack03 ||
            stateinfo.shortNameHash == hashAttack04 ||
-           stateinfo.shortNameHash == hashSpecialAttack||
+           stateinfo.shortNameHash == hashSpecialAttack ||
+           stateinfo.shortNameHash == hashSpecialAttack1_1 ||
+           stateinfo.shortNameHash == hashSpecialAttack1_2 ||
+           stateinfo.shortNameHash == hashSpecialAttack2_1 ||
+           stateinfo.shortNameHash == hashSpecialAttack2_2 ||
+           stateinfo.shortNameHash == hashSpecialAttack2_3 ||
            nextStateinfo.shortNameHash== hashAttack01)
         {
             attackState = true;
@@ -410,5 +424,20 @@ public class PlayerControl : MonoBehaviour
 
         PlayerInput.Instance.bowState = false;
         m_Am.SetTrigger("HurtTrigger");
+    }
+    /// <summary>
+    /// 開始攻擊中移動
+    /// 給event使用
+    /// </summary>
+    void AttackMove()
+    {
+        attackMoveSpeed = 5f;
+    }
+    /// <summary>
+    /// 結束攻擊中移動
+    /// </summary>
+    void AttackMoveStop()
+    {
+        attackMoveSpeed = 0f;
     }
 }
