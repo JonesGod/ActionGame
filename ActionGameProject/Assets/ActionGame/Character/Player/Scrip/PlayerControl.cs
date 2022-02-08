@@ -358,6 +358,7 @@ public class PlayerControl : MonoBehaviour
         normalMove = runInput.y;
         bowRightMove = runInput.x;
 
+        m_Am.SetFloat("BowTotalMoveInput",Mathf.Abs(normalMove + bowRightMove));
         m_Am.SetFloat("RunBlend", normalMove);
         m_Am.SetFloat("RightRunBlend", bowRightMove);
         
@@ -407,6 +408,7 @@ public class PlayerControl : MonoBehaviour
         if (playerHp >= playerMaxHp)
             playerHp = playerMaxHp;
 
+        PlayerInput.Instance.bowState = false;
         m_Am.SetTrigger("HurtTrigger");
     }
 }

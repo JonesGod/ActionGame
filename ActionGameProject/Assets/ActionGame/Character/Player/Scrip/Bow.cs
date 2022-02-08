@@ -27,7 +27,7 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
-        
+        bowState = PlayerInput.Instance.bowState;
         if (bowState)
             BowOn();
         else

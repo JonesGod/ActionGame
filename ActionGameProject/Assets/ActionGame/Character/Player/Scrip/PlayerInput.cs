@@ -74,12 +74,10 @@ public class PlayerInput : MonoBehaviour
             && rollToBow)
         {
             bowState = true;
-            Bow.Instance.bowState =true;
         }
         else if(Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch)
         {
             bowState = false;
-            Bow.Instance.bowState =false;
         }
 
     }
