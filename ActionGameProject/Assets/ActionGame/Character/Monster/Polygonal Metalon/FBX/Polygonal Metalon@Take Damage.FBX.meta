@@ -360,6 +360,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.081508845
+        functionName: ChangeAnimatorSpeed
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 213de3523c36b2245b2e2ee203b56750, type: 3}
+        floatParameter: 1
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

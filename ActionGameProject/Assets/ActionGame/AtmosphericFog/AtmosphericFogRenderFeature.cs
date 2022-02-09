@@ -114,7 +114,7 @@ namespace OD {
 
             m_ScriptablePass.settings = settings;
             m_ScriptablePass.material = settings.fogMaterial;
-            m_ScriptablePass.renderPassEvent = RenderPassEvent.BeforeRenderingTransparents;
+            m_ScriptablePass.renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
         }
 
         // Here you can inject one or multiple render passes in the renderer.

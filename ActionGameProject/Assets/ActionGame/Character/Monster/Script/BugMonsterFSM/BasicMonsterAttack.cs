@@ -6,6 +6,7 @@ public class BasicMonsterAttack : MonoBehaviour
 {
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
+    private Animator animator;
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -13,6 +14,7 @@ public class BasicMonsterAttack : MonoBehaviour
     void Start()
     {
         AttackColliderOff();
+        animator = GetComponent<Animator>();
     }
     void AttackColliderOn()
     {
@@ -23,5 +25,9 @@ public class BasicMonsterAttack : MonoBehaviour
     {
         Debug.Log("AttackColliderOff");
         basicAttackCollider.enabled = false;
+    }
+    void ChangeAnimatorSpeed(float newSpeed)
+    {
+        animator.speed = newSpeed;
     }
 }

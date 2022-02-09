@@ -28,7 +28,7 @@ public class BasicFSM : FSMBase
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         rigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;
+        strafeDirection = 0;        
 
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
@@ -38,7 +38,7 @@ public class BasicFSM : FSMBase
                 if(vec.magnitude <= partnerRange)
                 {
                     partnerMonster.Add(m.GetComponent<BasicFSM>());
-                }                
+                }             
             }
         }
     }
@@ -280,6 +280,7 @@ public class BasicFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
+        rigidbody.velocity = Vector3.zero;
         animator.SetTrigger("AttackTrigger");
     }    
     public override void CheckHurtState()

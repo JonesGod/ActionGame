@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 8561230274456557976}
+  animator: {fileID: 1981824602063593874}
 --- !u!114 &7585815164166209436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,8 +1937,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.45, y: 3.322208, z: 1.7147708}
-  m_Center: {x: 0, y: -0.12412177, z: 1.1333675}
+  m_Size: {x: 2.45, y: 3.322208, z: 1.8073422}
+  m_Center: {x: 0, y: -0.12412178, z: 1.1796608}
 --- !u!114 &8877677159402221637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2009,7 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: e261ea80e1765cb4e870f0811dc483ca, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
