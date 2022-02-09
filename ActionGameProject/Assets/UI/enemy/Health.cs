@@ -5,24 +5,32 @@ using System;
 
 public class Health : MonoBehaviour
 {
+    public BasicFSM myFSM;
 
-    [SerializeField]
-    private int maxHealth = 100;
-
-    private int currentHealth;
+    private float maxHealth;
+    private float currentHealth;
 
     public event Action<float> OnHealthPctChanged = delegate { };
 
-    private void OnEnable()
+    // private void OnEnable()
+    // {
+    //     maxHealth = myFSM.data.hp;
+    //     currentHealth = maxHealth;
+    // }
+    void Start()
     {
-
+        maxHealth = myFSM.data.hp;
         currentHealth = maxHealth;
+        Debug.Log("maxHealth"+maxHealth);
+        Debug.Log("currentHealth"+currentHealth);
+        ModifyHealth(0);
+
     }
 
     //血量增減顯示
     public void ModifyHealth(int amout)
     {
-        currentHealth += amout;
+        currentHealth -= amout;
 
         float currentHealthPct = (float)currentHealth / (float)maxHealth;
         OnHealthPctChanged(currentHealthPct);

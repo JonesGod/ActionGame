@@ -19,7 +19,6 @@ public class BasicFSM : FSMBase
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
     public int strafeDirection;
-
     void Start()
     {
         currentEnemyTarget = null;
