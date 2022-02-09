@@ -41,10 +41,4 @@ public class UIMain : MonoBehaviour
             Debug.Log(t.name + ": On");
         }
     }
-
-    public void MyButtonClick(Button b)
-    {
-        Debug.Log(b.name + ": click");
-        m_PlayerObject.SendMessage("Hit", 10.0f);
-    }
 }

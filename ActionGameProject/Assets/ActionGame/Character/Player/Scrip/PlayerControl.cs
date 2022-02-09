@@ -231,12 +231,20 @@ public class PlayerControl : MonoBehaviour
     }
     /// <summary>
     /// 以瞬間轉向為主的翻滾轉向
-    /// 和一般轉向差別為取消了轉向內插
     /// </summary>
     /// <param name="moveH"></param>
     /// <param name="moveV"></param>
     void RollRotating(float moveH, float moveV)
     {
+        if (moveV > 0)          ///此處的moveV與moveH只需取最大值作為翻滾方向判斷來使用
+            moveV = 1;
+        else if (moveV < 0)
+            moveV = -1;
+        if (moveH > 0)
+            moveH = 1;
+        else if (moveH < 0)
+            moveH = -1;
+
         Vector3 newDirectionVector = (followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH).normalized;
         if (newDirectionVector != Vector3.zero)
         {
@@ -421,6 +429,7 @@ public class PlayerControl : MonoBehaviour
             playerHp = 0;
         if (playerHp >= playerMaxHp)
             playerHp = playerMaxHp;
+        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
 
         PlayerInput.Instance.bowState = false;
         m_Am.SetTrigger("HurtTrigger");
