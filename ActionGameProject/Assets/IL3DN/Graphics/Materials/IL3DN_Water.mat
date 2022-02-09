@@ -146,7 +146,7 @@ Material:
     - _Metallic: 0.398
     - _Mode: 3
     - _NormalScale: 0.18
-    - _NormalStrenght: 0.098
+    - _NormalStrenght: 0.062
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RefractionAmount: 0
@@ -156,17 +156,17 @@ Material:
     - _ShadowStrength: 0.5
     - _ShallowOpacity: 0.2
     - _Shininess: 0.15
-    - _Size: 0.25
-    - _Smoothness: 5
+    - _Size: 0.24
+    - _Smoothness: 2.01
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.119
+    - _Speed: 0.058
     - _SquashAmount: 1
     - _SrcBlend: 1
     - _TessValue: 16
     - _Tiling: 0.05
     - _TranslucencyViewDependency: 0
-    - _Transparency: 1.17
+    - _Transparency: 1.48
     - _UVSec: 0
     - _WaterDepth: 0
     - _WaterFalloff: -0.5

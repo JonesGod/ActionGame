@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LinkFaceMat
   m_Shader: {fileID: 4800000, guid: f0aabfbb9d443a2438d725e2bf21c8ba, type: 3}
-  m_ShaderKeywords: _UseAlphaClip _UseFringeShadow _UseRim
+  m_ShaderKeywords: _UseAlphaClip _UseRim
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -104,7 +104,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FresnelPow: 0
-    - _FringeShadowOffset: 0.0018
+    - _FringeShadowOffset: 0.0009
     - _FringeShadowThreshold: 0.001
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -129,7 +129,7 @@ Material:
     - _Threshold: 0.09
     - _UseAlphaClip: 1
     - _UseBackRim: 0
-    - _UseFringeShadow: 1
+    - _UseFringeShadow: 0
     - _UseRim: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -140,6 +140,6 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _RimColorBack: {r: 1, g: 1, b: 1, a: 1}
     - _RimColorFront: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowPartColor: {r: 0.6509434, g: 0.35698324, b: 0.21186365, a: 1}
+    - _ShadowPartColor: {r: 0.6320754, g: 0.29066843, b: 0.12224099, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

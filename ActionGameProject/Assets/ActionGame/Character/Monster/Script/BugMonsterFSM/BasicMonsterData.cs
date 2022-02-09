@@ -6,12 +6,12 @@ using UnityEngine;
 public class BasicMonsterData
 {
     public float hp;
-    public float speed = 10.0f;
+    public float speed;
     public GameObject target;
     public Vector3 targetPosition;
-    public float attackRange = 3.0f;
-    public float sightRange = 12.0f;
-    public float strafeRange = 8.0f;
+    public float attackRange;
+    public float sightRange;
+    public float strafeRange;
     public float strafeTime;
 
     

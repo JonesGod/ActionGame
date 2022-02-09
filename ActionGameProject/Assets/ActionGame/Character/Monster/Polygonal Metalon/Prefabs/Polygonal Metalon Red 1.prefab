@@ -835,9 +835,9 @@ MonoBehaviour:
     sightRange: 17.87
     strafeRange: 6.59
     strafeTime: 0
+  strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 2707218841098369799}
   partnerMonster: []
-  strafeDirection: 0
 --- !u!114 &5723763932724908821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 8561230274456557976}
-  animator: {fileID: 1981824602063593874}
 --- !u!114 &7585815164166209436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,8 +1986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 2, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.751}
+  m_SizeDelta: {x: 2, y: 0.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5036172089754479302
 CanvasRenderer:

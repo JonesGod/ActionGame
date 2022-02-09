@@ -13,12 +13,13 @@ public class BasicFSM : FSMBase
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
-    private CharacterController characterController;
-    Rigidbody rigidbody;
+    public int strafeDirection;
+    
+    Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
+
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
-    public int strafeDirection;
     void Start()
     {
         currentEnemyTarget = null;
@@ -26,8 +27,7 @@ public class BasicFSM : FSMBase
         doState = DoIdleState;
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
-        characterController = GetComponent<CharacterController>();
-        rigidbody = GetComponent<Rigidbody>();
+        myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0;        
 
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
@@ -169,7 +169,7 @@ public class BasicFSM : FSMBase
         animator.SetBool("IsMoveForward", true);
         transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-        rigidbody.velocity = transform.forward * data.speed;
+        myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
         // {
         //     SteeringBehavior.Seek(data);
@@ -221,7 +221,7 @@ public class BasicFSM : FSMBase
             animator.SetBool("IsMoveForward", true);        
             transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-            rigidbody.velocity = transform.forward * data.speed;
+            myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
         }
@@ -280,7 +280,7 @@ public class BasicFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
-        rigidbody.velocity = Vector3.zero;
+        myRigidbody.velocity = Vector3.zero;
         animator.SetTrigger("AttackTrigger");
     }    
     public override void CheckHurtState()
@@ -329,7 +329,7 @@ public class BasicFSM : FSMBase
     {
         //Debug.Log("DoDead");
         animator.SetTrigger("Die");
-        this.rigidbody.isKinematic = true;
+        myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
     }
     public void CallHurt(float damageAmount)

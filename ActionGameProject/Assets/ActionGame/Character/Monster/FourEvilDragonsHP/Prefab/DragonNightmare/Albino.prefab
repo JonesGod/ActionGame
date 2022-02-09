@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9545436}
   - component: {fileID: 4196760332503358749}
   - component: {fileID: 8877665236678287583}
+  - component: {fileID: 4052017859676170668}
   m_Layer: 9
   m_Name: Albino
   m_TagString: Monster
@@ -83,6 +84,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.51, y: 3.5667825, z: 6.0016594}
   m_Center: {x: 0, y: 1.8772924, z: -0.049170017}
+--- !u!114 &4052017859676170668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcbbbc434cf86a4a996cf23564ab039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!1 &102148
 GameObject:
   m_ObjectHideFlags: 0

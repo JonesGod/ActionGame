@@ -12,14 +12,25 @@ public class GameManager : MonoBehaviour
     protected static GameManager s_Instance;
     public GameObject m_Player;
     public GameObject[] allMonster;
+    private PlayerControl player;
 
     private void Awake()
     {
         s_Instance = this;
         allMonster = GameObject.FindGameObjectsWithTag("Monster");
+        player = GetPlayer().GetComponent<PlayerControl>();
     } 
     public GameObject GetPlayer()
     {
         return m_Player;
+    }
+    public void ReLife()
+    {
+        //先把畫面關燈
+
+        //把玩家位置改到重生點並補滿血
+        //玩家狀態改成活著
+
+        //畫面燈亮
     }
 }

@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e168bfd68678a44aab768c74ca6871, type: 3}
   m_Name: NewToonHairShadowRendererFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     renderPassEvent: 250
     hairLayer:
@@ -134,5 +134,5 @@ MonoBehaviour:
     blurMaterial: {fileID: 2100000, guid: 704bf2bbb2115014f8f4408f69a4c968, type: 2}
     downsample: 1
     loop: 3
-    blur: 0.13
+    blur: 0.1
     passTag: mypassTag

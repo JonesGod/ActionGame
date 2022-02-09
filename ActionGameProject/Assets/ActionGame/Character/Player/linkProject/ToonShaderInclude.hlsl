@@ -332,7 +332,7 @@ half4 frag(Varyings input) : SV_Target
 #endif    
     half3 mainLightResult = ShadeDirectionalLight(mainLight, normalWS, occlusion, false);
 #ifdef _UseFringeShadow      
-    mainLightResult = lerp(_ShadowPartColor * 0.8, mainLightResult, FringeShadow);
+    mainLightResult = lerp(_ShadowPartColor , mainLightResult, FringeShadow);
 #endif
 
     //AdditionalLight  
