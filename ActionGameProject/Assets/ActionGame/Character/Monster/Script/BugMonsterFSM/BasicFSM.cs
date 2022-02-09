@@ -30,10 +30,9 @@ public class BasicFSM : FSMBase
         rigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0;
 
-        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");
-        if(allMonster != null && allMonster.Length > 0)
+        if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
-            foreach(GameObject m in allMonster)
+            foreach(GameObject m in GameManager.Instance.allMonster)
             {
                 Vector3 vec = m.transform.position - transform.position;
                 if(vec.magnitude <= partnerRange)

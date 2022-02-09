@@ -11,20 +11,13 @@ public class GameManager : MonoBehaviour
     }
     protected static GameManager s_Instance;
     public GameObject m_Player;
+    public GameObject[] allMonster;
 
     private void Awake()
     {
         s_Instance = this;
-    }
-    // Use this for initialization
-    void Start () 
-    {
-        
-    }    
-    void Update () 
-    {
-		
-	}
+        allMonster = GameObject.FindGameObjectsWithTag("Monster");
+    } 
     public GameObject GetPlayer()
     {
         return m_Player;
