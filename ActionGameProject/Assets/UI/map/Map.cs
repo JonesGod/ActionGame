@@ -468,7 +468,7 @@ namespace Aiden
     [Serializable]
     public enum EMapMode
     {
-        EMiniMap = 0,
+        EMiniMap = 2,
         EBigMap = 1
     }
 }
