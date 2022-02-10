@@ -65,6 +65,13 @@ public class PlayerControl : MonoBehaviour
     Vector2 moveInput;//存取按鍵WASD，主要用在轉向，不太需要管Input.GetAxis的數值變化
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
 
+    Relive reliveObserver;//負責復活的觀察者
+    public enum PlayerState
+    {
+        live=1,
+        dead=2,
+    }
+    public PlayerState playerCurrnetState= PlayerState.live;
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
@@ -426,7 +433,11 @@ public class PlayerControl : MonoBehaviour
     {
         playerHp -= damage;
         if (playerHp <= 0)
+        {
             playerHp = 0;
+            playerCurrnetState = PlayerState.dead;
+            PlayerInput.Instance.playerCurrnetState= (PlayerInput.PlayerState)PlayerState.dead;
+        }
         if (playerHp >= playerMaxHp)
             playerHp = playerMaxHp;
         UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
@@ -448,5 +459,28 @@ public class PlayerControl : MonoBehaviour
     void AttackMoveStop()
     {
         attackMoveSpeed = 0f;
+    }
+    /// <summary>
+    /// 儲存要給誰觀察
+    /// </summary>
+    /// <param name="ob"></param>
+    public void Subscribe(Relive ob)
+    {
+        reliveObserver = ob;
+    }
+    /// <summary>
+    /// 資料發生改變時要做的行動
+    /// </summary>
+    protected void Notify()
+    {
+        reliveObserver.Live();
+    }
+    /// <summary>
+    /// 玩家生死狀態設定
+    /// </summary>
+    public PlayerState playerLive
+    {
+        set { playerCurrnetState = value; Notify(); }
+        get { return playerCurrnetState; }
     }
 }
