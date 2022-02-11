@@ -13,7 +13,7 @@ public class Relive
         Debug.Log("DeadProcess");
         //    screenflap black
         //    screenflap black  end
-        player.transform.position = livePosition;
+        //player.transform.position = livePosition;
         player.playerHp = player.playerMaxHp;
         //screenflap normal
         //screenflap normal end

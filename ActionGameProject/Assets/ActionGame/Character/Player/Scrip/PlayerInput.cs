@@ -28,18 +28,14 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool rollIsNext;
     [HideInInspector] public bool rollToBow=false;
     [HideInInspector] public bool bowShoot;
-    public enum PlayerState
-    {
-        live = 1,
-        dead = 2,
-    }
-    [HideInInspector] public PlayerState playerCurrnetState;
+
+    [HideInInspector] public PlayerControl.PlayerState playerCurrnetState;
 
     public Vector2 MoveInput
     {
         get
         {
-            if (playerCurrnetState == PlayerState.dead)
+            if (playerCurrnetState == PlayerControl.PlayerState.dead)
                 return Vector2.zero;
 
             return m_Movement;
@@ -49,7 +45,7 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (playerCurrnetState == PlayerState.dead)
+            if (playerCurrnetState == PlayerControl.PlayerState.dead)
                 return Vector2.zero;
 
             return m_Mouse;

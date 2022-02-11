@@ -21,11 +21,9 @@ public class GameManager : MonoBehaviour
         allMonster = GameObject.FindGameObjectsWithTag("Monster");
         player = GetPlayer().GetComponent<PlayerControl>();
         relive = new Relive();
-    }
-    private void Start()
-    {
         player.Subscribe(relive);
     }
+
     public GameObject GetPlayer()
     {
         return m_Player;

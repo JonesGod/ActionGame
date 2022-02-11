@@ -76,7 +76,6 @@ public class PlayerControl : MonoBehaviour
         live=1,
         dead=2,
     }
-    public PlayerState playerCurrnetState= PlayerState.live;
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
@@ -93,6 +92,7 @@ public class PlayerControl : MonoBehaviour
                 monster.Add(m.GetComponent<FSMBase>());
             }
        }
+        playerCurrnetState = PlayerState.live;
     }
     void Update()
     {
@@ -448,7 +448,7 @@ public class PlayerControl : MonoBehaviour
         {
             playerHp = 0;
             playerCurrnetState = PlayerState.dead;
-            PlayerInput.Instance.playerCurrnetState= (PlayerInput.PlayerState)PlayerState.dead;
+            //PlayerInput.Instance.playerCurrnetState= (PlayerInput.PlayerState)PlayerState.dead;
             m_Am.SetTrigger("dead");
         }
         else
@@ -492,16 +492,15 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     protected void Notify()
     {
-        reliveObserver.DeadProcess();
+        reliveObserver.DeadProcess();    
     }
     /// <summary>
     /// 玩家生死狀態設定
     /// </summary>
-    public PlayerState playerLive
+    public PlayerState playerCurrnetState
     {
         set 
         { 
-            playerCurrnetState = value;         
                 Notify(); 
         }
         get { return playerCurrnetState; }
