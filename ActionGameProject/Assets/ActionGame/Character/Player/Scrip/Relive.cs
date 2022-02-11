@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class Relive
 {
-    public void Live()
+    private PlayerControl player =GameManager.Instance.m_Player.GetComponent<PlayerControl>();
+    private float statetime;
+    private Vector3 livePosition;
+   
+    public void DeadProcess()
     {
-        Debug.Log("livepostion");
+        Debug.Log("DeadProcess");
+        //    screenflap black
+        //    screenflap black  end
+        player.transform.position = livePosition;
+        player.playerHp = player.playerMaxHp;
+        //screenflap normal
+        //screenflap normal end
     }
 }

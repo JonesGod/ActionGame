@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
     private PlayerInput m_Input; //準備獲取玩家輸入
 
     public float playerHp = 100;//玩家生命
-    private float playerMaxHp = 100;//玩家最大生命
+    public float playerMaxHp = 100;//玩家最大生命
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
@@ -48,6 +48,8 @@ public class PlayerControl : MonoBehaviour
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
     readonly int hashBowShoot = Animator.StringToHash("BowShoot");
     readonly int hashHurt = Animator.StringToHash("Hurt");
+    readonly int hashDead = Animator.StringToHash("dead");
+    readonly int hashGetup = Animator.StringToHash("getup");
 
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
@@ -58,6 +60,9 @@ public class PlayerControl : MonoBehaviour
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
     private bool hurt;//受傷動作
+
+    public bool dead;//死亡動畫
+    public bool getup;//起身動畫
 
     Vector3 move = Vector3.zero;//角色總移動量
     Vector3 targetVector;//自動鎖定的方向
@@ -80,7 +85,7 @@ public class PlayerControl : MonoBehaviour
         m_Input = GetComponent<PlayerInput>();
 
         monster = new List<FSMBase>();
-        GameObject[] allMonster = GameObject.FindGameObjectsWithTag("Monster");//將場景裡tag為Monster的物件存起來
+        GameObject[] allMonster =GameManager.Instance.allMonster;//將場景裡tag為Monster的物件存起來
        if(allMonster!=null || allMonster.Length>0)
        {           
             foreach(GameObject m in allMonster)
@@ -314,6 +319,11 @@ public class PlayerControl : MonoBehaviour
         else
             hurt = false;
 
+        if (stateinfo.shortNameHash == hashDead)
+            dead = true;
+        else
+            dead = false;
+
         PlayerInput.Instance.rollState = rollState;
         PlayerInput.Instance.bowShoot = bowShoot;
     }    
@@ -432,18 +442,27 @@ public class PlayerControl : MonoBehaviour
     public void PlayerHurt(int damage)
     {
         playerHp -= damage;
+        if (playerHp >= playerMaxHp)
+            playerHp = playerMaxHp;
         if (playerHp <= 0)
         {
             playerHp = 0;
             playerCurrnetState = PlayerState.dead;
             PlayerInput.Instance.playerCurrnetState= (PlayerInput.PlayerState)PlayerState.dead;
+            m_Am.SetTrigger("dead");
         }
-        if (playerHp >= playerMaxHp)
-            playerHp = playerMaxHp;
+        else
+        {
+            m_Am.SetTrigger("HurtTrigger");
+        }
+        
         UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
 
         PlayerInput.Instance.bowState = false;
-        m_Am.SetTrigger("HurtTrigger");
+    }
+    void PlayerRelive()
+    {
+        m_Am.SetTrigger("getup");
     }
     /// <summary>
     /// 開始攻擊中移動
@@ -473,14 +492,18 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     protected void Notify()
     {
-        reliveObserver.Live();
+        reliveObserver.DeadProcess();
     }
     /// <summary>
     /// 玩家生死狀態設定
     /// </summary>
     public PlayerState playerLive
     {
-        set { playerCurrnetState = value; Notify(); }
+        set 
+        { 
+            playerCurrnetState = value;         
+                Notify(); 
+        }
         get { return playerCurrnetState; }
     }
 }

@@ -13,13 +13,19 @@ public class GameManager : MonoBehaviour
     public GameObject m_Player;
     public GameObject[] allMonster;
     private PlayerControl player;
+    private Relive relive;//玩家死亡時的觀察者
 
     private void Awake()
     {
         s_Instance = this;
         allMonster = GameObject.FindGameObjectsWithTag("Monster");
         player = GetPlayer().GetComponent<PlayerControl>();
-    } 
+        relive = new Relive();
+    }
+    private void Start()
+    {
+        player.Subscribe(relive);
+    }
     public GameObject GetPlayer()
     {
         return m_Player;
