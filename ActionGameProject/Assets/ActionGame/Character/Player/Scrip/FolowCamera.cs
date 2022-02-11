@@ -80,7 +80,7 @@ public class FolowCamera : MonoBehaviour
         BowCameraRotate();//隨時更新弓狀態的攝影機位置與轉向
 
         if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState
-            && PlayerInput.Instance.rollToBow)                                   //切換中判斷
+            && PlayerInput.Instance.rollToBow && !PlayerInput.Instance.bowShoot)                                   //切換中判斷
         {
             isSwitch = true;
             zeroPoint = 0f;

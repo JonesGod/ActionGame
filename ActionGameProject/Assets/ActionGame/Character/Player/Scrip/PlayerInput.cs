@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;//存取WASD輸入
     private Vector2 m_Mouse;//存取滑鼠滑動
 
+    ///從PlayerControl判斷的布林值
     [HideInInspector] public bool moveFlag = false;
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
@@ -87,7 +88,7 @@ public class PlayerInput : MonoBehaviour
         {
             bowState = true;
         }
-        else if(Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch)
+        else if(Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch && !bowShoot)
         {
             bowState = false;
         }
@@ -99,6 +100,6 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void CantBow()
     {
-        cantBowState=!attackState &&!rollIsNext;
+        cantBowState=!attackState && !rollIsNext;
     }
 }
