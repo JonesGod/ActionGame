@@ -122,7 +122,7 @@ public class BasicFSM : FSMBase
             CheckEnemyInAttackRange(data.target, ref attack);
             if (attack)//在攻擊距離以內了:直接攻擊
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
             }
@@ -154,7 +154,7 @@ public class BasicFSM : FSMBase
         CheckEnemyInAttackRange(data.target, ref attack);
         if (attack)//在攻擊距離以內了:攻擊
         {
-            currentState = FSMState.NormalAttack;
+            currentState = FSMState.Attack;
             doState = DoAttackState;
             checkState = CheckAttackState;
         }        
@@ -193,7 +193,7 @@ public class BasicFSM : FSMBase
             CheckEnemyInAttackRange(data.target, ref attack);
             if(attack == true)
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
             }

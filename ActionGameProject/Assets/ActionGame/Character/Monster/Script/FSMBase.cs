@@ -7,7 +7,7 @@ public enum FSMState//列出怪物所有的狀態
     Idle,
     Chase,
     Strafe,
-    NormalAttack,
+    Attack,
     Hurt,
     Dead,
     Angry

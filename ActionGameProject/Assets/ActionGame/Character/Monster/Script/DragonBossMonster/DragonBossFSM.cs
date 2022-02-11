@@ -36,6 +36,13 @@ public class DragonBossFSM : FSMBase
             checkState();
             doState();    
         }        
+        //myRigidbody.velocity = (GameManager.Instance.GetPlayer().transform.position - this.transform.position) * 1.0f;
+    }
+
+    public void StartBattle()
+    {
+        currentEnemyTarget = GameManager.Instance.GetPlayer();
+        animator.SetTrigger("Scream");
     }
     
     private GameObject CheckEnemyInBossArea()
@@ -86,23 +93,17 @@ public class DragonBossFSM : FSMBase
         {
             data.target = currentEnemyTarget;
             CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
-            if (normalAttack)//在攻擊距離以內了:直接攻擊
+            if(normalAttack)//在普通攻擊距離以內:直接攻擊
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
             }
-            else if(chargeAttack)
+            else if(chargeAttack)//在普通攻擊距離以外:進入追逐
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoChargeAttackState;
                 checkState = CheckChargeAttackState;
-            }
-            else//在攻擊距離以外:進入追逐
-            {
-                currentState = FSMState.Chase;
-                doState = DoChaseState;
-                checkState = CheckChaseState;
             }
             return;
         }
@@ -126,13 +127,13 @@ public class DragonBossFSM : FSMBase
         CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
         if (normalAttack)//在攻擊距離以內了:直接攻擊
         {
-            currentState = FSMState.NormalAttack;
+            currentState = FSMState.Attack;
             doState = DoAttackState;
             checkState = CheckAttackState;
         }
         else if(chargeAttack)
         {
-            currentState = FSMState.NormalAttack;
+            currentState = FSMState.Attack;
             doState = DoChargeAttackState;
             checkState = CheckChargeAttackState;
         }        
@@ -172,13 +173,13 @@ public class DragonBossFSM : FSMBase
             CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
             if (normalAttack)//在攻擊距離以內了:直接攻擊
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
             }
             else if(chargeAttack)
             {
-                currentState = FSMState.NormalAttack;
+                currentState = FSMState.Attack;
                 doState = DoChargeAttackState;
                 checkState = CheckChargeAttackState;
             }
@@ -254,7 +255,7 @@ public class DragonBossFSM : FSMBase
     public override void DoAttackState()
     {   
         //Debug.Log("DoAttack");
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Claw Attack"))
         {
             //Debug.Log("IsAttack");
             return;
@@ -266,7 +267,7 @@ public class DragonBossFSM : FSMBase
             return;
         }
         myRigidbody.velocity = Vector3.zero;
-        animator.SetTrigger("AttackTrigger");
+        animator.SetTrigger("NormalAttack");
     }    
     public override void CheckHurtState()
     {
@@ -319,12 +320,12 @@ public class DragonBossFSM : FSMBase
     }
     private void CheckChargeAttackState()
     {
-
+        Debug.Log("CheckChargeAttackState");
     }
 
     private void DoChargeAttackState()
     {
-
+        Debug.Log("DoChargeAttackState");
     }
 
     private void OnDrawGizmos() 
