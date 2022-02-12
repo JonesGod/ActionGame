@@ -28,7 +28,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool rollIsNext;
     [HideInInspector] public bool rollToBow=false;
     [HideInInspector] public bool bowShoot;
-
     [HideInInspector] public PlayerControl.PlayerState playerCurrnetState;
 
     public Vector2 MoveInput

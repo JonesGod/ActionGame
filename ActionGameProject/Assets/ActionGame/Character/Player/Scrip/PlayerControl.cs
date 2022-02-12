@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
     readonly int hashBowShoot = Animator.StringToHash("BowShoot");
     readonly int hashHurt = Animator.StringToHash("Hurt");
-    readonly int hashDead = Animator.StringToHash("dead");
+    readonly int hashDead = Animator.StringToHash("death");
     readonly int hashGetup = Animator.StringToHash("getup");
 
     /// 動畫播放狀態
@@ -65,17 +65,22 @@ public class PlayerControl : MonoBehaviour
     public bool getup;//起身動畫
 
     Vector3 move = Vector3.zero;//角色總移動量
-    Vector3 targetVector;//自動鎖定的方向
+    Vector3 targetVector;//自動鎖定的方向    
 
     Vector2 moveInput;//存取按鍵WASD，主要用在轉向，不太需要管Input.GetAxis的數值變化
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
 
-    Relive reliveObserver;//負責復活的觀察者
+    Observer reliveObserver;//負責復活的觀察者
+    public Vector3 currentCheckPoint;
+
+    bool test = false;
+
     public enum PlayerState
     {
-        live=1,
-        dead=2,
+        live=0,
+        dead=1,
     }
+    public PlayerState playerCurrnetState;
     void Start()
     {
         characterController = GetComponent<CharacterController>();    
@@ -93,6 +98,8 @@ public class PlayerControl : MonoBehaviour
             }
        }
         playerCurrnetState = PlayerState.live;
+        PlayerInput.Instance.playerCurrnetState = PlayerState.live;
+        currentCheckPoint = new Vector3(152f,26f,-118f) ;
     }
     void Update()
     {
@@ -101,9 +108,14 @@ public class PlayerControl : MonoBehaviour
 
         moveInput = PlayerInput.Instance.MoveInput;
         runInput = PlayerInput.Instance.MoveInput;
+
     }
     void FixedUpdate()
     {
+        if (Input.GetMouseButtonDown(0))
+        {      
+            PlayerHurt(100);  
+        }
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -441,14 +453,17 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     public void PlayerHurt(int damage)
     {
+        if (playerCurrnetState == PlayerState.dead)
+            return;
+
         playerHp -= damage;
         if (playerHp >= playerMaxHp)
             playerHp = playerMaxHp;
         if (playerHp <= 0)
         {
             playerHp = 0;
-            playerCurrnetState = PlayerState.dead;
-            //PlayerInput.Instance.playerCurrnetState= (PlayerInput.PlayerState)PlayerState.dead;
+            playerStateChange = PlayerState.dead;
+            PlayerInput.Instance.playerCurrnetState= PlayerState.dead;
             m_Am.SetTrigger("dead");
         }
         else
@@ -459,10 +474,6 @@ public class PlayerControl : MonoBehaviour
         UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
 
         PlayerInput.Instance.bowState = false;
-    }
-    void PlayerRelive()
-    {
-        m_Am.SetTrigger("getup");
     }
     /// <summary>
     /// 開始攻擊中移動
@@ -483,26 +494,77 @@ public class PlayerControl : MonoBehaviour
     /// 儲存要給誰觀察
     /// </summary>
     /// <param name="ob"></param>
-    public void Subscribe(Relive ob)
+    public void Subscribe(Observer ob)
     {
         reliveObserver = ob;
     }
     /// <summary>
-    /// 資料發生改變時要做的行動
+    /// playerCurrnetState發生改變時要做的行動
     /// </summary>
     protected void Notify()
     {
-        reliveObserver.DeadProcess();    
+        //reliveObserver.DeadProcess();    
     }
     /// <summary>
     /// 玩家生死狀態設定
     /// </summary>
-    public PlayerState playerCurrnetState
+    public PlayerState playerStateChange
     {
-        set 
-        { 
-                Notify(); 
+        set  
+        {
+            playerCurrnetState = value;
+            Notify(); 
         }
         get { return playerCurrnetState; }
+    }
+    /// <summary>
+    /// 接觸記錄點時設定復活點
+    /// </summary>
+    /// <param name="point"></param>
+    public void SetCheckPoint(CheckPoint point)
+    {
+        if(point!=null)
+            currentCheckPoint = point.transform.position;       
+    }
+    /// <summary>
+    /// 給外部用的啟動復活流程
+    /// </summary>
+    public void StarRelive()
+    {
+        StartCoroutine(PlayerReliveRoutine());
+    }
+    /// <summary>
+    /// 玩家復活流程
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator PlayerReliveRoutine()
+    {
+        while(stateinfo.shortNameHash!=hashDead || !isTrasition)
+        {
+            yield return null;
+        }
+        while(!Input.GetKeyDown("t"))
+        {
+            yield return null;
+        }
+
+        if (currentCheckPoint != null)
+        {
+            characterController.enabled=false;
+            transform.position= currentCheckPoint;
+            characterController.enabled = true;
+        }
+        else
+        {
+            Debug.LogError("There is no CheckPoint set");
+        }
+        m_Am.SetTrigger("getup");
+        playerHp = playerMaxHp;
+        while (stateinfo.shortNameHash !=hashGetup || !isTrasition)
+        {
+            yield return null;
+        }
+        playerCurrnetState = PlayerState.live;
+        PlayerInput.Instance.playerCurrnetState = PlayerState.live;
     }
 }
