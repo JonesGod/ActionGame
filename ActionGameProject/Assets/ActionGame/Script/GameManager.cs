@@ -13,8 +13,20 @@ public class GameManager : MonoBehaviour
     public GameObject m_Player;
     public GameObject[] allMonster;
     private PlayerControl player;
+<<<<<<< Updated upstream
     private Observer observer;//玩家死亡時的觀察者
+=======
+    private Relive relive;//玩家死亡時的觀察者
+    public GameObject teleportTransform;
+>>>>>>> Stashed changes
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            Teleport();
+        }
+    }
     private void Awake()
     {
         s_Instance = this;
@@ -27,6 +39,10 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayer()
     {
         return m_Player;
+    }
+    private void Teleport()
+    {
+        GetPlayer().transform.position = new Vector3(teleportTransform.transform.position.x, teleportTransform.transform.position.y, teleportTransform.transform.position.z);
     }
     public void ReLife()
     {
