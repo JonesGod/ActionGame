@@ -9,8 +9,7 @@ public enum FSMState//列出怪物所有的狀態
     Strafe,
     Attack,
     Hurt,
-    Dead,
-    Angry
+    Dead
 }
 public class FSMBase : MonoBehaviour
 {

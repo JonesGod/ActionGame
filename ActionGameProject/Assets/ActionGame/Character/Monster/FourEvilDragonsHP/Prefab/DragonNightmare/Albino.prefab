@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4196760332503358749}
   - component: {fileID: 8877665236678287583}
   - component: {fileID: 4052017859676170668}
+  - component: {fileID: 2078308757556939852}
   m_Layer: 9
   m_Name: Albino
   m_TagString: Monster
@@ -83,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.4499993, y: 2.9584336, z: 6.0016594}
-  m_Center: {x: 0.0000000017338802, y: 2.0601213, z: -0.049170114}
+  m_Size: {x: 5.4499993, y: 2.958434, z: 4.7493806}
+  m_Center: {x: 0, y: 2.0601213, z: -0.6753137}
 --- !u!114 &4052017859676170668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,12 +104,26 @@ MonoBehaviour:
     speed: 5
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
-    attackRange: 9.79
-    sightRange: 50
+    attackRange: 5.95
+    sightRange: 36.04
     strafeRange: 18
     strafeTime: 0
   strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 0}
+--- !u!114 &2078308757556939852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbcd636dfa3b1c4e9f97e915ccec836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCollider: {fileID: 8877665236678287583}
+  characterBlockCollider: {fileID: 3295278722720112372}
 --- !u!1 &102148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,5 +2567,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.91, y: 3.178525, z: 7.253909}
-  m_Center: {x: 0, y: 2.0979636, z: 0.08727553}
+  m_Size: {x: 5.91, y: 3.178525, z: 5.475016}
+  m_Center: {x: 0, y: 2.0979636, z: -0.8021764}

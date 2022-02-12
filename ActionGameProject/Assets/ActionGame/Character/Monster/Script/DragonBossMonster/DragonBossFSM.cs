@@ -17,6 +17,8 @@ public class DragonBossFSM : FSMBase
 
     Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
+    private float maxHp;
+    public bool isAngry = false;
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class DragonBossFSM : FSMBase
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;                
+        maxHp = data.hp;
     }
 
     void Update()
@@ -56,21 +58,30 @@ public class DragonBossFSM : FSMBase
 		}
 		return null;
 	}
-    private bool CheckEnemyInAttackRange(GameObject target, ref bool normalAttack, ref bool chargeAttack)
+    private bool CheckEnemyInAttackRange(GameObject target, ref bool normalAttack, ref bool chargeAttack, ref bool angryAttack)
 	{
 		GameObject go = target;
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-		if (fDist < data.attackRange)
+        if(fDist < data.attackRange && isAngry == true)
+        {
+            chargeAttack = false;
+			normalAttack = false;
+            angryAttack = true;
+			return true;
+        }
+		else if (fDist < data.attackRange)
 		{
             chargeAttack = false;
 			normalAttack = true;
+            angryAttack = false;
 			return true;
 		}
         else if(fDist > 2 * data.attackRange)
         {
             normalAttack = false;
             chargeAttack = true;
+            angryAttack = false;
 			return true;
         }
 		return false;
@@ -81,6 +92,7 @@ public class DragonBossFSM : FSMBase
         //CheckDead
         bool normalAttack = false;
         bool chargeAttack = false;
+        bool angryAttack = false;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -92,7 +104,7 @@ public class DragonBossFSM : FSMBase
         if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
+            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
             if(normalAttack)//在普通攻擊距離以內:直接攻擊
             {
                 currentState = FSMState.Attack;
@@ -105,12 +117,17 @@ public class DragonBossFSM : FSMBase
                 doState = DoChargeAttackState;
                 checkState = CheckChargeAttackState;
             }
+            else if(angryAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoAngryAttackState;
+                checkState = CheckAngryAttackState;
+            }
             return;
         }
     }
     public override void DoIdleState()
     {
-        //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
     {
@@ -124,8 +141,9 @@ public class DragonBossFSM : FSMBase
         }        
         bool normalAttack = false;
         bool chargeAttack = false;
-        CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
-        if (normalAttack)//在攻擊距離以內了:直接攻擊
+        bool angryAttack = false;
+        CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
+        if (normalAttack)
         {
             currentState = FSMState.Attack;
             doState = DoAttackState;
@@ -136,6 +154,12 @@ public class DragonBossFSM : FSMBase
             currentState = FSMState.Attack;
             doState = DoChargeAttackState;
             checkState = CheckChargeAttackState;
+        }
+        else if(angryAttack)
+        {
+            currentState = FSMState.Attack;
+            doState = DoAngryAttackState;
+            checkState = CheckAngryAttackState;
         }        
     }    
     public override void DoChaseState()
@@ -143,9 +167,9 @@ public class DragonBossFSM : FSMBase
         //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
-        data.speed = 6.0f;
-        animator.SetBool("IsMoveRight", false);
-        animator.SetBool("IsMoveForward", true);
+        data.speed = 15.0f;
+        animator.SetBool("IsWalkForward", false);
+        animator.SetBool("IsRunForward", true);
         transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         myRigidbody.velocity = transform.forward * data.speed;
@@ -168,10 +192,11 @@ public class DragonBossFSM : FSMBase
         }
         bool normalAttack = false;
         bool chargeAttack = false;
+        bool angryAttack = false;
         if(currentTime >= data.strafeTime)
         {
-            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack);
-            if (normalAttack)//在攻擊距離以內了:直接攻擊
+            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
+            if(normalAttack)//在攻擊距離以內了:直接攻擊
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
@@ -182,6 +207,12 @@ public class DragonBossFSM : FSMBase
                 currentState = FSMState.Attack;
                 doState = DoChargeAttackState;
                 checkState = CheckChargeAttackState;
+            }
+            else if(angryAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoAngryAttackState;
+                checkState = CheckAngryAttackState;
             }
             else
             {
@@ -197,34 +228,31 @@ public class DragonBossFSM : FSMBase
     {
         //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
-        data.speed = 2.0f;
+        data.speed = 3.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
         if(fDist > data.strafeRange)
         {
-            animator.SetBool("IsMoveRight", false); 
-            animator.SetBool("IsMoveForward", true);        
+            animator.SetBool("IsRunForward", false); 
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsWalkForward", true);        
             transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
         }
-        animator.SetBool("IsMoveForward", false); 
-        animator.SetBool("IsMoveRight", true); 
-        transform.LookAt(data.target.transform.position);
-        if(strafeDirection == 0)
-        {
-            transform.Translate(Vector3.right * data.speed * Time.deltaTime);
-        }
         else
-        {
-            transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+        {             
+            animator.SetBool("IsWalkForward", false); 
+            animator.SetBool("IsRunForward", false);
+            animator.SetBool("IsIdle", true);     
+            data.speed = 0;
+            transform.LookAt(data.target.transform.position);
+            currentTime += Time.deltaTime;
+            return;
         }
-        
-
-        currentTime += Time.deltaTime;
     }
     public override void CheckAttackState()
     {
@@ -243,11 +271,9 @@ public class DragonBossFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(3.0f, 5.0f);
+            data.strafeTime = Random.Range(1.5f, 3.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            strafeDirection = Random.Range(0, 2);
-            Debug.Log(strafeDirection);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }        
@@ -288,7 +314,6 @@ public class DragonBossFSM : FSMBase
             data.strafeTime = Random.Range(1.0f, 2.5f);;
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            strafeDirection = Random.Range(0, 2);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }
@@ -307,6 +332,26 @@ public class DragonBossFSM : FSMBase
             return;
         }
     }
+    public void CallHurt(float damageAmount, bool isHead)
+    {        
+        Debug.Log("TakeDamage");
+        data.hp -= damageAmount;
+        if(data.hp < maxHp / 2)
+        {
+            isAngry = true;
+        }
+        if(data.hp > 0 && isHead == true)
+        {
+            currentState = FSMState.Hurt;  
+            animator.SetTrigger("TakeDamage"); 
+            if(data.target == null)
+            {
+                data.target = GameManager.Instance.GetPlayer();
+            }
+            doState = DoHurtState;
+            checkState = CheckHurtState;
+        }                
+    }
     public override void CheckDeadState()
     {
         //Dead : Do nothing
@@ -320,12 +365,110 @@ public class DragonBossFSM : FSMBase
     }
     private void CheckChargeAttackState()
     {
-        Debug.Log("CheckChargeAttackState");
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(2.0f, 3.5f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }        
     }
 
     private void DoChargeAttackState()
     {
-        Debug.Log("DoChargeAttackState");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Charge Attack"))
+        {
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        Vector3 v = data.target.transform.position - this.transform.position;
+		float fDist = v.magnitude;
+        if(fDist > data.attackRange)
+        {
+            data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
+
+            data.speed = 15.0f;
+            animator.SetBool("IsWalkForward", false);
+            animator.SetBool("IsRunForward", true);
+            transform.LookAt(data.target.transform.position);
+            //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+            myRigidbody.velocity = transform.forward * data.speed;
+        }
+        else
+        {
+            myRigidbody.velocity = Vector3.zero;
+            animator.SetTrigger("ChargeAttack");
+        }        
+    }
+    private void CheckAngryAttackState()
+    {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(2.0f, 3.5f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }        
+    }
+
+    private void DoAngryAttackState()
+    {
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Claw Attack"))
+        {
+            //Debug.Log("IsAttack");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Horn Attack"))
+        {
+            //Debug.Log("IsAttack");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Charge Attack"))
+        {
+            //Debug.Log("IsAttack");
+            return;
+        }
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        myRigidbody.velocity = Vector3.zero;
+        animator.SetTrigger("AngryAttack");
     }
 
     private void OnDrawGizmos() 
