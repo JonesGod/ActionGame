@@ -34,14 +34,11 @@ public class BasicFSM : FSMBase
         {           
             foreach(GameObject m in GameManager.Instance.allMonster)
             {
-                if(m.name != this.gameObject.name)
+                Vector3 vec = m.transform.position - transform.position;
+                if(vec.magnitude <= partnerRange)
                 {
-                    Vector3 vec = m.transform.position - transform.position;
-                    if(vec.magnitude <= partnerRange)
-                    {
-                        partnerMonster.Add(m.GetComponent<BasicFSM>());
-                    }    
-                }        
+                    partnerMonster.Add(m.GetComponent<BasicFSM>());
+                }             
             }
         }
     }
@@ -218,25 +215,6 @@ public class BasicFSM : FSMBase
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
-        for(int i = 0; i < partnerMonster.Count; i++)
-        {
-            if(partnerMonster[i].currentState == FSMState.Chase)
-            {
-                animator.SetBool("IsMoveForward", false); 
-                animator.SetBool("IsMoveRight", true); 
-                transform.LookAt(data.target.transform.position);
-                if(strafeDirection == 0)
-                {
-                    transform.Translate(Vector3.right * data.speed * Time.deltaTime);
-                }
-                else
-                {
-                    transform.Translate(Vector3.left * data.speed * Time.deltaTime);
-                }
-                currentTime += 0;
-                return;
-            }           
-        }        
         if(fDist > data.strafeRange)
         {
             animator.SetBool("IsMoveRight", false); 
@@ -283,6 +261,7 @@ public class BasicFSM : FSMBase
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);
+            Debug.Log(strafeDirection);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }        

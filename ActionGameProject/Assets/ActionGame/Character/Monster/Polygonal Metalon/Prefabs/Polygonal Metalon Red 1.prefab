@@ -831,7 +831,7 @@ MonoBehaviour:
     speed: 5
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
-    attackRange: 2.64
+    attackRange: 3.5
     sightRange: 17.87
     strafeRange: 6.59
     strafeTime: 0
@@ -1835,6 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foregroundImage: {fileID: 3821777699673695263}
+  updateSpeedSeconds: 0.5
 --- !u!1 &5026425094861008203
 GameObject:
   m_ObjectHideFlags: 0

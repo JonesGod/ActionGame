@@ -10,4 +10,10 @@ public class BasicMonsterCollider : MonoBehaviour
     {
         Physics.IgnoreCollision(characterCollider, characterBlockCollider, true);        
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

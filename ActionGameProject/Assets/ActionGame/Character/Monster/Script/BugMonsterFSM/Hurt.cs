@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicMonsterHurt : MonoBehaviour
+public class Hurt : MonoBehaviour
 {
     public BasicFSM myFSM;
     public Health myHealth;
