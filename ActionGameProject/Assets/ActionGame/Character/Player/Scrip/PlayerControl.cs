@@ -112,10 +112,6 @@ public class PlayerControl : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {      
-            PlayerHurt(100);  
-        }
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -550,9 +546,7 @@ public class PlayerControl : MonoBehaviour
 
         if (currentCheckPoint != null)
         {
-            characterController.enabled=false;
             transform.position= currentCheckPoint;
-            characterController.enabled = true;
         }
         else
         {
