@@ -20,9 +20,8 @@ public class Healthbar : MonoBehaviour
         foregroundImage.fillAmount = pct;
     }
     
-    private void LateUpdate()
-    {
-        transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180, 0);
+    private void Update()
+    {  
+        transform.LookAt(transform.position + FolowCamera.Instance.transform.rotation * Vector3.back, FolowCamera.Instance.transform.rotation * Vector3.up);
     }
 }
