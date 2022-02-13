@@ -20,6 +20,7 @@ public class BasicFSM : FSMBase
 
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
+    private PlayerControl player;
     void Start()
     {
         currentEnemyTarget = null;
@@ -28,7 +29,8 @@ public class BasicFSM : FSMBase
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;        
+        strafeDirection = 0;     
+        player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();   
 
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
@@ -49,6 +51,17 @@ public class BasicFSM : FSMBase
     // Update is called once per frame
     void Update()
     {
+        // if(player.playerCurrnetState == PlayerControl.PlayerState.dead)
+        // {
+        //     currentEnemyTarget = null;
+        //     currentState = FSMState.Idle;
+        //     animator.SetBool("IsMoveRight", false);
+        //     animator.SetBool("IsMoveForward", false);
+        //     animator.SetBool("IsIdle", true);
+        //     checkState = CheckIdleState;
+        //     doState = DoIdleState;
+        //     return;
+        // }
         if(currentState != FSMState.Dead)
         {
             checkState();
@@ -119,7 +132,7 @@ public class BasicFSM : FSMBase
             return;
         }        
         currentEnemyTarget = CheckEnemyInSight();
-        if(currentEnemyTarget != null)
+        if(currentEnemyTarget != null && player.playerCurrnetState != PlayerControl.PlayerState.dead)
         {
             data.target = currentEnemyTarget;
             CheckEnemyInAttackRange(data.target, ref attack);
@@ -373,6 +386,29 @@ public class BasicFSM : FSMBase
             doState = DoHurtState;
             checkState = CheckHurtState;
         }                
+    }
+
+    public override void PlayerIsDead()
+    {
+        currentEnemyTarget = null;
+        currentState = FSMState.Idle;
+        animator.SetBool("IsMoveRight", false);
+        animator.SetBool("IsMoveForward", false);
+        animator.SetBool("IsIdle", true);
+        checkState = DoIdleState;
+        doState = DoIdleState;
+        return;
+    }
+    public override void PlayerIsReLife()
+    {
+        currentEnemyTarget = null;
+        currentState = FSMState.Idle;
+        animator.SetBool("IsMoveRight", false);
+        animator.SetBool("IsMoveForward", false);
+        animator.SetBool("IsIdle", true);
+        checkState = CheckIdleState;
+        doState = DoIdleState;
+        return;
     }
 
     private void OnDrawGizmos() 

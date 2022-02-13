@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour, BeObserver
 {
     private CharacterController characterController;
     public FolowCamera followCamera;
@@ -69,8 +69,7 @@ public class PlayerControl : MonoBehaviour
 
     Vector2 moveInput;//存取按鍵WASD，主要用在轉向，不太需要管Input.GetAxis的數值變化
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
-
-    Observer reliveObserver;//負責復活的觀察者
+    HashSet<FSMBase> reliveObserver = new HashSet<FSMBase>();//負責復活的觀察者
     public Vector3 currentCheckPoint;
 
     bool test = false;
@@ -490,16 +489,26 @@ public class PlayerControl : MonoBehaviour
     /// 儲存要給誰觀察
     /// </summary>
     /// <param name="ob"></param>
-    public void Subscribe(Observer ob)
+    public void Subscribe(FSMBase ob)
     {
-        reliveObserver = ob;
+        reliveObserver.Add(ob);
     }
     /// <summary>
     /// playerCurrnetState發生改變時要做的行動
     /// </summary>
-    protected void Notify()
+    public void NotifyDead()
     {
-        //reliveObserver.DeadProcess();    
+        foreach(FSMBase m in reliveObserver) 
+        {
+            m.PlayerIsDead();
+        }   
+    }
+    public void NotifyLife()
+    {
+        foreach(FSMBase m in reliveObserver) 
+        {
+            m.PlayerIsReLife();
+        }   
     }
     /// <summary>
     /// 玩家生死狀態設定
@@ -509,7 +518,14 @@ public class PlayerControl : MonoBehaviour
         set  
         {
             playerCurrnetState = value;
-            Notify(); 
+            if(playerCurrnetState == PlayerState.dead)
+            {
+                NotifyDead();        
+            }  
+            if(playerCurrnetState == PlayerState.live)
+            {
+                NotifyLife();        
+            }             
         }
         get { return playerCurrnetState; }
     }
@@ -558,7 +574,7 @@ public class PlayerControl : MonoBehaviour
         {
             yield return null;
         }
-        playerCurrnetState = PlayerState.live;
+        playerStateChange = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
     }
 }

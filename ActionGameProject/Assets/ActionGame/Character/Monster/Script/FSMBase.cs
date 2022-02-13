@@ -62,4 +62,12 @@ public class FSMBase : MonoBehaviour
     {
         
     }
+    public virtual void PlayerIsDead()
+    {
+        Debug.Log("PlayerIsDead");
+    }
+    public virtual void PlayerIsReLife()
+    {
+        Debug.Log("PlayerIsRelife");
+    }
 }

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject m_Player;
     public GameObject[] allMonster;
     private PlayerControl player;
-    private Observer observer;//玩家死亡時的觀察者
+    public FSMBase monsterObserver;
     public GameObject teleportTransform;
     public GameObject testNewPosition;
 
@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
         s_Instance = this;
         allMonster = GameObject.FindGameObjectsWithTag("Monster");
         player = GetPlayer().GetComponent<PlayerControl>();
-        observer = new Observer();
-        player.Subscribe(observer);
+        //observer = new Observer();
+        for(int i = 0; i < allMonster.Length; i++)
+        {            
+            player.Subscribe(allMonster[i].GetComponent<FSMBase>()); 
+        }        
     }
 
     public GameObject GetPlayer()
