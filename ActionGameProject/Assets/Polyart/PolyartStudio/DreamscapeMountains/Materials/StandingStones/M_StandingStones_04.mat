@@ -52,6 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _DetailColorIntensity: 0.959
     - _DetailSmoothIntensity: 0.498
     - _EmissiveMultiplier: 2.13
@@ -62,4 +63,6 @@ Material:
     - __dirty: 1
     m_Colors:
     - _AlbedoTint: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveTint: {r: 0, g: 0.7149544, b: 1, a: 0}
+  m_BuildTextureStacks: []
