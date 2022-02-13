@@ -9,15 +9,13 @@ public class UIMain : MonoBehaviour
     public static UIMain Instance() { return mInstance; }
 
     public Image m_HpBar;
+    
 
     public GameObject m_PlayerObject;
   
     
 
 
-    //private List<FloatingBar> m_FloatingBarsList;
-
-    // Start is called before the first frame update
     private void Awake()
     {
         mInstance = this;
@@ -29,7 +27,10 @@ public class UIMain : MonoBehaviour
     {
         Debug.Log("UpdateHpBar " + fValue);
         m_HpBar.fillAmount = fValue;
+
     }
+
+
 
   
 
