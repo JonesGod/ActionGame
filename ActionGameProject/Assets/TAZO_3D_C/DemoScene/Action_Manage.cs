@@ -18,7 +18,7 @@ public class Action_Manage : MonoBehaviour {
 		myAnimator.SetBool ("idle",  false);
 		myAnimator.SetBool ("dizzy", false);
 		myAnimator.SetBool ("walk", false);
-		myAnimator.SetBool ("run", false);
+		myAnimator.SetBool ("runIsNext", false);
 		myAnimator.SetBool ("jump", false);
 		myAnimator.SetBool ("die", false);
 		myAnimator.SetBool ("jump_left", false);
@@ -50,7 +50,7 @@ public class Action_Manage : MonoBehaviour {
 	}
 	public void Pressed_run(){
 		ClearAllBool();
-		myAnimator.SetBool ("run", true);
+		myAnimator.SetBool ("runIsNext", true);
 	}
 	public void Pressed_walk(){
 		ClearAllBool();

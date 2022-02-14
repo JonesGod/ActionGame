@@ -13,8 +13,8 @@ public class Sword : MonoBehaviour
 
     public Transform[] link;
     public Transform sword;
-    public bool battleRun;//돌PlayerControl쬝쯹
-    public bool run;//돌PlayerControl쬝쯹
+    public bool battleRunIsNext;//돌PlayerControl쬝쯹
+    public bool runIsNext;//돌PlayerControl쬝쯹
     public bool bowIsNext;//돌PlayerControl쬝쯹
 
     private BoxCollider swordBoxCollider;
@@ -33,10 +33,10 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (battleRun)
+        if (battleRunIsNext)
             SwordOn();
 
-        if (run || bowIsNext)
+        if (runIsNext || bowIsNext)
             SwordOff();
     }
     void SwordOn()

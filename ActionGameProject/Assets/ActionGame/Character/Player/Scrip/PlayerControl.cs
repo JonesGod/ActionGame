@@ -67,8 +67,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
     private bool hurt;//受傷動作
-    private bool run;//一般跑步
-    private bool battleRun;//戰鬥跑步
+    private bool runIsNext;//一般跑步
+    private bool battleRunIsNext;//戰鬥跑步
 
     public bool dead;//死亡動畫
     public bool getup;//起身動畫
@@ -334,14 +334,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
             rollState = false;
 
         if (stateinfo.shortNameHash == hashRun)
-            run = true;
+            runIsNext = true;
         else
-            run = false;
+            runIsNext = false;
 
         if (stateinfo.shortNameHash == hashBattleRun)
-            battleRun = true;
+            battleRunIsNext = true;
         else
-            battleRun = false;
+            battleRunIsNext = false;
 
         if (nextStateinfoOne.shortNameHash == hashBowShoot)
             bowShoot = true;
@@ -358,8 +358,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             dead = false;
 
-        Sword.Instance.run = run;
-        Sword.Instance.battleRun = battleRun;
+        Sword.Instance.runIsNext = runIsNext;
+        Sword.Instance.battleRunIsNext = battleRunIsNext;
         PlayerInput.Instance.rollState = battleRollState;
         PlayerInput.Instance.bowShoot = bowShoot;
     }    
@@ -388,8 +388,20 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             bowIsNext = false;
 
+        if (nextStateinfo.shortNameHash == hashRun)
+            runIsNext = true;
+        else
+            runIsNext = false;
+
+        if (nextStateinfo.shortNameHash == hashBattleRun)
+            battleRunIsNext = true;
+        else
+            battleRunIsNext = false;
+
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
         Sword.Instance.bowIsNext = bowIsNext;
+        Sword.Instance.runIsNext = runIsNext;
+        Sword.Instance.battleRunIsNext = battleRunIsNext;
     }
     /// <summary>
     /// 重製迴避觸發
