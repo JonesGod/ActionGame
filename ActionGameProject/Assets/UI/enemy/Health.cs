@@ -5,7 +5,7 @@ using System;
 
 public class Health : MonoBehaviour
 {
-    public BasicFSM myFSM;
+    public FSMBase myFSM;
 
     private float maxHealth;
     private float currentHealth;

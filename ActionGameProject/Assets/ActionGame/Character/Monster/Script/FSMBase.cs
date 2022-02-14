@@ -15,6 +15,7 @@ public enum FSMState//列出怪物所有的狀態
 public class FSMBase : MonoBehaviour
 {
     public FSMState currentState;
+    public BasicMonsterData data;
     public virtual void CheckIdleState()
     {   
         

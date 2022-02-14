@@ -9,7 +9,6 @@ public class BasicFSM : FSMBase
     private delegate void CheckAIState();
     private CheckAIState checkState;
 
-    public BasicMonsterData data;
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
@@ -225,7 +224,7 @@ public class BasicFSM : FSMBase
     {
         //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
-        data.speed = 2.0f;
+        data.speed = 1.5f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
@@ -290,7 +289,7 @@ public class BasicFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(3.0f, 5.0f);
+            data.strafeTime = Random.Range(2.0f, 4.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);

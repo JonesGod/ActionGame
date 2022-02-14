@@ -8,8 +8,7 @@ public class DragonBossFSM : FSMBase
     private DoState doState;
     private delegate void CheckAIState();
     private CheckAIState checkState;
-
-    public BasicMonsterData data;
+    
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
