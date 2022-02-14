@@ -10,12 +10,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    public float playerHp = 100;//玩家生命
-    public float playerMaxHp = 100;//玩家最大生命
+    public float playerHp = 100f;//玩家生命
+    public float playerMaxHp = 100f;//玩家生命最大值
+    public float playerMp = 100f;//玩家MP
+    public float playerMaxMp = 100f;//玩家MP最大值
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
-    private float rollSpeed = 10.0f;//翻滾速度
+    private float rollSpeed = 20.0f;//翻滾速度
     private float statetime;//動畫進行時間(百分比)
     private float fallSpeed;//角色落下速度
     private float mouseSlide;//滑鼠滑動輸入
@@ -42,7 +44,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashSpecialAttack2_1 = Animator.StringToHash("specialAttack2_1");
     readonly int hashSpecialAttack2_2 = Animator.StringToHash("specialAttack2_2");
     readonly int hashSpecialAttack2_3 = Animator.StringToHash("specialAttack2_3");
-    readonly int hashRoll=Animator.StringToHash("Roll");
+    readonly int hashBattleRoll=Animator.StringToHash("BattleRoll");
+    readonly int hashRoll = Animator.StringToHash("Roll");
     readonly int hashBattleIdle= Animator.StringToHash("BattleIdle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
@@ -53,9 +56,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
-    private bool rollState;//翻滾Animation
-    private bool BattleIdleIsNext;//下個Animation是Idle
-    private bool rollIsNext;//下個Animation是翻滾
+    private bool battleRollState;//戰鬥翻滾翻滾
+    private bool battleRollIsNext;//下個是戰鬥翻滾
+    private bool rollState;//一般翻滾
+    private bool rollIsNext;//下個是一般翻滾
+    private bool battleIdleIsNext;//下個Animation是Idle
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
@@ -156,7 +161,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {   
             ResetAttackTrigger();         
 
-            if (!(statetime <= 0.5f && attackState) && !isTrasition && !rollState)
+            if (!(statetime <= 0.5f && attackState) && !isTrasition && !battleRollState)
             {
                 RollRotating(moveInput.x, moveInput.y);
             }
@@ -181,7 +186,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         GetAttackState();
         GetCurrentState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !rollState && !rollIsNext)
+        if (m_Input.moveFlag && !attackState && !battleRollState && !battleRollIsNext)
             Rotating(moveInput.x, moveInput.y);
         
     }
@@ -195,17 +200,19 @@ public class PlayerControl : MonoBehaviour, BeObserver
             move = Vector3.ProjectOnPlane(m_Am.deltaPosition, hit.normal);
         }
 
-        if (!attackState || rollIsNext)//讀取按鍵決定方向
+        if (!attackState || battleRollIsNext)//讀取按鍵決定方向
             move = followCamera.horizontalVector * moveInput.y + followCamera.cameraRight * moveInput.x;
         else
             move = Vector3.zero;
 
-        if (rollState || rollIsNext)//翻滾時採用翻滾速度
+        if (battleRollState || battleRollIsNext || rollIsNext || rollState)//翻滾時採用翻滾速度
+        {
             move = transform.forward * rollSpeed * Time.deltaTime;
+        }
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (BattleIdleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
+        if (battleIdleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
         if (hurt)//受傷時移動量為0
@@ -219,6 +226,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
         move += transform.forward*attackMoveSpeed*Time.deltaTime;//加上攻擊時的移動速度
 
         characterController.Move(move);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.transform.tag!="Monster")
+        {
+            return;
+        }
+     
     }
     /// <summary>
     /// 重力計算
@@ -312,6 +327,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// </summary>
     void GetCurrentState()
     {        
+        if (stateinfo.shortNameHash == hashBattleRoll)
+            battleRollState = true;
+        else
+            battleRollState = false;
+
         if (stateinfo.shortNameHash == hashRoll)
             rollState = true;
         else
@@ -332,7 +352,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             dead = false;
 
-        PlayerInput.Instance.rollState = rollState;
+        PlayerInput.Instance.rollState = battleRollState;
         PlayerInput.Instance.bowShoot = bowShoot;
     }    
     /// <summary>
@@ -340,22 +360,27 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// </summary>
     void GetNextState()
     {
+        if (nextStateinfo.shortNameHash == hashBattleRoll)
+            battleRollIsNext = true;
+        else
+            battleRollIsNext = false;
+
         if (nextStateinfo.shortNameHash == hashRoll)
             rollIsNext = true;
         else
             rollIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashBattleIdle)
-            BattleIdleIsNext = true;
+            battleIdleIsNext = true;
         else
-            BattleIdleIsNext = false;
+            battleIdleIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashBowIdle)
             bowIsNext = true;
         else
             bowIsNext = false;
 
-        PlayerInput.Instance.rollIsNext = rollIsNext;
+        PlayerInput.Instance.rollIsNext = battleRollIsNext;
     }
     /// <summary>
     /// 重製迴避觸發
@@ -416,7 +441,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// </summary>
     void CantRollToBow()
     {
-        if(statetime<0.5f && rollState)
+        if(statetime<0.5f && battleRollState)
             PlayerInput.Instance.rollToBow = false;
         else
             PlayerInput.Instance.rollToBow = true;
@@ -485,6 +510,10 @@ public class PlayerControl : MonoBehaviour, BeObserver
     void AttackMoveStop()
     {
         attackMoveSpeed = 0f;
+    }
+    void PlayerMpUpdate()
+    {
+        UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
     }
     /// <summary>
     /// 儲存要給誰觀察
@@ -571,7 +600,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         m_Am.SetTrigger("getup");
         playerHp = playerMaxHp;
-        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
+        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
         while (stateinfo.shortNameHash !=hashGetup || !isTrasition)
         {
             yield return null;
