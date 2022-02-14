@@ -29,15 +29,13 @@ public class EyeMonsterFSM : FSMBase
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0;
-        data.patrolTime = Random.Range(3.0f, 5.0f);
-        targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
+        data.patrolTime = Random.Range(0.0f, 3.0f);
+        targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length - 1)];
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("data.patrolTime"+data.patrolTime);
-        Debug.Log("currentTime"+currentTime);
         if(currentState != FSMState.Dead)
         {
             checkState();
@@ -101,12 +99,7 @@ public class EyeMonsterFSM : FSMBase
         if(currentTime >= data.patrolTime)
         {
             currentState = FSMState.Patrol;
-            GameObject newWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
-            if(targetWayPoint.name == newWayPoint.name)
-            {
-                return;
-            }
-            targetWayPoint = newWayPoint;
+            targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length - 1)];
             doState = DoMoveToState;
             checkState = CheckMoveToState;
             return;
@@ -156,24 +149,24 @@ public class EyeMonsterFSM : FSMBase
         {
             Debug.Log("dasasd");
             data.speed = 0.0f;
-            myRigidbody.velocity = transform.forward * data.speed;
             currentState = FSMState.Idle;
-            data.patrolTime = Random.Range(3.0f, 5.0f);
+            data.patrolTime = Random.Range(0.0f, 3.0f);
             currentTime = 0.0f;
+            checkState = DoIdleState;
             doState = DoIdleState;
-            checkState = CheckIdleState;            
             return;
         }  
     }
     public void DoMoveToState()
-    {        
+    {
+        
             data.speed = 4.0f;
             animator.SetBool("IsIdle", false);
             animator.SetBool("Chase", false);
             animator.SetBool("Fly", true);
             var targetRotation = Quaternion.LookRotation(targetWayPoint.transform.position - transform.position);
             //transform.LookAt(data.target.transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             return;
@@ -201,14 +194,12 @@ public class EyeMonsterFSM : FSMBase
     public override void DoChaseState()
     {
         //Debug.Log("DoChaseState");
-        data.targetPosition = new Vector3(data.target.transform.position.x, data.target.transform.position.y, data.target.transform.position.z);
+        data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
-        animator.SetBool("Fly", false);
-        animator.SetBool("Chase", true);
-        var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
-        //transform.LookAt(data.target.transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+        animator.SetBool("IsMoveRight", false);
+        animator.SetBool("IsMoveForward", true);
+        transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
@@ -251,28 +242,24 @@ public class EyeMonsterFSM : FSMBase
     public override void DoStrafeState()
     {
         //Debug.Log("DoStrafe");
-        data.targetPosition = new Vector3(data.target.transform.position.x, data.target.transform.position.y, data.target.transform.position.z);
+        data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 2.0f;
-
-        var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;        
         if(fDist > data.strafeRange)
         {
-            animator.SetBool("Fly", false); 
-            animator.SetBool("Chase", true);        
-            //transform.LookAt(data.target.transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+            animator.SetBool("IsMoveRight", false); 
+            animator.SetBool("IsMoveForward", true);        
+            transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
         }
-        animator.SetBool("Chase", false); 
-        animator.SetBool("Fly", true); 
-        //transform.LookAt(data.target.transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+        animator.SetBool("IsMoveForward", false); 
+        animator.SetBool("IsMoveRight", true); 
+        transform.LookAt(data.target.transform.position);
         if(strafeDirection == 0)
         {
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
@@ -280,7 +267,8 @@ public class EyeMonsterFSM : FSMBase
         else
         {
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
-        }      
+        }
+        
 
         currentTime += Time.deltaTime;
     }
@@ -397,8 +385,8 @@ public class EyeMonsterFSM : FSMBase
     {
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
-        animator.SetBool("Fly", false);
-        animator.SetBool("Chase", false);
+        animator.SetBool("IsMoveRight", false);
+        animator.SetBool("IsMoveForward", false);
         animator.SetBool("IsIdle", true);
         checkState = DoIdleState;
         doState = DoIdleState;
@@ -408,8 +396,8 @@ public class EyeMonsterFSM : FSMBase
     {
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
-        animator.SetBool("Fly", false);
-        animator.SetBool("Chase", false);
+        animator.SetBool("IsMoveRight", false);
+        animator.SetBool("IsMoveForward", false);
         animator.SetBool("IsIdle", true);
         checkState = CheckIdleState;
         doState = DoIdleState;
