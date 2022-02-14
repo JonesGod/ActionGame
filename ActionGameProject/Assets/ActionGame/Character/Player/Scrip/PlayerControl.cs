@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
-    private float rollSpeed = 20.0f;//翻滾速度
+    private float rollSpeed = 15.0f;//翻滾速度
     private float statetime;//動畫進行時間(百分比)
     private float fallSpeed;//角色落下速度
     private float mouseSlide;//滑鼠滑動輸入
@@ -114,6 +114,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
     }
     void FixedUpdate()
     {
+        if (Input.GetKeyDown("v"))
+            m_Am.SetBool("BattleBool", true);
+        if (Input.GetKeyDown("b"))
+            m_Am.SetBool("BattleBool", false);
+
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
