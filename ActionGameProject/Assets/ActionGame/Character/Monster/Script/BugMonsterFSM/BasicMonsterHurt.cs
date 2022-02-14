@@ -17,7 +17,7 @@ public class BasicMonsterHurt : MonoBehaviour
             myHealth.ModifyHealth(30);  
         }
             
-        if(other.transform.name=="Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
+        if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
         {
             myFSM.CallHurt(20);
             myHealth.ModifyHealth(20);

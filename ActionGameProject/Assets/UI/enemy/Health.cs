@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
         Debug.Log("maxHealth"+maxHealth);
         Debug.Log("currentHealth"+currentHealth);
         ModifyHealth(0);
-
     }
 
     //血量增減顯示
