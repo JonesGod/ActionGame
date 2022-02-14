@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashSpecialAttack2_2 = Animator.StringToHash("specialAttack2_2");
     readonly int hashSpecialAttack2_3 = Animator.StringToHash("specialAttack2_3");
     readonly int hashRoll=Animator.StringToHash("Roll");
-    readonly int hashIdle= Animator.StringToHash("Idle");
+    readonly int hashBattleIdle= Animator.StringToHash("BattleIdle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
     readonly int hashBowShoot = Animator.StringToHash("BowShoot");
@@ -54,7 +54,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
     private bool rollState;//翻滾Animation
-    private bool idleIsNext;//下個Animation是Idle
+    private bool BattleIdleIsNext;//下個Animation是Idle
     private bool rollIsNext;//下個Animation是翻滾
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
@@ -71,8 +71,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
     HashSet<FSMBase> reliveObserver = new HashSet<FSMBase>();//負責復活的觀察者
     public Vector3 currentCheckPoint;
-
-    bool test = false;
 
     public enum PlayerState
     {
@@ -207,14 +205,17 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (idleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
+        if (BattleIdleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
         if (hurt)//受傷時移動量為0
             move = Vector3.zero;
 
         move += fallSpeed * Vector3.up * Time.deltaTime;//加上落下速度
-        move += m_Am.deltaPosition;//加上美術位移
+
+        if(attackState)
+            move += m_Am.deltaPosition;//加上美術位移
+
         move += transform.forward*attackMoveSpeed*Time.deltaTime;//加上攻擊時的移動速度
 
         characterController.Move(move);
@@ -344,10 +345,10 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             rollIsNext = false;
 
-        if (nextStateinfo.shortNameHash == hashIdle)
-            idleIsNext = true;
+        if (nextStateinfo.shortNameHash == hashBattleIdle)
+            BattleIdleIsNext = true;
         else
-            idleIsNext = false;
+            BattleIdleIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashBowIdle)
             bowIsNext = true;
@@ -570,6 +571,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         m_Am.SetTrigger("getup");
         playerHp = playerMaxHp;
+        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
         while (stateinfo.shortNameHash !=hashGetup || !isTrasition)
         {
             yield return null;
