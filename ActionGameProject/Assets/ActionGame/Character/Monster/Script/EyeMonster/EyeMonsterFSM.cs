@@ -18,9 +18,8 @@ public class EyeMonsterFSM : FSMBase
     Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
 
-    public List<BasicFSM> partnerMonster;
-    private float partnerRange = 30.0f;
-    private PlayerControl player;
+    public GameObject[] wayPoints;
+    public GameObject targetWayPoint;
     void Start()
     {
         currentEnemyTarget = null;
@@ -29,39 +28,14 @@ public class EyeMonsterFSM : FSMBase
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;     
-        player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();   
-
-        if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
-        {           
-            foreach(GameObject m in GameManager.Instance.allMonster)
-            {
-                if(m.name != this.gameObject.name)
-                {
-                    Vector3 vec = m.transform.position - transform.position;
-                    if(vec.magnitude <= partnerRange)
-                    {
-                        partnerMonster.Add(m.GetComponent<BasicFSM>());
-                    }    
-                }             
-            }
-        }
+        strafeDirection = 0;
+        data.patrolTime = Random.Range(0.0f, 3.0f);
+        targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length - 1)];
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if(player.playerCurrnetState == PlayerControl.PlayerState.dead)
-        // {
-        //     currentEnemyTarget = null;
-        //     currentState = FSMState.Idle;
-        //     animator.SetBool("IsMoveRight", false);
-        //     animator.SetBool("IsMoveForward", false);
-        //     animator.SetBool("IsIdle", true);
-        //     checkState = CheckIdleState;
-        //     doState = DoIdleState;
-        //     return;
-        // }
         if(currentState != FSMState.Dead)
         {
             checkState();
@@ -91,34 +65,6 @@ public class EyeMonsterFSM : FSMBase
 		}
 		return false;
 	}
-    public void HelpPartner()
-    {
-        if(currentState == FSMState.Idle)
-        {
-            data.target = GameManager.Instance.GetPlayer(); 
-            if(data.hp <= 0)
-            {
-                currentState = FSMState.Dead;            
-                checkState = CheckDeadState;
-                doState = DoDeadState;
-                return;
-            }        
-            if(animator.IsInTransition(0))
-            {
-                //Debug.Log("IsInTransition");
-                return;
-            }
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            {
-                data.strafeTime = Random.Range(1.0f, 3.0f);;
-                currentTime = 0.0f;
-                currentState = FSMState.Strafe;
-                strafeDirection = Random.Range(0, 2);
-                doState = DoStrafeState;
-                checkState = CheckStrafeState;
-            }
-        }
-    }
 
     public override void CheckIdleState()
     {   
@@ -132,7 +78,7 @@ public class EyeMonsterFSM : FSMBase
             return;
         }        
         currentEnemyTarget = CheckEnemyInSight();
-        if(currentEnemyTarget != null && player.playerCurrnetState != PlayerControl.PlayerState.dead)
+        if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
             CheckEnemyInAttackRange(data.target, ref attack);
@@ -150,11 +96,81 @@ public class EyeMonsterFSM : FSMBase
             }
             return;
         }
+        if(currentTime >= data.patrolTime)
+        {
+            currentState = FSMState.Patrol;
+            targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length - 1)];
+            doState = DoMoveToState;
+            checkState = CheckMoveToState;
+            return;
+        }
     }
     public override void DoIdleState()
     {
-
         //Debug.Log("DoIdle");
+        animator.SetBool("IsIdle", true);
+        animator.SetBool("Chase", false);
+        animator.SetBool("Fly", false);
+        currentTime += Time.deltaTime;
+    }
+    public void CheckMoveToState()
+    {
+        //CheckDead
+        bool attack = false;
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        currentEnemyTarget = CheckEnemyInSight();
+        if(currentEnemyTarget != null)
+        {
+            data.target = currentEnemyTarget;
+            CheckEnemyInAttackRange(data.target, ref attack);
+            if (attack)//在攻擊距離以內了:直接攻擊
+            {
+                currentState = FSMState.Attack;
+                doState = DoAttackState;
+                checkState = CheckAttackState;
+            }
+            else//在攻擊距離以外:進入追逐
+            {
+                currentState = FSMState.Chase;
+                doState = DoChaseState;
+                checkState = CheckChaseState;
+            }
+            return;
+        }
+        Vector3 v = targetWayPoint.transform.position - this.transform.position;
+		float fDist = v.magnitude;     
+        if(fDist <= 5)
+        {
+            Debug.Log("dasasd");
+            data.speed = 0.0f;
+            currentState = FSMState.Idle;
+            data.patrolTime = Random.Range(0.0f, 3.0f);
+            currentTime = 0.0f;
+            checkState = DoIdleState;
+            doState = DoIdleState;
+            return;
+        }  
+    }
+    public void DoMoveToState()
+    {
+        
+            data.speed = 4.0f;
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("Chase", false);
+            animator.SetBool("Fly", true);
+            var targetRotation = Quaternion.LookRotation(targetWayPoint.transform.position - transform.position);
+            //transform.LookAt(data.target.transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+            myRigidbody.velocity = transform.forward * data.speed;
+            return;
+        
     }
     public override void CheckChaseState()
     {
@@ -230,26 +246,7 @@ public class EyeMonsterFSM : FSMBase
         data.speed = 2.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
-		float fDist = v.magnitude;
-        for(int i = 0; i < partnerMonster.Count; i++)
-        {
-            if(partnerMonster[i].currentState == FSMState.Chase)
-            {
-                animator.SetBool("IsMoveForward", false); 
-                animator.SetBool("IsMoveRight", true); 
-                transform.LookAt(data.target.transform.position);
-                if(strafeDirection == 0)
-                {
-                    transform.Translate(Vector3.right * data.speed * Time.deltaTime);
-                }
-                else
-                {
-                    transform.Translate(Vector3.left * data.speed * Time.deltaTime);
-                }
-                currentTime += 0;
-                return;
-            }           
-        }        
+		float fDist = v.magnitude;        
         if(fDist > data.strafeRange)
         {
             animator.SetBool("IsMoveRight", false); 
@@ -370,10 +367,6 @@ public class EyeMonsterFSM : FSMBase
     public void CallHurt(float damageAmount)
     {        
         Debug.Log("TakeDamage");
-        for(int i = 0; i < partnerMonster.Count; i++)
-        {
-            partnerMonster[i].HelpPartner();           
-        }
         data.hp -= damageAmount;
         if(data.hp > 0)
         {

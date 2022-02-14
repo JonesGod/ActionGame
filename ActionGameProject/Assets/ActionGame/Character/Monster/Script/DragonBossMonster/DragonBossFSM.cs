@@ -237,7 +237,7 @@ public class DragonBossFSM : FSMBase
             animator.SetBool("IsRunForward", false); 
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsWalkForward", true);        
-            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            //var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
             transform.LookAt(data.target.transform.position);
             //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);

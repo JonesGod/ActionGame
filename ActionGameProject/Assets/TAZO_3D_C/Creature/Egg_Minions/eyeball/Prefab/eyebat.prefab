@@ -337,8 +337,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433355900633108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7, y: -2.2, z: 15.1}
-  m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.03427529, y: 0.03427529, z: 0.03427529}
   m_Children:
   - {fileID: 4050531651261450}
   - {fileID: 4558690386046794}
@@ -376,10 +376,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &493460577634913989
 BoxCollider:
@@ -420,6 +420,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d666b954f438d44994b3b4b1a86f153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  data:
+    hp: 0
+    speed: 0
+    target: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    attackRange: 2.15
+    sightRange: 11.78
+    strafeRange: 5.5
+    strafeTime: 0
+    patrolTime: 0
+  strafeDirection: 0
+  CharacterCollisionBlocker: {fileID: 7881952439412836361}
+  wayPoints: []
+  targetWayPoint: {fileID: 0}
 --- !u!1 &1452314376040498
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,9 +520,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501352640220812}
-  m_LocalRotation: {x: 0.00000019949603, y: 0.7071068, z: 0.7071068, w: -0.00000019949603}
-  m_LocalPosition: {x: -0, y: 23.044739, z: 0.37411642}
-  m_LocalScale: {x: 3.7468355, y: 3.7468355, z: 3.7468355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4107771985693238}
   m_RootOrder: 0
@@ -893,8 +908,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

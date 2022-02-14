@@ -13,6 +13,6 @@ public class BasicMonsterData
     public float sightRange;
     public float strafeRange;
     public float strafeTime;
-
+    public float patrolTime;
     
 }

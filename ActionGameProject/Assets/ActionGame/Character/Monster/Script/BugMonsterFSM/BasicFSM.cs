@@ -20,7 +20,6 @@ public class BasicFSM : FSMBase
 
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
-    private PlayerControl player;
     void Start()
     {
         currentEnemyTarget = null;
@@ -29,8 +28,7 @@ public class BasicFSM : FSMBase
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;     
-        player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();   
+        strafeDirection = 0;       
 
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
@@ -132,7 +130,7 @@ public class BasicFSM : FSMBase
             return;
         }        
         currentEnemyTarget = CheckEnemyInSight();
-        if(currentEnemyTarget != null && player.playerCurrnetState != PlayerControl.PlayerState.dead)
+        if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
             CheckEnemyInAttackRange(data.target, ref attack);
