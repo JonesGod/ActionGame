@@ -13,6 +13,9 @@ public class Sword : MonoBehaviour
 
     public Transform[] link;
     public Transform sword;
+    public bool battleRun;//給PlayerControl判定
+    public bool run;//給PlayerControl判定
+    public bool bowIsNext;//給PlayerControl判定
 
     private BoxCollider swordBoxCollider;
 
@@ -30,14 +33,17 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!attackState)
+        if (battleRun)
+            SwordOn();
+
+        if (run || bowIsNext)
             SwordOff();
     }
     void SwordOn()
     {
         sword.gameObject.SetActive(true);
     }
-    void SwordOff()
+    public void SwordOff()
     {
         sword.gameObject.SetActive(false);
     }

@@ -53,6 +53,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashHurt = Animator.StringToHash("Hurt");
     readonly int hashDead = Animator.StringToHash("death");
     readonly int hashGetup = Animator.StringToHash("getup");
+    readonly int hashRun = Animator.StringToHash("Run");
+    readonly int hashBattleRun = Animator.StringToHash("BattleRun");
 
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
@@ -65,6 +67,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
     private bool hurt;//受傷動作
+    private bool run;//一般跑步
+    private bool battleRun;//戰鬥跑步
 
     public bool dead;//死亡動畫
     public bool getup;//起身動畫
@@ -107,18 +111,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
     {
         BowAngle();
         TargetSearch();
+        Alert();
 
         moveInput = PlayerInput.Instance.MoveInput;
         runInput = PlayerInput.Instance.MoveInput;
-
     }
     void FixedUpdate()
     {
-        if (Input.GetKeyDown("v"))
-            m_Am.SetBool("BattleBool", true);
-        if (Input.GetKeyDown("b"))
-            m_Am.SetBool("BattleBool", false);
-
         stateinfo = m_Am.GetCurrentAnimatorStateInfo(0);
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
@@ -232,14 +231,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
         characterController.Move(move);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.transform.tag!="Monster")
-        {
-            return;
-        }
-     
-    }
     /// <summary>
     /// 重力計算
     /// </summary>
@@ -342,6 +333,16 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             rollState = false;
 
+        if (stateinfo.shortNameHash == hashRun)
+            run = true;
+        else
+            run = false;
+
+        if (stateinfo.shortNameHash == hashBattleRun)
+            battleRun = true;
+        else
+            battleRun = false;
+
         if (nextStateinfoOne.shortNameHash == hashBowShoot)
             bowShoot = true;
         else
@@ -357,6 +358,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             dead = false;
 
+        Sword.Instance.run = run;
+        Sword.Instance.battleRun = battleRun;
         PlayerInput.Instance.rollState = battleRollState;
         PlayerInput.Instance.bowShoot = bowShoot;
     }    
@@ -386,6 +389,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             bowIsNext = false;
 
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
+        Sword.Instance.bowIsNext = bowIsNext;
     }
     /// <summary>
     /// 重製迴避觸發
@@ -473,6 +477,28 @@ public class PlayerControl : MonoBehaviour, BeObserver
             }
         }
         targetVector = lastVec;
+
+    }
+    /// <summary>
+    /// 怪物靠近時進入戰鬥狀態
+    /// </summary>
+    void Alert()
+    {
+        float dis;
+        for (int i = 0; i < monster.Count; i++)
+        {
+            if(monster[i].currentState == FSMState.Dead)
+            {
+                continue;
+            }
+            dis = (monster[i].transform.position - transform.position).magnitude;
+            if(dis<25f)
+            {
+                m_Am.SetBool("BattleBool", true);
+                return;
+            }
+            m_Am.SetBool("BattleBool", false);
+        }
     }
     /// <summary>
     /// 玩家受傷

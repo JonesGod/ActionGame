@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1109 &-9130533584424126026
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: RunBool
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: BowBool
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: BattleBool
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -7441330323542288444}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1102 &-8908121560465424964
 AnimatorState:
   serializedVersion: 6
@@ -2861,7 +2884,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7441330323542288444}
-    m_Position: {x: 290, y: 30, z: 0}
+    m_Position: {x: 290, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4784778609983216806}
     m_Position: {x: 290, y: 220, z: 0}
@@ -4860,6 +4883,7 @@ AnimatorStateMachine:
     - {fileID: 2258836203051585488}
     - {fileID: 33123175299573963}
     - {fileID: -7240790939555444478}
+    - {fileID: -9130533584424126026}
   - first: {fileID: 6706398822682234826}
     second:
     - {fileID: -8283065628008347271}
@@ -5795,6 +5819,9 @@ AnimatorTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: BowBool
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: BattleBool
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4784778609983216806}
   m_Solo: 0
@@ -6533,6 +6560,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1109 &3860995638399868954
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -4784778609983216806}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1102 &3863346801451991751
 AnimatorState:
   serializedVersion: 6
@@ -6698,6 +6739,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: BattleBool
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: StateTime
+    m_EventTreshold: 0.8
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7441330323542288444}
   m_Solo: 0
