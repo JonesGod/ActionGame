@@ -7,7 +7,11 @@ public class ArrowShoot : MonoBehaviour
     Transform cameraTrasform;
     public GameObject prefab;
 
+    public float charge;//蓄力時間(由Player)
+
     private ArrowLoad load;
+    private Arrow arrow;
+
     private Vector3 targetDirection;//準星目標方向(相機正前方)
     private Vector3 arrowDirection;//箭矢飛行方向
     private Vector3 arrowPosition;//箭矢生成方向
@@ -44,9 +48,18 @@ public class ArrowShoot : MonoBehaviour
     void Shoot()
     {
         GameObject go = load.LoadArrow();
+        arrow=go.GetComponent<Arrow>();
+        if (charge < 1.5f)          //決定這一箭是普通箭還是爆炸箭
+            arrow.IsNormal();
+        else
+            arrow.IsExplode();
 
-        go.transform.position = transform.position; ;//調整箭矢位置為弓的位置
+        go.transform.position = transform.position;//調整箭矢位置為弓的位置
         go.transform.forward = arrowDirection;//調整箭矢前方為弓得前方
         go.SetActive(true);
+    }
+    public void GetCharge(float ch)
+    {
+        charge = ch;
     }
 }

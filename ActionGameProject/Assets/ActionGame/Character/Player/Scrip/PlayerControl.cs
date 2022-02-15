@@ -6,14 +6,15 @@ public class PlayerControl : MonoBehaviour, BeObserver
 {
     private CharacterController characterController;
     public FolowCamera followCamera;
+    public ArrowShoot m_ArrowShoot;
 
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    public float playerHp = 100f;//玩家生命
-    public float playerMaxHp = 100f;//玩家生命最大值
-    public float playerMp = 100f;//玩家MP
-    public float playerMaxMp = 100f;//玩家MP最大值
+    private float playerHp = 100f;//玩家生命
+    private float playerMaxHp = 100f;//玩家生命最大值
+    private float playerMp = 100f;//玩家MP
+    private float playerMaxMp = 100f;//玩家MP最大值
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
@@ -98,13 +99,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
         monster = new List<FSMBase>();
         GameObject[] allMonster =GameManager.Instance.allMonster;//將場景裡tag為Monster的物件存起來
-       if(allMonster!=null || allMonster.Length>0)
-       {           
+        if(allMonster!=null || allMonster.Length>0)
+        {           
             foreach(GameObject m in allMonster)
             {
                 monster.Add(m.GetComponent<FSMBase>());
             }
-       }
+        }
         playerCurrnetState = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
         currentCheckPoint = new Vector3(152f,26f,-118f) ;
@@ -190,6 +191,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         if(m_Input.bowAttack)  //弓左鍵射擊
         {
+            m_ArrowShoot.GetCharge(charge);
             charge = 0f;
             m_Am.SetTrigger("BowAttackTrigger");
             m_Input.bowAttack = false;

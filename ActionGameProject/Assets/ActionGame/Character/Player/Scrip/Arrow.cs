@@ -8,16 +8,28 @@ public class Arrow : MonoBehaviour
     private float gravity=3f ;//重力
     private float liveTime=0.0f;//存在時間
     private float fallSpeed=0.0f;//墜落速度
-    private SphereCollider collider;
+    private float explodeRadius = 15f;//爆炸半徑
+
+    private bool explodeFlag=false;//是否為爆炸箭
+
+    private List<FSMBase> monster;//存取怪物資訊
 
     // Start is called before the first frame update
     private void Awake()
     {
-        collider = transform.GetComponent<SphereCollider>();
+
     }
     void Start()
     {
-
+        monster = new List<FSMBase>();
+        GameObject[] allMonster = GameManager.Instance.allMonster;//將場景裡tag為Monster的物件存起來
+        if (allMonster != null || allMonster.Length > 0)
+        {
+            foreach (GameObject m in allMonster)
+            {
+                monster.Add(m.GetComponent<FSMBase>());
+            }
+        }
     }
     // Update is called once per frame
     void Update()
@@ -34,7 +46,10 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        ArrowDestory();
+        if (explodeFlag)
+            ArrowExplode();
+        else
+            ArrowDestory();        
     }
     /// <summary>
     /// 箭矢消失
@@ -44,12 +59,26 @@ public class Arrow : MonoBehaviour
         liveTime = 0.0f;//初始化存在時間
         fallSpeed = 0.0f;//初始化箭矢的墜落速度
         gameObject.SetActive(false);
-        
     }
     void ArrowExplode()
     {
         liveTime = 0.0f;//初始化存在時間
         fallSpeed = 0.0f;//初始化箭矢的墜落速度
-
+       
+        for(int i=0;i<monster.Count;i++)
+        {
+            float dis = (monster[i].transform.position - transform.position).magnitude;
+            //if (dis < explodeRadius)
+            //    monster.hurt;
+        }
+        gameObject.SetActive(false);
+    }
+    public void IsExplode()
+    {
+        explodeFlag = true;
+    }
+    public void IsNormal()
+    {
+        explodeFlag = false;
     }
 }
