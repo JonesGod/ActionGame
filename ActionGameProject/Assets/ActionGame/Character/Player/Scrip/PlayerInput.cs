@@ -15,13 +15,16 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;//存取WASD輸入
     private Vector2 m_Mouse;//存取滑鼠滑動
 
-    ///從PlayerControl判斷的布林值
+    ///提供布林值給PlayerControl判斷
     [HideInInspector] public bool moveFlag = false;
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;
     [HideInInspector] public bool isTrasition = false;
     [HideInInspector] public bool bowState = false;
+    [HideInInspector] public bool bowAttack;
+    [HideInInspector] public bool bowCharge;
+    ///從PlayerControl判斷的布林值
     [HideInInspector] public bool cantBowState;
     [HideInInspector] public bool attackState;
     [HideInInspector] public bool rollState;
@@ -69,14 +72,23 @@ public class PlayerInput : MonoBehaviour
         else        
             moveFlag = false;
 
+        ///劍攻擊
         if (Input.GetButtonDown("Fire1"))
             attack = true;
         if (Input.GetButtonDown("Fire2"))
             specialAttack = true;
-  
+        
+        ///弓射擊
+        if (Input.GetButtonUp("Fire1") && bowState)
+            bowAttack = true;
+        if (Input.GetButton("Fire1") && bowState)
+            bowCharge = true;
+        else
+            bowCharge = false;
+        
         if (Input.GetButtonDown("Avoid"))                  
             avoid = true;
-
+        ///弓狀態判定
         CantBow();
         if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState
             && rollToBow)
@@ -87,7 +99,6 @@ public class PlayerInput : MonoBehaviour
         {
             bowState = false;
         }
-
     }
     /// <summary>
     /// 不能切到弓的狀態

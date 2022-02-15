@@ -48,6 +48,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashRoll = Animator.StringToHash("Roll");
     readonly int hashBattleIdle= Animator.StringToHash("BattleIdle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
+    readonly int m_ChargeTime = Animator.StringToHash("ChargeTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
     readonly int hashBowShoot = Animator.StringToHash("BowShoot");
     readonly int hashHurt = Animator.StringToHash("Hurt");
@@ -80,7 +81,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     Vector2 runInput;//存取WASD，需要Input.GetAxis的數值變化來用在blend tree
     HashSet<FSMBase> reliveObserver = new HashSet<FSMBase>();//負責復活的觀察者
     public Vector3 currentCheckPoint;
-
+    float charge;
     public enum PlayerState
     {
         live=0,
@@ -137,7 +138,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             NormalBasicValue();
         }
 
-        CantRollToBow();
+        CantRollToBow();        //弓模式旗標
         if (m_Input.bowState && !attackState)
         {
             m_Am.SetBool("BowBool", true);
@@ -147,7 +148,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             m_Am.SetBool("BowBool", false);
         }
 
-        if (m_Input.moveFlag)
+        if (m_Input.moveFlag)       //移動旗標
         {
             if(statetime<=0.4f)
                 ResetAttackTrigger();
@@ -180,11 +181,25 @@ public class PlayerControl : MonoBehaviour, BeObserver
             m_Am.SetTrigger("AttackTrigger");
             m_Input.attack = false;
         }
-        if(m_Input.specialAttack)
+        if(m_Input.specialAttack)   //右鍵攻擊
         {
             m_Am.ResetTrigger("AttackTrigger");
             m_Am.SetTrigger("SpecialAttackTrigger");
             m_Input.specialAttack = false;
+        }
+        if(m_Input.bowAttack)  //弓左鍵射擊
+        {
+            charge = 0f;
+            m_Am.SetTrigger("BowAttackTrigger");
+            m_Input.bowAttack = false;
+        }
+        if(m_Input.bowCharge)
+        {
+            charge += Time.deltaTime;
+            if (charge > 2.0f)
+                charge = 2.0f;
+
+            m_Am.SetFloat(m_ChargeTime, charge);
         }
         
         GetAttackState();
@@ -409,6 +424,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     void ResetTrigger()
     {      
         m_Am.ResetTrigger("AvoidTrigger");
+        m_Am.ResetTrigger("BowAttackTrigger");
     }
     /// <summary>
     /// 重製攻擊觸發
