@@ -231,7 +231,7 @@ public class DragonBossFSM : FSMBase
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist > data.strafeRange)
+        if(fDist > data.attackRange)
         {
             animator.SetBool("IsRunForward", false); 
             animator.SetBool("IsIdle", false);
@@ -283,7 +283,7 @@ public class DragonBossFSM : FSMBase
     public override void DoAttackState()
     {   
         //Debug.Log("DoAttack");
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Claw Attack"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ClawAttack"))
         {
             //Debug.Log("IsAttack");
             return;

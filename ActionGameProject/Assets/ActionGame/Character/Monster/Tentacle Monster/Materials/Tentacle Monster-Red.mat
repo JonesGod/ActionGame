@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tentacle Monster-Red
+  m_Shader: {fileID: 4800000, guid: f0aabfbb9d443a2438d725e2bf21c8ba, type: 3}
+  m_ShaderKeywords: _UseAlphaClip _UseBackRim _UseRim
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 4efe2b79faa99914dbb0e798a2c6d8e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 609591499b0e48144bdc33189fddc63e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _CelShadeArea: 0
+    - _CelShadeGradient: 0.5
+    - _CutOff: 0
+    - _FresnelPow: 0
+    - _FringeShadowOffset: 0
+    - _FringeShadowThreshold: 0.001
+    - _IsFace: 0
+    - _OutlineWidth: 1
+    - _OutlineZOffsetAmount: 0
+    - _ReceiveShadowMappingAmount: 0.5
+    - _ReceiveShadowMappingOffset: 0
+    - _RimColorBrightness: 4
+    - _RimWidth: 0.01
+    - _Shininess: 0.7
+    - _Threshold: 0.09
+    - _UseAlphaClip: 1
+    - _UseBackRim: 1
+    - _UseFringeShadow: 0
+    - _UseRim: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Emission: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColorBack: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColorFront: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowPartColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

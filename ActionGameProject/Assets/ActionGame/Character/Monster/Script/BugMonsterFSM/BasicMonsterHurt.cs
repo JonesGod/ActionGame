@@ -9,8 +9,6 @@ public class BasicMonsterHurt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log(other.transform.name);
-        
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
         {
             myFSM.CallHurt(30); 
