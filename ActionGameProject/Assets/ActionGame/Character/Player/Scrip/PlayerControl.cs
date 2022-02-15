@@ -519,6 +519,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     {
         if (playerCurrnetState == PlayerState.dead)
             return;
+        if (battleRollState || battleRollIsNext)
+            return;
 
         playerHp -= damage;
         if (playerHp >= playerMaxHp)
