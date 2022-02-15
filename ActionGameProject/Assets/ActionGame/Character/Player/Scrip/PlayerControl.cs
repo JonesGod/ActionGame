@@ -206,7 +206,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         GetAttackState();
         GetCurrentState();
         GetNextState();
-        if (m_Input.moveFlag && !attackState && !battleRollState && !battleRollIsNext)
+        if (m_Input.moveFlag && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
             Rotating(moveInput.x, moveInput.y);
         
     }

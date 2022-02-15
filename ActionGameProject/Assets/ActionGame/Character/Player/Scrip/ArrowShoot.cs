@@ -10,6 +10,7 @@ public class ArrowShoot : MonoBehaviour
     private ArrowLoad load;
     private Vector3 targetDirection;//準星目標方向(相機正前方)
     private Vector3 arrowDirection;//箭矢飛行方向
+    private Vector3 arrowPosition;//箭矢生成方向
     private float targetDistance;//目標到攝影機的距離
 
     private void Awake()
@@ -43,7 +44,8 @@ public class ArrowShoot : MonoBehaviour
     void Shoot()
     {
         GameObject go = load.LoadArrow();
-        go.transform.position = transform.position;//調整箭矢位置為弓的位置
+
+        go.transform.position = transform.position; ;//調整箭矢位置為弓的位置
         go.transform.forward = arrowDirection;//調整箭矢前方為弓得前方
         go.SetActive(true);
     }
