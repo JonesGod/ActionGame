@@ -29,12 +29,12 @@ public class ArrowShoot : MonoBehaviour
         arrowDirection = transform.forward;
 
         Ray r = new Ray(cameraTrasform.position, cameraTrasform.forward);
-        if(Physics.Raycast(r,out RaycastHit hit,80f))
+        if (Physics.Raycast(r, out RaycastHit hit, 80f))
         {
             targetDirection = hit.point - cameraTrasform.position;
             arrowDirection = targetDirection;
             targetDistance = targetDirection.magnitude;
-            if(targetDistance<15f)                      //準星目標離太近時
+            if (targetDistance < 15f)                      //準星目標離太近時
             {
                 targetDirection = cameraTrasform.position + cameraTrasform.forward * 15f;
             }

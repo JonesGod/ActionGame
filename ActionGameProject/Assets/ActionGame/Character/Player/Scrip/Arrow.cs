@@ -8,11 +8,12 @@ public class Arrow : MonoBehaviour
     private float gravity=3f ;//重力
     private float liveTime=0.0f;//存在時間
     private float fallSpeed=0.0f;//墜落速度
-  
+    private SphereCollider collider;
+
     // Start is called before the first frame update
     private void Awake()
     {
-       
+        collider = transform.GetComponent<SphereCollider>();
     }
     void Start()
     {
@@ -43,5 +44,12 @@ public class Arrow : MonoBehaviour
         liveTime = 0.0f;//初始化存在時間
         fallSpeed = 0.0f;//初始化箭矢的墜落速度
         gameObject.SetActive(false);
+        
+    }
+    void ArrowExplode()
+    {
+        liveTime = 0.0f;//初始化存在時間
+        fallSpeed = 0.0f;//初始化箭矢的墜落速度
+
     }
 }

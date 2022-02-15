@@ -68,6 +68,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
     private bool hurt;//受傷動作
+    private bool hurtIsNext;//下個是受傷動作
     private bool runIsNext;//一般跑步
     private bool battleRunIsNext;//戰鬥跑步
 
@@ -377,6 +378,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         Sword.Instance.battleRunIsNext = battleRunIsNext;
         PlayerInput.Instance.rollState = battleRollState;
         PlayerInput.Instance.bowShoot = bowShoot;
+        PlayerInput.Instance.hurt = hurt;
     }    
     /// <summary>
     /// 獲取下個Animation
@@ -413,7 +415,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             battleRunIsNext = false;
 
+        if (nextStateinfo.shortNameHash == hashHurt)
+            hurtIsNext = true;
+        else
+            hurtIsNext = false;
+
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
+        PlayerInput.Instance.hurtIsNext = hurtIsNext;
         Sword.Instance.bowIsNext = bowIsNext;
         Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
