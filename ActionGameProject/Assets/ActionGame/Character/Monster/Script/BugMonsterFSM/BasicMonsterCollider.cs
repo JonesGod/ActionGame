@@ -6,6 +6,7 @@ public class BasicMonsterCollider : MonoBehaviour
 {
     public BoxCollider characterCollider;
     public BoxCollider characterBlockCollider;
+    //public SphereCollider characterBlockCollider;
     void Start()
     {
         Physics.IgnoreCollision(characterCollider, characterBlockCollider, true);        

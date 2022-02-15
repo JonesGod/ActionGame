@@ -250,6 +250,7 @@ public class DragonBossFSM : FSMBase
             animator.SetBool("IsRunForward", false);
             animator.SetBool("IsIdle", true);     
             data.speed = 0;
+            myRigidbody.velocity = transform.forward * data.speed;
             transform.LookAt(data.target.transform.position);
             currentTime += Time.deltaTime;
             return;

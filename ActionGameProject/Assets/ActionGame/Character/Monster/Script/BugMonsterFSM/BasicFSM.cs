@@ -48,16 +48,11 @@ public class BasicFSM : FSMBase
     // Update is called once per frame
     void Update()
     {
-        // if(player.playerCurrnetState == PlayerControl.PlayerState.dead)
+        // if(partnerMonster.Count != 0)
         // {
-        //     currentEnemyTarget = null;
-        //     currentState = FSMState.Idle;
-        //     animator.SetBool("IsMoveRight", false);
-        //     animator.SetBool("IsMoveForward", false);
-        //     animator.SetBool("IsIdle", true);
-        //     checkState = CheckIdleState;
-        //     doState = DoIdleState;
-        //     return;
+        //     Vector3 target = partnerMonster[0].transform.position - transform.position;            
+        //     float test = Vector3.Dot(transform.right, target.normalized);
+        //     Debug.Log(test);
         // }
         if(currentState != FSMState.Dead)
         {
@@ -232,16 +227,21 @@ public class BasicFSM : FSMBase
         {
             if(partnerMonster[i].currentState == FSMState.Chase)
             {
+                Vector3 targetDir = partnerMonster[i].transform.position - transform.position;            
+                float dotPartner = Vector3.Dot(transform.right, targetDir.normalized);
+
                 animator.SetBool("IsMoveForward", false); 
                 animator.SetBool("IsMoveRight", true); 
                 transform.LookAt(data.target.transform.position);
-                if(strafeDirection == 0)
+                if(dotPartner > 0)
                 {
-                    transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+                    transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+                    strafeDirection = 1;
                 }
                 else
                 {
-                    transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+                    transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+                    strafeDirection = 0;
                 }
                 currentTime += 0;
                 return;
@@ -267,8 +267,7 @@ public class BasicFSM : FSMBase
         else
         {
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
-        }
-        
+        }        
 
         currentTime += Time.deltaTime;
     }
@@ -289,7 +288,7 @@ public class BasicFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(2.0f, 4.0f);
+            data.strafeTime = Random.Range(1.0f, 4.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);
@@ -331,7 +330,7 @@ public class BasicFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(1.0f, 2.5f);;
+            data.strafeTime = Random.Range(1.0f, 2.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);

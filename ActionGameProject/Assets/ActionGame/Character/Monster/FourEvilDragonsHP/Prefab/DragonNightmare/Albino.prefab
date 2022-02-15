@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8877665236678287583}
   - component: {fileID: 4052017859676170668}
   - component: {fileID: 2078308757556939852}
+  - component: {fileID: 2067143908451562152}
   m_Layer: 9
   m_Name: Albino
   m_TagString: Monster
@@ -108,8 +109,10 @@ MonoBehaviour:
     sightRange: 36.04
     strafeRange: 18
     strafeTime: 0
+    patrolTime: 0
   strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 0}
+  isAngry: 0
 --- !u!114 &2078308757556939852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +127,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 8877665236678287583}
   characterBlockCollider: {fileID: 3295278722720112372}
+--- !u!114 &2067143908451562152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7cd83440a93ed40a2ec54a76b3e295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttackObject: {fileID: 483298}
+  headAttackObject: {fileID: 429462}
 --- !u!1 &102148
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +150,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483298}
+  - component: {fileID: 5661212391396551499}
+  - component: {fileID: 3976957950808387871}
   m_Layer: 9
   m_Name: R_Hand
   m_TagString: Untagged
@@ -157,6 +176,31 @@ Transform:
   m_Father: {fileID: 427348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5661212391396551499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 384.24365, y: 249.49196, z: 219.89972}
+  m_Center: {x: -42.016846, y: 63.31873, z: -8.8290615}
+--- !u!114 &3976957950808387871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b192d10f3543489498c8a5e299ae7461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &102436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1820,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 429462}
+  - component: {fileID: 2246709682555238414}
+  - component: {fileID: 8580425081564305599}
   m_Layer: 9
   m_Name: UpperHead02
   m_TagString: Untagged
@@ -1797,6 +1843,31 @@ Transform:
   m_Father: {fileID: 469246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2246709682555238414
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 273.83435, y: 192.6267, z: 222.3}
+  m_Center: {x: 30.954042, y: -22.560299, z: -0.0000076173983}
+--- !u!114 &8580425081564305599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e17f64f27d1504ea9bd5e4110a523a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &176382
 GameObject:
   m_ObjectHideFlags: 0
