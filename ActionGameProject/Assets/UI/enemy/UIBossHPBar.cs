@@ -9,11 +9,12 @@ namespace SG
     public class UIBossHPBar : MonoBehaviour
     {
         public Text bossName;
-        Slider slider;
+        public Slider slider;
 
         private void Awake()
         {
             slider = GetComponentInChildren<Slider>();
+            bossName = GetComponentInChildren<Text>();
         }
 
         private void Start()
@@ -25,7 +26,6 @@ namespace SG
         public void SetBossName(string name) 
         {
             bossName.text = name;
-            bossName = GetComponentInChildren<Text>();
         }
 
         public void SetUIHPBarToActive()
