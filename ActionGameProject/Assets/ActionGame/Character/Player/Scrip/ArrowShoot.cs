@@ -56,7 +56,7 @@ public class ArrowShoot : MonoBehaviour
         }
         else
         {
-            arrow.transform.name = "explode";
+            //arrow.transform.name = "explode";
             arrow.IsExplode();
         }
 

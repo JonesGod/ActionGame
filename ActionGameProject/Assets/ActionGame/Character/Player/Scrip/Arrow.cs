@@ -13,6 +13,7 @@ public class Arrow : MonoBehaviour
     private bool explodeFlag=false;//是否為爆炸箭
 
     private List<FSMBase> monster;//存取怪物資訊
+    private SphereCollider collider;
 
     // Start is called before the first frame update
     private void Awake()
@@ -30,6 +31,8 @@ public class Arrow : MonoBehaviour
                 monster.Add(m.GetComponent<FSMBase>());
             }
         }
+
+        collider = transform.GetComponent<SphereCollider>();
     }
     // Update is called once per frame
     void Update()
@@ -47,9 +50,14 @@ public class Arrow : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (explodeFlag)
-            ArrowExplode();
+        {
+            //ArrowExplode();
+            ExplodeTest();
+        }
         else
-            ArrowDestory();        
+        {
+            ArrowDestory();
+        }
     }
     /// <summary>
     /// 箭矢消失
@@ -80,5 +88,26 @@ public class Arrow : MonoBehaviour
     public void IsNormal()
     {
         explodeFlag = false;
+    }
+    /// <summary>
+    /// trigger版爆炸箭
+    /// </summary>
+    void ExplodeTest()
+    {
+        liveTime = 0.0f;//初始化存在時間
+        fallSpeed = 0.0f;//初始化箭矢的墜落速度
+        
+        StartCoroutine(ExplodeTime());
+    }
+    protected IEnumerator ExplodeTime()
+    {
+        collider.radius = 10.0f;
+        arrowSpeed = 0.0f;
+        gravity = 0.0f;
+        yield return new WaitForSeconds(0.2f);
+        collider.radius = 0.5f;
+        arrowSpeed = 40f;
+        gravity = 3.0f;
+        gameObject.SetActive(false);
     }
 }

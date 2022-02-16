@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3842586774287094183}
   - component: {fileID: 919100431170556149}
   - component: {fileID: 5858086098323200995}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,4 +125,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e84f729d65997e42a5c930ce8f2383a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowSpeed: 30
