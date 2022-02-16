@@ -334,7 +334,7 @@ public class DragonBossFSM : FSMBase
             return;
         }
     }
-    public void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead)
     {        
         Debug.Log("TakeDamage");
         data.hp -= damageAmount;

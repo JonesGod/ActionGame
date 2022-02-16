@@ -363,7 +363,7 @@ public class BasicFSM : FSMBase
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
     }
-    public void CallHurt(float damageAmount)
+    public override void CallHurt(float damageAmount, bool isHead)
     {        
         Debug.Log("TakeDamage");
         for(int i = 0; i < partnerMonster.Count; i++)

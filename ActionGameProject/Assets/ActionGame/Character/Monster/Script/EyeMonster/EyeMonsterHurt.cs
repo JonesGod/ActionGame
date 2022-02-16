@@ -13,13 +13,13 @@ public class EyeMonsterHurt : MonoBehaviour
         
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(30); 
+            myFSM.CallHurt(30, false); 
             myHealth.ModifyHealth(30);  
         }
             
         if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(20);
+            myFSM.CallHurt(20, false);
             myHealth.ModifyHealth(20);
         }
     }
