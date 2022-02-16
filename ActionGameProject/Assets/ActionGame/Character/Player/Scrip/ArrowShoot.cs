@@ -5,9 +5,14 @@ using UnityEngine;
 public class ArrowShoot : MonoBehaviour
 {
     Transform cameraTrasform;
+    PlayerControl player;
+
     public GameObject prefab;
 
-    public float charge;//蓄力時間(由Player)
+    private float charge;//蓄力時間(由Player)
+    private int playerMp;
+    private int normalCost=10;//一般消耗
+    private int explodeCost = 25;//爆炸箭MP消耗
 
     private ArrowLoad load;
     private Arrow arrow;
@@ -21,6 +26,8 @@ public class ArrowShoot : MonoBehaviour
     {
         load = new ArrowLoad();
         load.creatArrow(prefab, 30);
+
+        player = gameObject.GetComponentInParent<PlayerControl>();
     }
     // Start is called before the first frame update
     void Start()
@@ -47,25 +54,29 @@ public class ArrowShoot : MonoBehaviour
     }
     void Shoot()
     {
+        if (playerMp < 10)
+            return;
+
         GameObject go = load.LoadArrow();        
         arrow=go.GetComponent<Arrow>();
-        if (charge < 1.5f)          //決定這一箭是普通箭還是爆炸箭
+        if ((charge < 1.5f) || (playerMp<= explodeCost))          //決定這一箭是普通箭還是爆炸箭
         {
-            arrow.transform.name = "Arrow(Clone)";
             arrow.IsNormal();
+            player.MpReduce(10);
         }
-        else
+        else if(playerMp> explodeCost)
         {
-            //arrow.transform.name = "explode";
             arrow.IsExplode();
+            player.MpReduce(explodeCost);
         }
 
         go.transform.position = transform.position;//調整箭矢位置為弓的位置
         go.transform.forward = arrowDirection;//調整箭矢前方為弓得前方
         go.SetActive(true);
     }
-    public void GetCharge(float ch)
+    public void GetCharge(float ch, int mp)
     {
         charge = ch;
+        playerMp = mp;
     }
 }

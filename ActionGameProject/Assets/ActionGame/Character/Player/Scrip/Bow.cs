@@ -19,6 +19,7 @@ public class Bow : MonoBehaviour
     private void Awake()
     {
         s_Instance = this;
+
     }
     void Start()
     {

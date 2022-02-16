@@ -11,10 +11,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    private float playerHp = 100f;//玩家生命
-    private float playerMaxHp = 100f;//玩家生命最大值
-    private float playerMp = 100f;//玩家MP
-    private float playerMaxMp = 100f;//玩家MP最大值
+    private int playerHp = 100;//玩家生命
+    private int playerMaxHp = 100;//玩家生命最大值
+    private int playerMp = 100;//玩家MP
+    private int playerMaxMp = 100;//玩家MP最大值
+
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
     private float gravity = 20.0f;//重力
@@ -194,7 +195,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         if(m_Input.bowAttack)  //弓左鍵射擊
         {
-            m_ArrowShoot.GetCharge(charge);
+            m_ArrowShoot.GetCharge(charge,playerMp);
             charge = 0f;
             m_Am.SetTrigger("BowAttackTrigger");
             m_Input.bowAttack = false;
@@ -553,12 +554,10 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (battleRollState || battleRollIsNext)
             return;
 
-        playerHp -= damage;
-        if (playerHp >= playerMaxHp)
-            playerHp = playerMaxHp;
+        AttackMoveStop();
+        HpReduce(damage);
         if (playerHp <= 0)
         {
-            playerHp = 0;
             playerStateChange = PlayerState.dead;
             PlayerInput.Instance.playerCurrnetState= PlayerState.dead;
             m_Am.SetTrigger("dead");
@@ -566,11 +565,29 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
         {
             m_Am.SetTrigger("HurtTrigger");
-        }
-        
-        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
+        }        
 
         PlayerInput.Instance.bowState = false;
+    }
+    public void HpReduce(int damage)
+    {
+        playerHp -= damage;
+        if (playerHp >= playerMaxHp)
+            playerHp = playerMaxHp;
+        if(playerHp <= 0)
+            playerHp = 0;
+
+        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
+    }
+    public void MpReduce(int cost)
+    {
+        playerMp -= cost;
+        if (playerMp >= playerMaxMp)
+            playerMp = playerMaxMp;
+        if (playerMp <= 0)
+            playerMp = 0;
+
+        UIMain.Instance().UpdateMpBar(playerMp / 100.0f);
     }
     /// <summary>
     /// 開始攻擊中移動
@@ -586,10 +603,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
     void AttackMoveStop()
     {
         attackMoveSpeed = 0f;
-    }
-    void PlayerMpUpdate()
-    {
-        UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
     }
     /// <summary>
     /// 儲存要給誰觀察
@@ -688,7 +701,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
     }
     public void RelifeButton()
     {
-        Debug.Log("button");
         StartCoroutine(PlayerReliveRoutine());
     }
 }
