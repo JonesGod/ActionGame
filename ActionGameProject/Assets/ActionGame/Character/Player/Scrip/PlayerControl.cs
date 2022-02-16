@@ -76,6 +76,9 @@ public class PlayerControl : MonoBehaviour, BeObserver
     public bool dead;//死亡動畫
     public bool getup;//起身動畫
 
+    /// 按鍵選擇布林值
+    public bool relife=false;
+
     Vector3 move = Vector3.zero;//角色總移動量
     Vector3 targetVector;//自動鎖定的方向    
 
@@ -644,23 +647,28 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// </summary>
     public void StarRelive()
     {
-        StartCoroutine(PlayerReliveRoutine());
+        StartCoroutine(ShowScreen());
     }
     /// <summary>
     /// 玩家復活流程
     /// </summary>
     /// <returns></returns>
+    protected IEnumerator ShowScreen()
+    {
+        while (stateinfo.shortNameHash != hashDead || !isTrasition)
+        {
+            yield return null;
+        }
+        ///UI.enable;
+        //while (!getbutton)
+        //{
+        //    yield return null;
+        //}
+        if (relife)
+            StartCoroutine(PlayerReliveRoutine());
+    }
     protected IEnumerator PlayerReliveRoutine()
     {
-        while(stateinfo.shortNameHash!=hashDead || !isTrasition)
-        {
-            yield return null;
-        }
-        while(!Input.GetKeyDown("t"))
-        {
-            yield return null;
-        }
-
         if (currentCheckPoint != null)
         {
             transform.position= currentCheckPoint;
@@ -678,5 +686,9 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         playerStateChange = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
+    }
+    bool RelifeButton()
+    {
+        return true;
     }
 }
