@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if (playerCurrnetState == PlayerControl.PlayerState.dead)
+            if ((playerCurrnetState == PlayerControl.PlayerState.dead) || hurt)
                 return Vector2.zero;
 
             return m_Movement;
