@@ -47,12 +47,18 @@ public class ArrowShoot : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject go = load.LoadArrow();
+        GameObject go = load.LoadArrow();        
         arrow=go.GetComponent<Arrow>();
         if (charge < 1.5f)          //決定這一箭是普通箭還是爆炸箭
+        {
+            arrow.transform.name = "Arrow(Clone)";
             arrow.IsNormal();
+        }
         else
+        {
+            arrow.transform.name = "explode";
             arrow.IsExplode();
+        }
 
         go.transform.position = transform.position;//調整箭矢位置為弓的位置
         go.transform.forward = arrowDirection;//調整箭矢前方為弓得前方

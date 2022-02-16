@@ -68,8 +68,8 @@ public class Arrow : MonoBehaviour
         for(int i=0;i<monster.Count;i++)
         {
             float dis = (monster[i].transform.position - transform.position).magnitude;
-            //if (dis < explodeRadius)
-            //    monster.hurt;
+            if (dis < explodeRadius)
+                monster[i].CallHurt(20,false);
         }
         gameObject.SetActive(false);
     }
