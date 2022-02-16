@@ -508,7 +508,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
         float last = 100.0f;//比鎖定距離還長的隨意數值用來給迴圈的第一圈比較用
         for (int i = 0; i < monster.Count; i++)
         {
-            Debug.Log(monster[i].name);
             vec = monster[i].transform.position - transform.position; //獲得鎖定的方向
             if (vec.magnitude >= lockDistancs || (monster[i].currentState == FSMState.Dead))
             {               

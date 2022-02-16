@@ -79,7 +79,7 @@ public class DragonBossFSM : FSMBase
             angryAttack = false;
 			return true;
 		}
-        else if(fDist > 2 * data.attackRange)
+        else if(fDist > data.strafeRange)
         {
             normalAttack = false;
             chargeAttack = true;
@@ -173,7 +173,7 @@ public class DragonBossFSM : FSMBase
         animator.SetBool("IsWalkForward", false);
         animator.SetBool("IsRunForward", true);
         var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
         //myRigidbody.velocity = (data.target.transform.position - transform.position) * data.speed;
         //transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
@@ -243,7 +243,7 @@ public class DragonBossFSM : FSMBase
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsWalkForward", true);        
             var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
             //myRigidbody.velocity = (data.target.transform.position - transform.position) * data.speed;            
             //transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
@@ -259,7 +259,7 @@ public class DragonBossFSM : FSMBase
             data.speed = 0;
             myRigidbody.velocity = transform.forward * data.speed;
             var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
             //transform.LookAt(data.target.transform.position);
             currentTime += Time.deltaTime;
             return;
@@ -290,10 +290,11 @@ public class DragonBossFSM : FSMBase
         }        
     }    
     public override void DoAttackState()
-    {   
+    {
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ClawAttack"))
-        {
+        {            
+            myRigidbody.velocity = Vector3.zero;
             //Debug.Log("IsAttack");
             return;
         }
@@ -303,7 +304,6 @@ public class DragonBossFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
-        myRigidbody.velocity = Vector3.zero;
         animator.SetTrigger("NormalAttack");
     }    
     public override void CheckHurtState()
@@ -465,9 +465,11 @@ public class DragonBossFSM : FSMBase
 
     private void DoAngryAttackState()
     {
+        
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Claw Attack"))
-        {
+        {            
+            myRigidbody.velocity = Vector3.zero;
             Debug.Log("Angry Claw Attack");
             //Debug.Log("IsAttack");
             return;
@@ -489,7 +491,6 @@ public class DragonBossFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
-        myRigidbody.velocity = Vector3.zero;
         animator.SetTrigger("AngryAttack");
     }
 

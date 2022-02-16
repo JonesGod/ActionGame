@@ -512,14 +512,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.06445993
         functionName: StartRotateTowardPlayer
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: bdcbbbc434cf86a4a996cf23564ab039, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.52941173
+      - time: 0.54876655
         functionName: EndRotateTowardPlayer
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: bdcbbbc434cf86a4a996cf23564ab039, type: 3}
