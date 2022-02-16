@@ -6,8 +6,13 @@ namespace SG
 {
     public class WorldEvManager : MonoBehaviour
     {
-        //Wall
+
         public DragonBossHealthBar dragonBossHPBar;
+
+        public List<FogWell> fogWells;
+        //public UIBossHPBar bossHPBar;
+        //public EnemyBossManager boss;
+
 
         public bool bossFightIsActive;      //正在打boss
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
@@ -19,6 +24,11 @@ namespace SG
             bossHasBeenAwakened = true;
             dragonBossHPBar.SetUIHPBarToActive();
             //in wall(?)
+
+            foreach (var fogWall in fogWells)
+            {
+                fogWall.ActivateFogWell();
+            }
         }
 
         public void BossHasBeenDefeated()
@@ -27,6 +37,10 @@ namespace SG
             bossFightIsActive = false;
 
             //out wall(?)
+            foreach (var fogWall in fogWells)
+            {
+                fogWall.DeactivteFoWell();
+            }
         }
 
     }
