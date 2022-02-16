@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private float arrowSpeed = 40.0f;//½b¥Ú­¸¦æ³t«×
-    private float gravity=3f ;//­«¤O
-    private float liveTime=0.0f;//¦s¦b®É¶¡
-    private float fallSpeed=0.0f;//¼Y¸¨³t«×
-    private float explodeRadius = 15f;//Ãz¬µ¥b®|
+    private float arrowSpeed = 40.0f;//ï¿½bï¿½Ú­ï¿½ï¿½ï¿½tï¿½ï¿½
+    private float gravity=3f ;//ï¿½ï¿½ï¿½O
+    private float liveTime=0.0f;//ï¿½sï¿½bï¿½É¶ï¿½
+    private float fallSpeed=0.0f;//ï¿½Yï¿½ï¿½ï¿½tï¿½ï¿½
+    private float explodeRadius = 15f;//ï¿½zï¿½ï¿½ï¿½bï¿½|
 
-    private bool explodeFlag=false;//¬O§_¬°Ãz¬µ½b
+    private bool explodeFlag=false;//ï¿½Oï¿½_ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½b
 
-    private List<FSMBase> monster;//¦s¨ú©Çª«¸ê°T
+    private List<FSMBase> monster;//ï¿½sï¿½ï¿½ï¿½Çªï¿½ï¿½ï¿½T
     private SphereCollider collider;
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         monster = new List<FSMBase>();
-        GameObject[] allMonster = GameManager.Instance.allMonster;//±N³õ´º¸Ìtag¬°Monsterªºª«¥ó¦s°_¨Ó
+        GameObject[] allMonster = GameManager.Instance.allMonster;//ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tagï¿½ï¿½Monsterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½_ï¿½ï¿½
         if (allMonster != null || allMonster.Length > 0)
         {
             foreach (GameObject m in allMonster)
@@ -37,12 +37,12 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * arrowSpeed * Time.deltaTime;//½b¥Ú©¹«e­¸¦æ³t«×
-        fallSpeed += gravity*Time.deltaTime;//­«¤O­pºâ
-        transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//½b¥Ú¼Y¸¨³t«×
+        transform.position += transform.forward * arrowSpeed * Time.deltaTime;//ï¿½bï¿½Ú©ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½tï¿½ï¿½
+        fallSpeed += gravity*Time.deltaTime;//ï¿½ï¿½ï¿½Oï¿½pï¿½ï¿½
+        transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//ï¿½bï¿½Ú¼Yï¿½ï¿½ï¿½tï¿½ï¿½
 
-        liveTime += Time.deltaTime;//­pºâ¦s¦b®É¶¡
-        if(liveTime>=10f)//¦s¦b¶W¹L10¬í®É®ø¥¢
+        liveTime += Time.deltaTime;//ï¿½pï¿½ï¿½sï¿½bï¿½É¶ï¿½
+        if(liveTime>=10f)//ï¿½sï¿½bï¿½Wï¿½L10ï¿½ï¿½ï¿½É®ï¿½ï¿½ï¿½
         {
             ArrowDestory();
         }
@@ -60,18 +60,18 @@ public class Arrow : MonoBehaviour
         }
     }
     /// <summary>
-    /// ½b¥Ú®ø¥¢
+    /// ï¿½bï¿½Ú®ï¿½ï¿½ï¿½
     /// </summary>
     void ArrowDestory()
     {
-        liveTime = 0.0f;//ªì©l¤Æ¦s¦b®É¶¡
-        fallSpeed = 0.0f;//ªì©l¤Æ½b¥Úªº¼Y¸¨³t«×
+        liveTime = 0.0f;//ï¿½ï¿½lï¿½Æ¦sï¿½bï¿½É¶ï¿½
+        fallSpeed = 0.0f;//ï¿½ï¿½lï¿½Æ½bï¿½Úªï¿½ï¿½Yï¿½ï¿½ï¿½tï¿½ï¿½
         gameObject.SetActive(false);
     }
     void ArrowExplode()
     {
-        liveTime = 0.0f;//ªì©l¤Æ¦s¦b®É¶¡
-        fallSpeed = 0.0f;//ªì©l¤Æ½b¥Úªº¼Y¸¨³t«×
+        liveTime = 0.0f;//ï¿½ï¿½lï¿½Æ¦sï¿½bï¿½É¶ï¿½
+        fallSpeed = 0.0f;//ï¿½ï¿½lï¿½Æ½bï¿½Úªï¿½ï¿½Yï¿½ï¿½ï¿½tï¿½ï¿½
        
         for(int i=0;i<monster.Count;i++)
         {
@@ -90,18 +90,18 @@ public class Arrow : MonoBehaviour
         explodeFlag = false;
     }
     /// <summary>
-    /// triggerª©Ãz¬µ½b
+    /// triggerï¿½ï¿½ï¿½zï¿½ï¿½ï¿½b
     /// </summary>
     void ExplodeTest()
     {
-        liveTime = 0.0f;//ªì©l¤Æ¦s¦b®É¶¡
-        fallSpeed = 0.0f;//ªì©l¤Æ½b¥Úªº¼Y¸¨³t«×
+        liveTime = 0.0f;//ï¿½ï¿½lï¿½Æ¦sï¿½bï¿½É¶ï¿½
+        fallSpeed = 0.0f;//ï¿½ï¿½lï¿½Æ½bï¿½Úªï¿½ï¿½Yï¿½ï¿½ï¿½tï¿½ï¿½
         
         StartCoroutine(ExplodeTime());
     }
     protected IEnumerator ExplodeTime()
     {
-        collider.radius = 10.0f;
+        collider.radius = 25.0f;
         arrowSpeed = 0.0f;
         gravity = 0.0f;
         yield return new WaitForSeconds(0.2f);

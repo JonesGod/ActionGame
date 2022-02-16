@@ -8,7 +8,6 @@ namespace SG
     {
         //Wall
         public DragonBossHealthBar dragonBossHPBar;
-        EnemyBossManager boss;
 
         public bool bossFightIsActive;      //正在打boss
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight

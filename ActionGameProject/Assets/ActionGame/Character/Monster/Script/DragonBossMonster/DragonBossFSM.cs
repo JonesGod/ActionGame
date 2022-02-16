@@ -346,7 +346,11 @@ public class DragonBossFSM : FSMBase
     public override void CallHurt(float damageAmount, bool isHead)
     {        
         data.hp -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);  
+        myHealth.ModifyHealth(damageAmount);
+        if(data.target == null)
+        {
+            data.target = GameManager.Instance.GetPlayer();
+        }
         if(data.hp <= maxHp / 2)
         {
             isAngry = true;
@@ -355,10 +359,6 @@ public class DragonBossFSM : FSMBase
         {
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 
-            if(data.target == null)
-            {
-                data.target = GameManager.Instance.GetPlayer();
-            }
             data.speed = 0.0f;
             myRigidbody.velocity = transform.forward * data.speed;
             doState = DoHurtState;
