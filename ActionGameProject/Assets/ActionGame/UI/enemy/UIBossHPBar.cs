@@ -11,6 +11,8 @@ namespace SG
         public Text bossName;
         public Slider slider;
 
+
+        //設定要顯示的Boss血條跟名子
         private void Awake()
         {
             slider = GetComponentInChildren<Slider>();
@@ -22,17 +24,17 @@ namespace SG
             SetHPBerToInactive();
         }
 
-
+        //亮出名子
         public void SetBossName(string name) 
         {
             bossName.text = name;
         }
-
+        //亮出名子打開
         public void SetUIHPBarToActive()
         {
             slider.gameObject.SetActive(true);
         }
-
+        //亮出名子關閉
         public void SetHPBerToInactive()
         {
             slider.gameObject.SetActive(false);
@@ -43,6 +45,7 @@ namespace SG
             slider.maxValue = maxHP;
             slider.value = maxHP;
         }
+
 
         public void SetBossCurrentHP(int currentHP)
         {

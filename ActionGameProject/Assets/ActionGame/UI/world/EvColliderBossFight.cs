@@ -13,6 +13,8 @@ namespace SG
             worldEvManager = FindObjectOfType<WorldEvManager>();
         }
 
+
+        //偵測對應tag後觸發
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
