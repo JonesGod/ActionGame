@@ -25,8 +25,6 @@ namespace SG
         {
             bossHPBar.SetBossName(bossName);
             bossHPBar.SetBossCurrentHP(eamyStats.maxHp);
-        }
-
-        
+        }        
     }
 }

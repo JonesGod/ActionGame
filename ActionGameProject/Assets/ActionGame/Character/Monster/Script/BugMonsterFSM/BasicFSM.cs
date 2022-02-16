@@ -366,12 +366,12 @@ public class BasicFSM : FSMBase
     }
     public override void CallHurt(float damageAmount, bool isHead)
     {        
-        Debug.Log("TakeDamage");
         for(int i = 0; i < partnerMonster.Count; i++)
         {
             partnerMonster[i].HelpPartner();           
         }
         data.hp -= damageAmount;
+        myHealth.ModifyHealth(damageAmount);  
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  

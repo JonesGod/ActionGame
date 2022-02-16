@@ -345,8 +345,8 @@ public class DragonBossFSM : FSMBase
     }
     public override void CallHurt(float damageAmount, bool isHead)
     {        
-        Debug.Log("TakeDamage");
         data.hp -= damageAmount;
+        myHealth.ModifyHealth(damageAmount);  
         if(data.hp <= maxHp / 2)
         {
             isAngry = true;
@@ -359,9 +359,14 @@ public class DragonBossFSM : FSMBase
             {
                 data.target = GameManager.Instance.GetPlayer();
             }
+            data.speed = 0.0f;
+            myRigidbody.velocity = transform.forward * data.speed;
             doState = DoHurtState;
             checkState = CheckHurtState;
-        }                
+            return;
+        }          
+        doState = DoChaseState;
+        checkState = CheckChaseState;      
     }
     public override void CheckDeadState()
     {
@@ -390,7 +395,7 @@ public class DragonBossFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(2.0f, 3.5f);
+            data.strafeTime = Random.Range(1.0f, 2.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoStrafeState;
@@ -450,7 +455,7 @@ public class DragonBossFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(2.0f, 3.5f);
+            data.strafeTime = Random.Range(0.5f, 2.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoStrafeState;

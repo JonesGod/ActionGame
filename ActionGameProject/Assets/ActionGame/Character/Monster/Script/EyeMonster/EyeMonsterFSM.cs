@@ -32,7 +32,6 @@ public class EyeMonsterFSM : FSMBase
         targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(currentState != FSMState.Dead)
@@ -374,8 +373,8 @@ public class EyeMonsterFSM : FSMBase
     }
     public override void CallHurt(float damageAmount, bool isHead)
     {        
-        Debug.Log("TakeDamage");
         data.hp -= damageAmount;
+        myHealth.ModifyHealth(damageAmount);  
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  

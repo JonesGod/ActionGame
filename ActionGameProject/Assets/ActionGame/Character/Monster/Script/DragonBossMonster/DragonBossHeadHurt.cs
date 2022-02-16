@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class DragonBossHeadHurt : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public FSMBase myFSM;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other) 
     {
-        
+        if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
+        {
+            myFSM.CallHurt(30, true); 
+        }
+            
+        if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
+        {
+            myFSM.CallHurt(20, true);
+        }
     }
 }

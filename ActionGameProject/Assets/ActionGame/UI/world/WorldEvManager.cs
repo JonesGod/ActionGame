@@ -7,30 +7,25 @@ namespace SG
     public class WorldEvManager : MonoBehaviour
     {
         //Wall
-        UIBossHPBar bossHPBar;
+        public DragonBossHealthBar dragonBossHPBar;
         EnemyBossManager boss;
 
-        public bool bossFightIsAcyive;      //正在打boss
+        public bool bossFightIsActive;      //正在打boss
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
         public bool bossHasBeenDefeated;    //boss被幹掉
 
-        private void Awake()
-        {
-            bossHPBar = FindObjectOfType<UIBossHPBar>();
-        }
-
         public void ActivateBossFight()
         {
-            bossFightIsAcyive = true;
+            bossFightIsActive = true;
             bossHasBeenAwakened = true;
-            bossHPBar.SetUIHPBarToActive();
+            dragonBossHPBar.SetUIHPBarToActive();
             //in wall(?)
         }
 
         public void BossHasBeenDefeated()
         {
             bossHasBeenDefeated = true;
-            bossFightIsAcyive = false;
+            bossFightIsActive = false;
 
             //out wall(?)
         }

@@ -11,8 +11,7 @@ public class DragonBossHeadAttackTrigger : MonoBehaviour
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
     }
     private void OnTriggerEnter(Collider other) 
-    {
-        Debug.Log(other.transform.name);         
+    {      
         if(other.transform.name == "NewLink")
         {
             Debug.Log("龍頭攻擊打到玩家");            

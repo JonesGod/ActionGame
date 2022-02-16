@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4052017859676170668}
   - component: {fileID: 2078308757556939852}
   - component: {fileID: 2067143908451562152}
+  - component: {fileID: 3999320733007527749}
+  - component: {fileID: 6457070819343936985}
   m_Layer: 9
   m_Name: Albino
   m_TagString: Monster
@@ -111,6 +113,7 @@ MonoBehaviour:
     strafeRange: 18
     strafeTime: 0
     patrolTime: 0
+  myHealth: {fileID: 3999320733007527749}
   strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 0}
   isAngry: 0
@@ -142,6 +145,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 483298}
   headAttackObject: {fileID: 429462}
+--- !u!114 &3999320733007527749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2b5ae2bc17bdd459b902603628f40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myFSM: {fileID: 4052017859676170668}
+--- !u!114 &6457070819343936985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99210ad241bd7a441a71987e4be8a3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: " \u092C\u0921\u093C\u0940 \u091B\u093F\u092A\u0915\u0932\u0940"
 --- !u!1 &102148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,8 +2669,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.91, y: 3.178525, z: 5.475016}
-  m_Center: {x: 0, y: 2.0979636, z: -0.8021764}
+  m_Size: {x: 5.73, y: 2.744257, z: 5.475016}
+  m_Center: {x: 0, y: 1.9607568, z: -0.8021766}
 --- !u!1 &7557195705540857375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,8 +2714,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.68, y: 2.8221807, z: 4.9574203}
-  m_Center: {x: 0, y: 1.9593165, z: -0.76277816}
+  m_Size: {x: 5.8, y: 2.8221807, z: 5.75125}
+  m_Center: {x: 0, y: 1.9593167, z: -0.83695614}
 --- !u!114 &6829524487771733721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2699,6 +2728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a282bcc433143f244bfe39878e36a696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFSM: {fileID: 4052017859676170668}
 --- !u!1 &8951530741682984344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,7 +2740,7 @@ GameObject:
   - component: {fileID: 472169354514247550}
   - component: {fileID: 4933760296891677050}
   - component: {fileID: 2464614934473959044}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HeadHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2756,3 +2786,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef8aef24d416b44c8c5e3fbbd7139bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFSM: {fileID: 4052017859676170668}

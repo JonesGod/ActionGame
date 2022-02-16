@@ -9,10 +9,12 @@ public class Healthbar : MonoBehaviour
 
     [SerializeField]
     private Image foregroundImage;
+    [SerializeField]
+    private Health health;
 
     private void Awake()
     {
-        GetComponentInParent<Health>().OnHealthPctChanged += HandleHealthChanged;
+        health.OnHealthPctChanged += HandleHealthChanged;
     }
 
     private void HandleHealthChanged(float pct)

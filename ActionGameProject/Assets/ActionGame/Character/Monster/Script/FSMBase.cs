@@ -16,6 +16,7 @@ public class FSMBase : MonoBehaviour
 {
     public FSMState currentState;
     public BasicMonsterData data;
+    public Health myHealth;
     public virtual void CheckIdleState()
     {   
         

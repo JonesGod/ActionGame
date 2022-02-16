@@ -7,7 +7,7 @@ TagManager:
   - WayPoint
   - Monster
   - item
-  - Test
+  - Boss
   layers:
   - Default
   - TransparentFX

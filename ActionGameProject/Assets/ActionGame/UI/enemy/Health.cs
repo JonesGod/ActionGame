@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
     }
 
     //血量增減顯示
-    public void ModifyHealth(int amout)
+    public void ModifyHealth(float amout)
     {
         currentHealth -= amout;
 

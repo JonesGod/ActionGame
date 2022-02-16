@@ -850,7 +850,9 @@ MonoBehaviour:
     strafeRange: 6.59
     strafeTime: 0
     patrolTime: 0
+  myHealth: {fileID: 8245524938716043702}
   strafeDirection: 0
+  isHeadHurt: 0
   CharacterCollisionBlocker: {fileID: 2707218841098369799}
   partnerMonster: []
 --- !u!114 &5723763932724908821
@@ -1850,6 +1852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foregroundImage: {fileID: 3821777699673695263}
+  health: {fileID: 8245524938716043702}
 --- !u!1 &5026425094861008203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,7 +1968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFSM: {fileID: 1932400391517903377}
-  myHealth: {fileID: 8245524938716043702}
 --- !u!1 &8432329827190259799
 GameObject:
   m_ObjectHideFlags: 0
