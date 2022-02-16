@@ -18,6 +18,7 @@ public class DragonBossFSM : FSMBase
     public BoxCollider CharacterCollisionBlocker; 
     private float maxHp;
     public bool isAngry = false;
+    private bool isRotateTowardPlayer = false;
 
     void Start()
     {
@@ -32,6 +33,8 @@ public class DragonBossFSM : FSMBase
 
     void Update()
     {
+        // Quaternion targetRotation = Quaternion.LookRotation(GameManager.Instance.GetPlayer().transform.position - transform.position);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f);
         if(currentState != FSMState.Dead)
         {
             checkState();
@@ -169,7 +172,10 @@ public class DragonBossFSM : FSMBase
         data.speed = 15.0f;
         animator.SetBool("IsWalkForward", false);
         animator.SetBool("IsRunForward", true);
-        transform.LookAt(data.target.transform.position);
+        var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+        //myRigidbody.velocity = (data.target.transform.position - transform.position) * data.speed;
+        //transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
@@ -236,9 +242,10 @@ public class DragonBossFSM : FSMBase
             animator.SetBool("IsRunForward", false); 
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsWalkForward", true);        
-            //var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
-            transform.LookAt(data.target.transform.position);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            //myRigidbody.velocity = (data.target.transform.position - transform.position) * data.speed;            
+            //transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
@@ -251,7 +258,9 @@ public class DragonBossFSM : FSMBase
             animator.SetBool("IsIdle", true);     
             data.speed = 0;
             myRigidbody.velocity = transform.forward * data.speed;
-            transform.LookAt(data.target.transform.position);
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            //transform.LookAt(data.target.transform.position);
             currentTime += Time.deltaTime;
             return;
         }
@@ -338,7 +347,7 @@ public class DragonBossFSM : FSMBase
     {        
         Debug.Log("TakeDamage");
         data.hp -= damageAmount;
-        if(data.hp < maxHp / 2)
+        if(data.hp <= maxHp / 2)
         {
             isAngry = true;
         }
@@ -411,7 +420,10 @@ public class DragonBossFSM : FSMBase
             data.speed = 15.0f;
             animator.SetBool("IsWalkForward", false);
             animator.SetBool("IsRunForward", true);
-            transform.LookAt(data.target.transform.position);
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+            //myRigidbody.velocity = (data.target.transform.position - transform.position) * data.speed;
+            //transform.LookAt(data.target.transform.position);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
         }
@@ -451,16 +463,19 @@ public class DragonBossFSM : FSMBase
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Claw Attack"))
         {
+            Debug.Log("Angry Claw Attack");
             //Debug.Log("IsAttack");
             return;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Horn Attack"))
         {
+            Debug.Log("Horn Attack");
             //Debug.Log("IsAttack");
             return;
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Charge Attack"))
         {
+            Debug.Log("Angry Charge Attack");
             //Debug.Log("IsAttack");
             return;
         }
@@ -471,6 +486,27 @@ public class DragonBossFSM : FSMBase
         }
         myRigidbody.velocity = Vector3.zero;
         animator.SetTrigger("AngryAttack");
+    }
+
+    private void StartRotateTowardPlayer()
+    {
+        isRotateTowardPlayer = true;
+        StartCoroutine(RotateTowardPlayer());
+    }
+    private void EndRotateTowardPlayer()
+    {
+        isRotateTowardPlayer = false;
+    }
+    protected IEnumerator RotateTowardPlayer()
+    {        
+        Debug.Log("Rotate");
+        while(isRotateTowardPlayer != false)
+        {
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.8f);
+            yield return null;
+        }
+        Debug.Log("RotateTowardPlayerOff");
     }
     public override void PlayerIsDead()
     {

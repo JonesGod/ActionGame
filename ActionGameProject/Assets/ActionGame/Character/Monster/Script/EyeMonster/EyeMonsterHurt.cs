@@ -8,9 +8,7 @@ public class EyeMonsterHurt : MonoBehaviour
     public Health myHealth;
 
     private void OnTriggerEnter(Collider other) 
-    {
-        Debug.Log(other.transform.name);
-        
+    {        
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
         {
             myFSM.CallHurt(30, false); 

@@ -151,7 +151,6 @@ public class EyeMonsterFSM : FSMBase
 		float fDist = v.magnitude;     
         if(fDist <= 5)
         {
-            Debug.Log("dasasd");
             data.speed = 0.0f;
             myRigidbody.velocity = transform.forward * data.speed;
             currentState = FSMState.Idle;

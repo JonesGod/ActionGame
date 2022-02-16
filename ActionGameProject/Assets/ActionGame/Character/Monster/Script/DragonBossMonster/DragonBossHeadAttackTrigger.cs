@@ -12,6 +12,7 @@ public class DragonBossHeadAttackTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
+        Debug.Log(other.transform.name);         
         if(other.transform.name == "NewLink")
         {
             Debug.Log("龍頭攻擊打到玩家");            

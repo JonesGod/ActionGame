@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 483298}
   - component: {fileID: 5661212391396551499}
   - component: {fileID: 3976957950808387871}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1823,7 +1823,7 @@ GameObject:
   - component: {fileID: 429462}
   - component: {fileID: 2246709682555238414}
   - component: {fileID: 8580425081564305599}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: UpperHead02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 1074174463548188830}
   - component: {fileID: 7637170981368849633}
   - component: {fileID: 6829524487771733721}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BodyHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
