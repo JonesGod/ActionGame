@@ -75,7 +75,7 @@ public class PlayerInput : MonoBehaviour
             moveFlag = false;
 
         ///劍攻擊
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !(playerCurrnetState == PlayerControl.PlayerState.dead))
             attack = true;
         if (Input.GetButtonDown("Fire2"))
             specialAttack = true;

@@ -659,13 +659,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             yield return null;
         }
-        ///UI.enable;
-        //while (!getbutton)
-        //{
-        //    yield return null;
-        //}
-        if (relife)
-            StartCoroutine(PlayerReliveRoutine());
+        GameOverUI.Instance.OpenGameOverScreen();
+        ///yield return ScreenFadeOut
     }
     protected IEnumerator PlayerReliveRoutine()
     {
@@ -680,15 +675,18 @@ public class PlayerControl : MonoBehaviour, BeObserver
         m_Am.SetTrigger("getup");
         playerHp = playerMaxHp;
         UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
-        while (stateinfo.shortNameHash !=hashGetup || !isTrasition)
-        {
-            yield return null;
-        }
+
+        GameOverUI.Instance.CloseGameOverScreen();
+        //yield return ScreenFadeIn   
+        
         playerStateChange = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
+        
+        yield return null;
     }
-    bool RelifeButton()
+    public void RelifeButton()
     {
-        return true;
+        Debug.Log("button");
+        StartCoroutine(PlayerReliveRoutine());
     }
 }
