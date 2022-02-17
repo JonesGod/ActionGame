@@ -13,9 +13,8 @@ public class BasicFSM : FSMBase
     private Animator animator;
     private float currentTime;
     public int strafeDirection;
-    public bool isHeadHurt = false;
     
-    Rigidbody myRigidbody;
+    public Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
 
     public List<BasicFSM> partnerMonster;

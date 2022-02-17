@@ -853,6 +853,7 @@ MonoBehaviour:
   myHealth: {fileID: 8245524938716043702}
   strafeDirection: 0
   isHeadHurt: 0
+  myRigidbody: {fileID: 0}
   CharacterCollisionBlocker: {fileID: 2707218841098369799}
   partnerMonster: []
 --- !u!114 &5723763932724908821
