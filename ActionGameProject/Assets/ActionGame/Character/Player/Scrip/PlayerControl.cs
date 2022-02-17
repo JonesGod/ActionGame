@@ -74,11 +74,15 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool runIsNext;//一般跑步
     private bool battleRunIsNext;//戰鬥跑步
 
-    public bool dead;//死亡動畫
-    public bool getup;//起身動畫
+    ///玩家技能啟用狀態
+    private bool explodeArrowLock = true;
+    private bool swordSkillLock = true;
+
+    [HideInInspector] public bool dead;//死亡動畫
+    [HideInInspector] public bool getup;//起身動畫
 
     /// 按鍵選擇布林值
-    public bool relife=false;
+    [HideInInspector] public bool relife=false;
 
     Vector3 move = Vector3.zero;//角色總移動量
     Vector3 targetVector;//自動鎖定的方向    
@@ -116,6 +120,15 @@ public class PlayerControl : MonoBehaviour, BeObserver
     }
     void Update()
     {
+        if(Input.GetKeyDown("f1"))
+        {
+            UnlockSkill(1);
+        }
+        if (Input.GetKeyDown("f2"))
+        {
+            UnlockSkill(2);
+        }
+
         BowAngle();
         TargetSearch();
         Alert();
@@ -189,12 +202,17 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         if(m_Input.specialAttack)   //右鍵攻擊
         {
-            m_Am.ResetTrigger("AttackTrigger");
-            m_Am.SetTrigger("SpecialAttackTrigger");
+            if (!swordSkillLock)
+            {
+                m_Am.ResetTrigger("AttackTrigger");
+                m_Am.SetTrigger("SpecialAttackTrigger");
+            }
             m_Input.specialAttack = false;
         }
         if(m_Input.bowAttack)  //弓左鍵射擊
         {
+            m_Am.ResetTrigger("AttackTrigger");
+
             m_ArrowShoot.GetCharge(charge,playerMp);
             charge = 0f;
             m_Am.SetTrigger("BowAttackTrigger");
@@ -205,6 +223,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
             charge += Time.deltaTime;
             if (charge > 2.0f)
                 charge = 2.0f;
+            if ((playerMp < 25) || explodeArrowLock)//玩家魔力不足25，或還未獲得爆炸箭時改用一般箭矢
+                charge = 1.0f;
 
             m_Am.SetFloat(m_ChargeTime, charge);
         }
@@ -698,8 +718,24 @@ public class PlayerControl : MonoBehaviour, BeObserver
         
         yield return null;
     }
+    /// <summary>
+    /// 玩家復活按鈕
+    /// </summary>
     public void RelifeButton()
     {
         StartCoroutine(PlayerReliveRoutine());
+    }
+    public void UnlockSkill(int number)
+    {
+        switch(number)
+        {
+            case 1:
+                explodeArrowLock = false;
+                break;
+            case 2:
+                swordSkillLock = false;
+                break;
+        }
+        
     }
 }

@@ -79,12 +79,6 @@ public class FolowCamera : MonoBehaviour
         CameraRotate();//隨時更新一般狀態的攝影機位置與轉向
         BowCameraRotate();//隨時更新弓狀態的攝影機位置與轉向
 
-        if (Input.GetButtonDown("Switch") && !isSwitch && PlayerInput.Instance.cantBowState
-            && PlayerInput.Instance.rollToBow && !PlayerInput.Instance.bowShoot)                                   //切換中判斷
-        {
-            isSwitch = true;
-            zeroPoint = 0f;
-        }
         if (PlayerInput.Instance.bowState)
         {
             lastPosition = normalPosition;
@@ -116,6 +110,9 @@ public class FolowCamera : MonoBehaviour
         Gizmos.color = new Color(0.0f, 1.0f, 0.0f);
         Gizmos.DrawLine(transform.position, cameraPosition);
     }
+    /// <summary>
+    /// 牆壁偵測
+    /// </summary>
     void WallDetect()
     {
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
@@ -176,9 +173,17 @@ public class FolowCamera : MonoBehaviour
 
         if ((cameraPosition - nextPosition).magnitude < 0.05f)//快到位置時直接到點
         {
-            isSwitch = false;
             cameraPosition = nextPosition;
+            isSwitch = false;
         }
+    }
+    /// <summary>
+    /// 開始弓切換的參數設定
+    /// </summary>
+    public void SwitchSet()
+    {
+        isSwitch = true;
+        zeroPoint = 0f;
     }
     /// <summary>
     /// 一般狀態下的滑鼠滑動限制

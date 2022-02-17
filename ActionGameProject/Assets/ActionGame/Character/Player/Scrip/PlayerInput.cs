@@ -35,6 +35,9 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool hurtIsNext;
     [HideInInspector] public PlayerControl.PlayerState playerCurrnetState;
 
+    ///弓箭能力鎖
+    private bool bowLock = true;
+
     public Vector2 MoveInput
     {
         get
@@ -90,16 +93,22 @@ public class PlayerInput : MonoBehaviour
         
         if (Input.GetButtonDown("Avoid"))                  
             avoid = true;
+
         ///弓狀態判定
         CantBow();
-        if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState
-            && rollToBow)
+        if (!bowLock)
         {
-            bowState = true;
-        }
-        else if(Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch && !bowShoot)
-        {
-            bowState = false;
+            if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState
+                && rollToBow)
+            {
+                FolowCamera.Instance.SwitchSet();
+                bowState = true;
+            }
+            else if (Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch && !bowShoot)
+            {
+                FolowCamera.Instance.SwitchSet();
+                bowState = false;
+            }
         }
     }
     /// <summary>
@@ -109,5 +118,9 @@ public class PlayerInput : MonoBehaviour
     void CantBow()
     {
         cantBowState=!attackState && !rollIsNext && !hurt && !hurtIsNext;
+    }
+    public void BowUnlock()
+    {
+        bowLock = false;
     }
 }

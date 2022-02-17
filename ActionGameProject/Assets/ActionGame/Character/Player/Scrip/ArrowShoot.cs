@@ -62,7 +62,7 @@ public class ArrowShoot : MonoBehaviour
         if ((charge < 1.5f) || (playerMp<= explodeCost))          //決定這一箭是普通箭還是爆炸箭
         {
             arrow.IsNormal();
-            player.MpReduce(10);
+            player.MpReduce(normalCost);
         }
         else if(playerMp> explodeCost)
         {
