@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SeaMonsterAttack : MonoBehaviour
-{    
-    GameObject player;
-    void start()
-    {
-        player = GameManager.Instance.GetPlayer();
-    }
+{
+    public GameObject bulletSpawnPosition;
+    public SeaMonsterBulletPool monsterBulletPool;
     public void ShootBullet()
     {
-        Vector3 targetDirection = player.transform.position - this.transform.position;        
+        Debug.Log("shoot");
+        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
 }
