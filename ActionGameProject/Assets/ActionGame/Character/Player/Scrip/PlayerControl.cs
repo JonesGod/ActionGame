@@ -738,9 +738,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             case 1:
                 explodeArrowLock = false;
+                UIMain.Instance().ExplodeArrowUnlock();
                 break;
             case 2:
                 swordSkillLock = false;
+                UIMain.Instance().SwordSkillUnLock();
                 break;
         }
         

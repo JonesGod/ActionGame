@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;//存取WASD輸入
     private Vector2 m_Mouse;//存取滑鼠滑動
 
+    private bool skillWindowIsOpen=false;//技能視窗是否開啟
+
     ///提供布林值給PlayerControl判斷
     [HideInInspector] public bool moveFlag = false;
     [HideInInspector] public bool attack = false;
@@ -68,10 +70,21 @@ public class PlayerInput : MonoBehaviour
     }
     void Update()
     {
-        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        ///技能視窗
+        if (Input.GetButtonDown("SkillWindow"))
+        {
+            skillWindowIsOpen = UIMain.Instance().OpenSkillWindow();
+        }
+        if(skillWindowIsOpen)
+        {
+            return;
+        }
 
-        
+        ///WASD輸入
+        m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        ///滑鼠滑動
+        m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+    
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))        
             moveFlag = true;        
         else        
@@ -122,5 +135,6 @@ public class PlayerInput : MonoBehaviour
     public void BowUnlock()
     {
         bowLock = false;
+        UIMain.Instance().BowUnlock();
     }
 }

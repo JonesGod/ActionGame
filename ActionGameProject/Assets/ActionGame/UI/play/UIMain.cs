@@ -12,7 +12,7 @@ public class UIMain : MonoBehaviour
     public Image m_MpBar;
 
     public GameObject m_PlayerObject;
-    
+    public GameObject skillWindow;
     
 
 
@@ -28,16 +28,12 @@ public class UIMain : MonoBehaviour
         
         m_HpBar.fillAmount = fValue;
     }
-
     //更新魔槽
     public void UpdateMpBar(float fValue)
     {
         
         m_MpBar.fillAmount = fValue;
     }
-
-
-
     public void ToggleGroupUpdate(ToggleGroup tg)
     {
         Toggle t = tg.GetFirstActiveToggle();
@@ -45,5 +41,36 @@ public class UIMain : MonoBehaviour
         {
             Debug.Log(t.name + ": On");
         }
+    }
+    /// <summary>
+    /// 開關技能視窗
+    /// </summary>
+    public bool OpenSkillWindow()
+    {
+        if(skillWindow.activeSelf==false)
+        {
+            skillWindow.SetActive(true);
+            return true;
+        }
+        else
+        {
+            skillWindow.SetActive(false);
+            return false;
+        }
+    }
+    public void BowUnlock()
+    {
+        GameObject BowLock = skillWindow.transform.GetChild(4).gameObject;
+        BowLock.SetActive(false);
+    }
+    public void ExplodeArrowUnlock()
+    {
+        GameObject ArrowLock = skillWindow.transform.GetChild(5).gameObject;
+        ArrowLock.SetActive(false);
+    }
+    public void SwordSkillUnLock()
+    {
+        GameObject swordSkillLock= skillWindow.transform.GetChild(3).gameObject;
+        swordSkillLock.SetActive(false);
     }
 }
