@@ -12,7 +12,7 @@ public class UIMain : MonoBehaviour
     public Image m_MpBar;
 
     public GameObject m_PlayerObject;
-  
+    
     
 
 
