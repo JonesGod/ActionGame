@@ -49,6 +49,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashBattleRoll=Animator.StringToHash("BattleRoll");
     readonly int hashRoll = Animator.StringToHash("Roll");
     readonly int hashBattleIdle= Animator.StringToHash("BattleIdle");
+    readonly int hashIdle = Animator.StringToHash("Idle");
     readonly int m_StateTime = Animator.StringToHash("StateTime");
     readonly int m_ChargeTime = Animator.StringToHash("ChargeTime");
     readonly int hashBowIdle = Animator.StringToHash("BowIdle");
@@ -65,7 +66,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool battleRollIsNext;//下個是戰鬥翻滾
     private bool rollState;//一般翻滾
     private bool rollIsNext;//下個是一般翻滾
-    private bool battleIdleIsNext;//下個Animation是Idle
+    private bool battleIdleIsNext;//下個Animation是battleIdle
+    private bool idleIsNext;//下個是Animation是Idle
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
@@ -259,7 +261,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             move = Vector3.Normalize(move) * speed * Time.deltaTime;
 
-        if (battleIdleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
+        if (battleIdleIsNext || idleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
         if (hurt)//受傷時移動量為0
@@ -426,6 +428,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
             battleIdleIsNext = true;
         else
             battleIdleIsNext = false;
+
+        if (nextStateinfo.shortNameHash == hashIdle)
+            idleIsNext = true;
+        else
+            idleIsNext = false;
 
         if (nextStateinfo.shortNameHash == hashBowIdle)
             bowIsNext = true;
