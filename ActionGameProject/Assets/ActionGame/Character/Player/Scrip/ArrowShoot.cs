@@ -9,18 +9,18 @@ public class ArrowShoot : MonoBehaviour
 
     public GameObject prefab;
 
-    private float charge;//»W¤O®É¶¡(¥ÑPlayer)
-    private int playerMp;
-    private int normalCost=10;//¤@¯ë®ø¯Ó
-    private int explodeCost = 25;//Ãz¬µ½bMP®ø¯Ó
+    private float charge;//ï¿½Wï¿½Oï¿½É¶ï¿½(ï¿½ï¿½Player)
+    private float playerMp;
+    private int normalCost=10;//ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int explodeCost = 25;//ï¿½zï¿½ï¿½ï¿½bMPï¿½ï¿½ï¿½ï¿½
 
     private ArrowLoad load;
     private Arrow arrow;
 
-    private Vector3 targetDirection;//·Ç¬P¥Ø¼Ð¤è¦V(¬Û¾÷¥¿«e¤è)
-    private Vector3 arrowDirection;//½b¥Ú­¸¦æ¤è¦V
-    private Vector3 arrowPosition;//½b¥Ú¥Í¦¨¤è¦V
-    private float targetDistance;//¥Ø¼Ð¨ìÄá¼v¾÷ªº¶ZÂ÷
+    private Vector3 targetDirection;//ï¿½Ç¬Pï¿½Ø¼Ð¤ï¿½V(ï¿½Û¾ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½)
+    private Vector3 arrowDirection;//ï¿½bï¿½Ú­ï¿½ï¿½ï¿½ï¿½V
+    private Vector3 arrowPosition;//ï¿½bï¿½Ú¥Í¦ï¿½ï¿½ï¿½V
+    private float targetDistance;//ï¿½Ø¼Ð¨ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class ArrowShoot : MonoBehaviour
             targetDirection = hit.point - cameraTrasform.position;
             arrowDirection = targetDirection;
             targetDistance = targetDirection.magnitude;
-            if (targetDistance < 15f)                      //·Ç¬P¥Ø¼ÐÂ÷¤Óªñ®É
+            if (targetDistance < 15f)                      //ï¿½Ç¬Pï¿½Ø¼ï¿½ï¿½ï¿½ï¿½Óªï¿½ï¿½
             {
                 targetDirection = cameraTrasform.position + cameraTrasform.forward * 15f;
             }
@@ -59,7 +59,7 @@ public class ArrowShoot : MonoBehaviour
 
         GameObject go = load.LoadArrow();        
         arrow=go.GetComponent<Arrow>();
-        if ((charge < 1.5f) || (playerMp<= explodeCost))          //¨M©w³o¤@½b¬O´¶³q½bÁÙ¬OÃz¬µ½b
+        if ((charge < 1.5f) || (playerMp<= explodeCost))          //ï¿½Mï¿½wï¿½oï¿½@ï¿½bï¿½Oï¿½ï¿½ï¿½qï¿½bï¿½Ù¬Oï¿½zï¿½ï¿½ï¿½b
         {
             arrow.IsNormal();
             player.MpReduce(normalCost);
@@ -70,11 +70,11 @@ public class ArrowShoot : MonoBehaviour
             player.MpReduce(explodeCost);
         }
 
-        go.transform.position = transform.position;//½Õ¾ã½b¥Ú¦ì¸m¬°¤}ªº¦ì¸m
-        go.transform.forward = arrowDirection;//½Õ¾ã½b¥Ú«e¤è¬°¤}±o«e¤è
+        go.transform.position = transform.position;//ï¿½Õ¾ï¿½bï¿½Ú¦ï¿½mï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½m
+        go.transform.forward = arrowDirection;//ï¿½Õ¾ï¿½bï¿½Ú«eï¿½è¬°ï¿½}ï¿½oï¿½eï¿½ï¿½
         go.SetActive(true);
     }
-    public void GetCharge(float ch, int mp)
+    public void GetCharge(float ch, float mp)
     {
         charge = ch;
         playerMp = mp;

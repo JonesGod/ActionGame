@@ -402,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   data:
-    hp: 120
+    hp: 10
     speed: 0
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}

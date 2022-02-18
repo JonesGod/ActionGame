@@ -199,6 +199,7 @@ public class SeaMonsterFSM : FSMBase
                 if(partnerMonster[i].currentState != FSMState.Dead)
                 {
                     partnerMonster[i].data.hp = 0;
+                    partnerMonster[i].canRelife = false;
                 }
             }                    
         }

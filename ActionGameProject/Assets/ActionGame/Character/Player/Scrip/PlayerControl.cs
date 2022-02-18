@@ -11,10 +11,10 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    private int playerHp = 100;//玩家生命
-    private int playerMaxHp = 100;//玩家生命最大值
-    private int playerMp = 10000;//玩家MP
-    private int playerMaxMp = 10000;//玩家MP最大值
+    private float playerHp = 300;//玩家生命
+    private float playerMaxHp = 300;//玩家生命最大值
+    private float playerMp = 1000;//玩家MP
+    private float playerMaxMp = 1000;//玩家MP最大值
 
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
@@ -603,7 +603,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if(playerHp <= 0)
             playerHp = 0;
 
-        UIMain.Instance().UpdateHpBar(playerHp / 100.0f);
+        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
     }
     public void MpReduce(int cost)
     {
@@ -613,7 +613,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (playerMp <= 0)
             playerMp = 0;
 
-        UIMain.Instance().UpdateMpBar(playerMp / 100.0f);
+        UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
     }
     /// <summary>
     /// 開始攻擊中移動

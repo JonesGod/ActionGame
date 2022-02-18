@@ -374,7 +374,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.47254124
+      - time: 0.42965186
         functionName: AttackColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 213de3523c36b2245b2e2ee203b56750, type: 3}

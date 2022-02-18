@@ -285,7 +285,7 @@ public class TrapBasicMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(1.0f, 4.0f);
+            data.strafeTime = Random.Range(2.0f, 4.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);
@@ -327,7 +327,7 @@ public class TrapBasicMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(1.0f, 2.0f);
+            data.strafeTime = Random.Range(1.5f, 2.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);
@@ -368,6 +368,7 @@ public class TrapBasicMonsterFSM : FSMBase
         }
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
+        data.speed = 0.0f;
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  

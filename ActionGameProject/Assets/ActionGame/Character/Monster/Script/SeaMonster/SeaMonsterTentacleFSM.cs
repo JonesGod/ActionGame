@@ -17,6 +17,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     //public BoxCollider CharacterCollisionBlocker; 
     Vector3 myPosition;    
     private bool isRotateTowardPlayer = false;
+    public bool canRelife = true;
 
     void OnEnable()
     {
@@ -177,7 +178,10 @@ public class SeaMonsterTentacleFSM : FSMBase
     }
     public override void DoDeadState()
     {
-        currentTime += Time.deltaTime;
+        if(canRelife == true)
+        {
+            currentTime += Time.deltaTime;
+        }
         if(animator.IsInTransition(0))
         {
             //Debug.Log("IsInTransition");

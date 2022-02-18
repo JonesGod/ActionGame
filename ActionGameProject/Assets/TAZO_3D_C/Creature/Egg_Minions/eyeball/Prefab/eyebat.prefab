@@ -431,7 +431,7 @@ MonoBehaviour:
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     attackRange: 3.6
-    sightRange: 11.78
+    sightRange: 23.87
     strafeRange: 6.34
     strafeTime: 0
     patrolTime: 0

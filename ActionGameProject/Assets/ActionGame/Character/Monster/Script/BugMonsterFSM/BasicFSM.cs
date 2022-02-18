@@ -370,7 +370,8 @@ public class BasicFSM : FSMBase
             partnerMonster[i].HelpPartner();           
         }
         data.hp -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);  
+        myHealth.ModifyHealth(damageAmount);
+        data.speed = 0.0f;
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  
