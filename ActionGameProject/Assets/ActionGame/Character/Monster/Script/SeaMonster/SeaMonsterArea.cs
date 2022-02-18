@@ -14,7 +14,7 @@ public class SeaMonsterArea : MonoBehaviour
             {
                 trapMonsters[i].SetActive(true);;
             }       
-            Destroy(this);     
+            Destroy(this.gameObject);     
         }
     }
 }

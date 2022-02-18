@@ -17,18 +17,20 @@ public class SeaMonsterFSM : FSMBase
     //public BoxCollider CharacterCollisionBlocker; 
     
     public SeaMonsterTentacleFSM[] partnerMonster;
+    Vector3 myPosition;
 
     void OnEnable()
     {
         currentEnemyTarget = GameManager.Instance.GetPlayer();
         data.target = currentEnemyTarget;
-        currentState = FSMState.Idle;
+        myPosition = new Vector3(this.transform.position.x, this.transform.position.y + 44, this.transform.position.z);
+        currentState = FSMState.Idle;        
         doState = DoIdleState;
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         data.strafeTime = Random.Range(3.0f, 4.0f);
-        currentTime = 0;
+        currentTime = 0;        
     }
 
     // Update is called once per frame
@@ -85,7 +87,7 @@ public class SeaMonsterFSM : FSMBase
     }
     public override void DoIdleState()
     {
-        var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);        
+        var targetRotation = Quaternion.LookRotation(data.target.transform.position - myPosition);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
         currentTime += Time.deltaTime;
     }    
@@ -115,8 +117,8 @@ public class SeaMonsterFSM : FSMBase
         }        
     }    
     public override void DoAttackState()
-    {   
-        var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);        
+    {
+        var targetRotation = Quaternion.LookRotation(data.target.transform.position - myPosition); 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Roar"))
@@ -194,7 +196,10 @@ public class SeaMonsterFSM : FSMBase
         {   
             for(int i = 0; i < partnerMonster.Length; i++)
             {
-                partnerMonster[i].data.hp = 0;
+                if(partnerMonster[i].currentState != FSMState.Dead)
+                {
+                    partnerMonster[i].data.hp = 0;
+                }
             }                    
         }
         animator.SetTrigger("Die");
@@ -208,7 +213,7 @@ public class SeaMonsterFSM : FSMBase
         if(data.hp > 0)
         {
             currentState = FSMState.Hurt;  
-            animator.SetTrigger("TakeDamage"); 
+            //animator.SetTrigger("TakeDamage"); 
             if(data.target == null)
             {
                 data.target = GameManager.Instance.GetPlayer();
@@ -239,6 +244,13 @@ public class SeaMonsterFSM : FSMBase
     public void ShootBullet()
     {
         
+    }
+    public void SummonTentacles()
+    {
+        for(int i = 0; i < partnerMonster.Length; i++)
+        {
+            partnerMonster[i].gameObject.SetActive(true);
+        }       
     }
 
     private void OnDrawGizmos() 

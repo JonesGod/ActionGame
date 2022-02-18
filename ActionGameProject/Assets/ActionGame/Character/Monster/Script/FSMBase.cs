@@ -10,7 +10,8 @@ public enum FSMState//列出怪物所有的狀態
     Attack,
     Hurt,
     Dead,
-    Patrol
+    Patrol,
+    ReallyDead
 }
 public class FSMBase : MonoBehaviour
 {

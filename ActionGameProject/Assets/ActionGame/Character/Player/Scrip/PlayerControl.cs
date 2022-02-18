@@ -13,8 +13,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
     private int playerHp = 100;//玩家生命
     private int playerMaxHp = 100;//玩家生命最大值
-    private int playerMp = 100;//玩家MP
-    private int playerMaxMp = 100;//玩家MP最大值
+    private int playerMp = 10000;//玩家MP
+    private int playerMaxMp = 10000;//玩家MP最大值
 
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
