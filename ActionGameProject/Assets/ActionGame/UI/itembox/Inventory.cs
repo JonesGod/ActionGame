@@ -26,6 +26,11 @@ public class Inventory : MonoBehaviour
     public int[] slotStack;
     public int maxStacks;
 
+    public int slotTmporary;
+
+    public int rest;
+    public bool shift;
+
     public bool canConsume;
 
 
@@ -41,6 +46,16 @@ public class Inventory : MonoBehaviour
    
     void Update()
     {
+        if (Input.GetKeyDown("left shift"))
+        {
+            shift = true;
+        }
+        if (Input.GetKeyUp("left shift"))
+        {
+            shift = false;
+        }
+
+
 
         for (int i = 0; i < slotsNumbr; i++)
         {
@@ -50,7 +65,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                stackText[i].text = "" + yourInventory[i].stack;
+                stackText[i].text = "" + slotStack[i];
             }
         }
 
@@ -87,9 +102,17 @@ public class Inventory : MonoBehaviour
             {
                 if (yourInventory[i].id == n)
                 {
-                    yourInventory[i].stack += 1;
-                    i = slotsNumbr;
-                    PickingUp.pick = false;
+
+                    if (slotStack[i] == maxStacks)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        slotStack[i] += 1;
+                        i = slotsNumbr;
+                        PickingUp.pick = false;
+                    }
                 }
             }
 
@@ -100,7 +123,7 @@ public class Inventory : MonoBehaviour
                 {
                     yourInventory[i] = Database.itemList[n];
 
-                    yourInventory[i].stack += 1;
+                    slotStack[i] += 1;
 
                     PickingUp.pick = false;
                 }
@@ -143,8 +166,22 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        //if (canConsume == true && Input.GetKeyDown("2"))
+        //{
+        //    if (slotStack[b] == 2)
+        //    {
+        //        PlayerControl.PLMP += yourInventory[b].nutritionalValue;
+        //        yourInventory[b] = Database.itemList[0];
+        //        slotStack[b] = 0;
+        //    }
+        //    else
+        //    {
+        //        slotStack[b]--;
+        //        PlayerControl.PLMP += yourInventory[b].nutritionalValue;
+        //    }
+        //}
 
-       
+
 
     }
 
@@ -163,15 +200,49 @@ public class Inventory : MonoBehaviour
 
     public void Drop(Image slotX)
     {
-        print("SP drag~~~" + slotX.name);
-        if (a!=b)
+
+        if (shift == true)
         {
-            draggedItem[0] = yourInventory[a];
-            yourInventory[a] = yourInventory[b];
-            yourInventory[b] = draggedItem[0];
-            a = 0;
-            b = 0;
-        }        
+            if (yourInventory[b].id == 0)
+            {
+                yourInventory[b] = yourInventory[a];
+                slotStack[b] = slotStack[a] / 2;
+                rest = slotStack[a] % 2;
+                slotStack[a] = slotStack[a] / 2 + rest;
+            }
+        }
+        else
+        {
+            print("SP drag~~~" + slotX.name);
+            if (a != b)
+            {
+                if (yourInventory[a].id != yourInventory[b].id)
+                {
+                    draggedItem[0] = yourInventory[a];
+                    slotTmporary = slotStack[a];
+                    yourInventory[a] = yourInventory[b];
+                    slotStack[a] = slotStack[b];
+                    yourInventory[b] = draggedItem[0];
+                    slotStack[b] = slotTmporary;
+                    a = 0;
+                    b = 0;
+                }
+                else
+                {
+                    if (slotStack[a] + slotStack[b] <= maxStacks)
+                    {
+                        slotStack[b] = slotStack[a] + slotStack[b];
+                        yourInventory[a] = Database.itemList[0];
+                    }
+                    else
+                    {
+                        slotStack[a] = slotStack[a] + slotStack[b] - maxStacks;
+                        slotStack[b] = maxStacks;
+                    }
+                }
+
+            }
+        }
     }
 
     public void Enter(Image slotX)

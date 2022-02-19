@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
     //UI use   Inventory CS:135
     public static float PLHP = 300;
+    public static float PLMP = 1000;
     //
 
     private float playerHp = 300;//玩家生命
@@ -127,7 +128,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
 
         //UI use   Inventory CS:135
-        PLHP = 100;
+        PLHP = 300;
+        PLMP = 1000;
 
 
     }
