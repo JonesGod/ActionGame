@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 5682684140736908119}
   - component: {fileID: 6120071934692621204}
   - component: {fileID: 2082425929961590457}
+  - component: {fileID: 7946609805382194815}
   m_Layer: 0
   m_Name: Tentacles-Red
   m_TagString: Monster
@@ -350,6 +351,7 @@ Transform:
   - {fileID: 400026}
   - {fileID: 400052}
   - {fileID: 400036}
+  - {fileID: 2773519701645087667}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -413,6 +415,7 @@ MonoBehaviour:
     patrolTime: 0
   myHealth: {fileID: 2082425929961590457}
   myRigidbody: {fileID: 0}
+  canRelife: 1
 --- !u!114 &2082425929961590457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +429,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFSM: {fileID: 6120071934692621204}
+--- !u!114 &7946609805382194815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce3f21889f734948993fe984008245e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttackObject: {fileID: 2773519701645087667}
 --- !u!1 &100022
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,8 +837,7 @@ Transform:
   m_LocalRotation: {x: -4.2748648e-17, y: -8.8566915e-10, z: -0.0045487364, w: 0.9999897}
   m_LocalPosition: {x: -0.1966362, y: -0.0000000047683715, z: -1.1368684e-15}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_Children:
-  - {fileID: 5202221674363781127}
+  m_Children: []
   m_Father: {fileID: 400032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1039,7 +1054,7 @@ Transform:
   m_Father: {fileID: 400014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3275002516636800594
+--- !u!1 &7339098074704989623
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1047,8 +1062,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5202221674363781127}
-  - component: {fileID: 6766019881750169135}
+  - component: {fileID: 2773519701645087667}
+  - component: {fileID: 4035197980203289976}
+  - component: {fileID: 7047802492665264168}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -1056,30 +1072,42 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5202221674363781127
+--- !u!4 &2773519701645087667
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275002516636800594}
-  m_LocalRotation: {x: 0.1202563, y: -0.05839769, z: 0.28374654, w: 0.9495347}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7339098074704989623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.628, z: 1.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400040}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15.16, y: -2.533, z: 32.938}
---- !u!65 &6766019881750169135
+  m_Father: {fileID: 400020}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4035197980203289976
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275002516636800594}
+  m_GameObject: {fileID: 7339098074704989623}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3271238, y: 0.67, z: 0.87}
-  m_Center: {x: 0.25848833, y: -4.814574e-10, z: 0.000000061628405}
+  m_Size: {x: 1, y: 1, z: 2.4448743}
+  m_Center: {x: 0, y: 0, z: 0.72243726}
+--- !u!114 &7047802492665264168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339098074704989623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457886b19f3091740857069a67f3df94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -250,6 +250,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.5631185
+        functionName: AttackColliderOn
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cce3f21889f734948993fe984008245e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.70243984
+        functionName: AttackColliderOff
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cce3f21889f734948993fe984008245e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
