@@ -18,7 +18,8 @@ public class PlayerInput : MonoBehaviour
     private bool skillWindowIsOpen=false;//技能視窗是否開啟
 
     ///提供布林值給PlayerControl判斷
-    [HideInInspector] public bool moveFlag = false;
+    [HideInInspector] public bool moveFlagH = false;
+    [HideInInspector] public bool moveFlagV = false;
     [HideInInspector] public bool attack = false;
     [HideInInspector] public bool specialAttack = false;
     [HideInInspector] public bool avoid = false;
@@ -82,14 +83,25 @@ public class PlayerInput : MonoBehaviour
 
         ///WASD輸入
         m_Movement.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if (Input.GetButton("Horizontal"))
+        {
+            moveFlagH = true;
+        }
+        else
+        {
+            moveFlagH = false;
+        }
+        if (Input.GetButton("Vertical"))
+        {
+            moveFlagV = true;
+        }
+        else
+        {
+            moveFlagV = false;
+        }
         ///滑鼠滑動
         m_Mouse.Set(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-    
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))        
-            moveFlag = true;        
-        else        
-            moveFlag = false;
-
         ///劍攻擊
         if (Input.GetButtonDown("Fire1") && !(playerCurrnetState == PlayerControl.PlayerState.dead))
             attack = true;

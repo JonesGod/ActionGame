@@ -169,7 +169,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             m_Am.SetBool("BowBool", false);
         }
 
-        if (m_Input.moveFlag)       //移動旗標
+        if (m_Input.moveFlagH || m_Input.moveFlagV)       //移動旗標
         {
             if(statetime<=0.4f)
                 ResetAttackTrigger();
@@ -185,13 +185,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
         ResetTrigger();
         if (m_Input.avoid )      //迴避
         {   
-            ResetAttackTrigger();         
+            ResetAttackTrigger();
 
             if (!(statetime <= 0.5f && attackState) && !isTrasition && !battleRollState)
             {
                 RollRotating(moveInput.x, moveInput.y);
             }
-            
+
             m_Am.SetTrigger("AvoidTrigger");
             PlayerInput.Instance.bowState = false;
             m_Input.avoid = false;
@@ -235,7 +235,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         GetCurrentState();
         GetNextState();
 
-        if (m_Input.moveFlag && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
+        if ((m_Input.moveFlagH || m_Input.moveFlagV) && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
             Rotating(moveInput.x, moveInput.y);
         
     }
@@ -320,6 +320,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
             moveH = 1;
         else if (moveH < 0)
             moveH = -1;
+
+        if (!m_Input.moveFlagH)
+            moveH = 0;
+        if (!m_Input.moveFlagV)
+            moveV = 0;
 
         Vector3 newDirectionVector = (followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH).normalized;
         if (newDirectionVector != Vector3.zero)
