@@ -106,6 +106,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     public PlayerState playerCurrnetState;
     void Start()
     {
+        Cursor.visible=false;//關掉鼠標
         characterController = GetComponent<CharacterController>();    
        
         m_Am = GetComponent<Animator>();

@@ -50,11 +50,13 @@ public class UIMain : MonoBehaviour
         if(skillWindow.activeSelf==false)
         {
             skillWindow.SetActive(true);
+            Cursor.visible = true;
             return true;
         }
         else
         {
             skillWindow.SetActive(false);
+            Cursor.visible = false;
             return false;
         }
     }
