@@ -23,7 +23,6 @@ public class SeaMonsterBulletPool : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("m_pool.Count"+m_pool.Count);
     }
     public void ReUse(Vector3 position, Quaternion rotation)
     {
