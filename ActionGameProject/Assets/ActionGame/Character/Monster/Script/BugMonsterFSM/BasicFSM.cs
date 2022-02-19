@@ -123,25 +123,28 @@ public class BasicFSM : FSMBase
             doState = DoDeadState;
             return;
         }        
-        currentEnemyTarget = CheckEnemyInSight();
-        if(currentEnemyTarget != null)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref attack);
-            if (attack)//在攻擊距離以內了:直接攻擊
+            currentEnemyTarget = CheckEnemyInSight();
+            if(currentEnemyTarget != null)
             {
-                currentState = FSMState.Attack;
-                doState = DoAttackState;
-                checkState = CheckAttackState;
-            }
-            else//在攻擊距離以外:進入追逐
-            {
-                currentState = FSMState.Chase;
-                doState = DoChaseState;
-                checkState = CheckChaseState;
-            }
-            return;
-        }
+                data.target = currentEnemyTarget;
+                CheckEnemyInAttackRange(data.target, ref attack);
+                if (attack)//在攻擊距離以內了:直接攻擊
+                {
+                    currentState = FSMState.Attack;
+                    doState = DoAttackState;
+                    checkState = CheckAttackState;
+                }
+                else//在攻擊距離以外:進入追逐
+                {
+                    currentState = FSMState.Chase;
+                    doState = DoChaseState;
+                    checkState = CheckChaseState;
+                }
+                return;
+            }            
+        }        
     }
     public override void DoIdleState()
     {
