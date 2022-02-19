@@ -195,12 +195,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         ResetTrigger();
         if (m_Input.avoid )      //迴避
         {   
-            ResetAttackTrigger();
-
-            if (!(statetime <= 0.5f && attackState) && !isTrasition && !battleRollState)
-            {
-                RollRotating(moveInput.x, moveInput.y);
-            }
+            ResetAttackTrigger();          
 
             m_Am.SetTrigger("AvoidTrigger");
             PlayerInput.Instance.bowState = false;
@@ -320,23 +315,23 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// </summary>
     /// <param name="moveH"></param>
     /// <param name="moveV"></param>
-    void RollRotating(float moveH, float moveV)
+    void RollRotating()
     {
-        if (moveV > 0)          ///此處的moveV與moveH只需取最大值作為翻滾方向判斷來使用
-            moveV = 1;
-        else if (moveV < 0)
-            moveV = -1;
-        if (moveH > 0)
-            moveH = 1;
-        else if (moveH < 0)
-            moveH = -1;
+        if (moveInput.y > 0)          ///此處的moveV與moveH只需取最大值作為翻滾方向判斷來使用
+            moveInput.y = 1;
+        else if (moveInput.y < 0)
+            moveInput.y = -1;
+        if (moveInput.x > 0)
+            moveInput.x = 1;
+        else if (moveInput.x < 0)
+            moveInput.x = -1;
 
         if (!m_Input.moveFlagH)
-            moveH = 0;
+            moveInput.x = 0;
         if (!m_Input.moveFlagV)
-            moveV = 0;
+            moveInput.y = 0;
 
-        Vector3 newDirectionVector = (followCamera.horizontalVector * moveV + followCamera.cameraRight * moveH).normalized;
+        Vector3 newDirectionVector = (followCamera.horizontalVector * moveInput.y + followCamera.cameraRight * moveInput.x).normalized;
         if (newDirectionVector != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(newDirectionVector, Vector3.up);
