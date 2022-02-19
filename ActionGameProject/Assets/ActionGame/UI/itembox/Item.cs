@@ -15,12 +15,16 @@ public class Item
 
     public int stack;
 
+    public bool consumable;
+    public int nutritionalValue;
+
+
     public Item ()
     {
 
     }
 
-    public Item (int Id, string Name, string Description, Sprite ItemSprite, int Stack)
+    public Item (int Id, string Name, string Description, Sprite ItemSprite, int Stack, bool Consumable, int NutritionalValue)
     {
         id = Id;
         name = Name;
@@ -29,7 +33,8 @@ public class Item
         
         stack = Stack;
 
-
+        consumable = Consumable;
+        nutritionalValue = NutritionalValue;
     }
 
 
