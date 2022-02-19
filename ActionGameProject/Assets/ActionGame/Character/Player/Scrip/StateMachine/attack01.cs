@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class attack01 : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,7 +18,8 @@ public class attack01 : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.GetComponent<PlayerControl>().AttackMoveStop();
+        animator.GetComponent<Sword>().SwordColliderOff();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

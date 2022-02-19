@@ -49,9 +49,10 @@ public class Sword : MonoBehaviour
     }
     void SwordColliderOn()
     {
+        Debug.Log("ON123");
         swordBoxCollider.enabled = true;
     }
-    void SwordColliderOff()
+    public void SwordColliderOff()
     {
         swordBoxCollider.enabled = false;
     }

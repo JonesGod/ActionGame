@@ -770,6 +770,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: AttackRotating
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c1c4e7adbc2b97749a95c17ff0be815e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.13521783
         functionName: SwordOn
         data: 
@@ -777,7 +784,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.22346982
+      - time: 0.27660993
         functionName: SwordColliderOn
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
@@ -788,13 +795,6 @@ ModelImporter:
         functionName: SwordColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: AttackRotating
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c1c4e7adbc2b97749a95c17ff0be815e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

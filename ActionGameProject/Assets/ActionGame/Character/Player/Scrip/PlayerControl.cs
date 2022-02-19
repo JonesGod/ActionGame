@@ -636,7 +636,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     /// <summary>
     /// 結束攻擊中移動
     /// </summary>
-    void AttackMoveStop()
+    public void AttackMoveStop()
     {
         attackMoveSpeed = 0f;
     }
