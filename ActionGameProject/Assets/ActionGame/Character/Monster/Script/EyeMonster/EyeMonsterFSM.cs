@@ -19,8 +19,10 @@ public class EyeMonsterFSM : FSMBase
 
     public GameObject[] wayPoints;
     public GameObject targetWayPoint;
+    private Vector3 startPosition;
     void Start()
     {
+        startPosition = this.transform.position;  
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
         doState = DoIdleState;
@@ -401,6 +403,7 @@ public class EyeMonsterFSM : FSMBase
     }
     public override void PlayerIsReLife()
     {
+        this.transform.position = startPosition;  
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
         animator.SetBool("Fly", false);

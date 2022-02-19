@@ -19,6 +19,7 @@ public class BasicFSM : FSMBase
 
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
+    private Vector3 startPosition;
     void Start()
     {
         currentEnemyTarget = null;
@@ -27,7 +28,8 @@ public class BasicFSM : FSMBase
         checkState = CheckIdleState;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;       
+        strafeDirection = 0; 
+        startPosition = this.transform.position;      
 
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
@@ -401,6 +403,7 @@ public class BasicFSM : FSMBase
     }
     public override void PlayerIsReLife()
     {
+        this.transform.position = startPosition;     
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
         animator.SetBool("IsMoveRight", false);

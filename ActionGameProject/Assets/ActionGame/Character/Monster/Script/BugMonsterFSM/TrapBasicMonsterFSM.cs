@@ -22,8 +22,10 @@ public class TrapBasicMonsterFSM : FSMBase
     private float partnerRange = 30.0f;
     private bool isGrounded = false;
     public LayerMask layerMask;
+    private Vector3 startPosition;
     void Start()
     {
+        startPosition = this.transform.position;      
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
         doState = CheckIsGrounded;
@@ -395,6 +397,7 @@ public class TrapBasicMonsterFSM : FSMBase
     }
     public override void PlayerIsReLife()
     {
+        this.transform.position = startPosition; 
         currentEnemyTarget = null;
         currentState = FSMState.Idle;
         animator.SetBool("IsMoveRight", false);
