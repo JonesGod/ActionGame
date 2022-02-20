@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         playerCurrnetState = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
-        currentCheckPoint = new Vector3(152f,26f,-118f) ;
+        currentCheckPoint = new Vector3(152f,23f,-118f) ;
 
 
         //UI use   Inventory CS:135
@@ -735,19 +735,19 @@ public class PlayerControl : MonoBehaviour, BeObserver
             yield return null;
         }
         GameOverUI.Instance.OpenGameOverScreen();
-        ///yield return ScreenFadeOut
-    }
-    protected IEnumerator PlayerReliveRoutine()
-    {
         if (currentCheckPoint != null)
         {
-            transform.position= currentCheckPoint;
+            transform.position = currentCheckPoint;
         }
         else
         {
             Debug.LogError("There is no CheckPoint set");
         }
         m_Am.SetTrigger("getup");
+        ///yield return ScreenFadeOut
+    }
+    protected IEnumerator PlayerReliveRoutine()
+    {      
         playerHp = playerMaxHp;
         UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
 
