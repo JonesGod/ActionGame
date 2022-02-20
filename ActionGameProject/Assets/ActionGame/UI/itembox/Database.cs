@@ -10,8 +10,8 @@ public class Database : MonoBehaviour
     void Awake()
     {
         itemList.Add (new Item (0, "None", "None", Resources.Load <Sprite>("0"),0,false,0));
-        itemList.Add(new Item(1, "HP pt", "It is item", Resources.Load<Sprite>("1"),0,true,1));
-        itemList.Add(new Item(2, "MP pt", "It is item", Resources.Load<Sprite>("2"),0,true,1));
+        itemList.Add(new Item(1, "HP pt", "It is item", Resources.Load<Sprite>("1"),0,true,100));
+        itemList.Add(new Item(2, "MP pt", "It is item", Resources.Load<Sprite>("2"),0,true,100));
 
 
     }

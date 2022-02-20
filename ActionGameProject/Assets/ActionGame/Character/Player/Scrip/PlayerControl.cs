@@ -16,8 +16,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     public static float PLMP = 1000;
     //
 
-    private float playerHp = 300;//玩家生命
-    private float playerMaxHp = 300;//玩家生命最大值
+    private static float playerHp = 300;//玩家生命
+    private static float playerMaxHp = 300;//玩家生命最大值
     private float playerMp = 1000;//玩家MP
     private float playerMaxMp = 1000;//玩家MP最大值
 
@@ -619,6 +619,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
         UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
     }
+    static public void HpIncrease(float heal)
+    {
+        playerHp += heal;
+        if (playerHp >= playerMaxHp)
+            playerHp = playerMaxHp;
+
+        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
+    }   
     public void MpReduce(int cost)
     {
         playerMp -= cost;
@@ -628,6 +636,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
             playerMp = 0;
 
         UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
+    }
+    public void MpIncrease(float mana)
+    {
+        playerMp += mana;
+        if (playerMp >= playerMaxMp)
+            playerMp = playerMaxMp;
+
+        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
     }
     /// <summary>
     /// 開始攻擊中移動
