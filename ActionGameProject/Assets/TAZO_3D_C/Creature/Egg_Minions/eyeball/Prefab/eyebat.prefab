@@ -430,7 +430,7 @@ MonoBehaviour:
     speed: 0
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
-    attackRange: 3.4
+    attackRange: 2.98
     sightRange: 23.87
     strafeRange: 6.34
     strafeTime: 0

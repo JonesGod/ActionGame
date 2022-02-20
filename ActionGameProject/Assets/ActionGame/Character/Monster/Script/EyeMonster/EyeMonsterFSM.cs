@@ -298,7 +298,7 @@ public class EyeMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(3.0f, 5.0f);
+            data.strafeTime = Random.Range(2.0f, 4.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 2);

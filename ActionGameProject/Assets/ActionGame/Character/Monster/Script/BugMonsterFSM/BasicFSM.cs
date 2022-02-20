@@ -111,7 +111,7 @@ public class BasicFSM : FSMBase
                 data.strafeTime = Random.Range(1.0f, 3.0f);;
                 currentTime = 0.0f;
                 currentState = FSMState.Strafe;
-                strafeDirection = Random.Range(0, 2);
+                strafeDirection = Random.Range(0, 3);
                 doState = DoStrafeState;
                 checkState = CheckStrafeState;
             }
@@ -237,6 +237,7 @@ public class BasicFSM : FSMBase
                 Vector3 targetDir = partnerMonster[i].transform.position - transform.position;            
                 float dotPartner = Vector3.Dot(transform.right, targetDir.normalized);
 
+                animator.SetBool("IsIdle", false);
                 animator.SetBool("IsMoveForward", false); 
                 animator.SetBool("IsMoveRight", true); 
                 transform.LookAt(data.target.transform.position);
@@ -263,21 +264,25 @@ public class BasicFSM : FSMBase
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
-        }
-        animator.SetBool("IsMoveForward", false); 
-        animator.SetBool("IsMoveRight", true); 
+        }        
         transform.LookAt(data.target.transform.position);
         if(strafeDirection == 0)
         {
+            animator.SetBool("IsMoveForward", false); 
+            animator.SetBool("IsMoveRight", true); 
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
         }
         else if(strafeDirection == 1)
         {
+            animator.SetBool("IsMoveForward", false); 
+            animator.SetBool("IsMoveRight", true); 
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
         }        
         else
         {
-
+            animator.SetBool("IsMoveRight", false);
+            animator.SetBool("IsMoveForward", false);
+            animator.SetBool("IsIdle", true);
         }
 
         currentTime += Time.deltaTime;
@@ -302,7 +307,7 @@ public class BasicFSM : FSMBase
             data.strafeTime = Random.Range(1.0f, 4.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            strafeDirection = Random.Range(0, 2);
+            strafeDirection = Random.Range(0, 3);
             Debug.Log(strafeDirection);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
@@ -344,7 +349,7 @@ public class BasicFSM : FSMBase
             data.strafeTime = Random.Range(1.0f, 2.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            strafeDirection = Random.Range(0, 2);
+            strafeDirection = Random.Range(0, 3);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }
