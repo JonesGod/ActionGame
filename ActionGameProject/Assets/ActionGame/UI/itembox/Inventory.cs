@@ -153,11 +153,12 @@ public class Inventory : MonoBehaviour
 
         if (canConsume == true && Input.GetKeyDown("1"))
         {
-            if (slotStack[b] < 1)
+            
+            if (slotStack[b] < 2)
             {
                 PlayerControl.HpIncrease(yourInventory[b].nutritionalValue);
                 yourInventory[b] = Database.itemList[0];
-                slotStack[a ] = 0;
+                slotStack[b] = 0 ;
             }
             else
             {
@@ -177,7 +178,7 @@ public class Inventory : MonoBehaviour
 
         if (canConsume == true && Input.GetKeyDown("2"))
         {
-            if (slotStack[a] < 1)
+            if (slotStack[a] < 2)
             {
                 PlayerControl.MpIncrease(yourInventory[a].nutritionalValue);
                 yourInventory[a] = Database.itemList[0];
