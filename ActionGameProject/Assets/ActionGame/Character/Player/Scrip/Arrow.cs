@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private float arrowSpeed = 40.0f;//�b�ڭ���t��
+    private float arrowSpeed = 50.0f;//�b�ڭ���t��
     private float gravity=3f ;//���O
     private float liveTime=0.0f;//�s�b�ɶ�
     private float fallSpeed=0.0f;//�Y���t��

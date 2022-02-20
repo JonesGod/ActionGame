@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
     {
         get
         {
-            if ((playerCurrnetState == PlayerControl.PlayerState.dead) || hurt)
+            if ((playerCurrnetState == PlayerControl.PlayerState.dead))
                 return Vector2.zero;
 
             return m_Movement;

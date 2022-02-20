@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private float mouseSlide;//滑鼠滑動輸入
     private float normalMove;//一般狀態下的WASD輸入總和
     private float bowRightMove;//弓狀態下的WASD輸入總和
-    private float lockDistancs = 5.0f;//一般攻擊自動鎖定距離
+    private float lockDistancs = 15.0f;//一般攻擊自動鎖定距離
     private float attackMoveSpeed;//攻擊時的移動速度
 
     private List<FSMBase> monster;//存取怪物資訊
@@ -137,6 +137,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     {
         if(Input.GetKeyDown("f1"))
         {
+            PlayerInput.Instance.BowUnlock();
             UnlockSkill(1);
         }
         if (Input.GetKeyDown("f2"))
@@ -243,7 +244,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         GetCurrentState();
         GetNextState();
 
-        if ((m_Input.moveFlagH || m_Input.moveFlagV) && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
+        if ((m_Input.moveFlagH || m_Input.moveFlagV) && !hurt && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
             Rotating(moveInput.x, moveInput.y);
         
     }
@@ -272,7 +273,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (battleIdleIsNext || idleIsNext || bowIsNext)//轉換到Idle與弓狀態時減速
             move = transform.forward * 0.0f;
 
-        if (hurt)//受傷時移動量為0
+        if (hurt && !battleRollIsNext)//受傷時移動量為0
             move = Vector3.zero;
 
         move += fallSpeed * Vector3.up * Time.deltaTime;//加上落下速度
