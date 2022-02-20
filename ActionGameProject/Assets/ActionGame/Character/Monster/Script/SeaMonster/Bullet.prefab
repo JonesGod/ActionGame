@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8337015469260458619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 151.01, y: 26.8, z: -116.6}
-  m_LocalScale: {x: 2.5013525, y: 2.5013525, z: 2.5013525}
+  m_LocalScale: {x: 2.03, y: 2.03, z: 2.03}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,5 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2bdc0ac0545f8428de85d94eb1a4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterBulletPool: {fileID: 0}
-  speed: 0.5
+  speed: 30

@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class SeaMonsterBullet : MonoBehaviour
 {
-    public SeaMonsterBulletPool monsterBulletPool;
-    Vector3 targetDirection;  
     PlayerControl player;
-    public float speed = 10.0f;
-
-    void Start()
+    public float speed;
+    void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
-        targetDirection = player.transform.position - this.transform.position; 
     }
+
     void Update()
     {
-        transform.Translate(targetDirection * speed * Time.deltaTime); 
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
     private void OnTriggerEnter(Collider other) 
     {      
@@ -25,12 +22,15 @@ public class SeaMonsterBullet : MonoBehaviour
         {
             Debug.Log("子彈打到玩家");            
             //呼叫玩家腳本的受傷function
-            player.PlayerHurt(20);
+            player.PlayerHurt(20);            
+            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
         }
         if(other.tag == "Monster")
         {
-            return;
         }
-        GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+        else
+        {
+            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+        }
     }
 }

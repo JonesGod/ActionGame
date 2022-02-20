@@ -19,7 +19,7 @@ public class GameOverUI : MonoBehaviour
     }
     private void Start()
     {
-        back = transform.GetChild(3).gameObject;
+        back = transform.GetChild(1).gameObject;
     }
     public void OpenGameOverScreen()
     {

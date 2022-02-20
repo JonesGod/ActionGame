@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 7076263846171042005}
   m_Layer: 0
   m_Name: Rig
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1097,7 +1097,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.52, y: 1, z: 2.4448743}
+  m_Size: {x: 0.4, y: 1, z: 2.4448743}
   m_Center: {x: 0, y: 0, z: 0.72243726}
 --- !u!114 &7047802492665264168
 MonoBehaviour:

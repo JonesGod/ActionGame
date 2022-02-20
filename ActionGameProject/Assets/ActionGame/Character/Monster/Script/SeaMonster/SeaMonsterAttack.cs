@@ -8,7 +8,6 @@ public class SeaMonsterAttack : MonoBehaviour
     public SeaMonsterBulletPool monsterBulletPool;
     public void ShootBullet()
     {
-        Debug.Log("shoot");
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
 }

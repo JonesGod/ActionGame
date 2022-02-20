@@ -12,8 +12,11 @@ public class SeaMonsterBulletPool : MonoBehaviour
     public GameObject bullet;
     public int initailSize = 20;
     private Queue<GameObject> m_pool = new Queue<GameObject>();
+    PlayerControl player;    
+    public GameObject monsterShootPoint;
     void Awake()
     {
+        player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
         for(int i = 0; i < initailSize; i++)
         {
             GameObject go = Instantiate(bullet) as GameObject;
@@ -31,6 +34,7 @@ public class SeaMonsterBulletPool : MonoBehaviour
             GameObject reuse = m_pool.Dequeue();
             reuse.transform.position = position;
             reuse.transform.rotation = rotation;
+            reuse.transform.forward = (player.transform.position + new Vector3(0, 1.0f, 0)) - monsterShootPoint.transform.position; 
             reuse.SetActive(true);
         }
         else
@@ -38,6 +42,7 @@ public class SeaMonsterBulletPool : MonoBehaviour
             GameObject go = Instantiate(bullet) as GameObject;
             go.transform.position = position;
             go.transform.rotation = rotation;
+            go.transform.forward = player.transform.position - monsterShootPoint.transform.position; 
         }
     }
     public void Recovery(GameObject recovery)
