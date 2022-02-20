@@ -25,7 +25,10 @@ public class SeaMonsterBullet : MonoBehaviour
             player.PlayerHurt(20);            
             GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
         }
-        if(other.tag == "Monster")
+        else if(other.tag == "Monster")
+        {
+        }
+        else if(other.transform.name == "Arrow(Clone)")
         {
         }
         else
