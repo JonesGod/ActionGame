@@ -11,7 +11,9 @@ public class GameOverUI : MonoBehaviour
 
     protected static GameOverUI s_Instance;
 
-    GameObject back;
+    //GameObject back;
+    public bool m_IsFading;
+    public CanvasGroup gameOver;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,16 +21,38 @@ public class GameOverUI : MonoBehaviour
     }
     private void Start()
     {
-        back = transform.GetChild(1).gameObject;
+        //back = transform.GetChild(2).gameObject;
     }
-    public void OpenGameOverScreen()
+    public static IEnumerator OpenGameOverScreen()
     {
-        back.SetActive(true);
+        var canvers = Instance.gameOver;
+
+        canvers.gameObject.SetActive(true);
+        yield return Instance.StartCoroutine(Instance.Fade(1f));
         Cursor.visible = true;
     }
-    public void CloseGameOverScreen()
+    public static IEnumerator CloseGameOverScreen()
     {
-        back.SetActive(false);
+        var canvers = Instance.gameOver;
+
+        yield return Instance.StartCoroutine(Instance.Fade(0f));
+        canvers.gameObject.SetActive(false);
         Cursor.visible = false;
+    }
+    protected IEnumerator Fade(float finalAlpha)
+    {
+        gameOver.blocksRaycasts = false;
+        m_IsFading = true;
+
+        while(!Mathf.Approximately(gameOver.alpha,finalAlpha))
+        {
+            gameOver.alpha = Mathf.MoveTowards(gameOver.alpha, finalAlpha, 1f * Time.deltaTime);
+            yield return null;
+        }
+        gameOver.alpha = finalAlpha;
+
+        gameOver.blocksRaycasts = true;
+        m_IsFading = false;
+
     }
 }

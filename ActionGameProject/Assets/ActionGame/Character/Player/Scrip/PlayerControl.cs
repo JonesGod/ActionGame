@@ -734,7 +734,12 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             yield return null;
         }
-        GameOverUI.Instance.OpenGameOverScreen();
+        yield return StartCoroutine(GameOverUI.OpenGameOverScreen());
+        while (GameOverUI.Instance.m_IsFading)
+        {
+            yield return null;
+        }
+
         if (currentCheckPoint != null)
         {
             transform.position = currentCheckPoint;
@@ -743,17 +748,19 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             Debug.LogError("There is no CheckPoint set");
         }
-        m_Am.SetTrigger("getup");
-        ///yield return ScreenFadeOut
+        m_Am.SetTrigger("getup");        
     }
     protected IEnumerator PlayerReliveRoutine()
     {      
         playerHp = playerMaxHp;
         UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
 
-        GameOverUI.Instance.CloseGameOverScreen();
-        //yield return ScreenFadeIn   
-        
+        yield return StartCoroutine(GameOverUI.CloseGameOverScreen());
+        while (GameOverUI.Instance.m_IsFading)
+        {
+            yield return null;
+        }
+
         playerStateChange = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
         
