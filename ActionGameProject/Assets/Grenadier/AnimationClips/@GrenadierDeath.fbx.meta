@@ -539,7 +539,7 @@ ModelImporter:
       name: GrenadierDeath
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
+      firstFrame: 260
       lastFrame: 280
       wrapMode: 0
       orientationOffsetY: 0
@@ -568,7 +568,7 @@ ModelImporter:
       name: GrenadierStart
       takeName: Take 001
       internalID: 0
-      firstFrame: 260
+      firstFrame: 1
       lastFrame: 280
       wrapMode: 0
       orientationOffsetY: 0
