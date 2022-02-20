@@ -54,22 +54,9 @@ public class BasicFSM : FSMBase
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, -Vector3.up);
-        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
-        {
-            Debug.Log("hit");
-            transform.up = hit.normal;
-        }
         // var v3 = transform.forward * 1.0f;
         // v3.y = myRigidbody.velocity.y;
         // myRigidbody.velocity = v3;
-        // if(partnerMonster.Count != 0)
-        // {
-        //     Vector3 target = partnerMonster[0].transform.position - transform.position;            
-        //     float test = Vector3.Dot(transform.right, target.normalized);
-        //     Debug.Log(test);
-        // }
         if(currentState != FSMState.Dead)
         {
             checkState();
@@ -164,6 +151,13 @@ public class BasicFSM : FSMBase
     }
     public override void DoIdleState()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
@@ -187,13 +181,20 @@ public class BasicFSM : FSMBase
     }    
     public override void DoChaseState()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
         animator.SetBool("IsMoveRight", false);
         animator.SetBool("IsMoveForward", true);
-        transform.LookAt(data.target.transform.position);
+        transform.LookAt(data.target.transform.position, transform.up);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         
         myRigidbody.velocity = transform.forward * data.speed;
@@ -236,6 +237,13 @@ public class BasicFSM : FSMBase
     }
     public override void DoStrafeState()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 1.5f;
 
@@ -251,7 +259,7 @@ public class BasicFSM : FSMBase
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsMoveForward", false); 
                 animator.SetBool("IsMoveRight", true); 
-                transform.LookAt(data.target.transform.position);
+                transform.LookAt(data.target.transform.position, transform.up);
                 if(dotPartner > 0)
                 {
                     transform.Translate(Vector3.left * data.speed * Time.deltaTime);
@@ -270,13 +278,13 @@ public class BasicFSM : FSMBase
         {
             animator.SetBool("IsMoveRight", false); 
             animator.SetBool("IsMoveForward", true);        
-            transform.LookAt(data.target.transform.position);
+            transform.LookAt(data.target.transform.position, transform.up);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
             return;
         }        
-        transform.LookAt(data.target.transform.position);
+        transform.LookAt(data.target.transform.position, transform.up);
         
         if(strafeDirection == 0)
         {

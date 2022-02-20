@@ -121,7 +121,7 @@ public class TrapBasicMonsterFSM : FSMBase
             doState = DoDeadState;
             return;
         }        
-        currentEnemyTarget = CheckEnemyInSight();
+        currentEnemyTarget = GameManager.Instance.GetPlayer();
         if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
@@ -143,6 +143,13 @@ public class TrapBasicMonsterFSM : FSMBase
     }
     public override void DoIdleState()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
@@ -166,13 +173,20 @@ public class TrapBasicMonsterFSM : FSMBase
     }    
     public override void DoChaseState()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
         animator.SetBool("IsMoveRight", false);
         animator.SetBool("IsMoveForward", true);
-        transform.LookAt(data.target.transform.position);
+        transform.LookAt(data.target.transform.position, transform.up);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
         myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
@@ -214,7 +228,13 @@ public class TrapBasicMonsterFSM : FSMBase
     }
     public override void DoStrafeState()
     {
-        //Debug.Log("DoStrafe");
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 1.5f;
 
@@ -230,7 +250,7 @@ public class TrapBasicMonsterFSM : FSMBase
                 animator.SetBool("IsIdle", false);
                 animator.SetBool("IsMoveForward", false); 
                 animator.SetBool("IsMoveRight", true); 
-                transform.LookAt(data.target.transform.position);
+                transform.LookAt(data.target.transform.position, transform.up);
                 if(dotPartner > 0)
                 {
                     transform.Translate(Vector3.left * data.speed * Time.deltaTime);
@@ -249,7 +269,7 @@ public class TrapBasicMonsterFSM : FSMBase
         {
             animator.SetBool("IsMoveRight", false); 
             animator.SetBool("IsMoveForward", true);        
-            transform.LookAt(data.target.transform.position);
+            transform.LookAt(data.target.transform.position, transform.up);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
             currentTime += Time.deltaTime;
@@ -257,7 +277,7 @@ public class TrapBasicMonsterFSM : FSMBase
         }
         animator.SetBool("IsMoveForward", false); 
         animator.SetBool("IsMoveRight", true); 
-        transform.LookAt(data.target.transform.position);
+        transform.LookAt(data.target.transform.position, transform.up);
         if(strafeDirection == 0)
         {
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
@@ -416,7 +436,6 @@ public class TrapBasicMonsterFSM : FSMBase
     {
         if(Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, 1.0f, layerMask))
         {
-            Debug.Log("sadsa");
             isGrounded = true;
             currentState = FSMState.Idle;
             doState = DoIdleState;
