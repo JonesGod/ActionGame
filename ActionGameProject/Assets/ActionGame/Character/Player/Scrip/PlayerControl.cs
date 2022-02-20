@@ -745,6 +745,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     public void RelifeButton()
     {
         StartCoroutine(PlayerReliveRoutine());
+        Cursor.visible = false;
     }
     public void UnlockSkill(int number)
     {
