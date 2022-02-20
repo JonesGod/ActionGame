@@ -20,6 +20,7 @@ public class BasicFSM : FSMBase
     public List<BasicFSM> partnerMonster;
     private float partnerRange = 30.0f;
     private Vector3 startPosition;
+    public bool hide;
     void Start()
     {
         currentEnemyTarget = null;
@@ -29,8 +30,11 @@ public class BasicFSM : FSMBase
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0; 
-        startPosition = this.transform.position;      
-
+        startPosition = this.transform.position;
+        if(hide == true)
+        {
+            this.gameObject.SetActive(false);
+        }
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
             foreach(GameObject m in GameManager.Instance.allMonster)
@@ -44,7 +48,7 @@ public class BasicFSM : FSMBase
                     }    
                 }             
             }
-        }
+        }        
     }
 
     // Update is called once per frame
@@ -150,7 +154,6 @@ public class BasicFSM : FSMBase
     }
     public override void DoIdleState()
     {
-
         //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
@@ -222,7 +225,6 @@ public class BasicFSM : FSMBase
     }
     public override void DoStrafeState()
     {
-        //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
         data.speed = 1.5f;
 
@@ -269,10 +271,14 @@ public class BasicFSM : FSMBase
         {
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
         }
-        else
+        else if(strafeDirection == 1)
         {
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
         }        
+        else
+        {
+
+        }
 
         currentTime += Time.deltaTime;
     }

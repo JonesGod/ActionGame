@@ -291,6 +291,8 @@ public class DragonBossFSM : FSMBase
     }    
     public override void DoAttackState()
     {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ClawAttack"))
         {            
@@ -465,8 +467,8 @@ public class DragonBossFSM : FSMBase
 
     private void DoAngryAttackState()
     {
-        
-        //Debug.Log("DoAttack");
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Claw Attack"))
         {            
             myRigidbody.velocity = Vector3.zero;

@@ -32,8 +32,7 @@ public class TrapBasicMonsterFSM : FSMBase
         checkState = CheckIsGrounded;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
-        strafeDirection = 0;       
-
+        strafeDirection = 0;  
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
             foreach(GameObject m in GameManager.Instance.allMonster)
@@ -47,7 +46,7 @@ public class TrapBasicMonsterFSM : FSMBase
                     }    
                 }             
             }
-        }
+        } 
     }
 
     // Update is called once per frame
@@ -144,7 +143,6 @@ public class TrapBasicMonsterFSM : FSMBase
     }
     public override void DoIdleState()
     {
-
         //Debug.Log("DoIdle");
     }
     public override void CheckChaseState()
@@ -263,10 +261,14 @@ public class TrapBasicMonsterFSM : FSMBase
         {
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
         }
-        else
+        else if(strafeDirection == 1)
         {
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
         }        
+        else
+        {
+
+        }  
 
         currentTime += Time.deltaTime;
     }
