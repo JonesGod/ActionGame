@@ -11,9 +11,9 @@ namespace SG
             gameObject.SetActive(false);
         }
 
-        public  void ActivateFogWell()
+        public void ActivateFogWell()
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
 
         public void DeactivteFoWell()
