@@ -157,7 +157,7 @@ public class Inventory : MonoBehaviour
             {
                 PlayerControl.HpIncrease(yourInventory[b].nutritionalValue);
                 yourInventory[b] = Database.itemList[0];
-                slotStack[b] = 0;
+                slotStack[a ] = 0;
             }
             else
             {
@@ -166,20 +166,29 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        //if (canConsume == true && Input.GetKeyDown("2"))
-        //{
-        //    if (slotStack[b] == 2)
-        //    {
-        //        PlayerControl.PLMP += yourInventory[b].nutritionalValue;
-        //        yourInventory[b] = Database.itemList[0];
-        //        slotStack[b] = 0;
-        //    }
-        //    else
-        //    {
-        //        slotStack[b]--;
-        //        PlayerControl.PLMP += yourInventory[b].nutritionalValue;
-        //    }
-        //}
+        if (yourInventory[a].consumable == true)
+        {
+            canConsume = true;
+        }
+        else
+        {
+            canConsume = false;
+        }
+
+        if (canConsume == true && Input.GetKeyDown("2"))
+        {
+            if (slotStack[a] < 1)
+            {
+                PlayerControl.MpIncrease(yourInventory[a].nutritionalValue);
+                yourInventory[a] = Database.itemList[0];
+                slotStack[a] = 0;
+            }
+            else
+            {
+                slotStack[a]--;
+                PlayerControl.MpIncrease(yourInventory[a].nutritionalValue);
+            }
+        }
 
 
 
