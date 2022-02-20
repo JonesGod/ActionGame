@@ -144,6 +144,10 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             UnlockSkill(2);
         }
+        if(Input.GetKeyDown("f3"))
+        {
+            PlayerHurt(100);
+        }
 
         BowAngle();
         TargetSearch();

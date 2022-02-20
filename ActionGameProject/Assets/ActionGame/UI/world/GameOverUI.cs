@@ -24,9 +24,11 @@ public class GameOverUI : MonoBehaviour
     public void OpenGameOverScreen()
     {
         back.SetActive(true);
+        Cursor.visible = true;
     }
     public void CloseGameOverScreen()
     {
         back.SetActive(false);
+        Cursor.visible = false;
     }
 }
