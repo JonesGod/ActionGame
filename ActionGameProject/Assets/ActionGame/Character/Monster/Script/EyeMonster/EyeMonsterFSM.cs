@@ -169,12 +169,12 @@ public class EyeMonsterFSM : FSMBase
             animator.SetBool("Chase", false);
             animator.SetBool("Fly", true);
             var targetRotation = Quaternion.LookRotation(targetWayPoint.transform.position - transform.position);
-            //transform.LookAt(data.target.transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+            var v3 = transform.forward * data.speed;
+            v3.y = myRigidbody.velocity.y;
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-            myRigidbody.velocity = transform.forward * data.speed;
-            return;
-        
+            myRigidbody.velocity = v3;
+            return;        
     }
     public override void CheckChaseState()
     {

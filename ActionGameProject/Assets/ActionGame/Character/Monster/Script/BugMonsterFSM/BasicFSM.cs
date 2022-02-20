@@ -54,6 +54,16 @@ public class BasicFSM : FSMBase
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        {
+            Debug.Log("hit");
+            transform.up = hit.normal;
+        }
+        // var v3 = transform.forward * 1.0f;
+        // v3.y = myRigidbody.velocity.y;
+        // myRigidbody.velocity = v3;
         // if(partnerMonster.Count != 0)
         // {
         //     Vector3 target = partnerMonster[0].transform.position - transform.position;            
@@ -185,6 +195,7 @@ public class BasicFSM : FSMBase
         animator.SetBool("IsMoveForward", true);
         transform.LookAt(data.target.transform.position);
         //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
+        
         myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
         // {
@@ -266,14 +277,17 @@ public class BasicFSM : FSMBase
             return;
         }        
         transform.LookAt(data.target.transform.position);
+        
         if(strafeDirection == 0)
         {
+            animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoveForward", false); 
             animator.SetBool("IsMoveRight", true); 
             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
         }
         else if(strafeDirection == 1)
         {
+            animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoveForward", false); 
             animator.SetBool("IsMoveRight", true); 
             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
@@ -432,6 +446,6 @@ public class BasicFSM : FSMBase
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, data.attackRange);    
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(this.transform.position, data.strafeRange);    
+        Gizmos.DrawWireSphere(this.transform.position, data.strafeRange);
     }
 }

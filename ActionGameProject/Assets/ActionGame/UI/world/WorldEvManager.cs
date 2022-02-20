@@ -6,6 +6,11 @@ namespace SG
 {
     public class WorldEvManager : MonoBehaviour
     {
+        public static WorldEvManager Instance
+        {
+            get { return s_Instance; }
+        }
+        protected static WorldEvManager s_Instance;
 
         public DragonBossHealthBar dragonBossHPBar;
 
@@ -35,6 +40,7 @@ namespace SG
         {
             bossHasBeenDefeated = true;
             bossFightIsActive = false;
+            dragonBossHPBar.SetHPBarToInActive();
 
             //out wall(?)
             foreach (var fogWall in fogWells)

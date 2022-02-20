@@ -14,11 +14,12 @@ namespace SG
         }
 
 
-        //°»´ú¹ïÀ³tag«áÄ²µo
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tagï¿½ï¿½Ä²ï¿½o
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
             {
+                //worldEvManager.ActivateBossFight();
                 worldEvManager.ActivateBossFight();
             }
         }

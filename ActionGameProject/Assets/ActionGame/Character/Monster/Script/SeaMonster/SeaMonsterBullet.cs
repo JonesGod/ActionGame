@@ -6,14 +6,21 @@ public class SeaMonsterBullet : MonoBehaviour
 {
     PlayerControl player;
     public float speed;
+    private float lifeTime;
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
+        lifeTime = 0.0f;
     }
 
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+        lifeTime += Time.deltaTime;
+        if(lifeTime >= 5.0f)
+        {
+            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+        }
     }
     private void OnTriggerEnter(Collider other) 
     {      

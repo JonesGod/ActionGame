@@ -18,6 +18,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     Vector3 myPosition;    
     private bool isRotateTowardPlayer = false;
     public bool canRelife = true;
+    public BoxCollider tentacleCollider;
 
     void OnEnable()
     {
@@ -193,6 +194,7 @@ public class SeaMonsterTentacleFSM : FSMBase
             //Debug.Log("IsAttack");
             return;
         }
+        tentacleCollider.enabled = false;
         animator.SetTrigger("Die");
     }
     public void CheckRelifeState()
@@ -224,6 +226,7 @@ public class SeaMonsterTentacleFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
+        tentacleCollider.enabled = true;
         animator.SetTrigger("ReLife");
     }
     public override void CallHurt(float damageAmount, bool isHead)
