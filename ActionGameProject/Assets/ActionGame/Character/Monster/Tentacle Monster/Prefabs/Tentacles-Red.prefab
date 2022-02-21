@@ -405,6 +405,7 @@ MonoBehaviour:
   currentState: 0
   data:
     hp: 10
+    shield: 0
     speed: 0
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -416,6 +417,7 @@ MonoBehaviour:
   myHealth: {fileID: 2082425929961590457}
   myRigidbody: {fileID: 0}
   canRelife: 1
+  tentacleCollider: {fileID: 1512422108316927241}
 --- !u!114 &2082425929961590457
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public class BasicMonsterData
 {
     public float hp;
+    public float shield;
     public float speed;
     public GameObject target;
     public Vector3 targetPosition;

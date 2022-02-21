@@ -17,8 +17,7 @@ public class RockMonsterFSM : FSMBase
     Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
     private float maxHp;
-    private float maxShield = 150.0f;
-    private float currentShield;
+    private float maxShield;
     public bool isAngry = false;
     private bool isRotateTowardPlayer = false;
 
@@ -31,7 +30,7 @@ public class RockMonsterFSM : FSMBase
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         maxHp = data.hp;
-        currentShield = maxShield;
+        maxShield = data.shield;
     }
 
     void Update()
@@ -63,32 +62,281 @@ public class RockMonsterFSM : FSMBase
 		}
 		return null;
 	}
-    private bool CheckEnemyInAttackRange(GameObject target, ref bool normalAttack, ref bool chargeAttack, ref bool angryAttack)
+    private bool CheckEnemyInAttackRange(GameObject target, ref bool punchAttack, ref bool rangeAttack, ref bool circleAttack, ref bool smashAttack)
 	{
 		GameObject go = target;
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
         if(fDist < data.attackRange && isAngry == true)
         {
-            chargeAttack = false;
-			normalAttack = false;
-            angryAttack = true;
+            rangeAttack = false;
+			punchAttack = false;
+            circleAttack = true;
+            smashAttack = false;
 			return true;
         }
 		else if (fDist < data.attackRange)
 		{
-            chargeAttack = false;
-			normalAttack = true;
-            angryAttack = false;
+            rangeAttack = false;
+			punchAttack = true;
+            circleAttack = false;
+            smashAttack = false;
 			return true;
 		}
-        else if(fDist > data.strafeRange && isAngry == false)
+        else if(fDist > data.strafeRange)
         {
-            normalAttack = false;
-            chargeAttack = true;
-            angryAttack = false;
+            punchAttack = false;
+            rangeAttack = true;
+            circleAttack = false;
+            smashAttack = false;
 			return true;
+        }
+        else
+        {
+            punchAttack = false;
+            rangeAttack = false;
+            circleAttack = false;
+            smashAttack = true;
         }
 		return false;
 	}    
+    public override void CheckIdleState()
+    {   
+        //CheckDead
+        bool punchAttack = false;
+        bool rangeAttack = false;
+        bool circleAttack = false;
+        bool smashAttack = false;
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        currentEnemyTarget = CheckEnemyInBossArea();
+        if(currentEnemyTarget != null)
+        {
+            data.target = currentEnemyTarget;
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
+            if(punchAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoAttackState;
+                checkState = CheckAttackState;
+            }
+            else if(circleAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoCircleAttackState;
+                checkState = CheckCircleAttackState;
+            }
+            else if(rangeAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoRangeAttackState;
+                checkState = CheckRangeAttackState;
+            }  
+            else if(smashAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoSmashAttackState;
+                checkState = CheckSmashAttackState;
+            }                      
+            return;
+        }
+    }
+    public override void DoIdleState()
+    {
+
+    }
+
+    public override void CheckAttackState()
+    {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(1.0f, 2.0f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }        
+    }    
+    public override void DoAttackState()
+    {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("PunchAttack"))
+        {            
+            myRigidbody.velocity = Vector3.zero;
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        animator.SetTrigger("PunchAttack");
+    }  
+
+    public void CheckCircleAttackState()
+    {
+    }    
+    public void DoCircleAttackState()
+    {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("CircleAttack"))
+        {            
+            myRigidbody.velocity = Vector3.zero;
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        animator.SetTrigger("CircleAttack");
+    }
+
+    public void CheckSmashAttackState()
+    {
+    }    
+    public void DoSmashAttackState()
+    {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("SmashAttack"))
+        {            
+            myRigidbody.velocity = Vector3.zero;
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        animator.SetTrigger("SmashAttack");
+    }
+
+    public void CheckRangeAttackState()
+    {
+    }    
+    public void DoRangeAttackState()
+    {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("RangeAttack"))
+        {            
+            myRigidbody.velocity = Vector3.zero;
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        animator.SetTrigger("RangeAttack");
+    }
+
+    public override void CheckStrafeState()
+    {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }
+        bool punchAttack = false;
+        bool rangeAttack = false;
+        bool circleAttack = false;
+        bool smashAttack = false;
+        if(currentTime >= data.strafeTime)
+        {
+            if(punchAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoAttackState;
+                checkState = CheckAttackState;
+            }
+            else if(circleAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoCircleAttackState;
+                checkState = CheckCircleAttackState;
+            }
+            else if(rangeAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoRangeAttackState;
+                checkState = CheckRangeAttackState;
+            }  
+            else if(smashAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoSmashAttackState;
+                checkState = CheckSmashAttackState;
+            }
+            return;
+        }    
+        return;
+    }
+    public override void DoStrafeState()
+    {
+        //Debug.Log("DoStrafe");
+        data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
+        data.speed = 3.0f;
+
+		Vector3 v = data.targetPosition - this.transform.position;
+		float fDist = v.magnitude;
+        if(fDist > data.attackRange)
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsWalk", true);        
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
+            myRigidbody.velocity = transform.forward * data.speed;
+            currentTime += Time.deltaTime;
+            return;
+        }
+        else
+        {
+            animator.SetBool("IsWalk", false);
+            animator.SetBool("IsIdle", true);     
+            data.speed = 0;
+            myRigidbody.velocity = transform.forward * data.speed;
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
+            currentTime += Time.deltaTime;
+            return;
+        }
+    }
+        
 }

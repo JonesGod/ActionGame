@@ -5,11 +5,13 @@ using UnityEngine;
 public class SeaMonsterBullet : MonoBehaviour
 {
     PlayerControl player;
+    SeaMonsterBulletPool bulletPool;
     public float speed;
     private float lifeTime;
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
+        bulletPool = GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>();
         lifeTime = 0.0f;
     }
 
@@ -19,7 +21,7 @@ public class SeaMonsterBullet : MonoBehaviour
         lifeTime += Time.deltaTime;
         if(lifeTime >= 5.0f)
         {
-            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+            bulletPool.Recovery(this.gameObject);
         }
     }
     private void OnTriggerEnter(Collider other) 
@@ -30,7 +32,7 @@ public class SeaMonsterBullet : MonoBehaviour
             Debug.Log("子彈打到玩家");            
             //呼叫玩家腳本的受傷function
             player.PlayerHurt(20);            
-            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+            bulletPool.Recovery(this.gameObject);
         }
         else if(other.tag == "Monster")
         {
@@ -40,7 +42,7 @@ public class SeaMonsterBullet : MonoBehaviour
         }
         else
         {
-            GameObject.Find("SeaMonsterBulletPool").GetComponent<SeaMonsterBulletPool>().Recovery(this.gameObject);
+            bulletPool.Recovery(this.gameObject);
         }
     }
 }
