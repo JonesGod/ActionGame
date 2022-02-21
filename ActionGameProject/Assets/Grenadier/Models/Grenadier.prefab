@@ -1334,7 +1334,6 @@ MonoBehaviour:
     strafeTime: 0
     patrolTime: 0
   myHealth: {fileID: 0}
-  strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 8615276408336521875}
   isAngry: 0
 --- !u!114 &3331264669723098263
@@ -1351,7 +1350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 5675509634107356893}
   characterBlockCollider: {fileID: 8615276408336521875}
-  characterBlockCollider2: {fileID: 0}
+  characterBlockCollider2: {fileID: 8017974754280118265}
 --- !u!1 &5675509634724422481
 GameObject:
   m_ObjectHideFlags: 0

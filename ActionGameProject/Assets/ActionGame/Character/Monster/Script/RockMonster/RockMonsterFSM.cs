@@ -12,7 +12,7 @@ public class RockMonsterFSM : FSMBase
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
-    public int strafeDirection;
+    private float waitTime;
 
     Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
@@ -35,9 +35,6 @@ public class RockMonsterFSM : FSMBase
 
     void Update()
     {
-        var targetRotation = Quaternion.LookRotation(GameManager.Instance.GetPlayer().transform.position - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
-        myRigidbody.velocity = transform.forward * 10.0f;
         Vector3 targetDir = GameManager.Instance.GetPlayer().transform.position - transform.position;            
         float dotDirection = Vector3.Dot(transform.forward, targetDir.normalized);
         Debug.Log(dotDirection);
@@ -77,7 +74,7 @@ public class RockMonsterFSM : FSMBase
 
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist < data.attackRange && isAngry == true)//敲地板
+        if(fDist > data.attackRange && fDist < data.strafeRange)//敲地板
         {
             punchAttack = false;
 			circleAttack = false;
@@ -85,7 +82,7 @@ public class RockMonsterFSM : FSMBase
             rangeAttack = false;
 			return true;
         }
-		else if (fDist < data.attackRange)//普通攻擊
+		else if (fDist < data.attackRange && (dotDirection > 0.3))//普通攻擊
 		{
             punchAttack = true;
 			circleAttack = false;
@@ -93,7 +90,7 @@ public class RockMonsterFSM : FSMBase
             rangeAttack = false;
 			return true;
 		}
-        else if(fDist > data.strafeRange)//轉圈
+        else if(fDist < data.attackRange && (dotDirection <= 0.3 ))//轉圈
         {
             punchAttack = false;
 			circleAttack = true;
@@ -161,6 +158,57 @@ public class RockMonsterFSM : FSMBase
     {
 
     }
+    public void CheckWaitState()
+    {   
+        //CheckDead
+        bool punchAttack = false;
+        bool rangeAttack = false;
+        bool circleAttack = false;
+        bool smashAttack = false;
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        currentEnemyTarget = CheckEnemyInBossArea();
+        if(currentEnemyTarget != null && currentTime >= waitTime)
+        {
+            data.target = currentEnemyTarget;
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
+            if(punchAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoAttackState;
+                checkState = CheckAttackState;
+            }
+            else if(circleAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoCircleAttackState;
+                checkState = CheckCircleAttackState;
+            }
+            else if(rangeAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoRangeAttackState;
+                checkState = CheckRangeAttackState;
+            }  
+            else if(smashAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoSmashAttackState;
+                checkState = CheckSmashAttackState;
+            }                      
+            return;
+        }
+    }
+    public  void DoWaitState()
+    {
+        currentTime += Time.deltaTime;
+
+    }
 
     public override void CheckAttackState()
     {
@@ -179,11 +227,11 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(1.0f, 2.0f);
+            waitTime = Random.Range(1.0f, 2.0f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            doState = DoStrafeState;
-            checkState = CheckStrafeState;
+            doState = DoWaitState;
+            checkState = CheckWaitState;
         }        
     }    
     public override void DoAttackState()
@@ -208,6 +256,26 @@ public class RockMonsterFSM : FSMBase
 
     public void CheckCircleAttackState()
     {
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            waitTime = Random.Range(1.0f, 2.0f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoWaitState;
+            checkState = CheckWaitState;
+        }        
     }    
     public void DoCircleAttackState()
     {
@@ -254,6 +322,27 @@ public class RockMonsterFSM : FSMBase
 
     public void CheckRangeAttackState()
     {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = 0.0f;
+            currentTime = 0.0f;
+            currentState = FSMState.Idle;
+            doState = DoIdleState;
+            checkState = CheckIdleState;
+        }        
     }    
     public void DoRangeAttackState()
     {
