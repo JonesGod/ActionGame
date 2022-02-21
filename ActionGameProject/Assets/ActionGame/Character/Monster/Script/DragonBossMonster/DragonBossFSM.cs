@@ -19,6 +19,7 @@ public class DragonBossFSM : FSMBase
     private float maxHp;
     public bool isAngry = false;
     private bool isRotateTowardPlayer = false;
+    private int beAttackCount = 0;
 
     void Start()
     {
@@ -355,6 +356,10 @@ public class DragonBossFSM : FSMBase
         {
             data.target = GameManager.Instance.GetPlayer();
         }
+        if(isHead == true)
+        {
+            beAttackCount += 1;
+        }
         // if(data.hp <= maxHp / 2 && isAngry == false)
         // {
         //     isAngry = true;
@@ -362,8 +367,9 @@ public class DragonBossFSM : FSMBase
         //     checkState = CheckScreamState;
         //     return;
         // }
-        if(data.hp > 0 && isHead == true && isAngry == false && isHurtAnimation == true)
+        if(data.hp > 0 && isHead == true && isAngry == false && beAttackCount >= 5)
         {
+            beAttackCount = 0;
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 
             data.speed = 0.0f;

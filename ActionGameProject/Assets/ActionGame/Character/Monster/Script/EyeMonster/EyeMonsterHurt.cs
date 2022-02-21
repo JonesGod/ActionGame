@@ -17,5 +17,9 @@ public class EyeMonsterHurt : MonoBehaviour
         {
             myFSM.CallHurt(20, false, false);
         }
+        if(other.tag == "ExplosiveArrow" && myFSM.currentState != FSMState.Dead)
+        {
+            myFSM.CallHurt(20, false, true);
+        }
     }
 }

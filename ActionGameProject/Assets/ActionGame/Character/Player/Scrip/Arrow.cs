@@ -69,19 +69,6 @@ public class Arrow : MonoBehaviour
         fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
         gameObject.SetActive(false);
     }
-    void ArrowExplode()
-    {
-        liveTime = 0.0f;//��l�Ʀs�b�ɶ�
-        fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
-       
-        for(int i=0;i<monster.Count;i++)
-        {
-            float dis = (monster[i].transform.position - transform.position).magnitude;
-            if (dis < explodeRadius)
-                monster[i].CallHurt(20,false);
-        }
-        gameObject.SetActive(false);
-    }
     public void IsExplode()
     {
         explodeFlag = true;
