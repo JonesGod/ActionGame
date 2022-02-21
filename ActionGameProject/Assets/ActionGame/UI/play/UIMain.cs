@@ -59,19 +59,20 @@ public class UIMain : MonoBehaviour
             return false;
         }
     }
+    public void SwordSkillUnLock()
+    {
+        GameObject swordSkillLock = skillWindow.transform.GetChild(4).gameObject;
+        swordSkillLock.SetActive(false);
+    }
     public void BowUnlock()
     {
-        GameObject BowLock = skillWindow.transform.GetChild(7).gameObject;
+        GameObject BowLock = skillWindow.transform.GetChild(5).gameObject;
         BowLock.SetActive(false);
     }
     public void ExplodeArrowUnlock()
     {
-        GameObject ArrowLock = skillWindow.transform.GetChild(9).gameObject;
+        GameObject ArrowLock = skillWindow.transform.GetChild(6).gameObject;
         ArrowLock.SetActive(false);
     }
-    public void SwordSkillUnLock()
-    {
-        GameObject swordSkillLock= skillWindow.transform.GetChild(5).gameObject;
-        swordSkillLock.SetActive(false);
-    }
+   
 }
