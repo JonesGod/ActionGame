@@ -10,12 +10,12 @@ public class DragonBossHeadHurt : MonoBehaviour
     {
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(30, true); 
+            myFSM.CallHurt(30, true, true); 
         }
             
         if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(20, true);
+            myFSM.CallHurt(20, true, true);
         }
     }
 }

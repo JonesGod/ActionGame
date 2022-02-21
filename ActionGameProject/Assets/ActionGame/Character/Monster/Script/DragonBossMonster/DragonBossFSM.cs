@@ -49,12 +49,6 @@ public class DragonBossFSM : FSMBase
         }        
         //myRigidbody.velocity = (GameManager.Instance.GetPlayer().transform.position - this.transform.position) * 1.0f;
     }
-
-    public void StartBattle()
-    {
-        currentEnemyTarget = GameManager.Instance.GetPlayer();
-        animator.SetTrigger("Scream");
-    }
     
     private GameObject CheckEnemyInBossArea()
 	{
@@ -353,7 +347,7 @@ public class DragonBossFSM : FSMBase
             return;
         }
     }
-    public override void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {        
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);
@@ -368,7 +362,7 @@ public class DragonBossFSM : FSMBase
         //     checkState = CheckScreamState;
         //     return;
         // }
-        if(data.hp > 0 && isHead == true && isAngry == false)
+        if(data.hp > 0 && isHead == true && isAngry == false && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 

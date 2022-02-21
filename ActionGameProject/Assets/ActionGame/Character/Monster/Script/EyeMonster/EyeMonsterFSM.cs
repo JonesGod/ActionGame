@@ -373,11 +373,11 @@ public class EyeMonsterFSM : FSMBase
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
     }
-    public override void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {        
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
-        if(data.hp > 0)
+        if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 

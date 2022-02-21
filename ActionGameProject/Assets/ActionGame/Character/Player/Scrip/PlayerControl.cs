@@ -11,15 +11,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-    //UI use   Inventory CS:135
-    public static float PLHP = 300;
-    public static float PLMP = 1000;
-    //
 
     private static float playerHp = 300;//玩家生命
     private static float playerMaxHp = 300;//玩家生命最大值
-    private static float playerMp = 1000;//玩家MP
-    private static float playerMaxMp = 1000;//玩家MP最大值
+    private static float playerMp = 100;//玩家MP
+    private static float playerMaxMp = 100;//玩家MP最大值
 
     private float rotateSpeed = 10.0f;//轉向速度
     private float speed = 6.0f;//移動速度
@@ -124,14 +120,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         playerCurrnetState = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
-        currentCheckPoint = new Vector3(152f,23f,-118f) ;
-
-
-        //UI use   Inventory CS:135
-        PLHP = 300;
-        PLMP = 1000;
-
-
+        currentCheckPoint = new Vector3(152f,23f,-118f);
     }
     void Update()
     {

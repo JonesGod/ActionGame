@@ -841,7 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   data:
-    hp: 200
+    hp: 400
     speed: 5
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}

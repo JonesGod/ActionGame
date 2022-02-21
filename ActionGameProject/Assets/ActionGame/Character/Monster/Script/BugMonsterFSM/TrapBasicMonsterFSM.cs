@@ -387,7 +387,7 @@ public class TrapBasicMonsterFSM : FSMBase
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
     }
-    public override void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {        
         for(int i = 0; i < partnerMonster.Count; i++)
         {
@@ -396,7 +396,7 @@ public class TrapBasicMonsterFSM : FSMBase
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
         data.speed = 0.0f;
-        if(data.hp > 0)
+        if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 

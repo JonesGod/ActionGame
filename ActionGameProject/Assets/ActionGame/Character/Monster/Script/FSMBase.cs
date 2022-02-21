@@ -58,7 +58,7 @@ public class FSMBase : MonoBehaviour
     {
         
     }
-    public virtual void CallHurt(float damageAmount, bool isHead)
+    public virtual void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {
         
     }

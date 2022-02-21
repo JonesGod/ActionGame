@@ -10,13 +10,13 @@ public class SeaMonsterHurt : MonoBehaviour
     {      
         if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(30, false); 
+            myFSM.CallHurt(30, false, false); 
         }
             
         if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
         {
             Debug.Log("asdasdas");
-            myFSM.CallHurt(20, false);
+            myFSM.CallHurt(20, false, false);
         }
     }
 }

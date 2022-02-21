@@ -207,7 +207,7 @@ public class SeaMonsterFSM : FSMBase
         myRigidbody.isKinematic = true;
         //CharacterCollisionBlocker.enabled = false;
     }
-    public override void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  

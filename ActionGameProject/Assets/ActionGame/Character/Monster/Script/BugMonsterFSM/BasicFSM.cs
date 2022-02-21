@@ -401,17 +401,17 @@ public class BasicFSM : FSMBase
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
     }
-    public override void CallHurt(float damageAmount, bool isHead)
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {        
         for(int i = 0; i < partnerMonster.Count; i++)
         {
             partnerMonster[i].HelpPartner();           
         }
         data.hp -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);
-        data.speed = 0.0f;
-        if(data.hp > 0)
+        myHealth.ModifyHealth(damageAmount);        
+        if(data.hp > 0 && isHurtAnimation == true)
         {
+            data.speed = 0.0f;
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 
             if(data.target == null)
