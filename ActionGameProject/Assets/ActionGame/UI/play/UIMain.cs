@@ -13,7 +13,6 @@ public class UIMain : MonoBehaviour
 
     public GameObject m_PlayerObject;
     public GameObject skillWindow;
-    
 
 
     private void Awake()
@@ -62,17 +61,17 @@ public class UIMain : MonoBehaviour
     }
     public void BowUnlock()
     {
-        GameObject BowLock = skillWindow.transform.GetChild(4).gameObject;
+        GameObject BowLock = skillWindow.transform.GetChild(7).gameObject;
         BowLock.SetActive(false);
     }
     public void ExplodeArrowUnlock()
     {
-        GameObject ArrowLock = skillWindow.transform.GetChild(5).gameObject;
+        GameObject ArrowLock = skillWindow.transform.GetChild(9).gameObject;
         ArrowLock.SetActive(false);
     }
     public void SwordSkillUnLock()
     {
-        GameObject swordSkillLock= skillWindow.transform.GetChild(3).gameObject;
+        GameObject swordSkillLock= skillWindow.transform.GetChild(5).gameObject;
         swordSkillLock.SetActive(false);
     }
 }
