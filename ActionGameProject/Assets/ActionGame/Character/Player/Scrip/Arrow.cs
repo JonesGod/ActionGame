@@ -85,6 +85,7 @@ public class Arrow : MonoBehaviour
     public void IsExplode()
     {
         explodeFlag = true;
+        transform.name = "ExplosiveArrow";
     }
     public void IsNormal()
     {
