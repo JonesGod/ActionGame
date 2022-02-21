@@ -77,6 +77,7 @@ public class Arrow : MonoBehaviour
     public void IsNormal()
     {
         explodeFlag = false;
+        transform.name = "Arrow(Clone)";
     }
     /// <summary>
     /// trigger���z���b

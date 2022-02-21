@@ -156,6 +156,9 @@ public class PlayerControl : MonoBehaviour, BeObserver
         statetime = m_Am.GetFloat("StateTime");
 
         CalculateGravity();
+        GetAttackState();
+        GetCurrentState();
+        GetNextState();
 
         if (m_Input.bowState)   //弓狀態與一般狀態的基本參數改變
         {
@@ -190,7 +193,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
 
         ResetTrigger();
-        if (m_Input.avoid )      //迴避
+        if (m_Input.avoid && !bowShoot && !m_Input.bowAttack)      //迴避
         {   
             ResetAttackTrigger();          
 
@@ -231,11 +234,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
                 charge = 1.0f;
 
             m_Am.SetFloat(m_ChargeTime, charge);
-        }
-        
-        GetAttackState();
-        GetCurrentState();
-        GetNextState();
+        }       
 
         if ((m_Input.moveFlagH || m_Input.moveFlagV) && !hurt && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
             Rotating(moveInput.x, moveInput.y);
@@ -393,12 +392,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (stateinfo.shortNameHash == hashBattleRun)
             battleRunIsNext = true;
         else
-            battleRunIsNext = false;
-
-        if (nextStateinfoOne.shortNameHash == hashBowShoot)
-            bowShoot = true;
-        else
-            bowShoot = false;
+            battleRunIsNext = false;     
 
         if (stateinfo.shortNameHash == hashHurt)
             hurt = true;
@@ -412,8 +406,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
         Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
-        PlayerInput.Instance.rollState = battleRollState;
-        PlayerInput.Instance.bowShoot = bowShoot;
+        PlayerInput.Instance.rollState = battleRollState;        
         PlayerInput.Instance.hurt = hurt;
     }    
     /// <summary>
@@ -446,6 +439,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             bowIsNext = false;
 
+        if (nextStateinfoOne.shortNameHash == hashBowShoot)
+            bowShoot = true;
+        else
+            bowShoot = false;
+
         if (nextStateinfo.shortNameHash == hashRun)
             runIsNext = true;
         else
@@ -464,6 +462,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
         PlayerInput.Instance.hurtIsNext = hurtIsNext;
         Sword.Instance.bowIsNext = bowIsNext;
+        PlayerInput.Instance.bowShoot = bowShoot;
         Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
     }

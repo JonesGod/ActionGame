@@ -118,7 +118,7 @@ public class PlayerInput : MonoBehaviour
         else
             bowCharge = false;
         
-        if (Input.GetButtonDown("Avoid"))                  
+        if (Input.GetButtonDown("Avoid") && !bowShoot)                  
             avoid = true;
 
         ///弓狀態判定
