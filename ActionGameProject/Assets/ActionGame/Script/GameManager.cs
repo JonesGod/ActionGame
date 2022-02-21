@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] allMonster;
     private PlayerControl player;
     public FSMBase monsterObserver;
-    public GameObject teleportTransform;
     public GameObject testNewPosition;
+    public GameObject testNewPosition2;
 
     void Update()
     {
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             GetPlayer().transform.position = new Vector3(testNewPosition.transform.position.x, testNewPosition.transform.position.y, testNewPosition.transform.position.z);
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            GetPlayer().transform.position = new Vector3(testNewPosition2.transform.position.x, testNewPosition2.transform.position.y, testNewPosition2.transform.position.z);
         }
     }
     private void Awake()

@@ -35,16 +35,22 @@ public class RockMonsterFSM : FSMBase
 
     void Update()
     {
+        var targetRotation = Quaternion.LookRotation(GameManager.Instance.GetPlayer().transform.position - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.05f);
+        myRigidbody.velocity = transform.forward * 10.0f;
+        Vector3 targetDir = GameManager.Instance.GetPlayer().transform.position - transform.position;            
+        float dotDirection = Vector3.Dot(transform.forward, targetDir.normalized);
+        Debug.Log(dotDirection);
         if(data.hp <= maxHp / 2 && isAngry == false)
         {
             isAngry = true;
             return;
         }
-        if(currentState != FSMState.Dead)
-        {
-            checkState();
-            doState();    
-        }      
+        // if(currentState != FSMState.Dead)
+        // {
+        //     checkState();
+        //     doState();    
+        // }      
     }
     public void StartBattle()
     {
@@ -63,40 +69,45 @@ public class RockMonsterFSM : FSMBase
 		return null;
 	}
     private bool CheckEnemyInAttackRange(GameObject target, ref bool punchAttack, ref bool rangeAttack, ref bool circleAttack, ref bool smashAttack)
-	{
+	{        
 		GameObject go = target;
+
+        Vector3 targetDir = go.transform.position - transform.position;            
+        float dotDirection = Vector3.Dot(transform.forward, targetDir.normalized);
+
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist < data.attackRange && isAngry == true)
+        if(fDist < data.attackRange && isAngry == true)//敲地板
         {
+            punchAttack = false;
+			circleAttack = false;
+            smashAttack = true;
             rangeAttack = false;
-			punchAttack = false;
-            circleAttack = true;
-            smashAttack = false;
 			return true;
         }
-		else if (fDist < data.attackRange)
+		else if (fDist < data.attackRange)//普通攻擊
 		{
-            rangeAttack = false;
-			punchAttack = true;
-            circleAttack = false;
+            punchAttack = true;
+			circleAttack = false;
             smashAttack = false;
+            rangeAttack = false;
 			return true;
 		}
-        else if(fDist > data.strafeRange)
+        else if(fDist > data.strafeRange)//轉圈
         {
             punchAttack = false;
-            rangeAttack = true;
-            circleAttack = false;
+			circleAttack = true;
             smashAttack = false;
+            rangeAttack = false;
 			return true;
         }
-        else
+        else if(fDist > data.strafeRange)//遠程攻擊
         {
             punchAttack = false;
-            rangeAttack = false;
-            circleAttack = false;
-            smashAttack = true;
+			circleAttack = false;
+            smashAttack = false;
+            rangeAttack = true;
+            return true;
         }
 		return false;
 	}    

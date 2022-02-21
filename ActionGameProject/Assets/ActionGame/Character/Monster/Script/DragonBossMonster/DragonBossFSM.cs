@@ -355,6 +355,7 @@ public class DragonBossFSM : FSMBase
         if(data.target == null)
         {
             data.target = GameManager.Instance.GetPlayer();
+            currentEnemyTarget = GameManager.Instance.GetPlayer();
         }
         if(isHead == true)
         {
