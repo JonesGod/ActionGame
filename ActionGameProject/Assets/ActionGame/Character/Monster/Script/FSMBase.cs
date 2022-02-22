@@ -28,6 +28,7 @@ public class FSMBase : MonoBehaviour
     public int range;
     public int widthDistance;
     public int backDistance;
+    
     public virtual void CheckIdleState()
     {   
         

@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 7574648566423357250}
   - component: {fileID: 2398100852455673900}
   - component: {fileID: 4602354037005486491}
+  - component: {fileID: -4498791606880582716}
   m_Layer: 9
   m_Name: eyebat
   m_TagString: Untagged
@@ -428,6 +429,7 @@ MonoBehaviour:
   currentState: 0
   data:
     hp: 0
+    shield: 0
     speed: 0
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -437,6 +439,15 @@ MonoBehaviour:
     strafeTime: 0
     patrolTime: 0
   myHealth: {fileID: 2398100852455673900}
+  myRigidbody: {fileID: 0}
+  rotationSpeed: 0
+  isThereObstacle: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 0
+  widthDistance: 0
+  backDistance: 0
   strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 7881952439412836361}
   wayPoints: []
@@ -467,6 +478,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 7804208524148756169}
+--- !u!114 &-4498791606880582716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433355900633108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d4ef32a26bdef47b0aeaed6fec9e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  dissolveAmount: -0.05
+  endDissolveAmount: 1
+  dissolveTime: 2
 --- !u!1 &1452314376040498
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ struct Varyings
 #ifdef _UseFringeShadow  
     float4 scrPos : TEXCOORD4;
 #endif
-    float2 uv : TEXCOORD5;
+    float4 uv : TEXCOORD5;
 };
 
 CBUFFER_START(UnityPerMaterial)
@@ -68,6 +68,11 @@ float _FresnelPow;
 float _SpecularExponent;
 float _SpecularScale;
 
+//Dissolve
+half4 _DissolveColor;
+float4 _DissolveMap_ST;
+float _DissolveAmount;
+float _DissolveWidth;
 CBUFFER_END
 
 //a special uniform for applyShadowBiasFixToHClipPos() only, it is not a per material uniform, 
@@ -78,6 +83,8 @@ TEXTURE2D(_BaseMap);
 SAMPLER(sampler_BaseMap);
 TEXTURE2D(_HairSolidColor);
 SAMPLER(sampler_HairSolidColor);
+TEXTURE2D(_DissolveMap);
+SAMPLER(sampler_DissolveMap);
 
 ///////////////////////////
 //vertex shader part
@@ -146,7 +153,8 @@ Varyings vert(Attributes input)
     //output.bitangentWS = vertexNormalInput.bitangentWS;
     output.positionVS = TransformWorldToView(output.positionWS);
 
-    output.uv = TRANSFORM_TEX(input.texcoord, _BaseMap);
+    output.uv.xy = TRANSFORM_TEX(input.texcoord, _BaseMap);
+    output.uv.zw = TRANSFORM_TEX(input.texcoord, _DissolveMap);
 
     output.positionCS = TransformWorldToHClip(output.positionWS);   
 
@@ -321,6 +329,11 @@ half4 frag(Varyings input) : SV_Target
     Light mainLight = GetMainLight();
     half3 shadowTestPosWS = positionWS + mainLight.direction * (_ReceiveShadowMappingOffset + _IsFace);
 
+    //Dissolve
+    half3 dissolveMap = SAMPLE_TEXTURE2D(_DissolveMap, sampler_DissolveMap, input.uv.zw).rgb;  
+    clip(step(_DissolveAmount, dissolveMap.b) - 0.01);
+    float edge = step(saturate(_DissolveAmount + _DissolveWidth), dissolveMap.b);
+
 //瀏海投影
 #ifdef _UseFringeShadow  
     float FringeShadow = CaculateFringeShadow(positionCS, mainLight.direction, scrPos, _FringeShadowOffset);
@@ -369,11 +382,16 @@ half4 frag(Varyings input) : SV_Target
         #ifdef _UseBackRim 
             FinalColorWithRim = lerp(FinalColorWithRim, _RimColorBack.rgb, lightDirBack);
         #endif      
+        //return half4(FinalColorWithRim , alpha);
+        half3 finalColor = lerp(_DissolveColor.rgb, FinalColorWithRim, edge);  
      
-        return half4(FinalColorWithRim , alpha);
+        return half4(finalColor , alpha);
     #endif  
+    
+    half3 finalResult = lerp(_DissolveColor.rgb, FinalColorResult, edge);  
 
-    return half4(FinalColorResult, alpha);
+    //return half4(FinalColorResult, alpha);
+    return half4(finalResult, alpha);
 }
 
 

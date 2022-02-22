@@ -198,7 +198,7 @@ public class BasicFSM : FSMBase
         animator.SetBool("IsMoveRight", false);
         animator.SetBool("IsMoveForward", true);
         AvoidCollisionMove();
-        myRigidbody.velocity = transform.forward * data.speed;
+        //myRigidbody.velocity = transform.forward * data.speed;
         
         
         //myRigidbody.velocity = transform.forward * data.speed;

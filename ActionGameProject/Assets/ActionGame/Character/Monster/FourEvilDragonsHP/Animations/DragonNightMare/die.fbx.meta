@@ -526,6 +526,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.39233422
+        functionName: StartDissolve
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 94d4ef32a26bdef47b0aeaed6fec9e07, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
