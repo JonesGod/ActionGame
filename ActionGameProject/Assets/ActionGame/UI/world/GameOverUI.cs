@@ -11,48 +11,103 @@ public class GameOverUI : MonoBehaviour
 
     protected static GameOverUI s_Instance;
 
-    //GameObject back;
+    static CanvasGroup canversgroup;
+
     public bool m_IsFading;
     public CanvasGroup gameOver;
-    // Start is called before the first frame update
+
+    public CanvasGroup swordSkillLock;
+    public CanvasGroup bowLock;
+    public CanvasGroup explodeLock;
+
+    public enum FadeType
+    {
+        GameOver=1,
+        swordSkill = 2,
+        bow = 3,
+        eplodeArrow = 4,
+    }
     private void Awake()
     {
         s_Instance = this;
     }
     private void Start()
     {
-        //back = transform.GetChild(2).gameObject;
+        
     }
-    public static IEnumerator OpenGameOverScreen()
+    /// <summary>
+    /// Select canvers which to use
+    /// </summary>
+    /// <param name="fadeType"></param>
+    /// <returns></returns>
+    static CanvasGroup SelectCanvers(FadeType fadeType)
+    {        
+        switch (fadeType)
+        {
+            case FadeType.GameOver:
+                canversgroup = Instance.gameOver;
+                break;
+            case FadeType.swordSkill:
+                canversgroup = Instance.swordSkillLock;
+                break;
+            case FadeType.bow:
+                canversgroup = Instance.bowLock;
+                break;
+            case FadeType.eplodeArrow:
+                canversgroup = Instance.explodeLock;
+                break;
+        }
+        return canversgroup;
+    }
+    /// <summary>
+    /// The FadeOut process
+    /// </summary>
+    /// <param name="fadeType"></param>
+    /// <returns></returns>
+    public static IEnumerator ScreenFadeOut(FadeType fadeType)
     {
-        var canvers = Instance.gameOver;
+        CanvasGroup canvers;
+        canvers=SelectCanvers(fadeType);
 
         canvers.gameObject.SetActive(true);
-        yield return Instance.StartCoroutine(Instance.Fade(1f));
+        yield return Instance.StartCoroutine(Instance.Fade(1f, canvers));
         Cursor.visible = true;
     }
-    public static IEnumerator CloseGameOverScreen()
+    /// <summary>
+    /// The FadeIn Process
+    /// </summary>
+    /// <param name="fadeType"></param>
+    /// <returns></returns>
+    public static IEnumerator ScreenFadeIn(FadeType fadeType)
     {
-        var canvers = Instance.gameOver;
+        CanvasGroup canvers;
+        canvers = SelectCanvers(fadeType);
 
-        yield return Instance.StartCoroutine(Instance.Fade(0f));
+        yield return Instance.StartCoroutine(Instance.Fade(0f, canvers));
         canvers.gameObject.SetActive(false);
-        Cursor.visible = false;
+
+        if(fadeType==FadeType.GameOver)
+            Cursor.visible = false;
     }
-    protected IEnumerator Fade(float finalAlpha)
+    /// <summary>
+    /// Fade Process¡Afade speed adjust here
+    /// </summary>
+    /// <param name="finalAlpha"></param>
+    /// <param name="canvers"></param>
+    /// <returns></returns>
+    protected IEnumerator Fade(float finalAlpha, CanvasGroup canvers)
     {
-        gameOver.blocksRaycasts = false;
+        canvers.blocksRaycasts = false;
         m_IsFading = true;
 
-        while(!Mathf.Approximately(gameOver.alpha,finalAlpha))
+        while(!Mathf.Approximately(canvers.alpha,finalAlpha))
         {
-            gameOver.alpha = Mathf.MoveTowards(gameOver.alpha, finalAlpha, 1f * Time.deltaTime);
+            canvers.alpha = Mathf.MoveTowards(canvers.alpha, finalAlpha, 1f * Time.deltaTime);
             yield return null;
         }
-        gameOver.alpha = finalAlpha;
+        canvers.alpha = finalAlpha;
 
-        gameOver.blocksRaycasts = true;
+        canvers.blocksRaycasts = true;
         m_IsFading = false;
-
     }
 }

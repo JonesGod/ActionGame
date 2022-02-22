@@ -722,7 +722,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             yield return null;
         }
-        yield return StartCoroutine(GameOverUI.OpenGameOverScreen());
+        yield return StartCoroutine(GameOverUI.ScreenFadeOut(GameOverUI.FadeType.GameOver));
         while (GameOverUI.Instance.m_IsFading)
         {
             yield return null;
@@ -743,7 +743,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         playerHp = playerMaxHp;
         UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
 
-        yield return StartCoroutine(GameOverUI.CloseGameOverScreen());
+        yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.GameOver));
         while (GameOverUI.Instance.m_IsFading)
         {
             yield return null;
@@ -767,11 +767,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             case 1:
                 explodeArrowLock = false;
-                UIMain.Instance().ExplodeArrowUnlock();
+                StartCoroutine(UIMain.Instance().ExplodeArrowUnlock());
                 break;
             case 2:
                 swordSkillLock = false;
-                UIMain.Instance().SwordSkillUnLock();
+               StartCoroutine(UIMain.Instance().SwordSkillUnLock());
                 break;
         }
         
