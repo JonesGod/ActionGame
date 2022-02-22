@@ -109,7 +109,7 @@ public class PlayerInput : MonoBehaviour
             attack = true;
         if (Input.GetButtonDown("Fire2"))
             specialAttack = true;
-        
+
         ///弓射擊
         if (Input.GetButtonUp("Fire1") && bowState)
             bowAttack = true;
@@ -122,9 +122,10 @@ public class PlayerInput : MonoBehaviour
             avoid = true;
 
         ///弓狀態判定
-        CantBow();
+        
         if (!bowLock)
         {
+            CantBow();
             if (Input.GetButtonDown("Switch") && !bowState && !FolowCamera.Instance.isSwitch && cantBowState
                 && rollToBow)
             {
@@ -132,7 +133,7 @@ public class PlayerInput : MonoBehaviour
                 bowState = true;
             }
             else if (Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch && !bowShoot)
-            {
+            {               
                 FolowCamera.Instance.SwitchSet();
                 bowState = false;
             }

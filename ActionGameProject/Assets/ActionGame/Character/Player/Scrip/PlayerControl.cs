@@ -141,7 +141,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         BowAngle();
         TargetSearch();
         Alert();
-
+       
         moveInput = PlayerInput.Instance.MoveInput;
         runInput = PlayerInput.Instance.MoveInput;
     }
@@ -216,16 +216,16 @@ public class PlayerControl : MonoBehaviour, BeObserver
             }
             m_Input.specialAttack = false;
         }
-        if(m_Input.bowAttack)  //弓左鍵射擊
+        if (m_Input.bowAttack)  //弓左鍵射擊
         {
             m_Am.ResetTrigger("AttackTrigger");
 
-            m_ArrowShoot.GetCharge(charge,playerMp);
+            m_ArrowShoot.GetCharge(charge, playerMp);
             charge = 0f;
             m_Am.SetTrigger("BowAttackTrigger");
             m_Input.bowAttack = false;
         }
-        if(m_Input.bowCharge)
+        if (m_Input.bowCharge)
         {
             charge += Time.deltaTime;
             if (charge > 2.0f)
