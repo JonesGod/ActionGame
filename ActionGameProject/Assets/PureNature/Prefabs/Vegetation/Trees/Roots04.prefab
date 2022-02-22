@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7261395556553552334}
   m_Layer: 0
   m_Name: Roots04
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

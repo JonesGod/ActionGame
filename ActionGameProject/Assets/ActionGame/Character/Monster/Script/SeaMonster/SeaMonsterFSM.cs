@@ -13,7 +13,7 @@ public class SeaMonsterFSM : FSMBase
     private Animator animator;
     private float currentTime;
     
-    public Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     //public BoxCollider CharacterCollisionBlocker; 
     
     public SeaMonsterTentacleFSM[] partnerMonster;

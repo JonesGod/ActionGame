@@ -14,7 +14,7 @@ public class DragonBossFSM : FSMBase
     private float currentTime;
     public int strafeDirection;
 
-    Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
     private float maxHp;
     public bool isAngry = false;

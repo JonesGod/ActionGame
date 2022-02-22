@@ -13,12 +13,14 @@ public class RockMonsterFSM : FSMBase
     private Animator animator;
     private float currentTime;
     private float waitTime;
+    private float smashCD;
 
-    Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
     private float maxHp;
     private float maxShield;
     public bool isAngry = false;
+    public bool isAwake = false;
     private bool isRotateTowardPlayer = false;
 
     void Start()
@@ -35,24 +37,23 @@ public class RockMonsterFSM : FSMBase
 
     void Update()
     {
-        Vector3 targetDir = GameManager.Instance.GetPlayer().transform.position - transform.position;            
-        float dotDirection = Vector3.Dot(transform.forward, targetDir.normalized);
-        Debug.Log(dotDirection);
+        smashCD += Time.deltaTime;
         if(data.hp <= maxHp / 2 && isAngry == false)
         {
             isAngry = true;
             return;
         }
-        // if(currentState != FSMState.Dead)
-        // {
-        //     checkState();
-        //     doState();    
-        // }      
+        if(currentState != FSMState.Dead && isAwake == true)
+        {
+            checkState();
+            doState();    
+        }      
     }
     public void StartBattle()
     {
         currentEnemyTarget = GameManager.Instance.GetPlayer();
-        animator.SetTrigger("Scream");
+        isAwake = true;
+        animator.SetTrigger("BattleStart");
     }
     private GameObject CheckEnemyInBossArea()
 	{
@@ -74,7 +75,7 @@ public class RockMonsterFSM : FSMBase
 
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist > data.attackRange && fDist < data.strafeRange)//敲地板
+        if(fDist > data.attackRange && fDist < data.strafeRange && smashCD >= 10.0f)//敲地板
         {
             punchAttack = false;
 			circleAttack = false;
@@ -206,8 +207,9 @@ public class RockMonsterFSM : FSMBase
     }
     public  void DoWaitState()
     {
+        animator.SetBool("IsIdle", false);
+        animator.SetBool("IsWalk", false);        
         currentTime += Time.deltaTime;
-
     }
 
     public override void CheckAttackState()
@@ -227,7 +229,7 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            waitTime = Random.Range(1.0f, 2.0f);
+            waitTime = Random.Range(0.5f, 1.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoWaitState;
@@ -270,7 +272,7 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            waitTime = Random.Range(1.0f, 2.0f);
+            waitTime = Random.Range(0.5f, 1.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoWaitState;
@@ -299,11 +301,32 @@ public class RockMonsterFSM : FSMBase
 
     public void CheckSmashAttackState()
     {
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(3.0f, 4.0f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }        
     }    
     public void DoSmashAttackState()
     {
         data.speed = 0;
         myRigidbody.velocity = transform.forward * data.speed;
+        smashCD = 0.0f;
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("SmashAttack"))
         {            
@@ -380,6 +403,8 @@ public class RockMonsterFSM : FSMBase
         bool smashAttack = false;
         if(currentTime >= data.strafeTime)
         {
+            data.target = currentEnemyTarget;
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
             if(punchAttack)
             {
                 currentState = FSMState.Attack;
@@ -404,6 +429,11 @@ public class RockMonsterFSM : FSMBase
                 doState = DoSmashAttackState;
                 checkState = CheckSmashAttackState;
             }
+            else 
+            {
+                doState = DoStrafeState;
+                checkState = CheckStrafeState;
+            }
             return;
         }    
         return;
@@ -412,7 +442,7 @@ public class RockMonsterFSM : FSMBase
     {
         //Debug.Log("DoStrafe");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
-        data.speed = 3.0f;
+        data.speed = 5.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
@@ -437,6 +467,108 @@ public class RockMonsterFSM : FSMBase
             currentTime += Time.deltaTime;
             return;
         }
+    }
+    public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
+    {        
+        data.hp -= damageAmount;
+        myHealth.ModifyHealth(damageAmount);
+        if(data.target == null)
+        {
+            data.target = GameManager.Instance.GetPlayer();
+            currentEnemyTarget = GameManager.Instance.GetPlayer();
+        }
+        // if(data.hp <= maxHp / 2 && isAngry == false)
+        // {
+        //     isAngry = true;
+        //     doState = DoScreamState;
+        //     checkState = CheckScreamState;
+        //     return;
+        // }
+        if(data.hp > 0 && isHurtAnimation == true)
+        {
+            currentState = FSMState.Hurt;  
+            animator.SetTrigger("TakeDamage"); 
+            data.speed = 0.0f;
+            myRigidbody.velocity = transform.forward * data.speed;
+            doState = DoHurtState;
+            checkState = CheckHurtState;
+            return;
+        }   
+    }
+    public override void CheckHurtState()
+    {
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(1.0f, 2.5f);;
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }
+    }
+    public override void DoHurtState()
+    {
+        myRigidbody.velocity = Vector3.zero;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
+        {
+            //Debug.Log("IsHurt");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+    }
+    public override void CheckDeadState()
+    {
+        //Dead : Do nothing
+    }
+    public override void DoDeadState()
+    {
+        //Debug.Log("DoDead");
+        animator.SetTrigger("Die");
+        myRigidbody.isKinematic = true;
+        CharacterCollisionBlocker.enabled = false;
+    }
+
+    public void ShieldHurt(float damageAmount, bool isHead, bool isHurtAnimation)
+    {        
+        data.shield -= damageAmount;
+        myHealth.ModifyHealth(damageAmount);
+        if(data.target == null)
+        {
+            data.target = GameManager.Instance.GetPlayer();
+            currentEnemyTarget = GameManager.Instance.GetPlayer();
+        }
+    }
+    public void RestoreShield(float damageAmount, bool isHead, bool isHurtAnimation)
+    {        
+        data.shield = maxShield;
+        myHealth.ModifyHealth(damageAmount);
+    }
+
+    private void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(this.transform.position, data.sightRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, data.attackRange);    
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(this.transform.position, data.strafeRange);    
     }
         
 }

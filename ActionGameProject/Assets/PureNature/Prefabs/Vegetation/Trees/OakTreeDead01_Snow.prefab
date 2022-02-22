@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5016421612769890435}
   m_Layer: 0
   m_Name: OakTreeDead01_Snow
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -14,7 +14,7 @@ public class EyeMonsterFSM : FSMBase
     private float currentTime;
     public int strafeDirection;
     
-    Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
 
     public GameObject[] wayPoints;

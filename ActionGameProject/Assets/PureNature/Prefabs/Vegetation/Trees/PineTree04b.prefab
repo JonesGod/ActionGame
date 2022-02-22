@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5778912549268467442}
   m_Layer: 0
   m_Name: PineTree04b
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

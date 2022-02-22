@@ -632,6 +632,7 @@ MonoBehaviour:
   currentState: 0
   data:
     hp: 160
+    shield: 0
     speed: 5
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -641,9 +642,17 @@ MonoBehaviour:
     strafeTime: 0
     patrolTime: 0
   myHealth: {fileID: 8476986481820257543}
+  myRigidbody: {fileID: 0}
+  rotationSpeed: 0
+  isThereObstacle: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 8
+  widthDistance: 2
+  backDistance: 4
   strafeDirection: 0
   isHeadHurt: 0
-  myRigidbody: {fileID: 0}
   CharacterCollisionBlocker: {fileID: 2474809656402096054}
   partnerMonster: []
   layerMask:

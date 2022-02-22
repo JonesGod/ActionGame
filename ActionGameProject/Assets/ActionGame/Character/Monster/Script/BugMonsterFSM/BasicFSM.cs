@@ -14,7 +14,7 @@ public class BasicFSM : FSMBase
     private float currentTime;
     public int strafeDirection;
     
-    public Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
 
     public List<BasicFSM> partnerMonster;
@@ -54,6 +54,10 @@ public class BasicFSM : FSMBase
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position + (transform.up * 1.5f) + (transform.right * widthDistance), transform.forward * range, Color.red);
+        Debug.DrawRay(transform.position + (transform.up * 1.5f) - (transform.right * widthDistance), transform.forward * range, Color.red);
+        Debug.DrawRay(transform.position + (transform.up * 1.5f) - (transform.forward * backDistance), -transform.right * range, Color.yellow);
+        Debug.DrawRay(transform.position + (transform.up * 1.5f) - (transform.forward * backDistance), transform.right * range, Color.yellow);        
         // var v3 = transform.forward * 1.0f;
         // v3.y = myRigidbody.velocity.y;
         // myRigidbody.velocity = v3;
@@ -155,7 +159,6 @@ public class BasicFSM : FSMBase
         Ray ray = new Ray(transform.position, -Vector3.up);
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
         {
-            Debug.Log("hit");
             transform.up = hit.normal;
         }
         //Debug.Log("DoIdle");
@@ -181,23 +184,24 @@ public class BasicFSM : FSMBase
     }    
     public override void DoChaseState()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, -Vector3.up);
-        if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
-        {
-            Debug.Log("hit");
-            transform.up = hit.normal;
-        }
+        // RaycastHit hit;
+        // Ray ray = new Ray(transform.position, -Vector3.up);
+        // if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
+        // {
+        //     Debug.Log("hit");
+        //     transform.up = hit.normal;
+        // }
         //Debug.Log("DoChaseState");
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
 
         data.speed = 6.0f;
         animator.SetBool("IsMoveRight", false);
         animator.SetBool("IsMoveForward", true);
-        transform.LookAt(data.target.transform.position, transform.up);
-        //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
-        
+        AvoidCollisionMove();
         myRigidbody.velocity = transform.forward * data.speed;
+        
+        
+        //myRigidbody.velocity = transform.forward * data.speed;
         // if (SteeringBehavior.CollisionAvoid(data) == false)
         // {
         //     SteeringBehavior.Seek(data);
@@ -245,35 +249,35 @@ public class BasicFSM : FSMBase
             transform.up = hit.normal;
         }
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
-        data.speed = 1.5f;
+        data.speed = 3.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
-        for(int i = 0; i < partnerMonster.Count; i++)
-        {
-            if(partnerMonster[i].currentState == FSMState.Chase)
-            {
-                Vector3 targetDir = partnerMonster[i].transform.position - transform.position;            
-                float dotPartner = Vector3.Dot(transform.right, targetDir.normalized);
+        // for(int i = 0; i < partnerMonster.Count; i++)
+        // {
+        //     if(partnerMonster[i].currentState == FSMState.Chase)
+        //     {
+        //         Vector3 targetDir = partnerMonster[i].transform.position - transform.position;            
+        //         float dotPartner = Vector3.Dot(transform.right, targetDir.normalized);
 
-                animator.SetBool("IsIdle", false);
-                animator.SetBool("IsMoveForward", false); 
-                animator.SetBool("IsMoveRight", true); 
-                transform.LookAt(data.target.transform.position, transform.up);
-                if(dotPartner > 0)
-                {
-                    transform.Translate(Vector3.left * data.speed * Time.deltaTime);
-                    strafeDirection = 1;
-                }
-                else
-                {
-                    transform.Translate(Vector3.right * data.speed * Time.deltaTime);
-                    strafeDirection = 0;
-                }
-                currentTime += 0;
-                return;
-            }           
-        }        
+        //         animator.SetBool("IsIdle", false);
+        //         animator.SetBool("IsMoveForward", false); 
+        //         animator.SetBool("IsMoveRight", true); 
+        //         transform.LookAt(data.target.transform.position, transform.up);
+        //         if(dotPartner > 0)
+        //         {
+        //             transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+        //             strafeDirection = 1;
+        //         }
+        //         else
+        //         {
+        //             transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+        //             strafeDirection = 0;
+        //         }
+        //         currentTime += 0;
+        //         return;
+        //     }           
+        // }        
         if(fDist > data.strafeRange)
         {
             animator.SetBool("IsMoveRight", false); 

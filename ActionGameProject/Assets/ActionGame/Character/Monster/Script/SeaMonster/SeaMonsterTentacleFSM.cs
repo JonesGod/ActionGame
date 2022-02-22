@@ -13,7 +13,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     private Animator animator;
     private float currentTime;
     
-    public Rigidbody myRigidbody;
+    //Rigidbody myRigidbody;
     //public BoxCollider CharacterCollisionBlocker; 
     Vector3 myPosition;    
     private bool isRotateTowardPlayer = false;

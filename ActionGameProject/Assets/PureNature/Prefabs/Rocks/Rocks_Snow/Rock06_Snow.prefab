@@ -7,68 +7,59 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 1467907350624262137, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2451176652310455786, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 2451176652310455786, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_Name
       value: Rock06_Snow
       objectReference: {fileID: 0}
-    - target: {fileID: 4195246131663343926, guid: b60347736c79d6144bf2745550e33349,
-        type: 3}
+    - target: {fileID: 2451176652310455786, guid: b60347736c79d6144bf2745550e33349, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195246131663343926, guid: b60347736c79d6144bf2745550e33349, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d800e55220cb43c4c91d814ce90d550a, type: 2}

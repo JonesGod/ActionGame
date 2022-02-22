@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4735455285669252454}
   m_Layer: 0
   m_Name: OakTreeBaseBroken01
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
