@@ -13,6 +13,7 @@ public class UIMain : MonoBehaviour
 
     public GameObject m_PlayerObject;
     public GameObject skillWindow;
+    public GameObject licened;
 
 
     private void Awake()
@@ -29,8 +30,7 @@ public class UIMain : MonoBehaviour
     }
     //更新魔槽
     public void UpdateMpBar(float fValue)
-    {
-        
+    {        
         m_MpBar.fillAmount = fValue;
     }
     public void ToggleGroupUpdate(ToggleGroup tg)
@@ -49,6 +49,7 @@ public class UIMain : MonoBehaviour
         if(skillWindow.activeSelf==false)
         {
             skillWindow.SetActive(true);
+            licened.SetActive(false);
             Cursor.visible = true;
             return true;
         }
@@ -63,16 +64,25 @@ public class UIMain : MonoBehaviour
     {
         GameObject swordSkillLock = skillWindow.transform.GetChild(4).gameObject;
         swordSkillLock.SetActive(false);
+
+        if(skillWindow.activeSelf==false)
+            licened.SetActive(true);
     }
     public void BowUnlock()
     {
         GameObject BowLock = skillWindow.transform.GetChild(5).gameObject;
         BowLock.SetActive(false);
+
+        if (skillWindow.activeSelf == false)
+            licened.SetActive(true);
     }
     public void ExplodeArrowUnlock()
     {
         GameObject ArrowLock = skillWindow.transform.GetChild(6).gameObject;
         ArrowLock.SetActive(false);
+
+        if (skillWindow.activeSelf == false)
+            licened.SetActive(true);
     }
    
 }
