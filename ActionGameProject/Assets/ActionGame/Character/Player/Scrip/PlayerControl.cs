@@ -168,15 +168,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
         {
             NormalBasicValue();
         }
-
+        ResetTrigger();
         CantRollToBow();        //弓模式旗標
-        if (m_Input.bowState && !attackState)
+        if (m_Input.bowTrigger && !attackState)
         {
-            m_Am.SetBool("BowBool", true);
-        }
-        else
-        {
-            m_Am.SetBool("BowBool", false);
+            Debug.Log("bow");
+            m_Am.SetTrigger("BowTrigger");
+            m_Input.bowTrigger = false;
         }
 
         if (m_Input.moveFlagH || m_Input.moveFlagV)       //移動旗標
@@ -192,7 +190,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
             m_Am.SetBool("RunBool", false);
         }
 
-        ResetTrigger();
         if (m_Input.avoid && !bowShoot && !m_Input.bowAttack)      //迴避
         {   
             ResetAttackTrigger();          
@@ -473,6 +470,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     {      
         m_Am.ResetTrigger("AvoidTrigger");
         m_Am.ResetTrigger("BowAttackTrigger");
+        m_Am.ResetTrigger("BowTrigger");
     }
     /// <summary>
     /// 重製攻擊觸發

@@ -25,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool avoid = false;
     [HideInInspector] public bool isTrasition = false;
     [HideInInspector] public bool bowState = false;
+    [HideInInspector] public bool bowTrigger = false;
     [HideInInspector] public bool bowAttack;
     [HideInInspector] public bool bowCharge;
     ///從PlayerControl判斷的布林值
@@ -130,11 +131,13 @@ public class PlayerInput : MonoBehaviour
                 && rollToBow)
             {
                 FolowCamera.Instance.SwitchSet();
+                bowTrigger = true;
                 bowState = true;
             }
             else if (Input.GetButtonDown("Switch") && bowState && !FolowCamera.Instance.isSwitch && !bowShoot)
-            {               
+            {
                 FolowCamera.Instance.SwitchSet();
+                bowTrigger = true;
                 bowState = false;
             }
         }

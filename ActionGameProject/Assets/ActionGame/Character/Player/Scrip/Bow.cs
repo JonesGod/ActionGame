@@ -37,9 +37,9 @@ public class Bow : MonoBehaviour
     void Update()
     {
         bowState = PlayerInput.Instance.bowState;
-        if (bowState)
+        if (bowState && PlayerInput.Instance.bowTrigger)
             BowOn();
-        else
+        else if(!bowState && PlayerInput.Instance.bowTrigger)
             BowOff();
 
     }
