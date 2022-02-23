@@ -14,12 +14,20 @@ public class Bow : MonoBehaviour
     //public GameObject prefab;
     [HideInInspector]
     public bool bowState;
+    //Ê≠¶Âô®Ê∂àËûçÁõ∏Èóú
+    public Material bowMaterial;
+    public float dissolveAmount = -1.0f;
+    public float endDissolveAmount = 1.5f;
+    public float dissolveTime = 1.0f;
+    public float startDissolveAmount;
+    
 
     // Start is called before the first frame update
     private void Awake()
     {
         s_Instance = this;
-
+        bowMaterial = bow.GetComponent<MeshRenderer>().material;       
+        bowMaterial.SetFloat("_DissolveAmount", dissolveAmount);  
     }
     void Start()
     {
@@ -38,16 +46,52 @@ public class Bow : MonoBehaviour
     void BowOn()
     {
         bow.gameObject.SetActive(true);
+        WeaponOnDissolve();
     }
     void BowOff()
     {
-        bow.gameObject.SetActive(false);
+        //bow.gameObject.SetActive(false);
+        WeaponOffDissolve();
     }
     /// <summary>
-    /// ©I•sArrowShoot Script™∫Shoot®Á¶°
+    /// ÔøΩIÔøΩsArrowShoot ScriptÔøΩÔøΩShootÔøΩÁ¶°
     /// </summary>
     void BowFire()
     {
         BroadcastMessage("Shoot");
+    }
+    IEnumerator WeaponOn(float v_start, float v_end, float duration)
+    {
+        Debug.Log("weaponOn");
+        float time = 0.0f;
+        while (time < duration )
+        {
+            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration );
+            bowMaterial.SetFloat("_DissolveAmount", dissolveAmount);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        dissolveAmount = v_end;
+    }
+    IEnumerator WeaponOff(float v_start, float v_end, float duration)
+    {
+        float time = 0.0f;
+        while (time < duration )
+        {
+            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration );
+            bowMaterial.SetFloat("_DissolveAmount", dissolveAmount);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        dissolveAmount = v_end;
+        bow.gameObject.SetActive(false);
+    }
+    private void WeaponOnDissolve()
+    {
+        StartCoroutine(WeaponOn(dissolveAmount, endDissolveAmount, dissolveTime));
+    }
+    private void WeaponOffDissolve()
+    {
+        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.15f));
     }
 }
