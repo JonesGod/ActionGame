@@ -23,6 +23,9 @@ public class RockMonsterFSM : FSMBase
     public bool isAwake = false;
     private bool isRotateTowardPlayer = false;
 
+    public BoxCollider coreHitBox;
+    public BoxCollider shieldHitBox;
+
     void Start()
     {
         currentEnemyTarget = null;
@@ -75,7 +78,7 @@ public class RockMonsterFSM : FSMBase
 
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist > data.attackRange && fDist < data.strafeRange && smashCD >= 10.0f)//敲地板
+        if(fDist > data.attackRange && fDist < data.strafeRange && smashCD >= 15.0f)//敲地板
         {
             punchAttack = false;
 			circleAttack = false;
@@ -201,7 +204,15 @@ public class RockMonsterFSM : FSMBase
                 currentState = FSMState.Attack;
                 doState = DoSmashAttackState;
                 checkState = CheckSmashAttackState;
-            }                      
+            }   
+            else 
+            {
+                data.strafeTime = Random.Range(1.0f, 2.0f);
+                currentTime = 0.0f;
+                currentState = FSMState.Strafe;
+                doState = DoStrafeState;
+                checkState = CheckStrafeState;
+            }                   
             return;
         }
     }
@@ -315,7 +326,7 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(3.0f, 4.0f);
+            data.strafeTime = Random.Range(1.5f, 2.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             doState = DoStrafeState;
@@ -477,13 +488,10 @@ public class RockMonsterFSM : FSMBase
             data.target = GameManager.Instance.GetPlayer();
             currentEnemyTarget = GameManager.Instance.GetPlayer();
         }
-        // if(data.hp <= maxHp / 2 && isAngry == false)
-        // {
-        //     isAngry = true;
-        //     doState = DoScreamState;
-        //     checkState = CheckScreamState;
-        //     return;
-        // }
+        if(data.hp <= maxHp / 2)
+        {
+            RestoreShield();
+        }
         if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
@@ -554,11 +562,17 @@ public class RockMonsterFSM : FSMBase
             data.target = GameManager.Instance.GetPlayer();
             currentEnemyTarget = GameManager.Instance.GetPlayer();
         }
+        if(data.shield <= 0)
+        {
+            coreHitBox.enabled = true;
+            shieldHitBox.enabled = false;
+        }
     }
-    public void RestoreShield(float damageAmount, bool isHead, bool isHurtAnimation)
+    public void RestoreShield()
     {        
         data.shield = maxShield;
-        myHealth.ModifyHealth(damageAmount);
+        coreHitBox.enabled = false;
+        shieldHitBox.enabled = true;
     }
 
     private void OnDrawGizmos() 

@@ -13,6 +13,7 @@ namespace SG
         protected static WorldEvManager s_Instance;
 
         public DragonBossHealthBar dragonBossHPBar;
+        public RockBossHPBar rockBossHPBar;
 
         public List<FogWell> fogWells;
         //public UIBossHPBar bossHPBar;
@@ -23,11 +24,23 @@ namespace SG
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
         public bool bossHasBeenDefeated;    //boss被幹掉
 
-        public void ActivateBossFight()
+        public void ActivateDragonBossFight()
         {
             bossFightIsActive = true;
             bossHasBeenAwakened = true;
             dragonBossHPBar.SetUIHPBarToActive();
+            //in wall(?)
+
+            foreach (var fogWall in fogWells)
+            {
+                fogWall.ActivateFogWell();
+            }
+        }
+        public void ActivateRockBossFight()
+        {
+            bossFightIsActive = true;
+            bossHasBeenAwakened = true;
+            rockBossHPBar.SetUIHPBarToActive();
             //in wall(?)
 
             foreach (var fogWall in fogWells)

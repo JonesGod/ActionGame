@@ -8,7 +8,7 @@ public class RockMonsterAttack : MonoBehaviour
 
     public SphereCollider circleAttackCollider;
 
-    public BoxCollider smashAttackCollider;
+    //public BoxCollider smashAttackCollider;
 
     private Animator animator;
     void Start()
@@ -20,10 +20,10 @@ public class RockMonsterAttack : MonoBehaviour
     {
         punchAttackCollider.enabled = true;
     }
-    void SmashAttackColliderOn()
-    {
-        smashAttackCollider.enabled = true;
-    }
+    // void SmashAttackColliderOn()
+    // {
+    //     smashAttackCollider.enabled = true;
+    // }
     void CircleAttackColliderOn()
     {
         circleAttackCollider.enabled = true;
@@ -31,7 +31,7 @@ public class RockMonsterAttack : MonoBehaviour
     void AllAttackColliderOff()
     {
         punchAttackCollider.enabled = false;
-        smashAttackCollider.enabled = false;
+        //smashAttackCollider.enabled = false;
         circleAttackCollider.enabled = false;
     }
     void ChangeAnimatorSpeed(float newSpeed)

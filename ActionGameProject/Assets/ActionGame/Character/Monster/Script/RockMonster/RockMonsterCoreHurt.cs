@@ -10,7 +10,7 @@ public class RockMonsterCoreHurt : MonoBehaviour
     {            
         if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(20, false, true);
+            myFSM.CallHurt(50, false, true);
         }
     }
 }

@@ -95,6 +95,6 @@ public class Bow : MonoBehaviour
     }
     private void WeaponOffDissolve()
     {
-        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.3f));
+        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.25f));
     }
 }

@@ -8,9 +8,9 @@ public class RockMonsterShieldHurt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        // if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
-        // {
-        //     myFSM.CallHurt(30, false); 
-        // }
+        if(other.transform.name == "mesh_masterSword" && myFSM.currentState != FSMState.Dead)
+        {
+            myFSM.ShieldHurt(30, false, false); 
+        }
     }
 }
