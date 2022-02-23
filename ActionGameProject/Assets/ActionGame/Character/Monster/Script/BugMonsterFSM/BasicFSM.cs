@@ -220,6 +220,11 @@ public class BasicFSM : FSMBase
             doState = DoDeadState;
             return;
         }
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
+        {
+            myRigidbody.velocity = Vector3.zero;
+            return;
+        }  
         if(currentTime >= data.strafeTime)
         {
             CheckEnemyInAttackRange(data.target, ref attack);
@@ -249,7 +254,6 @@ public class BasicFSM : FSMBase
             transform.up = hit.normal;
         }
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
-        data.speed = 3.0f;
 
 		Vector3 v = data.targetPosition - this.transform.position;
 		float fDist = v.magnitude;
@@ -281,7 +285,8 @@ public class BasicFSM : FSMBase
         if(fDist > data.strafeRange)
         {
             animator.SetBool("IsMoveRight", false); 
-            animator.SetBool("IsMoveForward", true);        
+            animator.SetBool("IsMoveForward", true);    
+            data.speed = 1.5f;    
             transform.LookAt(data.target.transform.position, transform.up);
             //transform.position = Vector3.MoveTowards(transform.position, data.target.transform.position, data.speed * Time.deltaTime);
             myRigidbody.velocity = transform.forward * data.speed;
@@ -289,20 +294,28 @@ public class BasicFSM : FSMBase
             return;
         }        
         transform.LookAt(data.target.transform.position, transform.up);
-        
-        if(strafeDirection == 0)
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
+        {
+            myRigidbody.velocity = Vector3.zero;
+            return;
+        }        
+        else if(strafeDirection == 0)
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoveForward", false); 
             animator.SetBool("IsMoveRight", true); 
-            transform.Translate(Vector3.right * data.speed * Time.deltaTime);
+            data.speed = 1.5f;
+            myRigidbody.velocity = transform.right * data.speed;
+            //transform.Translate(Vector3.right * data.speed * Time.deltaTime);
         }
         else if(strafeDirection == 1)
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoveForward", false); 
             animator.SetBool("IsMoveRight", true); 
-            transform.Translate(Vector3.left * data.speed * Time.deltaTime);
+            data.speed = 1.5f;
+            myRigidbody.velocity = -transform.right * data.speed;
+            //transform.Translate(Vector3.left * data.speed * Time.deltaTime);
         }        
         else
         {
@@ -358,6 +371,7 @@ public class BasicFSM : FSMBase
     }    
     public override void CheckHurtState()
     {
+        myRigidbody.velocity = Vector3.zero;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -382,6 +396,7 @@ public class BasicFSM : FSMBase
     }
     public override void DoHurtState()
     {
+        myRigidbody.velocity = Vector3.zero;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage"))
         {
             //Debug.Log("IsHurt");
@@ -406,16 +421,18 @@ public class BasicFSM : FSMBase
         CharacterCollisionBlocker.enabled = false;
     }
     public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
-    {        
+    {     
+        data.speed = 0.0f;
+        myRigidbody.velocity = Vector3.zero;   
         for(int i = 0; i < partnerMonster.Count; i++)
         {
             partnerMonster[i].HelpPartner();           
         }
+        
         data.hp -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);        
+        myHealth.ModifyHealth(damageAmount);
         if(data.hp > 0 && isHurtAnimation == true)
         {
-            data.speed = 0.0f;
             currentState = FSMState.Hurt;  
             animator.SetTrigger("TakeDamage"); 
             if(data.target == null)

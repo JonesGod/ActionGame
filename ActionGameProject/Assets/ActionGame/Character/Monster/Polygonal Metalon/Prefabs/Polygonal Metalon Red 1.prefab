@@ -858,7 +858,7 @@ MonoBehaviour:
   isThereObstacle: 0
   obstacles:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   range: 8
   widthDistance: 2
   backDistance: 4
