@@ -75,6 +75,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool hurt;//受傷動作
     private bool hurtIsNext;//下個是受傷動作
     private bool runIsNext;//一般跑步
+    private bool runState;//一般跑步
     private bool battleRunIsNext;//戰鬥跑步
 
     ///玩家技能啟用狀態
@@ -170,11 +171,13 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         ResetTrigger();
         CantRollToBow();        //弓模式旗標
-        if (m_Input.bowTrigger && !attackState)
+        if (m_Input.bowState && !attackState)
         {
-            Debug.Log("bow");
-            m_Am.SetTrigger("BowTrigger");
-            m_Input.bowTrigger = false;
+            m_Am.SetBool("BowBool",true);
+        }
+        else
+        {
+            m_Am.SetBool("BowBool", false);
         }
 
         if (m_Input.moveFlagH || m_Input.moveFlagV)       //移動旗標
@@ -401,7 +404,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         else
             dead = false;
 
-        Sword.Instance.runIsNext = runIsNext;
+        //Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
         PlayerInput.Instance.rollState = battleRollState;        
         PlayerInput.Instance.hurt = hurt;

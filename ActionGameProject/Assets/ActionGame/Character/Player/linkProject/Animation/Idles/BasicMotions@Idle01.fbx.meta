@@ -482,7 +482,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.07197943
+      - time: 0
         functionName: SwordOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}

@@ -11,6 +11,8 @@ public class Sword : MonoBehaviour
 
     protected static Sword s_Instance;
 
+    public GameObject trail;
+
     public Transform[] link;
     public Transform sword;
     public bool battleRunIsNext;//��PlayerControl�P�w
@@ -50,6 +52,7 @@ public class Sword : MonoBehaviour
     void SwordOn()
     {
         sword.gameObject.SetActive(true);
+        trail.SetActive(true);
         WeaponOnDissolve();
         
     }
