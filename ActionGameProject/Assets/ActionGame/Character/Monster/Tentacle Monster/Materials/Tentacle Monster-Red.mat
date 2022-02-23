@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Tentacle Monster-Red
   m_Shader: {fileID: 4800000, guid: f0aabfbb9d443a2438d725e2bf21c8ba, type: 3}
-  m_ShaderKeywords: _UseAlphaClip _UseBackRim _UseRim
+  m_ShaderKeywords: _UseAlphaClip _UseRim
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -21,6 +21,10 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 4efe2b79faa99914dbb0e798a2c6d8e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveMap:
+        m_Texture: {fileID: 2800000, guid: 4735ebb99d8e34f40acb877ada9bec1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -31,10 +35,12 @@ Material:
     - _CelShadeArea: 0
     - _CelShadeGradient: 0.5
     - _CutOff: 0
+    - _DissolveAmount: -0.05
+    - _DissolveWidth: 0.02
     - _FresnelPow: 0
     - _FringeShadowOffset: 0
     - _FringeShadowThreshold: 0.001
-    - _IsFace: 0
+    - _IsFace: 1
     - _OutlineWidth: 1
     - _OutlineZOffsetAmount: 0
     - _ReceiveShadowMappingAmount: 0.5
@@ -44,12 +50,13 @@ Material:
     - _Shininess: 0.7
     - _Threshold: 0.09
     - _UseAlphaClip: 1
-    - _UseBackRim: 1
+    - _UseBackRim: 0
     - _UseFringeShadow: 0
     - _UseRim: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _DissolveColor: {r: 1.6386833, g: 1.9937315, b: 3.482202, a: 1}
     - _Emission: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _RimColorBack: {r: 1, g: 1, b: 1, a: 1}

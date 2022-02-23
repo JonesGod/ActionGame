@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 739485342565246243}
   - component: {fileID: 2908603363014591741}
   - component: {fileID: 2474809656402096054}
-  - component: {fileID: 2275409074944632382}
   m_Layer: 10
   m_Name: CharacterCollisionBlocker
   m_TagString: Untagged
@@ -60,21 +59,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 1.7374356, z: 2.4200003}
+  m_Size: {x: 1.58, y: 1.7374356, z: 2.4200003}
   m_Center: {x: 0, y: 1.1512822, z: 0}
---- !u!135 &2275409074944632382
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503826401669537660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 1.69
-  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!1 &2097278344788502443
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +562,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.77, y: 1.5552866, z: 1.9267713}
+  m_Size: {x: 1.25, y: 1.5552866, z: 1.9267713}
   m_Center: {x: 0, y: 1.1142294, z: 0.044935778}
 --- !u!114 &5235249354476275620
 MonoBehaviour:

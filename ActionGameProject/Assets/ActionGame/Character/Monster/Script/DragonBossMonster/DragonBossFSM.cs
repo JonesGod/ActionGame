@@ -20,6 +20,7 @@ public class DragonBossFSM : FSMBase
     public bool isAngry = false;
     private bool isRotateTowardPlayer = false;
     private int beAttackCount = 0;
+    private float screamCD;
 
     void Start()
     {
@@ -34,13 +35,12 @@ public class DragonBossFSM : FSMBase
 
     void Update()
     {
+        screamCD += Time.deltaTime;
         // Quaternion targetRotation = Quaternion.LookRotation(GameManager.Instance.GetPlayer().transform.position - transform.position);
         // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f);
         if(data.hp <= maxHp / 2 && isAngry == false)
         {
-            isAngry = true;
-            doState = DoScreamState;
-            checkState = CheckScreamState;
+            isAngry = true;            
             return;
         }
         if(currentState != FSMState.Dead)
@@ -62,16 +62,26 @@ public class DragonBossFSM : FSMBase
 		}
 		return null;
 	}
-    private bool CheckEnemyInAttackRange(GameObject target, ref bool normalAttack, ref bool chargeAttack, ref bool angryAttack)
+    private bool CheckEnemyInAttackRange(GameObject target, ref bool normalAttack, ref bool chargeAttack, ref bool angryAttack, ref bool screamAttack)
 	{
 		GameObject go = target;
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
+        if(isAngry == true && screamCD > 10.0f)
+        {
+            chargeAttack = false;
+			normalAttack = false;
+            angryAttack = false;
+            screamAttack = true;
+			return true;
+
+        }
         if(fDist < data.attackRange && isAngry == true)
         {
             chargeAttack = false;
 			normalAttack = false;
             angryAttack = true;
+            screamAttack = false;
 			return true;
         }
 		else if (fDist < data.attackRange)
@@ -79,6 +89,7 @@ public class DragonBossFSM : FSMBase
             chargeAttack = false;
 			normalAttack = true;
             angryAttack = false;
+            screamAttack = false;
 			return true;
 		}
         else if(fDist > data.strafeRange && isAngry == false)
@@ -86,6 +97,7 @@ public class DragonBossFSM : FSMBase
             normalAttack = false;
             chargeAttack = true;
             angryAttack = false;
+            screamAttack = false;
 			return true;
         }
 		return false;
@@ -97,6 +109,7 @@ public class DragonBossFSM : FSMBase
         bool normalAttack = false;
         bool chargeAttack = false;
         bool angryAttack = false;
+        bool screamAttack = false;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -108,8 +121,14 @@ public class DragonBossFSM : FSMBase
         if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
-            if(normalAttack)//在普通攻擊距離以內:直接攻擊
+            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack, ref screamAttack);
+            if(screamAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoScreamState;
+                checkState = CheckScreamState;
+            }
+            else if(normalAttack)//在普通攻擊距離以內:直接攻擊
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
@@ -146,8 +165,15 @@ public class DragonBossFSM : FSMBase
         bool normalAttack = false;
         bool chargeAttack = false;
         bool angryAttack = false;
-        CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
-        if (normalAttack)
+        bool screamAttack = false;
+        CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack, ref screamAttack);
+        if(screamAttack)
+        {
+            currentState = FSMState.Attack;
+            doState = DoScreamState;
+            checkState = CheckScreamState;
+        }
+        else if (normalAttack)
         {
             currentState = FSMState.Attack;
             doState = DoAttackState;
@@ -200,10 +226,17 @@ public class DragonBossFSM : FSMBase
         bool normalAttack = false;
         bool chargeAttack = false;
         bool angryAttack = false;
+        bool screamAttack = false;
         if(currentTime >= data.strafeTime)
         {
-            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack);
-            if(normalAttack)//在攻擊距離以內了:直接攻擊
+            CheckEnemyInAttackRange(data.target, ref normalAttack, ref chargeAttack, ref angryAttack, ref screamAttack);
+            if(screamAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoScreamState;
+                checkState = CheckScreamState;
+            }
+            else if(normalAttack)//在攻擊距離以內了:直接攻擊
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
@@ -531,6 +564,7 @@ public class DragonBossFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
+        screamCD = 0;
         animator.SetTrigger("Scream");
     }
     private void CheckHornAttackState()

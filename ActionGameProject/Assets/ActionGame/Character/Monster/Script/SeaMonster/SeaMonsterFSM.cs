@@ -200,6 +200,7 @@ public class SeaMonsterFSM : FSMBase
                 {
                     partnerMonster[i].data.hp = 0;
                     partnerMonster[i].canRelife = false;
+                    //partnerMonster[i].StartDissolve();
                 }
             }                    
         }

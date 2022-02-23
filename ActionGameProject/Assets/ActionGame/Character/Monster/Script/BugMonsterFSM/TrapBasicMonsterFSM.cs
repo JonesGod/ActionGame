@@ -244,7 +244,7 @@ public class TrapBasicMonsterFSM : FSMBase
         {
             Vector3 vec = partnerMonster[i].transform.position - transform.position;
             float partnerDist = v.magnitude;
-            if(partnerMonster[i].currentState == FSMState.Chase && partnerDist < data.attackRange)
+            if(partnerMonster[i].currentState == FSMState.Chase)
             {
                 Vector3 targetDir = partnerMonster[i].transform.position - transform.position;            
                 float dotPartner = Vector3.Dot(transform.right, targetDir.normalized);

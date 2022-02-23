@@ -105,7 +105,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: -0.87
+    - _DissolveAmount: -0.89
     - _DissolvePlaneX: 0
     - _DissolvePlaneY: 0
     - _DissolvePlaneZ: 1

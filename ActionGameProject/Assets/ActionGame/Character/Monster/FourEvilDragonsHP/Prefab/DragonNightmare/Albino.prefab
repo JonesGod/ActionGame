@@ -181,9 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 0}
-  dissolveAmount: -1
-  endDissolveAmount: 1.5
-  dissolveTime: 1
+  dissolveAmount: -0.02
+  endDissolveAmount: 0.9
+  dissolveTime: 5
 --- !u!1 &102148
 GameObject:
   m_ObjectHideFlags: 0

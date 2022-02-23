@@ -19,6 +19,8 @@ public class SeaMonsterTentacleFSM : FSMBase
     private bool isRotateTowardPlayer = false;
     public bool canRelife = true;
     public BoxCollider tentacleCollider;
+    public Material material;
+    public float dissolveAmount = 0.0f;
 
     void OnEnable()
     {
@@ -33,6 +35,8 @@ public class SeaMonsterTentacleFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         data.strafeTime = Random.Range(2.0f, 3.5f);
         currentTime = 0;
+        material = this.GetComponentInChildren<SkinnedMeshRenderer>().material;        
+        material.SetFloat("_DissolveAmount", dissolveAmount);
     }
 
     // Update is called once per frame
@@ -284,6 +288,23 @@ public class SeaMonsterTentacleFSM : FSMBase
             yield return null;
         }
         Debug.Log("RotateTowardPlayerOff");
+    }
+    public void StartDissolve()
+    {
+        StartCoroutine(ChangeMaterialProperty(dissolveAmount, 0.83f, 4));
+    }
+    IEnumerator ChangeMaterialProperty(float v_start, float v_end, float duration)
+    {
+        float time = 0.0f;
+        while (time < duration )
+        {
+            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration );
+            material.SetFloat("_DissolveAmount", dissolveAmount);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        dissolveAmount = v_end;
+        this.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos() 
