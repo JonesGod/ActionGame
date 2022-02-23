@@ -49,12 +49,18 @@ public class Sword : MonoBehaviour
         if (runIsNext || bowIsNext)
             SwordOff();
     }
+    void SwordTrailOn()
+    {
+        trail.SetActive(true);
+    }
+    void SwordTrailOff()
+    {
+        trail.SetActive(false);
+    }
     void SwordOn()
     {
         sword.gameObject.SetActive(true);
-        trail.SetActive(true);
-        WeaponOnDissolve();
-        
+        WeaponOnDissolve();       
     }
     public void SwordOff()
     {
