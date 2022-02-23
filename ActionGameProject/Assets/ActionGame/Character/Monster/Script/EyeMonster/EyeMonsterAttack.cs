@@ -4,28 +4,11 @@ using UnityEngine;
 
 public class EyeMonsterAttack : MonoBehaviour
 {
-    public Transform basicAttackObject;
-    private BoxCollider basicAttackCollider;
-    private Animator animator;
-    void Awake()
+    public GameObject bulletSpawnPosition;
+    public EyeMonsterBulletPool monsterBulletPool;
+    public void ShootBullet()
     {
-        basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
-    }
-    void Start()
-    {
-        AttackColliderOff();
-        animator = GetComponent<Animator>();
-    }
-    void AttackColliderOn()
-    {
-        basicAttackCollider.enabled = true;
-    }
-    void AttackColliderOff()
-    {
-        basicAttackCollider.enabled = false;
-    }
-    void ChangeAnimatorSpeed(float newSpeed)
-    {
-        animator.speed = newSpeed;
+        Debug.Log("shoot");
+        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
 }

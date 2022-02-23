@@ -199,14 +199,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.20657833
-        functionName: AttackColliderOff
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 3a5d97aa83f1b8745ae6e4b773d904e1, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

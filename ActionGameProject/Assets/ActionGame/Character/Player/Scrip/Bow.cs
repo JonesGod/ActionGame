@@ -75,6 +75,7 @@ public class Bow : MonoBehaviour
     }
     IEnumerator WeaponOff(float v_start, float v_end, float duration)
     {
+        Debug.Log("weaponOff");
         float time = 0.0f;
         while (time < duration )
         {
@@ -92,6 +93,6 @@ public class Bow : MonoBehaviour
     }
     private void WeaponOffDissolve()
     {
-        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.15f));
+        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 2.0f));
     }
 }

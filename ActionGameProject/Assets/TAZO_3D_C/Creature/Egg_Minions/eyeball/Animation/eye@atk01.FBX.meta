@@ -152,15 +152,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.27388534
-        functionName: AttackColliderOn
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.47994602
-        functionName: AttackColliderOff
+      - time: 0.32982495
+        functionName: ShootBullet
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 3a5d97aa83f1b8745ae6e4b773d904e1, type: 3}
         floatParameter: 0
