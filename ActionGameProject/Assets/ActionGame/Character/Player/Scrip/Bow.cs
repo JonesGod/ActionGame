@@ -46,11 +46,13 @@ public class Bow : MonoBehaviour
     void BowOn()
     {
         bow.gameObject.SetActive(true);
+        PlayerInput.Instance.bowTrigger = false;
         WeaponOnDissolve();
     }
     void BowOff()
     {
         //bow.gameObject.SetActive(false);
+        PlayerInput.Instance.bowTrigger = false;
         WeaponOffDissolve();
     }
     /// <summary>
@@ -93,6 +95,6 @@ public class Bow : MonoBehaviour
     }
     private void WeaponOffDissolve()
     {
-        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 2.0f));
+        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.3f));
     }
 }
