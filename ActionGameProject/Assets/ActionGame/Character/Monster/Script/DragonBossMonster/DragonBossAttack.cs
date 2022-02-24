@@ -9,8 +9,12 @@ public class DragonBossAttack : MonoBehaviour
 
     public Transform headAttackObject;
     private BoxCollider headAttackCollider;
+    public BoxCollider angryClawAttackCollider;
 
     private Animator animator;
+    
+    public GameObject angryClawEffect;
+    public GameObject angryClawPosition;
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -29,6 +33,10 @@ public class DragonBossAttack : MonoBehaviour
     {
         headAttackCollider.enabled = true;
     }
+    void AngryClawAttackColliderOn()
+    {
+        angryClawAttackCollider.enabled = true;
+    }
     void AllAttackColliderOff()
     {
         basicAttackCollider.enabled = false;
@@ -37,5 +45,9 @@ public class DragonBossAttack : MonoBehaviour
     void ChangeAnimatorSpeed(float newSpeed)
     {
         animator.speed = newSpeed;
+    }
+    void PlayAngryClawParticle()
+    {
+        Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
     }
 }
