@@ -8,6 +8,7 @@ public class EyeMonsterBullet : MonoBehaviour
     EyeMonsterBulletPool bulletPool;
     public float speed;
     private float lifeTime;
+    public ParticleSystem hitEffect;     
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
@@ -33,6 +34,8 @@ public class EyeMonsterBullet : MonoBehaviour
             //呼叫玩家腳本的受傷function
             player.PlayerHurt(20);            
             bulletPool.Recovery(this.gameObject);
+            var collisionPoint = other.ClosestPoint(transform.position);
+            PlayParticleSystem(hitEffect, collisionPoint);
         }
         else if(other.tag == "Self")
         {
@@ -42,7 +45,13 @@ public class EyeMonsterBullet : MonoBehaviour
         }
         else
         {
+            var collisionPoint = other.ClosestPoint(transform.position);
+            PlayParticleSystem(hitEffect, collisionPoint);
             bulletPool.Recovery(this.gameObject);
-        }
+        }        
+    }
+    public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
+    {
+        Instantiate(particle, hitPosition, Quaternion.identity);
     }
 }
