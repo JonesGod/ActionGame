@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicMonsterAttackTirgger : MonoBehaviour
 {
     PlayerControl player;
+    public ParticleSystem hitEffect;     
 
     void Start()
     {
@@ -17,6 +18,12 @@ public class BasicMonsterAttackTirgger : MonoBehaviour
             Debug.Log("打中玩家");            
             //呼叫玩家腳本的受傷function
             player.PlayerHurt(30);
+            var collisionPoint = other.ClosestPoint(transform.position);
+            PlayParticleSystem(hitEffect, collisionPoint);
         }
+    }
+    public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
+    {
+        Instantiate(particle, hitPosition, Quaternion.identity);
     }
 }
