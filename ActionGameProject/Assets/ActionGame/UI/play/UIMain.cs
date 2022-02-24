@@ -54,6 +54,7 @@ public class UIMain : MonoBehaviour
         {
             skillWindow.SetActive(true);
             licened.SetActive(false);
+
             Cursor.visible = true;
             return true;
         }
@@ -67,20 +68,21 @@ public class UIMain : MonoBehaviour
     public IEnumerator SwordSkillUnLock()
     {
         GameObject swordSkillLock = skillWindow.transform.GetChild(4).gameObject;
-        while(skillWindow.activeSelf==false)
+
+        licened.SetActive(true);
+        while (skillWindow.activeSelf==false)
         {
             yield return null;
         }
 
         yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.swordSkill));
-        swordSkillLock.SetActive(false);
-
-        if(skillWindow.activeSelf==false)
-            licened.SetActive(true);
+        swordSkillLock.SetActive(false);     
     }
     public IEnumerator BowUnlock()
     {
         GameObject BowLock = skillWindow.transform.GetChild(5).gameObject;
+
+        licened.SetActive(true);
         while (skillWindow.activeSelf == false)
         {
             yield return null;
@@ -88,23 +90,18 @@ public class UIMain : MonoBehaviour
 
         yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.bow));
         BowLock.SetActive(false);
-
-        if (skillWindow.activeSelf == false)
-            licened.SetActive(true);
     }
     public IEnumerator ExplodeArrowUnlock()
     {
         GameObject ArrowLock = skillWindow.transform.GetChild(6).gameObject;
+
+        licened.SetActive(true);
         while (skillWindow.activeSelf == false)
         {
             yield return null;
         }
 
         yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.eplodeArrow));
-        ArrowLock.SetActive(false);
-
-        if (skillWindow.activeSelf == false)
-            licened.SetActive(true);
-    }
-   
+        ArrowLock.SetActive(false);     
+    }  
 }
