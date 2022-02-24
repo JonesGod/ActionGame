@@ -47,6 +47,8 @@ public class Sword : MonoBehaviour
         {
             if(sword.gameObject.activeSelf==false)
                 SwordOn();
+            if (trail.activeSelf == true)
+                SwordTrailOff();
         }
 
         if (runIsNext || bowIsNext)

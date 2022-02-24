@@ -800,17 +800,24 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.048697617
         functionName: SwordColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
+      - time: 0.057757646
         functionName: BowOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 1e19963256443714d91f0309a769d73c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: SwordTrailOff
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

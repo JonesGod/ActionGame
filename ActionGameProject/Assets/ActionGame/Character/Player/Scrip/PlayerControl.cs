@@ -394,12 +394,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (stateinfo.shortNameHash == hashRun)
             runIsNext = true;
         else
-            runIsNext = false;
-
-        if (stateinfo.shortNameHash == hashBattleRun)
-            battleRunIsNext = true;
-        else
-            battleRunIsNext = false;     
+            runIsNext = false;       
 
         if (stateinfo.shortNameHash == hashHurt)
             hurt = true;
@@ -412,7 +407,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             dead = false;
 
         //Sword.Instance.runIsNext = runIsNext;
-        Sword.Instance.battleRunIsNext = battleRunIsNext;
+        //Sword.Instance.battleRunIsNext = battleRunIsNext;
         PlayerInput.Instance.rollState = battleRollState;        
         PlayerInput.Instance.hurt = hurt;
     }    
