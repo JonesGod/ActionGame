@@ -832,6 +832,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.027571576
+        functionName: BowOff
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 1e19963256443714d91f0309a769d73c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}
