@@ -47,6 +47,9 @@ Shader "URPShader/Practice/ToonShader"
         _DissolveAmount ("DissolveAmount", Range(-1.0, 1.5)) = 0.0
         _DissolveWidth ("DissolveWidth", Range(-1.0, 1.0)) = 0.0
 
+        [Header(HitEffect)]
+        _ColorGlitter ("ColorGlitter", Color) = (1, 1, 1, 1)
+
         //[Header(StrandSpecular)]
         //_SpecularExponent ("SpecularExponent", Float) = 1
         //_SpecularScale ("SpecularScale", Float) = 1

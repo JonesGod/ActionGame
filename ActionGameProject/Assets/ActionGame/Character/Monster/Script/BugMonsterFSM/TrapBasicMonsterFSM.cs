@@ -23,6 +23,7 @@ public class TrapBasicMonsterFSM : FSMBase
     private bool isGrounded = false;
     public LayerMask layerMask;
     private Vector3 startPosition;
+    private MonsterDeadDissolve monsterHurt;
     void Start()
     {
         startPosition = this.transform.position;      
@@ -33,6 +34,7 @@ public class TrapBasicMonsterFSM : FSMBase
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0;  
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
         if(GameManager.Instance.allMonster != null && GameManager.Instance.allMonster.Length > 0)
         {           
             foreach(GameObject m in GameManager.Instance.allMonster)
@@ -397,6 +399,7 @@ public class TrapBasicMonsterFSM : FSMBase
             partnerMonster[i].HelpPartner();           
         }
         data.hp -= damageAmount;
+        monsterHurt.HitFlash();
         myHealth.ModifyHealth(damageAmount);  
         data.speed = 0.0f;
         if(data.hp > 0 && isHurtAnimation == true)

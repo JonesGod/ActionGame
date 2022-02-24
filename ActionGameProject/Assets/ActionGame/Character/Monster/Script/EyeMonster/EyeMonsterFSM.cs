@@ -20,6 +20,7 @@ public class EyeMonsterFSM : FSMBase
     public GameObject[] wayPoints;
     public GameObject targetWayPoint;
     private Vector3 startPosition;
+    private MonsterDeadDissolve monsterHurt;
     void Start()
     {
         startPosition = this.transform.position;  
@@ -32,6 +33,7 @@ public class EyeMonsterFSM : FSMBase
         strafeDirection = 0;
         data.patrolTime = Random.Range(3.0f, 5.0f);
         targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
     }
 
     void Update()
@@ -377,6 +379,7 @@ public class EyeMonsterFSM : FSMBase
     {        
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
+        monsterHurt.HitFlash();
         if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  

@@ -21,6 +21,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     public BoxCollider tentacleCollider;
     public Material material;
     public float dissolveAmount = 0.0f;
+    private MonsterDeadDissolve monsterHurt;
 
     void OnEnable()
     {
@@ -37,6 +38,7 @@ public class SeaMonsterTentacleFSM : FSMBase
         currentTime = 0;
         material = this.GetComponentInChildren<SkinnedMeshRenderer>().material;        
         material.SetFloat("_DissolveAmount", dissolveAmount);
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
     }
 
     // Update is called once per frame
@@ -237,6 +239,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     {
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
+        monsterHurt.HitFlash();
         currentTime = 0.0f;
         if(data.hp > 0)
         {

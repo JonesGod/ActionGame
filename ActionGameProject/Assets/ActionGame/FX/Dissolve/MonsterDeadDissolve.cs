@@ -18,6 +18,10 @@ public class MonsterDeadDissolve : MonoBehaviour
     {
         StartCoroutine(ChangeMaterialProperty(dissolveAmount, endDissolveAmount, dissolveTime));
     }
+    public void HitFlash()
+    {
+        StartCoroutine(BeHitFlash());
+    }
     IEnumerator ChangeMaterialProperty(float v_start, float v_end, float duration)
     {
         float time = 0.0f;
@@ -30,5 +34,11 @@ public class MonsterDeadDissolve : MonoBehaviour
         }
         dissolveAmount = v_end;
         this.gameObject.SetActive(false);
+    }
+    IEnumerator BeHitFlash()
+    {
+        material.SetColor("_ColorGlitter", new Color(0.4f, 0.4f, 0.4f));
+        yield return new WaitForSeconds(0.1f);
+        material.SetColor("_ColorGlitter", Color.black);
     }
 }

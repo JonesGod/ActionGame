@@ -73,6 +73,9 @@ half4 _DissolveColor;
 float4 _DissolveMap_ST;
 float _DissolveAmount;
 float _DissolveWidth;
+
+//HitBlink
+half3 _ColorGlitter;
 CBUFFER_END
 
 //a special uniform for applyShadowBiasFixToHClipPos() only, it is not a per material uniform, 
@@ -383,12 +386,12 @@ half4 frag(Varyings input) : SV_Target
             FinalColorWithRim = lerp(FinalColorWithRim, _RimColorBack.rgb, lightDirBack);
         #endif      
         //return half4(FinalColorWithRim , alpha);
-        half3 finalColor = lerp(_DissolveColor.rgb, FinalColorWithRim, edge);  
+        half3 finalColor = lerp(_DissolveColor.rgb, FinalColorWithRim, edge) + _ColorGlitter;  
      
         return half4(finalColor , alpha);
     #endif  
     
-    half3 finalResult = lerp(_DissolveColor.rgb, FinalColorResult, edge);  
+    half3 finalResult = lerp(_DissolveColor.rgb, FinalColorResult, edge) + _ColorGlitter;  
 
     //return half4(FinalColorResult, alpha);
     return half4(finalResult, alpha);

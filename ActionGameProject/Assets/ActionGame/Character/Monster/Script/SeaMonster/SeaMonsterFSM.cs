@@ -18,6 +18,7 @@ public class SeaMonsterFSM : FSMBase
     
     public SeaMonsterTentacleFSM[] partnerMonster;
     Vector3 myPosition;
+    private MonsterDeadDissolve monsterHurt;
 
     void OnEnable()
     {
@@ -31,6 +32,7 @@ public class SeaMonsterFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         data.strafeTime = Random.Range(3.0f, 4.0f);
         currentTime = 0;        
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
     }
 
     // Update is called once per frame
@@ -211,6 +213,7 @@ public class SeaMonsterFSM : FSMBase
     public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {
         data.hp -= damageAmount;
+        monsterHurt.HitFlash();
         myHealth.ModifyHealth(damageAmount);  
         if(data.hp > 0)
         {

@@ -21,6 +21,7 @@ public class DragonBossFSM : FSMBase
     private bool isRotateTowardPlayer = false;
     private int beAttackCount = 0;
     private float screamCD;
+    private MonsterDeadDissolve monsterHurt;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class DragonBossFSM : FSMBase
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         maxHp = data.hp;
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
     }
 
     void Update()
@@ -385,6 +387,7 @@ public class DragonBossFSM : FSMBase
     {        
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);
+        monsterHurt.HitFlash();
         if(data.target == null)
         {
             data.target = GameManager.Instance.GetPlayer();
@@ -553,6 +556,8 @@ public class DragonBossFSM : FSMBase
     public void DoScreamState()
     {
         myRigidbody.velocity = Vector3.zero;
+        animator.SetBool("IsWalkForward", false);
+        animator.SetBool("IsIdle", true);
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Scream"))
         {            
             Debug.Log("Scream");

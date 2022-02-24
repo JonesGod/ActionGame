@@ -21,6 +21,7 @@ public class BasicFSM : FSMBase
     private float partnerRange = 30.0f;
     private Vector3 startPosition;
     public bool hide;
+    private MonsterDeadDissolve monsterHurt;
     void Start()
     {
         currentEnemyTarget = null;
@@ -31,6 +32,7 @@ public class BasicFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0; 
         startPosition = this.transform.position;
+        monsterHurt = this.GetComponent<MonsterDeadDissolve>();
         if(hide == true)
         {
             this.gameObject.SetActive(false);
@@ -435,7 +437,8 @@ public class BasicFSM : FSMBase
         }
         
         data.hp -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);
+        monsterHurt.HitFlash();
+        myHealth.ModifyHealth(damageAmount);        
         if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
