@@ -18,10 +18,7 @@ public class SwordHitEffect : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Monster")
-        {
-            
-            hitEffect.GetComponent<ParticleSystem>().Play();
-        }
+        if (other.name =="HitBox")          
+            hitEffect.GetComponent<ParticleSystem>().Play();    
     }
 }
