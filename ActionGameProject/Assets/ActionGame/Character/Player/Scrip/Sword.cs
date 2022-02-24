@@ -15,9 +15,10 @@ public class Sword : MonoBehaviour
 
     public Transform[] link;
     public Transform sword;
-    public bool battleRunIsNext;//��PlayerControl�P�w
-    public bool runIsNext;//��PlayerControl�P�w
-    public bool bowIsNext;//��PlayerControl�P�w
+    
+    [HideInInspector] public bool battleRunIsNext;//��PlayerControl�P�w
+    [HideInInspector] public bool runIsNext;//��PlayerControl�P�w
+    [HideInInspector] public bool bowIsNext;//��PlayerControl�P�w
 
     private BoxCollider swordBoxCollider;
 
@@ -56,7 +57,7 @@ public class Sword : MonoBehaviour
             if(sword.gameObject.activeSelf == true)
                 SwordOff();
         }
-    }
+    }   
     void SwordTrailOn()
     {
         trail.SetActive(true);
