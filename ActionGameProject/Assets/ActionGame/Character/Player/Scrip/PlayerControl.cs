@@ -367,7 +367,14 @@ public class PlayerControl : MonoBehaviour, BeObserver
             attackState = false;
 
         PlayerInput.Instance.attackState = attackState;
-        Sword.Instance.attackState = attackState;
+        if (nextStateinfo.shortNameHash == hashAttack01)
+        {
+            Sword.Instance.attackState = true;
+        }
+        else
+        {
+            Sword.Instance.attackState = false;
+        }
     }
     /// <summary>
     /// 獲取當前Animation

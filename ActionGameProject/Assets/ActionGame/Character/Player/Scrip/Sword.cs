@@ -43,7 +43,7 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (battleRunIsNext || attackState)
+        if (battleRunIsNext )
         {
             if(sword.gameObject.activeSelf==false)
                 SwordOn();
