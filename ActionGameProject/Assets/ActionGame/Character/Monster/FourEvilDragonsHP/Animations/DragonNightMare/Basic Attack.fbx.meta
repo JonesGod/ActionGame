@@ -459,6 +459,9 @@ ModelImporter:
   - first:
       137: 13700000
     second: NightMareDragon
+  - first:
+      74: -4089739495473042897
+    second: Angry Claw Attack
   externalObjects: {}
   materials:
     materialImportMode: 0

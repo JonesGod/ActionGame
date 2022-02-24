@@ -155,6 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 483298}
   headAttackObject: {fileID: 429462}
+  angryClawAttackCollider: {fileID: 0}
+  angryClawEffect: {fileID: 6174527592921153203, guid: e1099e0d35dd37d4682aa0df6998531c, type: 3}
+  angryClawPosition: {fileID: 1734730798166180099}
 --- !u!114 &3999320733007527749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +219,7 @@ Transform:
   - {fileID: 406180}
   - {fileID: 445582}
   - {fileID: 423780}
+  - {fileID: 1970544927635812596}
   m_Father: {fileID: 427348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2622,6 +2626,36 @@ Transform:
   - {fileID: 401266}
   m_Father: {fileID: 414466}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1734730798166180099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1970544927635812596}
+  m_Layer: 11
+  m_Name: AngryClawAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1970544927635812596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734730798166180099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -31.4, y: 54.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 483298}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5381035845318004987
 GameObject:
