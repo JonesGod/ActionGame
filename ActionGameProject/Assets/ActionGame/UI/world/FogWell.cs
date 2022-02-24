@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SG
-{
+
     public class FogWell : MonoBehaviour
     {
         private void Awake()
@@ -13,7 +12,7 @@ namespace SG
 
         public void ActivateFogWell()
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         public void DeactivteFoWell()
@@ -21,4 +20,3 @@ namespace SG
             gameObject.SetActive(false);
         }
     }
-}
