@@ -620,7 +620,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
         if (playerHp >= playerMaxHp)
             playerHp = playerMaxHp;
 
-        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);
+        UIMain.Instance().UpdateHpBar(playerHp / playerMaxHp);        
+        GameManager.Instance.PlayParticleSystem(GameManager.Instance.healHpEffect);
     }
     public void MpReduce(int cost)
     {
@@ -639,6 +640,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
             playerMp = playerMaxMp;
 
         UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
+        GameManager.Instance.PlayParticleSystem(GameManager.Instance.healMpEffect);
     }
     /// <summary>
     /// 開始攻擊中移動

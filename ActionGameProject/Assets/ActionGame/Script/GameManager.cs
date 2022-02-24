@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public FSMBase monsterObserver;
     public GameObject testNewPosition;
     public GameObject testNewPosition2;
+    //播放喝水particle
+    public ParticleSystem healHpEffect;
+    public ParticleSystem healMpEffect;        
+    public GameObject effectPosition;
 
     void Update()
     {
@@ -53,5 +57,9 @@ public class GameManager : MonoBehaviour
         //玩家狀態改成活著
 
         //畫面燈亮
+    }
+    public void PlayParticleSystem(ParticleSystem particle)
+    {
+        Instantiate(particle, effectPosition.transform.position, effectPosition.transform.rotation);
     }
 }
