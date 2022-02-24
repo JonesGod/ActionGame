@@ -16,7 +16,7 @@ public class UIMain : MonoBehaviour
     public GameObject m_PlayerObject;
     public GameObject skillWindow;
     public GameObject licened;
-
+    public GameObject Scope;
 
     private void Awake()
     {
@@ -24,8 +24,14 @@ public class UIMain : MonoBehaviour
 
         Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
     }
-       
-
+    public void ScopeOpen()
+    {
+        Scope.SetActive(true);
+    }
+    public void ScopeClose()
+    {
+        Scope.SetActive(false);
+    }
     //更新血條
     public void UpdateHpBar(float fValue)
     {

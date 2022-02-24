@@ -46,12 +46,16 @@ public class Bow : MonoBehaviour
     void BowOn()
     {
         bow.gameObject.SetActive(true);
+        UIMain.Instance().ScopeOpen();
+
         PlayerInput.Instance.bowTrigger = false;
         WeaponOnDissolve();
     }
     void BowOff()
     {
         //bow.gameObject.SetActive(false);
+        UIMain.Instance().ScopeClose();
+
         PlayerInput.Instance.bowTrigger = false;
         WeaponOffDissolve();
     }

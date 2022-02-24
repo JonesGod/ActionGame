@@ -57,7 +57,7 @@ public class FolowCamera : MonoBehaviour
         horizontalVector = lookTarget.transform.forward;
         lookTargetPosition = lookTarget.position + new Vector3(0.0f, 2.0f, 0.0f);
 
-        relativeVector = Quaternion.AngleAxis(165f, Vector3.up) * horizontalVector;
+        relativeVector = Quaternion.AngleAxis(155f, Vector3.up) * horizontalVector;
     }
 
     void Update()

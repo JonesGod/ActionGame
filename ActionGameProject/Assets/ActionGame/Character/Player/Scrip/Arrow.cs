@@ -37,15 +37,19 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * arrowSpeed * Time.deltaTime;//�b�ک��e����t��
-        fallSpeed += gravity*Time.deltaTime;//���O�p��
-        transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//�b�ڼY���t��
-
         liveTime += Time.deltaTime;//�p��s�b�ɶ�
-        if(liveTime>=10f)//�s�b�W�L10���ɮ���
+        if (liveTime >= 10f)//�s�b�W�L10���ɮ���
         {
             ArrowDestory();
         }
+
+        transform.position += transform.forward * arrowSpeed * Time.deltaTime;//�b�ک��e����t��
+        if (liveTime >= 1f)
+        {
+            fallSpeed += gravity * Time.deltaTime;//���O�p��
+        }
+        transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//�b�ڼY���t��
+      
     }
     private void OnTriggerEnter(Collider other)
     {

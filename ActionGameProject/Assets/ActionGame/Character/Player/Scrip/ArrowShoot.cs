@@ -18,6 +18,8 @@ public class ArrowShoot : MonoBehaviour
     private Arrow arrow;
 
     private Vector3 targetDirection;//�ǬP�ؼФ�V(�۾����e��)
+    private Vector3 targetPosition;
+    private Vector3 normalPosition;
     private Vector3 arrowDirection;//�b�ڭ����V
     private Vector3 arrowPosition;//�b�ڥͦ���V
     private float targetDistance;//�ؼШ���v�����Z��
@@ -38,19 +40,24 @@ public class ArrowShoot : MonoBehaviour
     void Update()
     {
         cameraTrasform = Camera.main.transform;
-        arrowDirection = transform.forward;
+        normalPosition = cameraTrasform.position + cameraTrasform.forward * 80f;
+        arrowDirection = normalPosition - transform.position;
 
         Ray r = new Ray(cameraTrasform.position, cameraTrasform.forward);
-        if (Physics.Raycast(r, out RaycastHit hit, 80f))
-        {
-            targetDirection = hit.point - cameraTrasform.position;
-            arrowDirection = targetDirection;
+        if (Physics.Raycast(r, out RaycastHit hit, 100f))
+        {            
+            targetPosition = hit.point;
+            targetDirection = targetPosition - transform.position;
+            
             targetDistance = targetDirection.magnitude;
             if (targetDistance < 15f)                      //�ǬP�ؼ����Ӫ��
             {
-                targetDirection = cameraTrasform.position + cameraTrasform.forward * 15f;
+                targetPosition=cameraTrasform.position + cameraTrasform.forward * 15f;                
             }
+            targetDirection = targetPosition - transform.position;
+            arrowDirection = targetDirection;
         }
+        
     }
     void Shoot()
     {
