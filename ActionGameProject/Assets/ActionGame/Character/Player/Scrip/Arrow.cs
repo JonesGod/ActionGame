@@ -10,10 +10,14 @@ public class Arrow : MonoBehaviour
     private float fallSpeed=0.0f;//�Y���t��
     private float explodeRadius = 15f;//�z���b�|
 
+    private ParticleSystem particleNormal;
+
     private bool explodeFlag=false;//�O�_���z���b
 
     private List<FSMBase> monster;//�s���Ǫ���T
     private SphereCollider collider;
+
+    public GameObject normalHitEffect;
 
     // Start is called before the first frame update
     private void Awake()
@@ -33,6 +37,7 @@ public class Arrow : MonoBehaviour
         }
 
         collider = transform.GetComponent<SphereCollider>();
+        
     }
     // Update is called once per frame
     void Update()
@@ -54,14 +59,17 @@ public class Arrow : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-        if (explodeFlag)
+        if (other.name == "Terrain")
         {
-            //ArrowExplode();
-            ExplodeTest();
-        }
-        else
-        {
-            ArrowDestory();
+            if (explodeFlag)
+            {
+                //ArrowExplode();
+                ExplodeTest();
+            }
+            else
+            {
+                ArrowDestory();
+            }
         }
     }
     /// <summary>
@@ -71,6 +79,25 @@ public class Arrow : MonoBehaviour
     {
         liveTime = 0.0f;//��l�Ʀs�b�ɶ�
         fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
+        collider.enabled = false;
+
+        particleNormal =normalHitEffect.GetComponent<ParticleSystem>();
+        StartCoroutine(DestoryTime());
+    }
+    protected IEnumerator DestoryTime()
+    {
+        arrowSpeed = 0.0f;
+        gravity = 0.0f;
+
+        particleNormal.Play();
+        while(particleNormal.IsAlive())
+        {
+            yield return null;
+        }
+
+        arrowSpeed = 40f;
+        gravity = 3.0f;
+        collider.enabled = true;
         gameObject.SetActive(false);
     }
     public void IsExplode()

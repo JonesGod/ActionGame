@@ -76,7 +76,7 @@ public class ArrowShoot : MonoBehaviour
             arrow.IsExplode();
             player.MpReduce(explodeCost);
         }
-
+        
         go.transform.position = transform.position;//�վ�b�ڦ�m���}����m
         go.transform.forward = arrowDirection;//�վ�b�ګe�謰�}�o�e��
         go.SetActive(true);
