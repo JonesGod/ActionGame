@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6120071934692621204}
   - component: {fileID: 2082425929961590457}
   - component: {fileID: 7946609805382194815}
+  - component: {fileID: 5884876128752926669}
   m_Layer: 0
   m_Name: Tentacles-Red
   m_TagString: Monster
@@ -416,8 +417,18 @@ MonoBehaviour:
     patrolTime: 0
   myHealth: {fileID: 2082425929961590457}
   myRigidbody: {fileID: 0}
+  rotationSpeed: 0
+  isThereObstacle: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 0
+  widthDistance: 0
+  backDistance: 0
   canRelife: 1
   tentacleCollider: {fileID: 1512422108316927241}
+  material: {fileID: 0}
+  dissolveAmount: 0
 --- !u!114 &2082425929961590457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +455,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 2773519701645087667}
+--- !u!114 &5884876128752926669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d4ef32a26bdef47b0aeaed6fec9e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  dissolveAmount: 0
+  endDissolveAmount: 0.83
+  dissolveTime: 4
 --- !u!1 &100022
 GameObject:
   m_ObjectHideFlags: 0

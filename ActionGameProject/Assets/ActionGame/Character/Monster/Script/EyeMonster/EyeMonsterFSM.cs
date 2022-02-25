@@ -380,17 +380,19 @@ public class EyeMonsterFSM : FSMBase
         data.hp -= damageAmount;
         myHealth.ModifyHealth(damageAmount);  
         monsterHurt.HitFlash();
+        if(data.target == null)
+        {
+            data.target = GameManager.Instance.GetPlayer();
+        }
         if(data.hp > 0 && isHurtAnimation == true)
         {
             currentState = FSMState.Hurt;  
-            animator.SetTrigger("TakeDamage"); 
-            if(data.target == null)
-            {
-                data.target = GameManager.Instance.GetPlayer();
-            }
+            animator.SetTrigger("TakeDamage");             
             doState = DoHurtState;
             checkState = CheckHurtState;
-        }                
+        }       
+        doState = DoHurtState;
+        checkState = CheckHurtState;         
     }
 
     public override void PlayerIsDead()
