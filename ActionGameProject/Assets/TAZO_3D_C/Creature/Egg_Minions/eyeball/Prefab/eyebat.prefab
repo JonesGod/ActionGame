@@ -451,7 +451,6 @@ MonoBehaviour:
   CharacterCollisionBlocker: {fileID: 7881952439412836361}
   wayPoints: []
   targetWayPoint: {fileID: 0}
-  monsterHurt: {fileID: -4498791606880582716}
 --- !u!114 &2398100852455673900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +997,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4608721406506162977

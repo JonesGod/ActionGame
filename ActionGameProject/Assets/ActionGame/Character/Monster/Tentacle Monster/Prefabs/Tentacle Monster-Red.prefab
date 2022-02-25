@@ -1218,6 +1218,7 @@ MonoBehaviour:
   currentState: 0
   data:
     hp: 160
+    shield: 0
     speed: 0
     target: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -1228,6 +1229,14 @@ MonoBehaviour:
     patrolTime: 0
   myHealth: {fileID: 7211568259147312883}
   myRigidbody: {fileID: 0}
+  rotationSpeed: 0
+  isThereObstacle: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 0
+  widthDistance: 0
+  backDistance: 0
   partnerMonster: []
 --- !u!114 &7211568259147312883
 MonoBehaviour:
@@ -6152,7 +6161,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &423435358000719278
