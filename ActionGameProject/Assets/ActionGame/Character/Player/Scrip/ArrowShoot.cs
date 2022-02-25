@@ -8,6 +8,7 @@ public class ArrowShoot : MonoBehaviour
     PlayerControl player;
 
     public GameObject prefab;
+    public GameObject standArrow;
 
     private float charge;//�W�O�ɶ�(��Player)
     private float playerMp;
@@ -63,6 +64,8 @@ public class ArrowShoot : MonoBehaviour
     {
         if (playerMp < 10)
             return;
+
+        standArrow.SetActive(false);
 
         GameObject go = load.LoadArrow();        
         arrow=go.GetComponent<Arrow>();

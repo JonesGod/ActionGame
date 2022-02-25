@@ -33,6 +33,15 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
     public int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
 
+    ///effect
+    public GameObject chargeEffect;
+    private ParticleSystem chargeSystem;
+    public GameObject novaEffect;
+    private ParticleSystem novaSystem;
+    public GameObject magicCircleEffect;
+    private ParticleSystem magicCircleSystem;
+    private bool isCharge=false;
+
     AnimatorStateInfo stateinfo;//當前Animation存取
     AnimatorStateInfo nextStateinfo;//下個Animation存取
     AnimatorStateInfo nextStateinfoOne;//第1層的下個Animation存取
@@ -122,8 +131,12 @@ public class PlayerControl : MonoBehaviour, BeObserver
         playerCurrnetState = PlayerState.live;
         PlayerInput.Instance.playerCurrnetState = PlayerState.live;
         currentCheckPoint = new Vector3(152f,23f,-118f);
-    }
-    void Update()
+
+        chargeSystem = chargeEffect.GetComponent<ParticleSystem>();
+        novaSystem = novaEffect.GetComponent<ParticleSystem>();
+        magicCircleSystem = magicCircleEffect.GetComponent<ParticleSystem>();
+}
+void Update()
     {
         if(Input.GetKeyDown("f1"))
         {
@@ -218,16 +231,35 @@ public class PlayerControl : MonoBehaviour, BeObserver
         }
         if (m_Input.bowAttack)  //弓左鍵射擊
         {
+            isCharge = false;
             m_Am.ResetTrigger("AttackTrigger");
+
+            chargeSystem.Stop();
+            if (charge >= 1.5f)
+            {
+                novaSystem.Play();
+            }
 
             m_ArrowShoot.GetCharge(charge, playerMp);
             charge = 0f;
             m_Am.SetTrigger("BowAttackTrigger");
             m_Input.bowAttack = false;
         }
-        if (m_Input.bowCharge)
+        if (m_Input.bowCharge && m_Input.bowState)
         {
             charge += Time.deltaTime;
+            if(chargeSystem.isStopped)
+                chargeSystem.Play();
+
+            if (charge >= 1.5f)
+            {
+                if (!isCharge)
+                {
+                    magicCircleSystem.Play();
+                    isCharge = true;
+                }
+            }            
+
             if (charge > 2.0f)
                 charge = 2.0f;
             if ((playerMp < 25) || explodeArrowLock)//玩家魔力不足25，或還未獲得爆炸箭時改用一般箭矢

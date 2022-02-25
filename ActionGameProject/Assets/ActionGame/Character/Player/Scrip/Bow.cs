@@ -11,11 +11,12 @@ public class Bow : MonoBehaviour
     protected static Bow s_Instance;
 
     public Transform bow;
+    public GameObject standArrow;
     //public GameObject prefab;
     [HideInInspector]
     public bool bowState;
     //武器消融相關
-    public Material bowMaterial;
+    public Material bowMaterial;    
     public float dissolveAmount = -1.0f;
     public float endDissolveAmount = 1.5f;
     public float dissolveTime = 1.0f;
@@ -100,5 +101,9 @@ public class Bow : MonoBehaviour
     private void WeaponOffDissolve()
     {
         StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.25f));
+    }
+    private void ResetArrow()
+    {
+        standArrow.SetActive(true);
     }
 }

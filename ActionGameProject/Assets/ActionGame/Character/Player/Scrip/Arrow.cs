@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    public GameObject explodeArrow;
+    public GameObject normalArrow;
+
     private float arrowSpeed = 50.0f;//�b�ڭ���t��
     private float gravity=3f ;//���O
     private float liveTime=0.0f;//�s�b�ɶ�
     private float fallSpeed=0.0f;//�Y���t��
     private float explodeRadius = 15f;//�z���b�|
+    private GameObject currentArrow;
 
     private ParticleSystem particleNormal;
 
@@ -36,8 +40,7 @@ public class Arrow : MonoBehaviour
             }
         }
 
-        collider = transform.GetComponent<SphereCollider>();
-        
+        collider = transform.GetComponent<SphereCollider>();        
     }
     // Update is called once per frame
     void Update()
@@ -104,11 +107,15 @@ public class Arrow : MonoBehaviour
     {
         explodeFlag = true;
         transform.name = "ExplosiveArrow";
+        normalArrow.SetActive(false);
+        explodeArrow.SetActive(true);
     }
     public void IsNormal()
     {
         explodeFlag = false;
         transform.name = "Arrow(Clone)";
+        normalArrow.SetActive(true);
+        explodeArrow.SetActive(false);
     }
     /// <summary>
     /// trigger���z���b

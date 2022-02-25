@@ -19207,6 +19207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e84f729d65997e42a5c930ce8f2383a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeArrow: {fileID: 0}
+  normalArrow: {fileID: 0}
   normalHitEffect: {fileID: 0}
 --- !u!65 &-6341582805710984124
 BoxCollider:
