@@ -40,7 +40,8 @@ public class Arrow : MonoBehaviour
             }
         }
 
-        collider = transform.GetComponent<SphereCollider>();        
+        collider = transform.GetComponent<SphereCollider>();
+        particleNormal = normalHitEffect.GetComponent<ParticleSystem>();
     }
     // Update is called once per frame
     void Update()
@@ -60,10 +61,8 @@ public class Arrow : MonoBehaviour
       
     }
     private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-        if (other.name == "Terrain")
-        {
+    {       
+      
             if (explodeFlag)
             {
                 //ArrowExplode();
@@ -72,8 +71,7 @@ public class Arrow : MonoBehaviour
             else
             {
                 ArrowDestory();
-            }
-        }
+            }       
     }
     /// <summary>
     /// �b�ڮ���
@@ -82,9 +80,9 @@ public class Arrow : MonoBehaviour
     {
         liveTime = 0.0f;//��l�Ʀs�b�ɶ�
         fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
-        collider.enabled = false;
+        //collider.enabled = false;
 
-        particleNormal =normalHitEffect.GetComponent<ParticleSystem>();
+        //particleNormal =normalHitEffect.GetComponent<ParticleSystem>();
         StartCoroutine(DestoryTime());
     }
     protected IEnumerator DestoryTime()
