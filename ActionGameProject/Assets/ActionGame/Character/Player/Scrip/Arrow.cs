@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour
             fallSpeed += gravity * Time.deltaTime;//���O�p��
         }
         transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//�b�ڼY���t��
-        Debug.Log("live"+liveTime);
+
     }
     private void OnTriggerEnter(Collider other)
     {       
