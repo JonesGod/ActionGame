@@ -22,13 +22,6 @@ public class BasicFSM : FSMBase
     private Vector3 startPosition;
     public bool hide;
     private MonsterDeadDissolve monsterHurt;
-    public GameObject spawnEffect;
-    void OnEnable()
-    {
-        Debug.Log("spawn");
-        Instantiate(spawnEffect, this.transform.position, Quaternion.identity);
-
-    }
     void Start()
     {
         currentEnemyTarget = null;
