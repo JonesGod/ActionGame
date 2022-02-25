@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour
             fallSpeed += gravity * Time.deltaTime;//���O�p��
         }
         transform.position-= fallSpeed * Vector3.up*Time.deltaTime;//�b�ڼY���t��
-      
+        Debug.Log("live"+liveTime);
     }
     private void OnTriggerEnter(Collider other)
     {       
@@ -78,9 +78,9 @@ public class Arrow : MonoBehaviour
     /// </summary>
     void ArrowDestory()
     {
-        liveTime = 0.0f;//��l�Ʀs�b�ɶ�
-        fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
-        //collider.enabled = false;
+        //liveTime = 0.0f;//��l�Ʀs�b�ɶ�
+        //fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
+        collider.enabled = false;
 
         //particleNormal =normalHitEffect.GetComponent<ParticleSystem>();
         StartCoroutine(DestoryTime());
@@ -96,6 +96,8 @@ public class Arrow : MonoBehaviour
             yield return null;
         }
 
+        liveTime = 0.0f;
+        fallSpeed = 0.0f;
         arrowSpeed = 40f;
         gravity = 3.0f;
         collider.enabled = true;
