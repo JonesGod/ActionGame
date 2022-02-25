@@ -176,7 +176,7 @@ public class SeaMonsterTentacleFSM : FSMBase
     }
     public override void CheckDeadState()
     {
-        if(currentTime >= 5.0f)
+        if(currentTime >= 10.0f)
         {
             data.hp = 10.0f;
             doState = DoRelifeState;

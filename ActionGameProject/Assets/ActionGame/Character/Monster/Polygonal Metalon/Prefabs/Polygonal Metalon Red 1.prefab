@@ -852,6 +852,7 @@ MonoBehaviour:
   CharacterCollisionBlocker: {fileID: 2707218841098369799}
   partnerMonster: []
   hide: 0
+  spawnEffect: {fileID: 6340848795498535144, guid: 36726d3ff902dc74180c65ef7d8ecf77, type: 3}
 --- !u!114 &5723763932724908821
 MonoBehaviour:
   m_ObjectHideFlags: 0
