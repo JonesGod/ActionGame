@@ -799,6 +799,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.2984232
+        functionName: SlashEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
+        floatParameter: 0
+        intParameter: 4
+        messageOptions: 0
       - time: 0.33853608
         functionName: SwordColliderOn
         data: 

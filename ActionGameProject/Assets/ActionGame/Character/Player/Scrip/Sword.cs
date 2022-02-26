@@ -12,10 +12,22 @@ public class Sword : MonoBehaviour
     protected static Sword s_Instance;
 
     public GameObject trail;
-
-    public Transform[] link;
     public Transform sword;
-    
+
+    /// effect
+    public GameObject attackEffect01;
+    public GameObject attackEffect02;
+    public GameObject attackEffect03;
+    public GameObject attackEffect04;
+    public GameObject specialEffect1_1;
+    public GameObject specialEffect1_2;
+    public GameObject specialEffect2_3;
+
+    private ParticleSystem attackParticle01;
+    private ParticleSystem attackParticle02;
+    private ParticleSystem attackParticle03;
+    private ParticleSystem attackParticle04;
+
     [HideInInspector] public bool battleRunIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool runIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool bowIsNext;//��PlayerControl�P�w
@@ -39,6 +51,11 @@ public class Sword : MonoBehaviour
     void Start()
     {
         swordBoxCollider = sword.GetComponent<BoxCollider>();
+
+        attackParticle01 = attackEffect01.GetComponent<ParticleSystem>();
+        attackParticle02 = attackEffect02.GetComponent<ParticleSystem>();
+        attackParticle03 = attackEffect03.GetComponent<ParticleSystem>();
+        attackParticle04 = attackEffect04.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -63,9 +80,12 @@ public class Sword : MonoBehaviour
                 SwordOff();
         }
     }   
+    /// <summary>
+    /// for attack01
+    /// </summary>
     void SwordTrailOn()
     {
-        trail.SetActive(true);
+        //trail.SetActive(true);
     }
     void SwordTrailOff()
     {
@@ -84,7 +104,6 @@ public class Sword : MonoBehaviour
     }
     void SwordColliderOn()
     {
-        Debug.Log("ON123");
         swordBoxCollider.enabled = true;
     }
     public void SwordColliderOff()
@@ -126,5 +145,25 @@ public class Sword : MonoBehaviour
     {
         StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.15f));
     }
-
+    void SlashEffect(int number)
+    {
+        
+        switch(number)
+        {
+            case 1:
+                attackParticle01.Play();
+                break;
+            case 2:
+                attackParticle02.Play();
+                break;
+            case 3:
+                attackParticle03.Play();
+                break;
+            case 4:
+                attackParticle04.Play();
+                break;
+        }
+        
+    }
+ 
 }

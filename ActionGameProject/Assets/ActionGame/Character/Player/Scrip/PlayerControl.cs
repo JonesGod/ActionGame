@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
     private List<FSMBase> monster;//存取怪物資訊
 
-    public int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
+    private int sensitivity=12;//弓狀態下的滑鼠控制相機靈敏度
 
     ///effect
     public GameObject chargeEffect;
@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private ParticleSystem novaSystem;
     public GameObject magicCircleEffect;
     private ParticleSystem magicCircleSystem;
+    
     private bool isCharge=false;
 
     AnimatorStateInfo stateinfo;//當前Animation存取
