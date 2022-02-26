@@ -27,6 +27,9 @@ public class Sword : MonoBehaviour
     private ParticleSystem attackParticle02;
     private ParticleSystem attackParticle03;
     private ParticleSystem attackParticle04;
+    private ParticleSystem specialParticle1_1;
+    private ParticleSystem specialParticle1_2;
+    private ParticleSystem specialParticle2_3;
 
     [HideInInspector] public bool battleRunIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool runIsNext;//��PlayerControl�P�w
@@ -56,6 +59,9 @@ public class Sword : MonoBehaviour
         attackParticle02 = attackEffect02.GetComponent<ParticleSystem>();
         attackParticle03 = attackEffect03.GetComponent<ParticleSystem>();
         attackParticle04 = attackEffect04.GetComponent<ParticleSystem>();
+        specialParticle1_1 = specialEffect1_1.GetComponent<ParticleSystem>();
+        specialParticle1_2 = specialEffect1_2.GetComponent<ParticleSystem>();
+        specialParticle2_3 = specialEffect2_3.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -161,6 +167,15 @@ public class Sword : MonoBehaviour
                 break;
             case 4:
                 attackParticle04.Play();
+                break;
+            case 11:
+                specialParticle1_1.Play();
+                break;
+            case 12:
+                specialParticle1_2.Play();
+                break;
+            case 23:
+                specialParticle2_3.Play();
                 break;
         }
         
