@@ -496,8 +496,9 @@ void Update()
 
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
         PlayerInput.Instance.hurtIsNext = hurtIsNext;
-        Sword.Instance.bowIsNext = bowIsNext;
         PlayerInput.Instance.bowShoot = bowShoot;
+        Sword.Instance.bowIsNext = bowIsNext;
+        Sword.Instance.idleIsNext = idleIsNext;
         Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
     }

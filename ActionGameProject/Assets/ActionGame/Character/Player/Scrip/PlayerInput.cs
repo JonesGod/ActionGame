@@ -119,7 +119,7 @@ public class PlayerInput : MonoBehaviour
         else
             bowCharge = false;
         
-        if (Input.GetButtonDown("Avoid") && !bowShoot)                  
+        if (Input.GetButtonDown("Avoid") && !bowShoot && !FolowCamera.Instance.isSwitch)                  
             avoid = true;
 
         ///弓狀態判定
@@ -154,5 +154,9 @@ public class PlayerInput : MonoBehaviour
     {
         bowLock = false;
        StartCoroutine(UIMain.Instance().BowUnlock());
-    }
+    }    
+    //void BowStateCancel()
+    //{
+    //    bowState = false;
+    //}
 }

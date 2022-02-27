@@ -38,6 +38,7 @@ public class Sword : MonoBehaviour
     [HideInInspector] public bool battleRunIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool runIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool bowIsNext;//��PlayerControl�P�w
+    [HideInInspector] public bool idleIsNext;
 
     private BoxCollider swordBoxCollider;
 
@@ -85,7 +86,7 @@ public class Sword : MonoBehaviour
                 SwordOn();
         }
 
-        if (runIsNext || bowIsNext)
+        if (runIsNext || bowIsNext || idleIsNext)
         {
             if (sword.gameObject.activeSelf == true)
                 SwordOff();

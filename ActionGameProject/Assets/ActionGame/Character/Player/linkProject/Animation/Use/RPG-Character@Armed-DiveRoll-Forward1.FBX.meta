@@ -825,6 +825,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.009638554
+        functionName: BowStateCancel
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: e21830eb29b7262439cb2e4a40ab7731, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.02259887
         functionName: SwordTrailOff
         data: 
