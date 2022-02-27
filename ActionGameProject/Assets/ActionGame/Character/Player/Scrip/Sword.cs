@@ -13,6 +13,7 @@ public class Sword : MonoBehaviour
 
     public GameObject trail;
     public Transform sword;
+    public GameObject hitEffectControl;
 
     /// effect
     public GameObject attackEffect01;
@@ -23,6 +24,7 @@ public class Sword : MonoBehaviour
     public GameObject specialEffect1_2;
     public GameObject specialEffect2_3;
 
+    private SwordHitEffect swordhit;
     private ParticleSystem attackParticle01;
     private ParticleSystem attackParticle02;
     private ParticleSystem attackParticle03;
@@ -54,6 +56,7 @@ public class Sword : MonoBehaviour
     void Start()
     {
         swordBoxCollider = sword.GetComponent<BoxCollider>();
+        swordhit = hitEffectControl.GetComponent<SwordHitEffect>();
 
         attackParticle01 = attackEffect01.GetComponent<ParticleSystem>();
         attackParticle02 = attackEffect02.GetComponent<ParticleSystem>();
@@ -108,9 +111,10 @@ public class Sword : MonoBehaviour
         //startDissolveAmount = dissolveAmount;
         WeaponOffDissolve();
     }
-    void SwordColliderOn()
-    {
-        swordBoxCollider.enabled = true;
+    void SwordColliderOn(int id)
+    { 
+        swordhit.SelectHitEffect(id);
+        swordBoxCollider.enabled = true;       
     }
     public void SwordColliderOff()
     {

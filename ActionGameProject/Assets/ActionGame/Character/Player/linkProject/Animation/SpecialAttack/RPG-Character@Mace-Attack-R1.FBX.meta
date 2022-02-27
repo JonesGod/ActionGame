@@ -781,7 +781,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7a9c4367ec052fe459ec13af11a21562, type: 3}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 2
         messageOptions: 0
       - time: 0.43044266
         functionName: AttackMoveStop
