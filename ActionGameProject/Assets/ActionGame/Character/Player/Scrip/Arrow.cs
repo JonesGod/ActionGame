@@ -14,7 +14,8 @@ public class Arrow : MonoBehaviour
     private float explodeRadius = 15f;//�z���b�|
     private GameObject currentArrow;
 
-    private ParticleSystem particleNormal;
+    private ParticleSystem normalParticle;
+    private ParticleSystem explodeParticle;
 
     private bool explodeFlag=false;//�O�_���z���b
 
@@ -22,6 +23,7 @@ public class Arrow : MonoBehaviour
     private SphereCollider collider;
 
     public GameObject normalHitEffect;
+    public GameObject explodeEffect;
 
     // Start is called before the first frame update
     private void Awake()
@@ -41,7 +43,8 @@ public class Arrow : MonoBehaviour
         }
 
         collider = transform.GetComponent<SphereCollider>();
-        particleNormal = normalHitEffect.GetComponent<ParticleSystem>();
+        normalParticle = normalHitEffect.GetComponent<ParticleSystem>();
+        explodeParticle = explodeEffect.GetComponent<ParticleSystem>();
     }
     // Update is called once per frame
     void Update()
@@ -90,8 +93,8 @@ public class Arrow : MonoBehaviour
         arrowSpeed = 0.0f;
         gravity = 0.0f;
 
-        particleNormal.Play();
-        while(particleNormal.IsAlive())
+        normalParticle.Play();
+        while(normalParticle.IsAlive())
         {
             yield return null;
         }
@@ -122,20 +125,34 @@ public class Arrow : MonoBehaviour
     /// </summary>
     void ExplodeTest()
     {
-        liveTime = 0.0f;//��l�Ʀs�b�ɶ�
-        fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
+        //liveTime = 0.0f;//��l�Ʀs�b�ɶ�
+        //fallSpeed = 0.0f;//��l�ƽb�ڪ��Y���t��
         
         StartCoroutine(ExplodeTime());
     }
     protected IEnumerator ExplodeTime()
     {
+        explodeArrow.SetActive(false);
+
         collider.radius = 25.0f;
         arrowSpeed = 0.0f;
         gravity = 0.0f;
+        explodeParticle.Play();
         yield return new WaitForSeconds(0.2f);
+
+        collider.enabled = false;
+        while (explodeParticle.IsAlive())
+        {
+            yield return null;
+        }
+
+        liveTime = 0.0f;
+        fallSpeed = 0.0f;
+
         collider.radius = 0.5f;
         arrowSpeed = 40f;
         gravity = 3.0f;
         gameObject.SetActive(false);
+        collider.enabled = true;
     }
 }
