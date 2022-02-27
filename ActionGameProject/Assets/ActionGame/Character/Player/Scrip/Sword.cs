@@ -16,6 +16,8 @@ public class Sword : MonoBehaviour
     public GameObject hitEffectControl;
 
     /// effect
+    public GameObject m_AOE;
+
     public GameObject attackEffect01;
     public GameObject attackEffect02;
     public GameObject attackEffect03;
@@ -46,12 +48,12 @@ public class Sword : MonoBehaviour
     public float endDissolveAmount = 1.5f;
     public float dissolveTime = 1.0f;
     public float startDissolveAmount;
-    
+
     private void Awake()
     {
         s_Instance = this;
-        swordMaterial = sword.GetComponent<MeshRenderer>().material;       
-        swordMaterial.SetFloat("_DissolveAmount", dissolveAmount);  
+        swordMaterial = sword.GetComponent<MeshRenderer>().material;
+        swordMaterial.SetFloat("_DissolveAmount", dissolveAmount);
     }
     void Start()
     {
@@ -72,12 +74,12 @@ public class Sword : MonoBehaviour
     {
         if (battleRunIsNext)
         {
-            if(sword.gameObject.activeSelf==false)
+            if (sword.gameObject.activeSelf == false)
                 SwordOn();
             if (trail.activeSelf == true)
                 SwordTrailOff();
         }
-        if(attackState)
+        if (attackState)
         {
             if (sword.gameObject.activeSelf == false)
                 SwordOn();
@@ -85,10 +87,10 @@ public class Sword : MonoBehaviour
 
         if (runIsNext || bowIsNext)
         {
-            if(sword.gameObject.activeSelf == true)
+            if (sword.gameObject.activeSelf == true)
                 SwordOff();
         }
-    }   
+    }
     /// <summary>
     /// for attack01
     /// </summary>
@@ -103,7 +105,7 @@ public class Sword : MonoBehaviour
     void SwordOn()
     {
         sword.gameObject.SetActive(true);
-        WeaponOnDissolve();       
+        WeaponOnDissolve();
     }
     public void SwordOff()
     {
@@ -112,9 +114,9 @@ public class Sword : MonoBehaviour
         WeaponOffDissolve();
     }
     void SwordColliderOn(int id)
-    { 
+    {
         swordhit.SelectHitEffect(id);
-        swordBoxCollider.enabled = true;       
+        swordBoxCollider.enabled = true;
     }
     public void SwordColliderOff()
     {
@@ -125,9 +127,9 @@ public class Sword : MonoBehaviour
     {
         Debug.Log("weaponOn");
         float time = 0.0f;
-        while (time < duration )
+        while (time < duration)
         {
-            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration );
+            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration);
             swordMaterial.SetFloat("_DissolveAmount", dissolveAmount);
             time += Time.deltaTime;
             yield return null;
@@ -137,9 +139,9 @@ public class Sword : MonoBehaviour
     IEnumerator WeaponOff(float v_start, float v_end, float duration)
     {
         float time = 0.0f;
-        while (time < duration )
+        while (time < duration)
         {
-            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration );
+            dissolveAmount = Mathf.Lerp(v_start, v_end, time / duration);
             swordMaterial.SetFloat("_DissolveAmount", dissolveAmount);
             time += Time.deltaTime;
             yield return null;
@@ -157,8 +159,8 @@ public class Sword : MonoBehaviour
     }
     void SlashEffect(int number)
     {
-        
-        switch(number)
+
+        switch (number)
         {
             case 1:
                 attackParticle01.Play();
@@ -182,7 +184,16 @@ public class Sword : MonoBehaviour
                 specialParticle2_3.Play();
                 break;
         }
-        
+
     }
- 
+    void StartAOE()
+    {
+        StartCoroutine(RangAttack());
+    }
+    protected IEnumerator RangAttack()
+    {
+        m_AOE.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        m_AOE.SetActive(false);
+    }
 }
