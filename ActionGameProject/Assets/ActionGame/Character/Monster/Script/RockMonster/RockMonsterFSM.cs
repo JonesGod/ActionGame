@@ -25,6 +25,7 @@ public class RockMonsterFSM : FSMBase
 
     public BoxCollider coreHitBox;
     public BoxCollider shieldHitBox;
+    WorldEvManager worldEvManager;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class RockMonsterFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         maxHp = data.hp;
         maxShield = data.shield;
+        worldEvManager = FindObjectOfType<WorldEvManager>();
     }
 
     void Update()
@@ -551,6 +553,7 @@ public class RockMonsterFSM : FSMBase
         animator.SetTrigger("Die");
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
+        worldEvManager.BossHasBeenDefeated();
     }
 
     public void ShieldHurt(float damageAmount, bool isHead, bool isHurtAnimation)
@@ -573,6 +576,24 @@ public class RockMonsterFSM : FSMBase
         data.shield = maxShield;
         coreHitBox.enabled = false;
         shieldHitBox.enabled = true;
+    }
+    private void StartRotateTowardPlayer()
+    {
+        isRotateTowardPlayer = true;
+        StartCoroutine(RotateTowardPlayer());
+    }
+    private void EndRotateTowardPlayer()
+    {
+        isRotateTowardPlayer = false;
+    }
+    protected IEnumerator RotateTowardPlayer()
+    {        
+        while(isRotateTowardPlayer != false)
+        {
+            var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.8f);
+            yield return null;
+        }
     }
 
     private void OnDrawGizmos() 

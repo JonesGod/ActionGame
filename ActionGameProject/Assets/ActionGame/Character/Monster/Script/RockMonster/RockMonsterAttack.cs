@@ -6,11 +6,15 @@ public class RockMonsterAttack : MonoBehaviour
 {
     public BoxCollider punchAttackCollider;
 
-    public SphereCollider circleAttackCollider;
+    public BoxCollider circleAttackCollider;
 
-    //public BoxCollider smashAttackCollider;
-
+    public BoxCollider smashAttackCollider;
+    public GameObject bulletSpawnPosition;
+    public RockMonsterBulletPool monsterBulletPool;
     private Animator animator;
+
+    public GameObject smashEffect;
+    public GameObject smashEffectPosition;
     void Start()
     {
         AllAttackColliderOff();
@@ -20,10 +24,10 @@ public class RockMonsterAttack : MonoBehaviour
     {
         punchAttackCollider.enabled = true;
     }
-    // void SmashAttackColliderOn()
-    // {
-    //     smashAttackCollider.enabled = true;
-    // }
+    void SmashAttackColliderOn()
+    {
+        smashAttackCollider.enabled = true;
+    }
     void CircleAttackColliderOn()
     {
         circleAttackCollider.enabled = true;
@@ -31,11 +35,19 @@ public class RockMonsterAttack : MonoBehaviour
     void AllAttackColliderOff()
     {
         punchAttackCollider.enabled = false;
-        //smashAttackCollider.enabled = false;
+        smashAttackCollider.enabled = false;
         circleAttackCollider.enabled = false;
     }
     void ChangeAnimatorSpeed(float newSpeed)
     {
         animator.speed = newSpeed;
+    }
+    public void ShootBullet()
+    {
+        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
+    }
+    void PlaySmashParticle()
+    {
+        Instantiate(smashEffect, smashEffectPosition.transform.position, Quaternion.identity);
     }
 }

@@ -25,6 +25,8 @@ public class DragonBossFSM : FSMBase
 
     public GameObject[] angryEffect;
 
+    WorldEvManager worldEvManager;
+
     void Start()
     {
         currentEnemyTarget = null;
@@ -35,6 +37,7 @@ public class DragonBossFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         maxHp = data.hp;
         monsterHurt = this.GetComponent<MonsterDeadDissolve>();
+        worldEvManager = FindObjectOfType<WorldEvManager>();
     }
 
     void Update()
@@ -432,6 +435,7 @@ public class DragonBossFSM : FSMBase
         animator.SetTrigger("Die");
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
+        worldEvManager.BossHasBeenDefeated();
     }
     private void CheckChargeAttackState()
     {
@@ -707,15 +711,13 @@ public class DragonBossFSM : FSMBase
         isRotateTowardPlayer = false;
     }
     protected IEnumerator RotateTowardPlayer()
-    {        
-        Debug.Log("Rotate");
+    {
         while(isRotateTowardPlayer != false)
         {
             var targetRotation = Quaternion.LookRotation(data.target.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.8f);
             yield return null;
         }
-        Debug.Log("RotateTowardPlayerOff");
     }
     public override void PlayerIsDead()
     {

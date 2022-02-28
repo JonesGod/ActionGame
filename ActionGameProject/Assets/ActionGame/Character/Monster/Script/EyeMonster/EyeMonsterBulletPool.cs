@@ -19,9 +19,6 @@ public class EyeMonsterBulletPool : MonoBehaviour
             go.SetActive(false);
         }        
     }
-    void Update()
-    {
-    }
     public void ReUse(Vector3 position, Quaternion rotation)
     {
         if(m_pool.Count > 0)
