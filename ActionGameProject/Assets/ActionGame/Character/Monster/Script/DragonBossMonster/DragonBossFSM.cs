@@ -23,6 +23,8 @@ public class DragonBossFSM : FSMBase
     private float screamCD;
     private MonsterDeadDissolve monsterHurt;
 
+    public GameObject[] angryEffect;
+
     void Start()
     {
         currentEnemyTarget = null;
@@ -42,7 +44,11 @@ public class DragonBossFSM : FSMBase
         // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f);
         if(data.hp <= maxHp / 2 && isAngry == false)
         {
-            isAngry = true;            
+            isAngry = true;     
+            for(int i = 0; i < angryEffect.Length; i++)
+            {
+                angryEffect[i].SetActive(true);  
+            }       
             return;
         }
         if(currentState != FSMState.Dead)
@@ -69,7 +75,7 @@ public class DragonBossFSM : FSMBase
 		GameObject go = target;
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(isAngry == true && screamCD > 10.0f)
+        if(isAngry == true && screamCD > 15.0f)
         {
             chargeAttack = false;
 			normalAttack = false;
@@ -488,6 +494,7 @@ public class DragonBossFSM : FSMBase
     }
     private void CheckAngryAttackState()
     {
+        animator.SetBool("IsRunForward", false);
         //CheckDead
         if(data.hp <= 0)
         {
@@ -503,22 +510,31 @@ public class DragonBossFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(0.5f, 2.0f);
-            currentTime = 0.0f;
-            currentState = FSMState.Attack;
-            doState = DoHornAttackState;
-            checkState = CheckHornAttackState;
+            Vector3 v = data.target.transform.position - this.transform.position;
+            float fDist = v.magnitude;
+            if(fDist < 2 * data.attackRange)
+            {
+                currentState = FSMState.Attack;
+                doState = DoJumpAttackState;
+                checkState = CheckJumpAttackState;
+            }
+            else
+            {
+                data.strafeTime = Random.Range(0.5f, 2.0f);
+                currentTime = 0.0f;
+                currentState = FSMState.Attack;
+                doState = DoHornAttackState;
+                checkState = CheckHornAttackState;
+            }            
         }        
     }
 
     private void DoAngryAttackState()
     {
         myRigidbody.velocity = Vector3.zero;
-        Debug.Log(myRigidbody.velocity);
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Claw Attack"))
         {            
             myRigidbody.velocity = Vector3.zero;
-            Debug.Log("Angry Claw Attack");
             //Debug.Log("IsAttack");
             return;
         }
@@ -556,11 +572,12 @@ public class DragonBossFSM : FSMBase
     public void DoScreamState()
     {
         myRigidbody.velocity = Vector3.zero;
+        screamCD = 0;
         animator.SetBool("IsWalkForward", false);
-        animator.SetBool("IsIdle", true);
+        animator.SetBool("IsRunForward", false);
+        animator.SetBool("IsIdle", false);
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Scream"))
         {            
-            Debug.Log("Scream");
             return;
         }
 
@@ -568,8 +585,7 @@ public class DragonBossFSM : FSMBase
         {
             //Debug.Log("IsInTransition");
             return;
-        }
-        screamCD = 0;
+        }        
         animator.SetTrigger("Scream");
     }
     private void CheckHornAttackState()
@@ -587,6 +603,10 @@ public class DragonBossFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+        {
+            return;
+        }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             data.strafeTime = Random.Range(0.5f, 2.0f);
@@ -599,7 +619,6 @@ public class DragonBossFSM : FSMBase
 
     private void DoHornAttackState()
     {
-        myRigidbody.velocity = Vector3.zero;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Horn Attack"))
         {
             //Debug.Log("IsAttack");
@@ -607,7 +626,6 @@ public class DragonBossFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Angry Charge Attack"))
         {
-            Debug.Log("Angry Charge Attack");
             //Debug.Log("IsAttack");
             return;
         }
@@ -637,6 +655,46 @@ public class DragonBossFSM : FSMBase
             myRigidbody.velocity = Vector3.zero;
             animator.SetTrigger("HornAttack");
         }        
+    }
+    private void CheckJumpAttackState()
+    {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(0.5f, 2.0f);
+            currentTime = 0.0f;
+            currentState = FSMState.Attack;
+            doState = DoHornAttackState;
+            checkState = CheckHornAttackState;
+        }        
+    }
+
+    private void DoJumpAttackState()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("JumpAttack"))
+        {
+            //Debug.Log("IsAttack");
+            return;
+        }
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        myRigidbody.velocity = Vector3.zero;
+        animator.SetTrigger("JumpAttack");       
     }
 
     private void StartRotateTowardPlayer()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragonBossAttack : MonoBehaviour
 {
+    Vector3 playerPosition;
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
 
@@ -15,6 +16,11 @@ public class DragonBossAttack : MonoBehaviour
     
     public GameObject angryClawEffect;
     public GameObject angryClawPosition;
+
+    public GameObject jumpAttackEffect;
+    public GameObject jumpAttackPosition;
+
+    public GameObject screamAttackEffect;
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -49,5 +55,27 @@ public class DragonBossAttack : MonoBehaviour
     void PlayAngryClawParticle()
     {
         Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
+    }
+    void PlayJumpAttackParticle()
+    {
+        Instantiate(jumpAttackEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+    }
+    void PlayScreamAttackParticle()
+    {
+        StartCoroutine(PlayScreamAttack());
+    }
+    IEnumerator PlayScreamAttack()
+    {
+        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+        yield return new WaitForSeconds(2.0f);
+        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+        yield return new WaitForSeconds(2.0f);
+        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);        
+        yield return new WaitForSeconds(2.0f);
+        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
     }
 }

@@ -14,7 +14,7 @@ public class DragonBossHeadAttackTrigger : MonoBehaviour
     {      
         if(other.transform.name == "NewLink")
         {
-            Debug.Log("龍頭攻擊打到玩家");            
+            //Debug.Log("龍頭攻擊打到玩家");            
             //呼叫玩家腳本的受傷function
             player.PlayerHurt(30);
         }
