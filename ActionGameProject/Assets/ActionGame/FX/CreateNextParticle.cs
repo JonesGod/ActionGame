@@ -5,13 +5,14 @@ using UnityEngine;
 public class CreateNextParticle : MonoBehaviour
 {
     public GameObject nextEffect;
+    public float waitTime = 0.8f;
     void Awake()
     {
         StartCoroutine(BeHitFlash());
     }
     IEnumerator BeHitFlash()
     {
-        yield return new WaitForSeconds(0.8f);
-        Instantiate(nextEffect, this.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(waitTime);
+        Instantiate(nextEffect, this.transform.position, this.transform.rotation);
     }
 }
