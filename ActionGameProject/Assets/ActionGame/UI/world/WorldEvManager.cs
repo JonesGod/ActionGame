@@ -13,6 +13,7 @@ using UnityEngine;
 
         public DragonBossHealthBar dragonBossHPBar;
         public RockBossHPBar rockBossHPBar;
+        public RockBossShieldBar rockBossShieldBar;
 
         public List<FogWell> fogWells;
         //public UIBossHPBar bossHPBar;
@@ -40,6 +41,7 @@ using UnityEngine;
             bossFightIsActive = true;
             bossHasBeenAwakened = true;
             rockBossHPBar.SetUIHPBarToActive();
+            rockBossShieldBar.SetUIShieldBarToActive();
             //in wall(?)
 
             foreach (var fogWall in fogWells)
@@ -53,7 +55,9 @@ using UnityEngine;
             bossHasBeenDefeated = true;
             bossFightIsActive = false;
             dragonBossHPBar.SetHPBarToInActive();
-
+            rockBossHPBar.SetHPBarToInActive();
+            rockBossShieldBar.SetShieldBarToInActive();
+            
             //out wall(?)
             foreach (var fogWall in fogWells)
             {

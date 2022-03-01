@@ -18,6 +18,7 @@ public class RockMonsterFSM : FSMBase
     //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
     private float maxHp;
+    public Shield myShield;
     private float maxShield;
     public bool isAngry = false;
     public bool isAwake = false;
@@ -637,7 +638,7 @@ public class RockMonsterFSM : FSMBase
     public void ShieldHurt(float damageAmount, bool isHead, bool isHurtAnimation)
     {        
         data.shield -= damageAmount;
-        myHealth.ModifyHealth(damageAmount);
+        myShield.ModifyShield(damageAmount);
         if(data.target == null)
         {
             data.target = GameManager.Instance.GetPlayer();
@@ -654,6 +655,7 @@ public class RockMonsterFSM : FSMBase
         data.shield = maxShield;
         coreHitBox.enabled = false;
         shieldHitBox.enabled = true;
+        myShield.ModifyShield(-data.shield);
     }
     private void StartRotateTowardPlayer()
     {

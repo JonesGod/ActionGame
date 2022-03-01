@@ -1445,6 +1445,7 @@ GameObject:
   - component: {fileID: 8922824497762582801}
   - component: {fileID: 3331264669723098263}
   - component: {fileID: 6433684395210545364}
+  - component: {fileID: 4516706734887487292}
   - component: {fileID: 48905206296457672}
   m_Layer: 9
   m_Name: Grenadier
@@ -1555,6 +1556,7 @@ MonoBehaviour:
   widthDistance: 0
   backDistance: 0
   CharacterCollisionBlocker: {fileID: 8615276408336521875}
+  myShield: {fileID: 4516706734887487292}
   isAngry: 0
   isAwake: 0
   coreHitBox: {fileID: 7987514708471847018}
@@ -1587,6 +1589,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFSM: {fileID: 8922824497762582801}
+--- !u!114 &4516706734887487292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5675509634724422409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb26edb2fe405e47b38c9f8aca7c96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myFSM: {fileID: 8922824497762582801}
 --- !u!114 &48905206296457672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,7 +1622,8 @@ MonoBehaviour:
   smashEffect: {fileID: 7159651961305388495, guid: 23b15223f1cee8f44b99fe627b5cc002, type: 3}
   smashEffectPosition: {fileID: 8911558807678774870}
   smashEffectGround: {fileID: 4942127054872363807, guid: 146b942c147370741829c74c3ac3e6ea, type: 3}
-  pullAttackEffect: {fileID: 0}
+  pullAttackEffect: {fileID: 5032043630107922749, guid: 97cf43f60415b8449951616419188178, type: 3}
+  chargeParticle: {fileID: 1304979634595333393, guid: 506b55721a07abc45ba63dc6e8f15e7f, type: 3}
 --- !u!1 &5675509634724422481
 GameObject:
   m_ObjectHideFlags: 0
