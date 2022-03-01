@@ -2031,3 +2031,1078 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007379 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.224 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1225ms)
+		BeginReloadAssembly (135ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (45ms)
+		EndReloadAssembly (1012ms)
+			LoadAssemblies (106ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (372ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (43ms)
+			SetupLoadedEditorAssemblies (314ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (91ms)
+				ProcessInitializeOnLoadAttributes (202ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (18ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.04 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2855 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 141.4 MB.
+System memory in use after: 141.6 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3556.
+Total: 4.193900 ms (FindLiveObjects: 0.326900 ms CreateObjectMapping: 0.120600 ms MarkObjects: 3.653300 ms  DeleteObjects: 0.092200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3622.802522 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Muzzleflash
+  artifactKey: Guid(597f2bd42a169de42a40d53df947535e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Muzzleflash using Guid(597f2bd42a169de42a40d53df947535e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a20143cfe1e53d89893584e9deddc8a') in 0.013099 seconds 
+  Import took 0.020029 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.799321 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Muzzleflash/BubbleMuzzle
+  artifactKey: Guid(0158241d77dec74438201da129e76b02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Muzzleflash/BubbleMuzzle using Guid(0158241d77dec74438201da129e76b02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '412e02d9923b4c0c398481f37eefd178') in 0.007396 seconds 
+  Import took 0.013367 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 34.880776 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Bubble
+  artifactKey: Guid(c9ba3d26feef1ad4aa5758e4d1716577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Bubble using Guid(c9ba3d26feef1ad4aa5758e4d1716577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63c240734e6dee3ba38a72dd6741e37c') in 0.007053 seconds 
+  Import took 0.013207 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.877338 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Bullet
+  artifactKey: Guid(51d0e83f2d7e92c4abbacf06473b5828) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Bullet using Guid(51d0e83f2d7e92c4abbacf06473b5828) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff5bd5d2c0759b02879ac5fc51fa5ecb') in 0.008174 seconds 
+  Import took 0.013831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.156656 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy
+  artifactKey: Guid(cd4731a5661e8e04590d95bd3cd36edb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy using Guid(cd4731a5661e8e04590d95bd3cd36edb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a50a66cec4a394d5d58d9ba30871024') in 0.007468 seconds 
+  Import took 0.013248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.075635 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileBlue.prefab
+  artifactKey: Guid(13fb3d7a7b6f33344af2d0742849ab6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileBlue.prefab using Guid(13fb3d7a7b6f33344af2d0742849ab6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca0df5c06fcd254e38f4e064fdb00a10') in 0.391406 seconds 
+  Import took 0.397551 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileRed.prefab
+  artifactKey: Guid(b5ff8f15f2b8279429d253373f165984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileRed.prefab using Guid(b5ff8f15f2b8279429d253373f165984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a6adb593332e64050be6f85f70792f0') in 0.026091 seconds 
+  Import took 0.032320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000282 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissilePink.prefab
+  artifactKey: Guid(fa6b4c9c2205fc24ab1f6a32549f2891) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissilePink.prefab using Guid(fa6b4c9c2205fc24ab1f6a32549f2891) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5e87c729f1dc56585bcb34095d3c951') in 0.021582 seconds 
+  Import took 0.028995 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileGreen.prefab
+  artifactKey: Guid(99c114328b10529409559fdde1d5cd8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileGreen.prefab using Guid(99c114328b10529409559fdde1d5cd8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d84ab725360b02e9359e241cb56d86c') in 0.022273 seconds 
+  Import took 0.028962 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileYellow.prefab
+  artifactKey: Guid(1bf272e06257c804882ffc39672228a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Energy/EnergyMissileYellow.prefab using Guid(1bf272e06257c804882ffc39672228a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01ec21a18ca376b1d9f3c62f009806c0') in 0.027228 seconds 
+  Import took 0.035903 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 90.190125 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FatBullet
+  artifactKey: Guid(a52535d6a1a91134fb2b3de8c8cca4f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FatBullet using Guid(a52535d6a1a91134fb2b3de8c8cca4f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d06e614645c9a2c2fc9088e0ccb22d7') in 0.007534 seconds 
+  Import took 0.013903 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.659483 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Fireball/FireballMissileBlue.prefab
+  artifactKey: Guid(deec2987c8cae8c4a97dea31b6ddb2c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Fireball/FireballMissileBlue.prefab using Guid(deec2987c8cae8c4a97dea31b6ddb2c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b63da7e9ddd361a10b63387c4461fe59') in 0.038929 seconds 
+  Import took 0.048285 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Fireball/FireballMissileFire.prefab
+  artifactKey: Guid(3b671081e44be1c4aa4355e8ba6e8a5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Fireball/FireballMissileFire.prefab using Guid(3b671081e44be1c4aa4355e8ba6e8a5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9fb31723e961fd012bfb35edd2b3482') in 0.022069 seconds 
+  Import took 0.028138 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.577526 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp
+  artifactKey: Guid(1527b99e7a5d7e84fa61fb14eade1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp using Guid(1527b99e7a5d7e84fa61fb14eade1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a5030c018181b7a3fae0a4b20673cfd') in 0.007248 seconds 
+  Import took 0.013146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.140235 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileBlue.prefab
+  artifactKey: Guid(73d9f4ee08774eb49bec9a482d3873b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileBlue.prefab using Guid(73d9f4ee08774eb49bec9a482d3873b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7d639264adace19934649c29f0beb2a') in 0.065511 seconds 
+  Import took 0.075269 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileFire.prefab
+  artifactKey: Guid(d2e12f11e1f9a8f41a018e2f56fd9589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileFire.prefab using Guid(d2e12f11e1f9a8f41a018e2f56fd9589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3e2f0f34a8a7eb3bd6c7b16479b55f9') in 0.026071 seconds 
+  Import took 0.032213 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000291 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissilePink.prefab
+  artifactKey: Guid(bcd7f1f45336e164389fb03909715d12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissilePink.prefab using Guid(bcd7f1f45336e164389fb03909715d12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '138044d45647b717a678f183adc6d953') in 0.027096 seconds 
+  Import took 0.034199 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileGreen.prefab
+  artifactKey: Guid(d638dd864cf75654990d92d54e4bc96f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/FireballSharp/FireballSharpMissileGreen.prefab using Guid(d638dd864cf75654990d92d54e4bc96f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13a5780db528eeb7ed328a08b2c0a74d') in 0.026819 seconds 
+  Import took 0.033112 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.343593 seconds.
+  path: Assets/Epic Toon FX/Materials/Misc/Fire/fire_3x6_ADD.mat
+  artifactKey: Guid(bb2dd1abd6ac09b45a5db1e4ca1233de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Materials/Misc/Fire/fire_3x6_ADD.mat using Guid(bb2dd1abd6ac09b45a5db1e4ca1233de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4f7eb82985af79cdbb9058d982eaa78') in 0.042031 seconds 
+  Import took 0.048634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.591457 seconds.
+  path: Assets/Epic Toon FX/Materials/Misc/Fire/fireball_AB.mat
+  artifactKey: Guid(428f77f4250e66a41a1313a6b3fc69e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Materials/Misc/Fire/fireball_AB.mat using Guid(428f77f4250e66a41a1313a6b3fc69e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82430b424b7840f97a974ffefb86fbc8') in 0.020638 seconds 
+  Import took 0.026846 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.157171 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash
+  artifactKey: Guid(e23b5d2fdd5a01343982207604847ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash using Guid(e23b5d2fdd5a01343982207604847ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de63e045400091bbd4e31b328a34306c') in 0.009040 seconds 
+  Import took 0.015159 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.140790 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileBlue.prefab
+  artifactKey: Guid(21a40f538610abc44b122ff940ed7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileBlue.prefab using Guid(21a40f538610abc44b122ff940ed7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57c1519901753f5622b2d611f5db25a0') in 0.039591 seconds 
+  Import took 0.049239 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileGreen.prefab
+  artifactKey: Guid(175066f53d36d8d4d9bdecb1e5314672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileGreen.prefab using Guid(175066f53d36d8d4d9bdecb1e5314672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a19efc6ed20974d5756514d1e0acb0f7') in 0.024675 seconds 
+  Import took 0.032298 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000312 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileYellow.prefab
+  artifactKey: Guid(c787459d7b28c9a4ab701b1720cef097) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissileYellow.prefab using Guid(c787459d7b28c9a4ab701b1720cef097) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76d2a133e5d63d29e676fcb46dba3b73') in 0.024232 seconds 
+  Import took 0.030810 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissilePink.prefab
+  artifactKey: Guid(89f0a38a0d0d485469a33fa7a6b90c23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Flash/FlashMissilePink.prefab using Guid(89f0a38a0d0d485469a33fa7a6b90c23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c4e8028c5eb8f91321ce35f9c75bf82') in 0.022188 seconds 
+  Import took 0.028986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.845065 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Frost
+  artifactKey: Guid(0e0f53897b057f744b61ea5ad44f2562) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Frost using Guid(0e0f53897b057f744b61ea5ad44f2562) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b61ba659e6803d1a4c68f2a4b5379bff') in 0.007911 seconds 
+  Import took 0.014139 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.108205 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Frost/FrostMissile.prefab
+  artifactKey: Guid(7e9a3591984cda1499dc675622a57b0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Frost/FrostMissile.prefab using Guid(7e9a3591984cda1499dc675622a57b0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1da2e9c0fde560e6414126eeca60eae2') in 0.047495 seconds 
+  Import took 0.055072 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.654284 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas
+  artifactKey: Guid(9b1ffb0a73fe43643a55471328182af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas using Guid(9b1ffb0a73fe43643a55471328182af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7647682d9f063a3f9700bd840296c2e') in 0.006992 seconds 
+  Import took 0.017587 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.043539 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileBlue.prefab
+  artifactKey: Guid(b10b204e41dcd204888d0943b2bf41b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileBlue.prefab using Guid(b10b204e41dcd204888d0943b2bf41b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '816bea74e80902dbc9ab275ea7f53174') in 0.021491 seconds 
+  Import took 0.028967 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000272 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileFire.prefab
+  artifactKey: Guid(ac9b4353d2875904fab1331e17aeb084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileFire.prefab using Guid(ac9b4353d2875904fab1331e17aeb084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e223a04dbe0e12bb8ddb3f8c042849f') in 0.028796 seconds 
+  Import took 0.035866 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissilePink.prefab
+  artifactKey: Guid(633cb549b09948a428a5acf3f73ab125) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissilePink.prefab using Guid(633cb549b09948a428a5acf3f73ab125) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '031763aedb987ff69d5cbd552bd7129d') in 0.027378 seconds 
+  Import took 0.034532 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000242 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileGreen.prefab
+  artifactKey: Guid(809b30582ebd3e34a872e06f41d1fb2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Gas/GasMissileGreen.prefab using Guid(809b30582ebd3e34a872e06f41d1fb2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93eadbaa07ed19fbf12c8495968eb28a') in 0.032157 seconds 
+  Import took 0.039218 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.354812 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Grenade
+  artifactKey: Guid(6ec9e19caa9e49f4a870391f7626378d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Grenade using Guid(6ec9e19caa9e49f4a870391f7626378d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '572160c1890df1096d36df144764adb8') in 0.011880 seconds 
+  Import took 0.017674 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.110255 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser
+  artifactKey: Guid(44f0bd70eccbaa64bbc60f3d812a6ce2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser using Guid(44f0bd70eccbaa64bbc60f3d812a6ce2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cfe0b4033490a8674ade4ae62e86c1d') in 0.007209 seconds 
+  Import took 0.013703 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.036192 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileBlue.prefab
+  artifactKey: Guid(1cbea70b4874c49458ec188e4527dfa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileBlue.prefab using Guid(1cbea70b4874c49458ec188e4527dfa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba0b4a9bf4bfe9061d0f3224c017f7ca') in 0.029236 seconds 
+  Import took 0.035300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileFire.prefab
+  artifactKey: Guid(3c8a35516af620742a237285c503fcc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileFire.prefab using Guid(3c8a35516af620742a237285c503fcc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a7b7cc43a5fcc283103c866567efd6b') in 0.016974 seconds 
+  Import took 0.022579 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissilePink.prefab
+  artifactKey: Guid(172bb145d978fbb4da57d94b1e6b6776) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissilePink.prefab using Guid(172bb145d978fbb4da57d94b1e6b6776) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb6328f26394582451c4c7742c8df260') in 0.018004 seconds 
+  Import took 0.025405 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000335 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileBlue.prefab
+  artifactKey: Guid(4c41ec3ab37ac8b4c9490c39838a71d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileBlue.prefab using Guid(4c41ec3ab37ac8b4c9490c39838a71d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '669a289b07be7ae3b46be8d4300bdc23') in 0.023484 seconds 
+  Import took 0.030820 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000265 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileGreen.prefab
+  artifactKey: Guid(1ebd23ff3d8d4f849a6d0735e102b43e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileGreen.prefab using Guid(1ebd23ff3d8d4f849a6d0735e102b43e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a6b0a596acad4cd1d9ee4ce2104837e') in 0.026004 seconds 
+  Import took 0.032984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileRed.prefab
+  artifactKey: Guid(7cf0c810c7ede2c42a2e71ac3c0e257d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileRed.prefab using Guid(7cf0c810c7ede2c42a2e71ac3c0e257d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd32b09f33e85973c0962342a023e9b4') in 0.024774 seconds 
+  Import took 0.030837 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileGreen.prefab
+  artifactKey: Guid(cb75f5e3b464c96489c217523ce98a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileGreen.prefab using Guid(cb75f5e3b464c96489c217523ce98a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dc8ab8fc4efbe1a1396c4b16d4b7af2') in 0.018294 seconds 
+  Import took 0.025295 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileRed.prefab
+  artifactKey: Guid(5ebe806fbdc57ab4e834f4764618c29b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissileRed.prefab using Guid(5ebe806fbdc57ab4e834f4764618c29b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b25a8290c28fe362490ba5d16050c1d') in 0.025104 seconds 
+  Import took 0.031817 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissilePink.prefab
+  artifactKey: Guid(f004e75bad6ee914c8f6936455d1981b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMeshMissilePink.prefab using Guid(f004e75bad6ee914c8f6936455d1981b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33fd6033114b5a19b9cf4f773e69ba06') in 0.026854 seconds 
+  Import took 0.033390 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000260 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileFire.prefab
+  artifactKey: Guid(2a6c671eff9a71a418bd43aa8d6188d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Laser/LaserMissileFire.prefab using Guid(2a6c671eff9a71a418bd43aa8d6188d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '872ab011bf946cfb54ee2f8749cf045a') in 0.024459 seconds 
+  Import took 0.031482 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.968461 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning
+  artifactKey: Guid(ee050106b5856cd4e87a72c1e6add027) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning using Guid(ee050106b5856cd4e87a72c1e6add027) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15fa618b6e2220ef814e070625ada83b') in 0.006888 seconds 
+  Import took 0.012349 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.053185 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileBlue.prefab
+  artifactKey: Guid(153ff601b9ac43240921bf65f009e220) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileBlue.prefab using Guid(153ff601b9ac43240921bf65f009e220) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20f0d2da47ad19154f8c6feda8a8edff') in 0.028083 seconds 
+  Import took 0.034562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileYellow.prefab
+  artifactKey: Guid(f8719d945ee38e64f8a6a13b8e569992) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileYellow.prefab using Guid(f8719d945ee38e64f8a6a13b8e569992) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85019a7985e3869c622d2e51af80cd67') in 0.023597 seconds 
+  Import took 0.029923 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileGreen.prefab
+  artifactKey: Guid(3cf0c022f1cd37f4b850f075c5567203) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissileGreen.prefab using Guid(3cf0c022f1cd37f4b850f075c5567203) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72db21c4440cccfe5d243f891e901dac') in 0.029424 seconds 
+  Import took 0.035608 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissilePink.prefab
+  artifactKey: Guid(1468a051063648a4ba29b56af532b72d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Lightning/LightningMissilePink.prefab using Guid(1468a051063648a4ba29b56af532b72d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05f930b73c34e9678c29911380b2745f') in 0.025813 seconds 
+  Import took 0.032342 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.463530 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid
+  artifactKey: Guid(0bbfb91401e3cb14b8f4b8d1953b518b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid using Guid(0bbfb91401e3cb14b8f4b8d1953b518b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '855fcc8522fa4ce768783bb0c1a7518d') in 0.007049 seconds 
+  Import took 0.013048 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.081098 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileAcid.prefab
+  artifactKey: Guid(08fba7ace305c404da9c77c309850d22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileAcid.prefab using Guid(08fba7ace305c404da9c77c309850d22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ecf954e5769e4970559bb795c88e890') in 0.034208 seconds 
+  Import took 0.043396 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileLava.prefab
+  artifactKey: Guid(1beb0a8414c49964fa16289d0fb73952) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileLava.prefab using Guid(1beb0a8414c49964fa16289d0fb73952) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9bddd827752d77cbdf3eaeb0838d45c') in 0.022729 seconds 
+  Import took 0.030385 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000344 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileWaterClear.prefab
+  artifactKey: Guid(d1594451f682c2b44a78ba39a6c33121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileWaterClear.prefab using Guid(d1594451f682c2b44a78ba39a6c33121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b5340f04781532abb47eda76a371a00') in 0.020383 seconds 
+  Import took 0.027417 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000243 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileOil.prefab
+  artifactKey: Guid(ec7fa1526bea76047bba67dd11328026) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileOil.prefab using Guid(ec7fa1526bea76047bba67dd11328026) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3971afa0c264c1981efc7929bd3145d4') in 0.021949 seconds 
+  Import took 0.028776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileWater.prefab
+  artifactKey: Guid(eae69d44360b6274ba18e56d229d8fc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Liquid/LiquidMissileWater.prefab using Guid(eae69d44360b6274ba18e56d229d8fc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6d92fc42ac97325d8465285c32e457b') in 0.025775 seconds 
+  Import took 0.033993 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.685081 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Magic
+  artifactKey: Guid(947cb6fb010e09c4187dc54718b1efc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Magic using Guid(947cb6fb010e09c4187dc54718b1efc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35c585dff524e527731f23e501cd4f08') in 0.011695 seconds 
+  Import took 0.017703 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.594215 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/MagicSoft
+  artifactKey: Guid(a6094a077d2a3e14fad7a55324a34e1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/MagicSoft using Guid(a6094a077d2a3e14fad7a55324a34e1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc792a0e9f078d15e1252869b672e42c') in 0.007628 seconds 
+  Import took 0.013749 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.288620 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic
+  artifactKey: Guid(f44db1f4d4150d6469c07ef94981b39d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic using Guid(f44db1f4d4150d6469c07ef94981b39d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '982b1237af43e8da5d6113067d452767') in 0.009310 seconds 
+  Import took 0.015337 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040708 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileDark.prefab
+  artifactKey: Guid(4f21f148a26c7a2488d06e744b066581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileDark.prefab using Guid(4f21f148a26c7a2488d06e744b066581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09058b7709991b9a899713ef46a989b2') in 0.035253 seconds 
+  Import took 0.041197 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileOrange.prefab
+  artifactKey: Guid(fc1e98ca9a0339546a008f54084df581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileOrange.prefab using Guid(fc1e98ca9a0339546a008f54084df581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0044549eb16825c070af437391d3fcae') in 0.039380 seconds 
+  Import took 0.044794 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileWhite.prefab
+  artifactKey: Guid(f8df35cfac5b6f14d8ddfa9b932dfe14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileWhite.prefab using Guid(f8df35cfac5b6f14d8ddfa9b932dfe14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60ba14db271484104060d1ae060e54be') in 0.024645 seconds 
+  Import took 0.031430 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissilePurple.prefab
+  artifactKey: Guid(c849c99816049e5458f41c3e3ccf118c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissilePurple.prefab using Guid(c849c99816049e5458f41c3e3ccf118c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce2d569bdb505d18a4ff1606b257f12f') in 0.026425 seconds 
+  Import took 0.033587 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileGreen.prefab
+  artifactKey: Guid(6cc3aa2ba73c39b4087f16d0565ece1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Mystic/MysticMissileGreen.prefab using Guid(6cc3aa2ba73c39b4087f16d0565ece1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9acb51a939a727345242f5884787c678') in 0.026831 seconds 
+  Import took 0.033514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.097845 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile
+  artifactKey: Guid(b370ab64969bcdd4ea8d94a12e4dd989) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile using Guid(b370ab64969bcdd4ea8d94a12e4dd989) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4910bf10c71ee839ac2d41f01aed44e1') in 0.007418 seconds 
+  Import took 0.013454 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.055691 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileBlue.prefab
+  artifactKey: Guid(dde93ea5512f0e242a654a566c8605e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileBlue.prefab using Guid(dde93ea5512f0e242a654a566c8605e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e83985b2aaca3bcb56a5bd79f8003bdd') in 0.029579 seconds 
+  Import took 0.035647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileFire.prefab
+  artifactKey: Guid(8a30595d8f5ffe244b5b70512f0dc5fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileFire.prefab using Guid(8a30595d8f5ffe244b5b70512f0dc5fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '516da75d5fca2a0bcd1eadf0c33b08e7') in 0.030211 seconds 
+  Import took 0.036832 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000203 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissilePink.prefab
+  artifactKey: Guid(dc45d356f9cc39149a47bc7e96bf12c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissilePink.prefab using Guid(dc45d356f9cc39149a47bc7e96bf12c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fbd7c71ef4bcca5b189c8b7d9dbebc9') in 0.033738 seconds 
+  Import took 0.040542 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileGreen.prefab
+  artifactKey: Guid(21c7e6a26feeb564fb859ba8c5cae356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissile/NovaMissileGreen.prefab using Guid(21c7e6a26feeb564fb859ba8c5cae356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f9d3ca5a3ca7cc187b225c65410d895') in 0.028853 seconds 
+  Import took 0.036109 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14.650287 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft
+  artifactKey: Guid(7389a600a1a69db40a8766db3763bb23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft using Guid(7389a600a1a69db40a8766db3763bb23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad14b8dec07016c7529feb5aa3db2d74') in 0.007405 seconds 
+  Import took 0.013436 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.105872 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftBlue.prefab
+  artifactKey: Guid(811d040583d2dfd46a5ac7779e1ee1c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftBlue.prefab using Guid(811d040583d2dfd46a5ac7779e1ee1c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7967c155f1601ca23dd0985f3f00ef05') in 0.023517 seconds 
+  Import took 0.030012 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftFire.prefab
+  artifactKey: Guid(5d9755a0ee56e674ea5bbc8811b520e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftFire.prefab using Guid(5d9755a0ee56e674ea5bbc8811b520e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63c3c4a2134adc2b128ac46e4cd68d25') in 0.024921 seconds 
+  Import took 0.031635 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000272 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/RockMonsterBullet.prefab
+  artifactKey: Guid(0e7154bc720e6b642bbf26652458880c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/RockMonsterBullet.prefab using Guid(0e7154bc720e6b642bbf26652458880c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a24d85e2c4a08bb7456c8e27972b20db') in 0.026872 seconds 
+  Import took 0.034509 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftGreen.prefab
+  artifactKey: Guid(bb63e687aeb384c4e90b502f4511a701) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftGreen.prefab using Guid(bb63e687aeb384c4e90b502f4511a701) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92cedef365c8b909b160df5c3c04e553') in 0.026600 seconds 
+  Import took 0.033204 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftPink.prefab
+  artifactKey: Guid(ac218768bc2266b408c70cb410c05435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaMissileSoft/NovaMissileSoftPink.prefab using Guid(ac218768bc2266b408c70cb410c05435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c706da39eba9dda65f3aad63781f684') in 0.026668 seconds 
+  Import took 0.033754 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.725312 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall
+  artifactKey: Guid(a351ec2d140b1c74cb6947450a6f1d20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall using Guid(a351ec2d140b1c74cb6947450a6f1d20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd4631b074b8e63132bd38bdfef028c2') in 0.007101 seconds 
+  Import took 0.013085 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046056 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallBlue.prefab
+  artifactKey: Guid(42c454f3e16ef2e489f63509b4660bd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallBlue.prefab using Guid(42c454f3e16ef2e489f63509b4660bd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2944c7f88524748f0d677a0822eac5ca') in 0.025328 seconds 
+  Import took 0.031143 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallGreen.prefab
+  artifactKey: Guid(7d1405f1d86b0b54c9d71d23ce7c0b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallGreen.prefab using Guid(7d1405f1d86b0b54c9d71d23ce7c0b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bba8b36f3e5a8a8a373dad5b50d00973') in 0.030068 seconds 
+  Import took 0.036442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallFire.prefab
+  artifactKey: Guid(ccf8c3c81145b7740ae9fee6ca518c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallFire.prefab using Guid(ccf8c3c81145b7740ae9fee6ca518c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7941f336b783428a49ee8801f28fa9e9') in 0.030376 seconds 
+  Import took 0.036648 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallPink.prefab
+  artifactKey: Guid(20a21a62fcbf9ea42a706026d0c443d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/NovaSmall/NovaMissileSmallPink.prefab using Guid(20a21a62fcbf9ea42a706026d0c443d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '097caf93f69fefa6044d18e91be368ef') in 0.025310 seconds 
+  Import took 0.032433 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.878848 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke
+  artifactKey: Guid(a9808a7df1941da4b8a58e9fa11e4d40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke using Guid(a9808a7df1941da4b8a58e9fa11e4d40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0b80ec8c5c5b20ed6ebda48d3468a19') in 0.007195 seconds 
+  Import took 0.013444 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.038547 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileBlue.prefab
+  artifactKey: Guid(0be5aadc5891ed24688334e31db5abcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileBlue.prefab using Guid(0be5aadc5891ed24688334e31db5abcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f56e25453690a1b54b48015c03532e4') in 0.029128 seconds 
+  Import took 0.035741 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000393 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileGreen.prefab
+  artifactKey: Guid(d2b6665fd7333674aabe8f4394cf661d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileGreen.prefab using Guid(d2b6665fd7333674aabe8f4394cf661d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a12f1a3203676f2c7829417ce0d0468') in 0.029255 seconds 
+  Import took 0.036473 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileRed.prefab
+  artifactKey: Guid(f095bd1618b227843ba170f46f797679) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileRed.prefab using Guid(f095bd1618b227843ba170f46f797679) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6aaa4605207375eac20f360aba1d35b') in 0.025509 seconds 
+  Import took 0.033052 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissilePink.prefab
+  artifactKey: Guid(b9990a2c3cb466040810b13396d4ee2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissilePink.prefab using Guid(b9990a2c3cb466040810b13396d4ee2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a675d76b3a6df101292d60f94e4df55') in 0.024310 seconds 
+  Import took 0.031550 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileFire.prefab
+  artifactKey: Guid(25a78a965241d084996f23857207e95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Nuke/NukeMissileFire.prefab using Guid(25a78a965241d084996f23857207e95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73a6aae1bac3520edcb2f608c03422ec') in 0.023653 seconds 
+  Import took 0.031219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.846603 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Rocket
+  artifactKey: Guid(e5a1c786cab927b4097b07009c458d00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Rocket using Guid(e5a1c786cab927b4097b07009c458d00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32c1913010586066586cd38b9f0f598b') in 0.007321 seconds 
+  Import took 0.013361 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.045170 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Shadow
+  artifactKey: Guid(5cf83125fa0ecb04c9938e73af7e9b27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Shadow using Guid(5cf83125fa0ecb04c9938e73af7e9b27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d3b549ed05bd5174442758d903ecd30') in 0.008808 seconds 
+  Import took 0.014697 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040028 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Shadow/ShadowMissile.prefab
+  artifactKey: Guid(a9286d9ebf8c6b947917ec3f20e96819) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Shadow/ShadowMissile.prefab using Guid(a9286d9ebf8c6b947917ec3f20e96819) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7d53520cc40df5e88ab06c8e32b4315') in 0.044716 seconds 
+  Import took 0.051807 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.379529 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp
+  artifactKey: Guid(531f3cf195a0450459031f49b81b6a92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp using Guid(531f3cf195a0450459031f49b81b6a92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f56b3dfe7a8e2ffcab50220b6e8d1fe5') in 0.008070 seconds 
+  Import took 0.014411 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.041688 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileBlue.prefab
+  artifactKey: Guid(b754cb6e007692245bcdfa629b37e171) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileBlue.prefab using Guid(b754cb6e007692245bcdfa629b37e171) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b5845edc3559cdb0ca4e5450831b9b2') in 0.023780 seconds 
+  Import took 0.032058 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissilePink.prefab
+  artifactKey: Guid(b93d40b8cb1a3074bb9259e4489611ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissilePink.prefab using Guid(b93d40b8cb1a3074bb9259e4489611ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '890c7b0c16a7ac178d08e8160bdb9336') in 0.026289 seconds 
+  Import took 0.033192 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileGreen.prefab
+  artifactKey: Guid(16cf368e6fc6cb7439e9ba2c820985ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileGreen.prefab using Guid(16cf368e6fc6cb7439e9ba2c820985ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1348e5d4c81c7706e700d7f10dc61ca9') in 0.029379 seconds 
+  Import took 0.036776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileFire.prefab
+  artifactKey: Guid(b08423cf60cb91c45a09d2875c834ca9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sharp/SharpMissileFire.prefab using Guid(b08423cf60cb91c45a09d2875c834ca9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52bbcbf01f9beb001f31c20a718c5bff') in 0.025235 seconds 
+  Import took 0.032410 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.281448 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Snow
+  artifactKey: Guid(e9eefe2aceced104e8789f2ac9b77772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Snow using Guid(e9eefe2aceced104e8789f2ac9b77772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4199adfbed415c9fcaf8880961c4716e') in 0.012061 seconds 
+  Import took 0.017643 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.037456 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Snow/SnowMissile.prefab
+  artifactKey: Guid(6990d204950bbe342a79c51322ee6373) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Snow/SnowMissile.prefab using Guid(6990d204950bbe342a79c51322ee6373) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96960462987a6d14aa02479624204680') in 0.035795 seconds 
+  Import took 0.042421 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.171514 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul
+  artifactKey: Guid(72a510657481f474a944a1b613c821f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul using Guid(72a510657481f474a944a1b613c821f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57e67a6b4d395f857596bb35ef38261f') in 0.007437 seconds 
+  Import took 0.013665 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.038232 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileCrimson.prefab
+  artifactKey: Guid(dfe2b7541a0ad87419765c034d4d5c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileCrimson.prefab using Guid(dfe2b7541a0ad87419765c034d4d5c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7c0fc1c099513049927a7348af565d1') in 0.030547 seconds 
+  Import took 0.036986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000243 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileGreen.prefab
+  artifactKey: Guid(9cf1127ebf4098946b3c2dbba00c0917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileGreen.prefab using Guid(9cf1127ebf4098946b3c2dbba00c0917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3b1c4b57ecaa4defe0041c28a32a27a') in 0.024391 seconds 
+  Import took 0.031202 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000233 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileOrange.prefab
+  artifactKey: Guid(595bac301e43f584185281100d9a2eee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissileOrange.prefab using Guid(595bac301e43f584185281100d9a2eee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6058fc1dfb6ba9faa2a62be05c9e9b32') in 0.025642 seconds 
+  Import took 0.033248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissilePurple.prefab
+  artifactKey: Guid(eaf9728a2b7aafb4b822e2708a38fe70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Soul/SoulMissilePurple.prefab using Guid(eaf9728a2b7aafb4b822e2708a38fe70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c28cf2d3907203dadb7088d95017196d') in 0.023362 seconds 
+  Import took 0.030306 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.929723 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle
+  artifactKey: Guid(4370084dced6eb4448562e36ac5d88c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle using Guid(4370084dced6eb4448562e36ac5d88c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1437e8a6096f9bcc577eb1343de68e6b') in 0.011669 seconds 
+  Import took 0.017237 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.036254 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileBlue.prefab
+  artifactKey: Guid(455924ec43e9d1645a6e89678be3112e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileBlue.prefab using Guid(455924ec43e9d1645a6e89678be3112e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c94a4d7bd9ebfc1ca463dfda7b763f3') in 0.020911 seconds 
+  Import took 0.027254 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000249 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissilePink.prefab
+  artifactKey: Guid(cc795431523b057449c158a5f9255b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissilePink.prefab using Guid(cc795431523b057449c158a5f9255b68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecbc047027263c87f5aea16126693925') in 0.024712 seconds 
+  Import took 0.031273 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileGreen.prefab
+  artifactKey: Guid(cd4867f5ef1f0b74ab617514d9e5e18f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileGreen.prefab using Guid(cd4867f5ef1f0b74ab617514d9e5e18f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a534fe513dc6262fb587ab0fb8c1c02') in 0.026296 seconds 
+  Import took 0.033015 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileYellow.prefab
+  artifactKey: Guid(697db8401fc4ce24bb44f956bfc237b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Sparkle/SparkleMissileYellow.prefab using Guid(697db8401fc4ce24bb44f956bfc237b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee30239e8dab87702da16b8ee8faf366') in 0.025702 seconds 
+  Import took 0.033050 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.675997 seconds.
+  path: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Storm
+  artifactKey: Guid(7e3af7314f8f4c741b825e60f09300dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Epic Toon FX/Prefabs/Combat/Missiles/Storm using Guid(7e3af7314f8f4c741b825e60f09300dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ea64bfb61fb8fb7d8efc736645a6236') in 0.007658 seconds 
+  Import took 0.013718 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.369285 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '629c17393676b3caa2ce396cb0047be3') in 0.050965 seconds 
+  Import took 0.062393 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.954082 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3be46efe725660be50ec1cdf9cef0f6') in 0.039745 seconds 
+  Import took 0.049227 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.536643 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abf3a973cd391240e277c609691a28f6') in 0.034245 seconds 
+  Import took 0.043464 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.490475 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d0f56ee209c260609a46d7bddfbc5ef') in 0.033028 seconds 
+  Import took 0.042055 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005823 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.24 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.273 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1273ms)
+		BeginReloadAssembly (122ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (45ms)
+		EndReloadAssembly (1086ms)
+			LoadAssemblies (106ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (418ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (53ms)
+			SetupLoadedEditorAssemblies (338ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (115ms)
+				ProcessInitializeOnLoadAttributes (202ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (19ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2855 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 142.5 MB.
+System memory in use after: 142.6 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3631.
+Total: 3.818500 ms (FindLiveObjects: 0.268100 ms CreateObjectMapping: 0.120800 ms MarkObjects: 3.337500 ms  DeleteObjects: 0.090900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 35.806273 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75962ae64f3031db09e5abbb822c7f5') in 0.260179 seconds 
+  Import took 0.270141 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.737653 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '774db8936ba8edd008f5f4d3fc56e48a') in 0.036305 seconds 
+  Import took 0.046990 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.799749 seconds.
+  path: Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab
+  artifactKey: Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ActionGame/Character/Player/Scrip/Resource/Arrow.prefab using Guid(3d634fa8d1f13b44f8d2d54503239ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5caa960a005dc2ed266f722b4aa44f3') in 0.053787 seconds 
+  Import took 0.075107 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005321 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.97 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.255 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1255ms)
+		BeginReloadAssembly (121ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (42ms)
+		EndReloadAssembly (1067ms)
+			LoadAssemblies (94ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (407ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (337ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (107ms)
+				ProcessInitializeOnLoadAttributes (208ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (21ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.96 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2855 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 142.6 MB.
+System memory in use after: 142.8 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3673.
+Total: 3.716200 ms (FindLiveObjects: 0.289700 ms CreateObjectMapping: 0.126800 ms MarkObjects: 3.209300 ms  DeleteObjects: 0.089300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
