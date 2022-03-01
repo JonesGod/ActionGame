@@ -198,6 +198,7 @@ public class Sword : MonoBehaviour
     protected IEnumerator RangAttack()
     {
         m_AOE.SetActive(true);
+        aoeCollider.enabled = true;
         yield return new WaitForSeconds(0.25f);
         aoeCollider.enabled = false;
         yield return new WaitForSeconds(1f);
