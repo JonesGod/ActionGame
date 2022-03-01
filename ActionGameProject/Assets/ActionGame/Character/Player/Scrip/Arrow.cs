@@ -94,7 +94,7 @@ public class Arrow : MonoBehaviour
         gravity = 0.0f;
 
         normalParticle.Play();
-        while(normalParticle.IsAlive())
+        while (normalParticle.IsAlive())
         {
             yield return null;
         }
@@ -132,7 +132,7 @@ public class Arrow : MonoBehaviour
     }
     protected IEnumerator ExplodeTime()
     {
-        explodeArrow.SetActive(false);
+        explodeArrow.SetActive(false);    
 
         collider.radius = 25.0f;
         arrowSpeed = 0.0f;

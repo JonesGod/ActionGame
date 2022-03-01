@@ -232,7 +232,7 @@ void Update()
         }
         if (m_Input.bowAttack)  //弓左鍵射擊
         {
-            isCharge = false;
+            magicCircleEffect.SetActive(false);
             m_Am.ResetTrigger("AttackTrigger");
 
             chargeSystem.Stop();
@@ -254,11 +254,7 @@ void Update()
 
             if (charge >= 1.5f)
             {
-                if (!isCharge)
-                {
-                    magicCircleSystem.Play();
-                    isCharge = true;
-                }
+                magicCircleEffect.SetActive(true);
             }            
 
             if (charge > 2.0f)
@@ -810,7 +806,7 @@ void Update()
                 break;
             case 2:
                 swordSkillLock = false;
-               StartCoroutine(UIMain.Instance().SwordSkillUnLock());
+                StartCoroutine(UIMain.Instance().SwordSkillUnLock());
                 break;
         }
         

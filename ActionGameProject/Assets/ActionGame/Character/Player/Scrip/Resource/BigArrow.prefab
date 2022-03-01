@@ -14343,7 +14343,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -19084,6 +19084,7 @@ MonoBehaviour:
   explodeArrow: {fileID: 0}
   normalArrow: {fileID: 0}
   normalHitEffect: {fileID: 0}
+  explodeEffect: {fileID: 0}
 --- !u!1 &7383477886608104002
 GameObject:
   m_ObjectHideFlags: 0
