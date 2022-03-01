@@ -43,6 +43,7 @@ public class Sword : MonoBehaviour
     [HideInInspector] public bool isTransition;
 
     private BoxCollider swordBoxCollider;
+    private BoxCollider aoeCollider;
 
     [HideInInspector] public bool attackState;
     //武器消融相關
@@ -60,6 +61,7 @@ public class Sword : MonoBehaviour
     }
     void Start()
     {
+        aoeCollider = m_AOE.GetComponent<BoxCollider>();
         swordBoxCollider = sword.GetComponent<BoxCollider>();
         swordhit = hitEffectControl.GetComponent<SwordHitEffect>();
 
@@ -197,6 +199,8 @@ public class Sword : MonoBehaviour
     {
         m_AOE.SetActive(true);
         yield return new WaitForSeconds(0.25f);
+        aoeCollider.enabled = false;
+        yield return new WaitForSeconds(1f);
         m_AOE.SetActive(false);
     }
 }
