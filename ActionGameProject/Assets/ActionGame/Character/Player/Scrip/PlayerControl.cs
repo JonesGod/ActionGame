@@ -79,6 +79,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool rollIsNext;//下個是一般翻滾
     private bool battleIdleIsNext;//下個Animation是battleIdle
     private bool idleIsNext;//下個是Animation是Idle
+    private bool idleState;//Idle動作
     private bool isTrasition;//混接中
     private bool bowIsNext;//下個Animation是弓
     private bool bowShoot;//射擊動作
@@ -166,7 +167,9 @@ void Update()
         nextStateinfo = m_Am.GetNextAnimatorStateInfo(0);
         isTrasition = m_Am.IsInTransition(0);
         nextStateinfoOne= m_Am.GetNextAnimatorStateInfo(1);
-        
+
+        Sword.Instance.isTransition = isTrasition;
+
         m_Am.SetFloat(m_StateTime, Mathf.Repeat(m_Am.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));//讓statetime不斷從0數到1
         statetime = m_Am.GetFloat("StateTime");
 
@@ -435,8 +438,14 @@ void Update()
         else
             dead = false;
 
+        if (stateinfo.shortNameHash == hashIdle)
+            idleState = true;
+        else 
+            idleState = false;
+
         //Sword.Instance.runIsNext = runIsNext;
-        //Sword.Instance.battleRunIsNext = battleRunIsNext;
+        //Sword.Instance.battleRunIsNext = battleRunIsNext;   
+        Sword.Instance.idleState = idleState;
         PlayerInput.Instance.rollState = battleRollState;        
         PlayerInput.Instance.hurt = hurt;
     }    
@@ -493,8 +502,8 @@ void Update()
         PlayerInput.Instance.rollIsNext = battleRollIsNext;
         PlayerInput.Instance.hurtIsNext = hurtIsNext;
         PlayerInput.Instance.bowShoot = bowShoot;
-        Sword.Instance.bowIsNext = bowIsNext;
         Sword.Instance.idleIsNext = idleIsNext;
+        Sword.Instance.bowIsNext = bowIsNext;        
         Sword.Instance.runIsNext = runIsNext;
         Sword.Instance.battleRunIsNext = battleRunIsNext;
     }

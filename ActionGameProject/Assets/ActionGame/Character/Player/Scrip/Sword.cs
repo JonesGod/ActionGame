@@ -38,7 +38,9 @@ public class Sword : MonoBehaviour
     [HideInInspector] public bool battleRunIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool runIsNext;//��PlayerControl�P�w
     [HideInInspector] public bool bowIsNext;//��PlayerControl�P�w
+    [HideInInspector] public bool idleState;
     [HideInInspector] public bool idleIsNext;
+    [HideInInspector] public bool isTransition;
 
     private BoxCollider swordBoxCollider;
 
