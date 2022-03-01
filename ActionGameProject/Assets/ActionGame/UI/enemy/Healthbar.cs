@@ -19,7 +19,8 @@ public class Healthbar : MonoBehaviour
 
     private void HandleHealthChanged(float pct)
     {
-        foregroundImage.fillAmount = pct;
+        foregroundImage.enabled = true;
+        foregroundImage.fillAmount = pct;        
     }
     
     private void Update()

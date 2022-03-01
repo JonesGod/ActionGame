@@ -80,6 +80,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.44721115
+        functionName: PlayChargeParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

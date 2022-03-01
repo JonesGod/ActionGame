@@ -435,6 +435,10 @@ public class DragonBossFSM : FSMBase
         animator.SetTrigger("Die");
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
+        for(int i = 0; i < angryEffect.Length; i++)
+        {
+            angryEffect[i].SetActive(false);  
+        }       
         worldEvManager.BossHasBeenDefeated();
     }
     private void CheckChargeAttackState()

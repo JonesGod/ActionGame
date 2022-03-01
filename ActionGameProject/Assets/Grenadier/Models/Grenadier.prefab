@@ -1606,7 +1606,8 @@ MonoBehaviour:
   monsterBulletPool: {fileID: 0}
   smashEffect: {fileID: 7159651961305388495, guid: 23b15223f1cee8f44b99fe627b5cc002, type: 3}
   smashEffectPosition: {fileID: 8911558807678774870}
-  smashEffectGround: {fileID: 0}
+  smashEffectGround: {fileID: 4942127054872363807, guid: 146b942c147370741829c74c3ac3e6ea, type: 3}
+  pullAttackEffect: {fileID: 0}
 --- !u!1 &5675509634724422481
 GameObject:
   m_ObjectHideFlags: 0

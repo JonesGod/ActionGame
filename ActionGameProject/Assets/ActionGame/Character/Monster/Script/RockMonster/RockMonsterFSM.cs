@@ -71,7 +71,7 @@ public class RockMonsterFSM : FSMBase
 		}
 		return null;
 	}
-    private bool CheckEnemyInAttackRange(GameObject target, ref bool punchAttack, ref bool rangeAttack, ref bool circleAttack, ref bool smashAttack)
+    private bool CheckEnemyInAttackRange(GameObject target, ref bool punchAttack, ref bool rangeAttack, ref bool circleAttack, ref bool smashAttack, ref bool pullAttack)
 	{        
 		GameObject go = target;
 
@@ -86,6 +86,16 @@ public class RockMonsterFSM : FSMBase
 			circleAttack = false;
             smashAttack = true;
             rangeAttack = false;
+            pullAttack = false;
+			return true;
+        }
+        if(fDist > data.attackRange && fDist < data.strafeRange)//吸子彈回來
+        {
+            punchAttack = false;
+			circleAttack = false;
+            smashAttack = false;
+            rangeAttack = false;
+            pullAttack = true;
 			return true;
         }
 		else if (fDist < data.attackRange && (dotDirection > 0.3))//普通攻擊
@@ -94,6 +104,7 @@ public class RockMonsterFSM : FSMBase
 			circleAttack = false;
             smashAttack = false;
             rangeAttack = false;
+            pullAttack = false;
 			return true;
 		}
         else if(fDist < data.attackRange && (dotDirection <= 0.3 ))//轉圈
@@ -102,6 +113,7 @@ public class RockMonsterFSM : FSMBase
 			circleAttack = true;
             smashAttack = false;
             rangeAttack = false;
+            pullAttack = false;
 			return true;
         }
         else if(fDist > data.strafeRange)//遠程攻擊
@@ -110,6 +122,7 @@ public class RockMonsterFSM : FSMBase
 			circleAttack = false;
             smashAttack = false;
             rangeAttack = true;
+            pullAttack = false;
             return true;
         }
 		return false;
@@ -121,6 +134,7 @@ public class RockMonsterFSM : FSMBase
         bool rangeAttack = false;
         bool circleAttack = false;
         bool smashAttack = false;
+        bool pullAttack = false;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -132,12 +146,18 @@ public class RockMonsterFSM : FSMBase
         if(currentEnemyTarget != null)
         {
             data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack, ref pullAttack);
             if(punchAttack)
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
+            }
+            else if(pullAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoPullAttackState;
+                checkState = CheckPullAttackState;
             }
             else if(circleAttack)
             {
@@ -171,6 +191,7 @@ public class RockMonsterFSM : FSMBase
         bool rangeAttack = false;
         bool circleAttack = false;
         bool smashAttack = false;
+        bool pullAttack = false;
         if(data.hp <= 0)
         {
             currentState = FSMState.Dead;            
@@ -182,12 +203,18 @@ public class RockMonsterFSM : FSMBase
         if(currentEnemyTarget != null && currentTime >= waitTime)
         {
             data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack, ref pullAttack);
             if(punchAttack)
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
+            }
+            else if(pullAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoPullAttackState;
+                checkState = CheckPullAttackState;
             }
             else if(circleAttack)
             {
@@ -399,6 +426,50 @@ public class RockMonsterFSM : FSMBase
         }
         animator.SetTrigger("RangeAttack");
     }
+    public void CheckPullAttackState()
+    {
+        //CheckDead
+        if(data.hp <= 0)
+        {
+            currentState = FSMState.Dead;            
+            checkState = CheckDeadState;
+            doState = DoDeadState;
+            return;
+        }        
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            data.strafeTime = Random.Range(1.5f, 2.5f);
+            currentTime = 0.0f;
+            currentState = FSMState.Strafe;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
+        }        
+    }    
+    public void DoPullAttackState()
+    {
+        data.speed = 0;
+        myRigidbody.velocity = transform.forward * data.speed;
+        //Debug.Log("DoAttack");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("PullAttack"))
+        {            
+            myRigidbody.velocity = Vector3.zero;
+            //Debug.Log("IsAttack");
+            return;
+        }
+
+        if(animator.IsInTransition(0))
+        {
+            //Debug.Log("IsInTransition");
+            return;
+        }
+        animator.SetTrigger("PullAttack");
+    }
+
 
     public override void CheckStrafeState()
     {
@@ -414,15 +485,22 @@ public class RockMonsterFSM : FSMBase
         bool rangeAttack = false;
         bool circleAttack = false;
         bool smashAttack = false;
+        bool pullAttack = false;
         if(currentTime >= data.strafeTime)
         {
             data.target = currentEnemyTarget;
-            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack);
+            CheckEnemyInAttackRange(data.target, ref punchAttack, ref rangeAttack, ref circleAttack, ref smashAttack, ref pullAttack);
             if(punchAttack)
             {
                 currentState = FSMState.Attack;
                 doState = DoAttackState;
                 checkState = CheckAttackState;
+            }
+            else if(pullAttack)
+            {
+                currentState = FSMState.Attack;
+                doState = DoPullAttackState;
+                checkState = CheckPullAttackState;
             }
             else if(circleAttack)
             {

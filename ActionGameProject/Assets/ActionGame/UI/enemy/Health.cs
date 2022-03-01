@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     {
         maxHealth = myFSM.data.hp;
         currentHealth = maxHealth;
-        ModifyHealth(0);
+        //ModifyHealth(0);
     }
 
     //血量增減顯示

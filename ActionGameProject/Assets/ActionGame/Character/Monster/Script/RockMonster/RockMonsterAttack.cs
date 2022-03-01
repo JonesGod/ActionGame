@@ -17,6 +17,10 @@ public class RockMonsterAttack : MonoBehaviour
     public GameObject smashEffect;
     public GameObject smashEffectPosition;
     public GameObject smashEffectGround;
+
+    public GameObject pullAttackEffect;
+
+    public GameObject chargeParticle;
     void Start()
     {
         AllAttackColliderOff();
@@ -48,9 +52,21 @@ public class RockMonsterAttack : MonoBehaviour
     {
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
+    public void PlayPullParticle()
+    {
+        Vector3 direction = GameManager.Instance.GetPlayer().transform.position - this.transform.position;
+        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 10.0f;
+        Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
+
+        // playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(10, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 5.0f;
+        // Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
+
+        // playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(-10, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 5.0f;
+        // Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
+    }
     void PlaySmashParticle()
     {
-        Instantiate(smashEffect, smashEffectPosition.transform.position, Quaternion.identity);
+        Instantiate(smashEffect, smashEffectPosition.transform.position, smashEffectPosition.transform.rotation);
     }
     void PlaySmashGroundParticle()
     {
@@ -75,4 +91,9 @@ public class RockMonsterAttack : MonoBehaviour
         newPlayPosition = playPosition - new Vector3(Random.Range(5, 10), 0, Random.Range(5, 10));
         Instantiate(smashEffectGround, newPlayPosition, smashEffectGround.transform.rotation);
     }
+    void PlayChargeParticle()
+    {
+        Instantiate(chargeParticle, bulletSpawnPosition.transform.position, Quaternion.identity);
+    }
+
 }

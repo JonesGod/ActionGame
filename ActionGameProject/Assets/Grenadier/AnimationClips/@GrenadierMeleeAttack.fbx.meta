@@ -62,6 +62,20 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: StartRotateTowardPlayer
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d8ef1e5f63e8c244aff98e56fb83972, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.48811412
+        functionName: EndRotateTowardPlayer
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d8ef1e5f63e8c244aff98e56fb83972, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.49460918
         functionName: PunchAttackColliderOn
         data: 
@@ -73,20 +87,6 @@ ModelImporter:
         functionName: AllAttackColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.11093502
-        functionName: StartRotateTowardPlayer
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 5d8ef1e5f63e8c244aff98e56fb83972, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.48811412
-        functionName: EndRotateTowardPlayer
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 5d8ef1e5f63e8c244aff98e56fb83972, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -118,7 +118,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5763423
+        functionName: PlayPullParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
