@@ -16,11 +16,12 @@ using UnityEngine;
         public RockBossShieldBar rockBossShieldBar;
 
         public List<FogWell> fogWells;
-        //public UIBossHPBar bossHPBar;
-        //public EnemyBossManager boss;
+    //public UIBossHPBar bossHPBar;
+    //public EnemyBossManager boss;
+    public GameObject hintbox;
 
 
-        public bool bossFightIsActive;      //正在打boss
+    public bool bossFightIsActive;      //正在打boss
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
         public bool bossHasBeenDefeated;    //boss被幹掉
 
@@ -50,16 +51,28 @@ using UnityEngine;
             }
         }
 
-        public void BossHasBeenDefeated()
+    public void Start()
+    {
+        hintbox.SetActive(false);
+
+    }
+
+    public void BossHasBeenDefeated()
         {
             bossHasBeenDefeated = true;
             bossFightIsActive = false;
             dragonBossHPBar.SetHPBarToInActive();
             rockBossHPBar.SetHPBarToInActive();
             rockBossShieldBar.SetShieldBarToInActive();
-            
-            //out wall(?)
-            foreach (var fogWall in fogWells)
+
+        if (bossHasBeenDefeated == true)
+        {
+        hintbox.SetActive(true);
+
+        }
+
+        //out wall(?)
+        foreach (var fogWall in fogWells)
             {
                 fogWall.DeactivteFoWell();
             }
