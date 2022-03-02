@@ -20,8 +20,7 @@ public class Bow : MonoBehaviour
     public float dissolveAmount = -1.0f;
     public float endDissolveAmount = 1.5f;
     public float dissolveTime = 1.0f;
-    public float startDissolveAmount;
-    
+    public float startDissolveAmount;      
 
     // Start is called before the first frame update
     private void Awake()

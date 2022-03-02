@@ -43,6 +43,11 @@ public class PlayerControl : MonoBehaviour, BeObserver
     
     private bool isCharge=false;
 
+    ///Audio
+    public GameObject chargeAudio;
+    private AudioSource chargeAudioSource;
+    private float chargeAudioTime=0f;
+
     AnimatorStateInfo stateinfo;//當前Animation存取
     AnimatorStateInfo nextStateinfo;//下個Animation存取
     AnimatorStateInfo nextStateinfoOne;//第1層的下個Animation存取
@@ -137,6 +142,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
         chargeSystem = chargeEffect.GetComponent<ParticleSystem>();
         novaSystem = novaEffect.GetComponent<ParticleSystem>();
         magicCircleSystem = magicCircleEffect.GetComponent<ParticleSystem>();
+
+        chargeAudioSource = chargeAudio.GetComponent<AudioSource>();
 }
 void Update()
     {
@@ -235,6 +242,7 @@ void Update()
         }
         if (m_Input.bowAttack)  //弓左鍵射擊
         {
+            chargeAudioSource.Stop();
             magicCircleEffect.SetActive(false);
             m_Am.ResetTrigger("AttackTrigger");
 
@@ -264,6 +272,18 @@ void Update()
                 charge = 2.0f;
             if ((playerMp < 25) || explodeArrowLock)//玩家魔力不足25，或還未獲得爆炸箭時改用一般箭矢
                 charge = 1.0f;
+            //重播蓄力音效
+            chargeAudioTime += Time.deltaTime;
+            if((chargeAudioTime>0.2f) && !chargeAudioSource.isPlaying)
+            {
+                chargeAudioSource.Play();
+                chargeAudioTime = 0f;
+            }
+            if (chargeAudioTime > 0.75f)
+            {
+                chargeAudioSource.Play();
+                chargeAudioTime = 0f;
+            }
 
             m_Am.SetFloat(m_ChargeTime, charge);
         }       
