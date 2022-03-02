@@ -14,6 +14,13 @@ public class Sword : MonoBehaviour
     public GameObject trail;
     public Transform sword;
     public GameObject hitEffectControl;
+    ///Audio
+    public GameObject Slash;
+    private AudioSource slashAudio;
+    public GameObject SwordSkill01;
+    private AudioSource swordSkillAudio01;
+    public GameObject SwordSkill02;
+    private AudioSource swordSkillAudio02;
 
     /// effect
     public GameObject m_AOE;
@@ -72,6 +79,10 @@ public class Sword : MonoBehaviour
         specialParticle1_1 = specialEffect1_1.GetComponent<ParticleSystem>();
         specialParticle1_2 = specialEffect1_2.GetComponent<ParticleSystem>();
         specialParticle2_3 = specialEffect2_3.GetComponent<ParticleSystem>();
+
+        slashAudio = Slash.GetComponent<AudioSource>();
+        swordSkillAudio01 = SwordSkill01.GetComponent<AudioSource>();
+        swordSkillAudio02 = SwordSkill02.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -169,24 +180,31 @@ public class Sword : MonoBehaviour
         {
             case 1:
                 attackParticle01.Play();
+                slashAudio.Play();
                 break;
             case 2:
                 attackParticle02.Play();
+                slashAudio.Play();
                 break;
             case 3:
                 attackParticle03.Play();
+                slashAudio.Play();
                 break;
             case 4:
                 attackParticle04.Play();
+                slashAudio.Play();
                 break;
             case 11:
                 specialParticle1_1.Play();
+                swordSkillAudio01.Play();
                 break;
             case 12:
                 specialParticle1_2.Play();
+                swordSkillAudio01.Play();
                 break;
             case 23:
                 specialParticle2_3.Play();
+                slashAudio.Play();
                 break;
         }
 
@@ -198,6 +216,7 @@ public class Sword : MonoBehaviour
     protected IEnumerator RangAttack()
     {
         m_AOE.SetActive(true);
+        swordSkillAudio02.Play();
         aoeCollider.enabled = true;
         yield return new WaitForSeconds(0.25f);
         aoeCollider.enabled = false;

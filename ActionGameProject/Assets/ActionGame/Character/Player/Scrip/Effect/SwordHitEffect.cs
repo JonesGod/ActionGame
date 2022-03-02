@@ -9,12 +9,15 @@ public class SwordHitEffect : MonoBehaviour
     public GameObject specialHitEffect01;
     private ParticleSystem specialHitSystem;
 
+    private AudioSource slashAudio;
+
     [HideInInspector]public int effectId;
     // Start is called before the first frame update
     void Start()
     {
         hitSystem = hitEffect.GetComponent<ParticleSystem>();
         specialHitSystem=specialHitEffect01.GetComponent<ParticleSystem>();
+
     }
 
     // Update is called once per frame
