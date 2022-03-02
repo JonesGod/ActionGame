@@ -16,9 +16,11 @@ using UnityEngine;
         public RockBossShieldBar rockBossShieldBar;
 
         public List<FogWell> fogWells;
-    //public UIBossHPBar bossHPBar;
-    //public EnemyBossManager boss;
-    public GameObject hintbox;
+       //public UIBossHPBar bossHPBar;
+        //public EnemyBossManager boss;
+        public GameObject hintbox;
+        public GameObject hide;
+
 
 
     public bool bossFightIsActive;      //正在打boss
@@ -67,7 +69,8 @@ using UnityEngine;
 
         if (bossHasBeenDefeated == true)
         {
-        hintbox.SetActive(true);
+            hintbox.SetActive(true);
+            hide.SetActive(false);
 
         }
 
