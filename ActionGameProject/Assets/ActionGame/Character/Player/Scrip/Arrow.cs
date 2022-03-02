@@ -12,10 +12,12 @@ public class Arrow : MonoBehaviour
     private float liveTime=0.0f;//�s�b�ɶ�
     private float fallSpeed=0.0f;//�Y���t��
     private float explodeRadius = 15f;//�z���b�|
-    private GameObject currentArrow;
 
     private ParticleSystem normalParticle;
     private ParticleSystem explodeParticle;
+
+    private AudioSource normalAudio;
+    private AudioSource explodeAudio;
 
     private bool explodeFlag=false;//�O�_���z���b
 
@@ -43,9 +45,12 @@ public class Arrow : MonoBehaviour
         }
 
         collider = transform.GetComponent<SphereCollider>();
+
         normalParticle = normalHitEffect.GetComponent<ParticleSystem>();
+        normalAudio = normalHitEffect.GetComponent<AudioSource>();
         explodeParticle = explodeEffect.GetComponent<ParticleSystem>();
-    }
+        explodeAudio = explodeEffect.GetComponent<AudioSource>();
+}
     // Update is called once per frame
     void Update()
     {
@@ -94,6 +99,7 @@ public class Arrow : MonoBehaviour
         gravity = 0.0f;
 
         normalParticle.Play();
+        normalAudio.Play();
         while (normalParticle.IsAlive())
         {
             yield return null;
@@ -138,6 +144,7 @@ public class Arrow : MonoBehaviour
         arrowSpeed = 0.0f;
         gravity = 0.0f;
         explodeParticle.Play();
+        explodeAudio.Play();
         yield return new WaitForSeconds(0.2f);
 
         collider.enabled = false;

@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1436096011919046053, guid: ae06d8cdb896c3b4385131ea05b10e09, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8124281487721774a9b4d5101358b50a, type: 3}
     m_RemovedComponents:
     - {fileID: 4076866129477927837, guid: ae06d8cdb896c3b4385131ea05b10e09, type: 3}
     - {fileID: -6341582805710984124, guid: ae06d8cdb896c3b4385131ea05b10e09, type: 3}
@@ -415,6 +419,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 82076780120777222, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82076780120777222, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 101106cd810615041bb13f121e59a2d7, type: 3}
+    - target: {fileID: 82076780120777222, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114196896205706730, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
@@ -469,8 +481,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
-      propertyPath: m_Enabled
+      propertyPath: Pan2D
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: m_Pitch
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: Priority
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 92d3259b6a9732e4ba3fb95331b2c95d, type: 3}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: DopplerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7634163063963025498, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
       propertyPath: m_RootOrder
@@ -538,6 +578,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7727705965151138778, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727705965151138778, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
+      propertyPath: autoRandomSeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7727838104098249200, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
