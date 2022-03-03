@@ -218,6 +218,8 @@ public class Sword : MonoBehaviour
         m_AOE.SetActive(true);
         swordSkillAudio02.Play();
         aoeCollider.enabled = true;
+        StartCoroutine(FolowCamera.Instance.CameraShake(1.0f, 1.35f));
+
         yield return new WaitForSeconds(0.25f);
         aoeCollider.enabled = false;
         yield return new WaitForSeconds(1f);

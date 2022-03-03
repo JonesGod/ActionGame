@@ -42,7 +42,7 @@ public class FolowCamera : MonoBehaviour
     Vector3 nextPosition;//下一個攝影機位置
     Vector3 lastPosition;//上一個攝影機位置
     Vector3 direct;//上一個攝影機位置到下一個攝影機位置的向量
-
+    Vector3 shakePosition;//震動量
 
     [HideInInspector] public Vector3 horizontalVector;//攝影機正前方向量
     [HideInInspector] public Vector3 cameraRight;//攝影機側面向量
@@ -99,7 +99,7 @@ public class FolowCamera : MonoBehaviour
             WallDetect(); //牆壁檢測
         }
         transform.forward = cameraForward;
-        transform.position = cameraPosition;
+        transform.position = cameraPosition+shakePosition;
     }
 
     void OnDrawGizmos()
@@ -204,5 +204,21 @@ public class FolowCamera : MonoBehaviour
             verticalAngle = 20.0f;
         if (verticalAngle < -21f)
             verticalAngle = -21f;
+    }
+    public IEnumerator CameraShake(float shake,float time)
+    {
+        while (shake > 0.05f)
+        {
+            ///X軸震動
+            //shakePosition = new Vector3((Random.Range(0f, shake)) - shake * 0.5f, 0f, 0f);
+            ///Z軸震動
+            shakePosition = new Vector3(0f,0f, (Random.Range(0f, shake)) - shake * 0.5f);
+
+            shake = shake / time;
+        
+            yield return null;
+        }
+        
+        shakePosition = Vector3.zero;
     }
 }

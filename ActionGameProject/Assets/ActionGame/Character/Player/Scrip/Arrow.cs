@@ -139,6 +139,14 @@ public class Arrow : MonoBehaviour
     protected IEnumerator ExplodeTime()
     {
         explodeArrow.SetActive(false);    
+        if(liveTime<0.3f)
+        {
+            StartCoroutine(FolowCamera.Instance.CameraShake(1.0f, 1.35f));
+        }
+        else if(liveTime<0.6f)
+        {
+            StartCoroutine(FolowCamera.Instance.CameraShake(0.5f, 1.35f));
+        }
 
         collider.radius = 25.0f;
         arrowSpeed = 0.0f;
