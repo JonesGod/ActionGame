@@ -13,6 +13,8 @@ public class DragonBossAttack : MonoBehaviour
     public BoxCollider angryClawAttackCollider;
 
     private Animator animator;
+
+    public GameObject grassEffect;
     
     public GameObject angryClawEffect;
     public GameObject angryClawPosition;
@@ -21,6 +23,7 @@ public class DragonBossAttack : MonoBehaviour
     public GameObject jumpAttackPosition;
 
     public GameObject screamAttackEffect;
+
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -48,18 +51,34 @@ public class DragonBossAttack : MonoBehaviour
         basicAttackCollider.enabled = false;
         headAttackCollider.enabled = false;
     }
+
     void ChangeAnimatorSpeed(float newSpeed)
     {
         animator.speed = newSpeed;
     }
+
+    //爪擊
     void PlayAngryClawParticle()
     {
         Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
     }
+    void PlayBasicClawGrassParticle()
+    {
+        Instantiate(grassEffect, angryClawPosition.transform.position, Quaternion.identity);
+    }
+
+    //跳躍攻擊
     void PlayJumpAttackParticle()
     {
         Instantiate(jumpAttackEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
     }
+    void PlayJumpClawGrassParticle()
+    {
+        Instantiate(grassEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+    }
+    
+
+    //吼叫攻擊
     void PlayScreamAttackParticle()
     {
         StartCoroutine(PlayScreamAttack());

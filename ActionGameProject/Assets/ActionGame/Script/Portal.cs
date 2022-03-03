@@ -9,7 +9,14 @@ public class Portal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.Instance.GetPlayer().transform.position = portalPosition.transform.position;
+            StartCoroutine(StartTeleport());
         }
+    }
+    public IEnumerator StartTeleport()
+    {
+        StartCoroutine(GameOverUI.ScreenFadeOut(GameOverUI.FadeType.Teleport));
+        yield return new WaitForSeconds(1.0f);
+        GameManager.Instance.GetPlayer().transform.position = portalPosition.transform.position;
+        StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.Teleport));
     }
 }

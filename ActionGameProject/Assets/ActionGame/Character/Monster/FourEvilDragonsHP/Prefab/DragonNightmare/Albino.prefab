@@ -128,6 +128,7 @@ MonoBehaviour:
   strafeDirection: 0
   CharacterCollisionBlocker: {fileID: 0}
   isAngry: 0
+  angryEffect: []
 --- !u!114 &2078308757556939852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 483298}
   headAttackObject: {fileID: 429462}
-  angryClawAttackCollider: {fileID: 0}
+  angryClawAttackCollider: {fileID: 5661212391396551499}
+  grassEffect: {fileID: 8921984386994154724, guid: 2e1a3cfb730e7864191550811f2aa8c8, type: 3}
   angryClawEffect: {fileID: 6174527592921153203, guid: e1099e0d35dd37d4682aa0df6998531c, type: 3}
   angryClawPosition: {fileID: 1734730798166180099}
   jumpAttackEffect: {fileID: 3134780102409223173, guid: 4d823c6322f827849841b99531b267fd, type: 3}

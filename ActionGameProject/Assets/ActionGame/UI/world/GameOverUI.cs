@@ -19,6 +19,7 @@ public class GameOverUI : MonoBehaviour
     public CanvasGroup swordSkillLock;
     public CanvasGroup bowLock;
     public CanvasGroup explodeLock;
+    public CanvasGroup portalScreen;
 
     public enum FadeType
     {
@@ -26,6 +27,7 @@ public class GameOverUI : MonoBehaviour
         swordSkill = 2,
         bow = 3,
         eplodeArrow = 4,
+        Teleport = 5
     }
     private void Awake()
     {
@@ -55,6 +57,9 @@ public class GameOverUI : MonoBehaviour
                 break;
             case FadeType.eplodeArrow:
                 canversgroup = Instance.explodeLock;
+                break;
+            case FadeType.Teleport:
+                canversgroup = Instance.portalScreen;
                 break;
         }
         return canversgroup;
@@ -90,7 +95,7 @@ public class GameOverUI : MonoBehaviour
             Cursor.visible = false;
     }
     /// <summary>
-    /// Fade Process¡Afade speed adjust here
+    /// Fade Processï¿½Afade speed adjust here
     /// </summary>
     /// <param name="finalAlpha"></param>
     /// <param name="canvers"></param>

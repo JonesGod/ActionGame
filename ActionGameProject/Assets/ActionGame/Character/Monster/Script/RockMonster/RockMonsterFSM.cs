@@ -259,7 +259,7 @@ public class RockMonsterFSM : FSMBase
     }
     public  void DoWaitState()
     {
-        animator.SetBool("IsIdle", false);
+        animator.SetBool("IsIdle", true);
         animator.SetBool("IsWalk", false);  
         currentTime += Time.deltaTime;
     }
@@ -411,11 +411,11 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = 0.0f;
+            waitTime = Random.Range(1.5f, 2.5f);
             currentTime = 0.0f;
-            currentState = FSMState.Idle;
-            doState = DoIdleState;
-            checkState = CheckIdleState;
+            currentState = FSMState.Strafe;
+            doState = DoWaitState;
+            checkState = CheckWaitState;
         }        
     }    
     public void DoRangeAttackState()
