@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour
     public RockMonsterFSM myFSM;
 
     private float maxShield;
-    private float currentShield;
+    public float currentShield;
 
     public event Action<float> OnHealthPctChanged = delegate { };
 
@@ -21,15 +21,18 @@ public class Shield : MonoBehaviour
     {
         maxShield = myFSM.data.shield;
         currentShield = maxShield;
+        Debug.Log("max"+maxShield);
+        Debug.Log("cure"+currentShield);
         //ModifyHealth(0);
     }
 
     //血量增減顯示
     public void ModifyShield(float amout)
     {
-        currentShield -= amout;
+        currentShield -= amout;        
 
         float currentHealthPct = (float)currentShield / (float)maxShield;
         OnHealthPctChanged(currentHealthPct);
+        Debug.Log("currentHealthPct;"+currentHealthPct);
     }
 }

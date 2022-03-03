@@ -44,7 +44,7 @@ public class RockMonsterBullet : MonoBehaviour
         else if(other.transform.name == "CoreHitBox")
         {
         }
-        else if(other.transform.name == "ShieldHitBox")
+        else if(other.transform.name == "HitBox")
         {
         }
         else if(other.transform.name == "Arrow(Clone)")
