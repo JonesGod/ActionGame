@@ -8,18 +8,23 @@ public class RockMonsterBullet : MonoBehaviour
     RockMonsterBulletPool bulletPool;
     public float speed;
     private float lifeTime;
-    public ParticleSystem hitEffect;     
+    public ParticleSystem hitEffect;  
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
+        bulletPool = GameObject.Find("RockMonsterBulletPool").GetComponent<RockMonsterBulletPool>();
+        lifeTime = 0.0f;
         transform.LookAt(player.transform.position);
-        StartCoroutine(Wait());
     }
 
     void Update()
     {
-        
         transform.position += transform.forward * speed * Time.deltaTime;
+        lifeTime += Time.deltaTime;
+        if(lifeTime >= 5.0f)
+        {
+            bulletPool.Recovery(this.gameObject);
+        }
     }
     private void OnTriggerEnter(Collider other) 
     {      
@@ -31,7 +36,7 @@ public class RockMonsterBullet : MonoBehaviour
             player.PlayerHurt(30);                        
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
-
+            bulletPool.Recovery(this.gameObject);
         }
         else if(other.tag == "Monster")
         {
@@ -49,14 +54,11 @@ public class RockMonsterBullet : MonoBehaviour
         {
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
+            bulletPool.Recovery(this.gameObject);
         }
     }
     public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
     {
         Instantiate(particle, hitPosition, Quaternion.identity);
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(3.0f);
     }
 }

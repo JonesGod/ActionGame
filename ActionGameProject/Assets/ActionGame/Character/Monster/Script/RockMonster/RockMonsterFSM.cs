@@ -81,22 +81,22 @@ public class RockMonsterFSM : FSMBase
 
 		Vector3 v = go.transform.position - this.transform.position;
 		float fDist = v.magnitude;
-        if(fDist > data.attackRange && fDist < data.strafeRange && smashCD >= 15.0f)//敲地板
-        {
-            punchAttack = false;
-			circleAttack = false;
-            smashAttack = true;
-            rangeAttack = false;
-            pullAttack = false;
-			return true;
-        }
-        if(fDist > data.attackRange && fDist < data.strafeRange)//吸子彈回來
+        if(fDist > data.attackRange && fDist < data.strafeRange && smashCD >= 15.0f)//吸子彈回來
         {
             punchAttack = false;
 			circleAttack = false;
             smashAttack = false;
             rangeAttack = false;
             pullAttack = true;
+			return true;
+        }
+        else if(fDist > data.attackRange && fDist < data.strafeRange)//敲地板
+        {
+            punchAttack = false;
+			circleAttack = false;
+            smashAttack = true;
+            rangeAttack = false;
+            pullAttack = false;
 			return true;
         }
 		else if (fDist < data.attackRange && (dotDirection > 0.3))//普通攻擊
@@ -249,7 +249,7 @@ public class RockMonsterFSM : FSMBase
     public  void DoWaitState()
     {
         animator.SetBool("IsIdle", false);
-        animator.SetBool("IsWalk", false);        
+        animator.SetBool("IsWalk", false);  
         currentTime += Time.deltaTime;
     }
 
@@ -270,11 +270,11 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            waitTime = Random.Range(0.5f, 1.5f);
+            data.strafeTime = Random.Range(1.5f, 2.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            doState = DoWaitState;
-            checkState = CheckWaitState;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
         }        
     }    
     public override void DoAttackState()
@@ -313,11 +313,11 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            waitTime = Random.Range(0.5f, 1.5f);
+            data.strafeTime = Random.Range(1.5f, 2.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            doState = DoWaitState;
-            checkState = CheckWaitState;
+            doState = DoStrafeState;
+            checkState = CheckStrafeState;
         }        
     }    
     public void DoCircleAttackState()
@@ -367,7 +367,6 @@ public class RockMonsterFSM : FSMBase
     {
         data.speed = 0;
         myRigidbody.velocity = transform.forward * data.speed;
-        smashCD = 0.0f;
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("SmashAttack"))
         {            
@@ -455,6 +454,7 @@ public class RockMonsterFSM : FSMBase
     {
         data.speed = 0;
         myRigidbody.velocity = transform.forward * data.speed;
+        smashCD = 0;
         //Debug.Log("DoAttack");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("PullAttack"))
         {            

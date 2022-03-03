@@ -390,9 +390,10 @@ public class EyeMonsterFSM : FSMBase
             animator.SetTrigger("TakeDamage");             
             doState = DoHurtState;
             checkState = CheckHurtState;
+            return;
         }       
-        doState = DoHurtState;
-        checkState = CheckHurtState;         
+        doState = DoChaseState;
+        checkState = CheckChaseState;         
     }
 
     public override void PlayerIsDead()

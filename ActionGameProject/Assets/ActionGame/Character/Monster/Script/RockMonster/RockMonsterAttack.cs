@@ -55,14 +55,17 @@ public class RockMonsterAttack : MonoBehaviour
     public void PlayPullParticle()
     {
         Vector3 direction = GameManager.Instance.GetPlayer().transform.position - this.transform.position;
-        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 10.0f;
+        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 2.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 20.0f;
         Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
 
-        // playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(10, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 5.0f;
-        // Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
+        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 2.0f, 0) + GameManager.Instance.GetPlayer().transform.forward * 20.0f;
+        Instantiate(pullAttackEffect, playPosition, Quaternion.identity);   
 
-        // playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(-10, 1.0f, 0) - GameManager.Instance.GetPlayer().transform.forward * 5.0f;
-        // Instantiate(pullAttackEffect, playPosition, Quaternion.identity);       
+        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 2.0f, 0) - GameManager.Instance.GetPlayer().transform.right * 20.0f;
+        Instantiate(pullAttackEffect, playPosition, Quaternion.identity);   
+
+        playPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0, 2.0f, 0) + GameManager.Instance.GetPlayer().transform.right * 20.0f;
+        Instantiate(pullAttackEffect, playPosition, Quaternion.identity);
     }
     void PlaySmashParticle()
     {
