@@ -167,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7383477886608898424, guid: 744a0ad55d4cc184ab1af02b02bd41ca, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7383477886622420180, guid: 744a0ad55d4cc184ab1af02b02bd41ca, type: 3}
       propertyPath: playOnAwake
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436096011919046053, guid: ae06d8cdb896c3b4385131ea05b10e09, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1436096011919046053, guid: ae06d8cdb896c3b4385131ea05b10e09, type: 3}
       propertyPath: m_audioClip
@@ -419,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 82076780120777222, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 82076780120777222, guid: 6e3db7afa59301e48bc3999ec41f1410, type: 3}
       propertyPath: MaxDistance
@@ -510,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7555472714998794650, guid: afa1037a1a4c8fd47a85ab094fb5f0b9, type: 3}
       propertyPath: MaxDistance

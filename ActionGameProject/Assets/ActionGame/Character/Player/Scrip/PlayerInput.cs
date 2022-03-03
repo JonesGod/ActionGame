@@ -153,7 +153,7 @@ public class PlayerInput : MonoBehaviour
     public void BowUnlock()
     {
         bowLock = false;
-       StartCoroutine(UIMain.Instance().BowUnlock());
+        StartCoroutine(UIMain.Instance().BowUnlock());
     }    
     //void BowStateCancel()
     //{
