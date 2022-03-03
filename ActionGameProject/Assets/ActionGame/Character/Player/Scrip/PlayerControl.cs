@@ -47,6 +47,9 @@ public class PlayerControl : MonoBehaviour, BeObserver
     public GameObject chargeAudio;
     private AudioSource chargeAudioSource;
     private float chargeAudioTime=0f;
+    public GameObject RunAudio;
+    private AudioSource runAudioSource;
+    private float runAudioTime;
 
     AnimatorStateInfo stateinfo;//當前Animation存取
     AnimatorStateInfo nextStateinfo;//下個Animation存取
@@ -75,6 +78,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     readonly int hashGetup = Animator.StringToHash("getup");
     readonly int hashRun = Animator.StringToHash("Run");
     readonly int hashBattleRun = Animator.StringToHash("BattleRun");
+    readonly int hashBowWalk = Animator.StringToHash("BowWalk");
 
     /// 動畫播放狀態
     private bool attackState;//所有一般攻擊Animation
@@ -93,6 +97,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private bool runIsNext;//一般跑步
     private bool runState;//一般跑步
     private bool battleRunIsNext;//戰鬥跑步
+    private bool battleRunState;//戰鬥跑步
+    private bool bowWalk;//拉弓移動
 
     ///玩家技能啟用狀態
     private bool explodeArrowLock = true;
@@ -144,6 +150,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
         magicCircleSystem = magicCircleEffect.GetComponent<ParticleSystem>();
 
         chargeAudioSource = chargeAudio.GetComponent<AudioSource>();
+        runAudioSource = RunAudio.GetComponent<AudioSource>();
 }
 void Update()
     {
@@ -286,10 +293,13 @@ void Update()
             }
 
             m_Am.SetFloat(m_ChargeTime, charge);
-        }       
+        }
 
         if ((m_Input.moveFlagH || m_Input.moveFlagV) && !hurt && !attackState && !battleRollState && !battleRollIsNext && !m_Input.bowState)
+        {
             Rotating(moveInput.x, moveInput.y);
+        }
+        RunAudioPlay();
         
     }
     void OnAnimatorMove()
@@ -444,9 +454,19 @@ void Update()
             rollState = false;
 
         if (stateinfo.shortNameHash == hashRun)
-            runIsNext = true;
+            runState = true;
         else
-            runIsNext = false;       
+            runState = false;
+
+        if (stateinfo.shortNameHash == hashBattleRun)
+            battleRunState = true;
+        else
+            battleRunState = false;
+
+        if (stateinfo.shortNameHash == hashBowWalk)
+            bowWalk = true;
+        else
+            bowWalk = false;
 
         if (stateinfo.shortNameHash == hashHurt)
             hurt = true;
@@ -839,5 +859,50 @@ void Update()
                 break;
         }
         
+    }
+    void RunAudioPlay()
+    {
+        ///一般移動腳步聲
+        if (runState)
+        {
+            runAudioTime += Time.deltaTime;
+            if (!runAudioSource.isPlaying)
+            {
+                runAudioSource.Play();
+            }
+            if (runAudioTime > 0.27f)
+            {
+                runAudioSource.Play();
+                runAudioTime = 0f;
+            }
+        }
+        ///戰鬥移動腳步聲
+        if(battleRunState)
+        {
+            runAudioTime += Time.deltaTime;
+            if (!runAudioSource.isPlaying)
+            {
+                runAudioSource.Play();
+            }
+            if (runAudioTime > 0.4f)
+            {
+                runAudioSource.Play();
+                runAudioTime = 0f;
+            }
+        }
+        ///拉弓移動腳步聲
+        if (bowWalk)
+        {
+            runAudioTime += Time.deltaTime;
+            if (!runAudioSource.isPlaying)
+            {
+                runAudioSource.Play();
+            }
+            if (runAudioTime > 0.4f)
+            {
+                runAudioSource.Play();
+                runAudioTime = 0f;
+            }
+        }
     }
 }
