@@ -24,6 +24,7 @@ public class RockMonsterAttack : MonoBehaviour
 
     public GameObject stampAudio;
     public GameObject punchAudio;
+    public GameObject magicBallShootAudio;
     void Start()
     {
         AllAttackColliderOff();
@@ -53,7 +54,8 @@ public class RockMonsterAttack : MonoBehaviour
     }
     public void ShootBullet()
     {
-        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
+        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);
+        PlayMagicBallShootAudio();
     }
     public void PlayPullParticle()
     {
@@ -108,5 +110,9 @@ public class RockMonsterAttack : MonoBehaviour
     void PlayPunchAudio()
     {
         Instantiate(punchAudio, transform.position, transform.rotation);
+    }
+    void PlayMagicBallShootAudio()
+    {
+        Instantiate(magicBallShootAudio, transform.position, transform.rotation);
     }
 }
