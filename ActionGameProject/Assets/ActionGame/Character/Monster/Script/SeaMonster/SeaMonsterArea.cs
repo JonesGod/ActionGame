@@ -12,12 +12,19 @@ public class SeaMonsterArea : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            seaMonsterTimeline.Play();
+            StartCoroutine(PlaySeaMonsterTimeline());
             // for(int i = 0; i < trapMonsters.Length; i++)
             // {
             //     trapMonsters[i].SetActive(true);;
-            // }       
-            Destroy(this.gameObject);     
+            // }                    
         }
+    }
+    IEnumerator PlaySeaMonsterTimeline()
+    {
+        seaMonsterTimeline.Play();
+        PlayerInput.Instance.isPlayingTimeline = true;
+        yield return new WaitForSeconds((float) seaMonsterTimeline.duration - 0.5f);
+        PlayerInput.Instance.isPlayingTimeline = false;
+        Destroy(this.gameObject);    
     }
 }

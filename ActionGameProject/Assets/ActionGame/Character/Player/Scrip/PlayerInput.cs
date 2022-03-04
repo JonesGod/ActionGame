@@ -15,7 +15,8 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Movement;//存取WASD輸入
     private Vector2 m_Mouse;//存取滑鼠滑動
 
-    private bool skillWindowIsOpen=false;//技能視窗是否開啟
+    private bool skillWindowIsOpen = false;//技能視窗是否開啟
+    public bool isPlayingTimeline = false; 
 
     ///提供布林值給PlayerControl判斷
     [HideInInspector] public bool moveFlagH = false;
@@ -33,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool attackState;
     [HideInInspector] public bool rollState;
     [HideInInspector] public bool rollIsNext;
-    [HideInInspector] public bool rollToBow=false;
+    [HideInInspector] public bool rollToBow = false;
     [HideInInspector] public bool bowShoot;
     [HideInInspector] public bool hurt;
     [HideInInspector] public bool hurtIsNext;
@@ -79,8 +80,10 @@ public class PlayerInput : MonoBehaviour
             m_Movement = Vector2.zero;
             m_Mouse = Vector2.zero;
         }
-        if(skillWindowIsOpen)
+        if(skillWindowIsOpen || isPlayingTimeline)
         {
+            m_Movement = Vector2.zero;
+            m_Mouse = Vector2.zero;
             return;
         }
 

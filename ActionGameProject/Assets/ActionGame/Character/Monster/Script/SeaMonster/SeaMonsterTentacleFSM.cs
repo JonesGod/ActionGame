@@ -25,7 +25,6 @@ public class SeaMonsterTentacleFSM : FSMBase
 
     void OnEnable()
     {
-        Debug.Log("Start");
         currentEnemyTarget = GameManager.Instance.GetPlayer();
         data.target = currentEnemyTarget;         
         myPosition = new Vector3(this.transform.position.x, this.transform.position.y + 9.0f, this.transform.position.z);

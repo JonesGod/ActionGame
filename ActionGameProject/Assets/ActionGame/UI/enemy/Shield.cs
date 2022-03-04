@@ -21,8 +21,6 @@ public class Shield : MonoBehaviour
     {
         maxShield = myFSM.data.shield;
         currentShield = maxShield;
-        Debug.Log("max"+maxShield);
-        Debug.Log("cure"+currentShield);
         //ModifyHealth(0);
     }
 
@@ -33,6 +31,5 @@ public class Shield : MonoBehaviour
 
         float currentHealthPct = (float)currentShield / (float)maxShield;
         OnHealthPctChanged(currentHealthPct);
-        Debug.Log("currentHealthPct;"+currentHealthPct);
     }
 }
