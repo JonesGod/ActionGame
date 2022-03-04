@@ -8,7 +8,9 @@ public class SeaMonsterBullet : MonoBehaviour
     SeaMonsterBulletPool bulletPool;
     public float speed;
     private float lifeTime;
-    public ParticleSystem hitEffect;     
+    public ParticleSystem hitEffect;
+
+    public GameObject hitAudio;
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();

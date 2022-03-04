@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   hitEffect: {fileID: 5517608013903906391, guid: 2a83c5eadfc9a33498cf42fdc96c2152, type: 3}
+  hitAudio: {fileID: 4657281759039456168, guid: 986776c2b425dd343bfbe0131c215a55, type: 3}
 --- !u!1001 &4350873488314719825
 PrefabInstance:
   m_ObjectHideFlags: 0
