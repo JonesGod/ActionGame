@@ -59,15 +59,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.41781148
-        functionName: SmashAttackColliderOn
+      - time: 0.34341696
+        functionName: PlayStampAudio
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5642857
-        functionName: AllAttackColliderOff
+      - time: 0.41781148
+        functionName: SmashAttackColliderOn
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
         floatParameter: 0
@@ -82,6 +82,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.5129477
         functionName: PlaySmashGroundParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5642857
+        functionName: AllAttackColliderOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c58b6b9e0f7cc0f48a73e0ba21e60c8e, type: 3}
         floatParameter: 0

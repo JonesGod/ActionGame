@@ -21,6 +21,9 @@ public class RockMonsterAttack : MonoBehaviour
     public GameObject pullAttackEffect;
 
     public GameObject chargeParticle;
+
+    public GameObject stampAudio;
+    public GameObject punchAudio;
     void Start()
     {
         AllAttackColliderOff();
@@ -98,5 +101,12 @@ public class RockMonsterAttack : MonoBehaviour
     {
         Instantiate(chargeParticle, bulletSpawnPosition.transform.position, Quaternion.identity);
     }
-
+    void PlayStampAudio()
+    {
+        Instantiate(stampAudio, transform.position, transform.rotation);
+    }
+    void PlayPunchAudio()
+    {
+        Instantiate(punchAudio, transform.position, transform.rotation);
+    }
 }
