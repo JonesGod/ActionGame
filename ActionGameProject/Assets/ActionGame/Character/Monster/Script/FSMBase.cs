@@ -73,11 +73,15 @@ public class FSMBase : MonoBehaviour
     {
         
     }
+    public virtual void DoDeadState()
+    {
+        
+    }
     public virtual void CheckDeadState()
     {
        
     }
-    public virtual void DoDeadState()
+    public virtual void HelpPartner()
     {
         
     }

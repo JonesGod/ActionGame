@@ -17,11 +17,16 @@ public class BasicFSM : FSMBase
     //Rigidbody myRigidbody;
     public BoxCollider CharacterCollisionBlocker; 
 
-    public List<BasicFSM> partnerMonster;
+    public List<FSMBase> partnerMonster;
     private float partnerRange = 30.0f;
     private Vector3 startPosition;
     public bool hide;
     private MonsterDeadDissolve monsterHurt;
+    public GameObject spawnEffect;
+    void OnEnable()
+    {
+        Instantiate(spawnEffect, this.transform.position, Quaternion.identity);
+    }
     void Start()
     {
         currentEnemyTarget = null;
@@ -46,7 +51,7 @@ public class BasicFSM : FSMBase
                     Vector3 vec = m.transform.position - transform.position;
                     if(vec.magnitude <= partnerRange)
                     {
-                        partnerMonster.Add(m.GetComponent<BasicFSM>());
+                        partnerMonster.Add(m.GetComponent<FSMBase>());
                     }    
                 }             
             }
@@ -92,7 +97,7 @@ public class BasicFSM : FSMBase
 		}
 		return false;
 	}
-    public void HelpPartner()
+    public override void HelpPartner()
     {
         if(currentState == FSMState.Idle)
         {

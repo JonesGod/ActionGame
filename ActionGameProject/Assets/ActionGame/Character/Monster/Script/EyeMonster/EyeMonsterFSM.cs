@@ -32,7 +32,10 @@ public class EyeMonsterFSM : FSMBase
         myRigidbody = GetComponent<Rigidbody>();
         strafeDirection = 0;
         data.patrolTime = Random.Range(3.0f, 5.0f);
-        targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
+        if(wayPoints.Length != 0 )
+        {            
+            targetWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
+        }
         monsterHurt = this.GetComponent<MonsterDeadDissolve>();
     }
 
@@ -98,7 +101,7 @@ public class EyeMonsterFSM : FSMBase
             }
             return;
         }
-        if(currentTime >= data.patrolTime)
+        if(currentTime >= data.patrolTime && wayPoints.Length != 0)
         {
             currentState = FSMState.Patrol;
             GameObject newWayPoint = wayPoints[Random.Range(0, wayPoints.Length)];
