@@ -29,6 +29,8 @@ public class DragonBossAttack : MonoBehaviour
     public GameObject clawAudio;
     public GameObject screamAudio;
     public GameObject biteAudio;
+    public GameObject hornAudio;
+    public GameObject magicBallAudio;
 
     void Awake()
     {
@@ -97,15 +99,19 @@ public class DragonBossAttack : MonoBehaviour
     {
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
         yield return new WaitForSeconds(2.0f);
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
-        yield return new WaitForSeconds(2.0f);
-        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
-        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);        
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
         yield return new WaitForSeconds(2.0f);
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
+        yield return new WaitForSeconds(2.0f);
+        playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
     }
     /// <summary>
     /// 吼叫聲
@@ -117,5 +123,9 @@ public class DragonBossAttack : MonoBehaviour
     void PlayBiteAudio()
     {
         Instantiate(biteAudio, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+    }
+    void PlayHornAudio()
+    {
+        Instantiate(hornAudio, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
     }
 }
