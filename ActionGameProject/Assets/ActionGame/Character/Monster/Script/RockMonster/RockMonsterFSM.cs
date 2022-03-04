@@ -666,6 +666,7 @@ public class RockMonsterFSM : FSMBase
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
         worldEvManager.BossHasBeenDefeated();
+        GameManager.Instance.PlayEnding();
     }
 
     public void ShieldHurt(float damageAmount, bool isHead, bool isHurtAnimation)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour 
 {
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem healHpEffect;
     public ParticleSystem healMpEffect;        
     public GameObject effectPosition;
+    
+    public PlayableDirector endingTimeline;
 
     void Update()
     {
@@ -61,5 +64,18 @@ public class GameManager : MonoBehaviour
     public void PlayParticleSystem(ParticleSystem particle)
     {
         Instantiate(particle, effectPosition.transform.position, effectPosition.transform.rotation);
+    }
+    public void PlayEnding()
+    {
+        StartCoroutine(PlayEndingTimeLine());
+    }
+    IEnumerator PlayEndingTimeLine()
+    {
+        yield return new WaitForSeconds(3.0f);
+        endingTimeline.Play();
+        PlayerInput.Instance.isPlayingTimeline = true;
+        yield return new WaitForSeconds((float) endingTimeline.duration);
+        PlayerInput.Instance.isPlayingTimeline = false;
+        //回到主選單場景
     }
 }
