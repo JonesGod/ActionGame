@@ -27,6 +27,8 @@ public class DragonBossAttack : MonoBehaviour
     /// Audio
     public GameObject jumpAttackAudio;
     public GameObject clawAudio;
+    public GameObject screamAudio;
+    public GameObject biteAudio;
 
     void Awake()
     {
@@ -104,5 +106,16 @@ public class DragonBossAttack : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
+    }
+    /// <summary>
+    /// 吼叫聲
+    /// </summary>
+    void PlayScreamAudio()
+    {
+        Instantiate(screamAudio,transform.position+ new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+    }
+    void PlayBiteAudio()
+    {
+        Instantiate(biteAudio, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
     }
 }

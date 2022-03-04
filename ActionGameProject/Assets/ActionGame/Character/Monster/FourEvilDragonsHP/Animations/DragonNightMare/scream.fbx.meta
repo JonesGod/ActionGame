@@ -519,6 +519,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.42163512
+        functionName: PlayScreamAudio
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: bc7cd83440a93ed40a2ec54a76b3e295, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
