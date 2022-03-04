@@ -6,9 +6,19 @@ public class EyeMonsterAttack : MonoBehaviour
 {
     public GameObject bulletSpawnPosition;
     public EyeMonsterBulletPool monsterBulletPool;
+
+    ///Audio
+    public GameObject shootAudio;
+    private AudioSource shootSource;
+
+    private void Start()
+    {
+        shootSource = shootAudio.GetComponent<AudioSource>();
+    }
     public void ShootBullet()
     {
         Debug.Log("shoot");
+        shootSource.Play();
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
 }
