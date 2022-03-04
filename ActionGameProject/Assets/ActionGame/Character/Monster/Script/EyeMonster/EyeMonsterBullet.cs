@@ -56,6 +56,6 @@ public class EyeMonsterBullet : MonoBehaviour
     public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
     {
         Instantiate(particle, hitPosition, Quaternion.identity);
-        Instantiate(hitAudio);
+        Instantiate(hitAudio, hitPosition, Quaternion.identity);
     }
 }
