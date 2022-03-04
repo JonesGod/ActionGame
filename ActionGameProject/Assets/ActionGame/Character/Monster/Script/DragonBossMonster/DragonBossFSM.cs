@@ -47,11 +47,12 @@ public class DragonBossFSM : FSMBase
         // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f);
         if(data.hp <= maxHp / 2 && isAngry == false)
         {
+            screamCD = 16.0f;
             isAngry = true;     
-            for(int i = 0; i < angryEffect.Length; i++)
-            {
-                angryEffect[i].SetActive(true);  
-            }       
+            // for(int i = 0; i < angryEffect.Length; i++)
+            // {
+            //     angryEffect[i].SetActive(true);  
+            // }       
             return;
         }
         if(currentState != FSMState.Dead)
@@ -85,7 +86,6 @@ public class DragonBossFSM : FSMBase
             angryAttack = false;
             screamAttack = true;
 			return true;
-
         }
         if(fDist < data.attackRange && isAngry == true)
         {
@@ -435,10 +435,10 @@ public class DragonBossFSM : FSMBase
         animator.SetTrigger("Die");
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
-        for(int i = 0; i < angryEffect.Length; i++)
-        {
-            angryEffect[i].SetActive(false);  
-        }       
+        // for(int i = 0; i < angryEffect.Length; i++)
+        // {
+        //     angryEffect[i].SetActive(false);  
+        // }       
         worldEvManager.BossHasBeenDefeated();
     }
     private void CheckChargeAttackState()

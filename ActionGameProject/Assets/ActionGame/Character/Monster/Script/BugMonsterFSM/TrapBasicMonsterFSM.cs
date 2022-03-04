@@ -439,7 +439,7 @@ public class TrapBasicMonsterFSM : FSMBase
     }
     private void CheckIsGrounded()
     {
-        if(Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, 1.0f, layerMask))
+        if(Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, 0.5f, layerMask))
         {
             isGrounded = true;
             currentState = FSMState.Idle;

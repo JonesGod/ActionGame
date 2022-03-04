@@ -500,7 +500,6 @@ public class RockMonsterFSM : FSMBase
         animator.SetTrigger("PullAttack");
     }
 
-
     public override void CheckStrafeState()
     {
         //CheckDead

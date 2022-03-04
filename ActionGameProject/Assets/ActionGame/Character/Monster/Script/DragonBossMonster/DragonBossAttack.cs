@@ -5,11 +5,13 @@ using UnityEngine;
 public class DragonBossAttack : MonoBehaviour
 {
     Vector3 playerPosition;
+    //BasicAttack
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
-
+    //HeadAttack
     public Transform headAttackObject;
     private BoxCollider headAttackCollider;
+    //AngryBasicAttack
     public BoxCollider angryClawAttackCollider;
 
     private Animator animator;
@@ -21,6 +23,7 @@ public class DragonBossAttack : MonoBehaviour
 
     public GameObject jumpAttackEffect;
     public GameObject jumpAttackPosition;
+    public GameObject[] jumpDustPosition;
 
     public GameObject screamAttackEffect;
 
@@ -85,10 +88,13 @@ public class DragonBossAttack : MonoBehaviour
     }
     void PlayJumpClawGrassParticle()
     {
-        Instantiate(grassEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        for(int i = 0; i < jumpDustPosition.Length; i++)
+        {
+            Instantiate(grassEffect, jumpDustPosition[i].transform.position, jumpDustPosition[i].transform.rotation);
+        }
+        //Instantiate(grassEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
         Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
-    }
-    
+    }    
 
     //吼叫攻擊
     void PlayScreamAttackParticle()
