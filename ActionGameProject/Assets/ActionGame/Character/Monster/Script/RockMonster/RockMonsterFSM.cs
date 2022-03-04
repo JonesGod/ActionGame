@@ -67,6 +67,7 @@ public class RockMonsterFSM : FSMBase
         checkState = CheckIdleState;
         currentEnemyTarget = GameManager.Instance.GetPlayer();
         isAwake = true;
+        shieldHitBox.SetActive(true);
     }
     public void StartBattle()
     {

@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 public class EvColliderRockBossFight : MonoBehaviour
 {
     WorldEvManager worldEvManager;
+    public RockMonsterFSM rockMonsterFSM;
 
     public PlayableDirector rockMonsterTimeline; //Start RockBoss battle
     private void Awake()
@@ -20,6 +21,7 @@ public class EvColliderRockBossFight : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            rockMonsterFSM.StartBattle();
             StartCoroutine(PlayRockMonsterTimeline());
             //worldEvManager.ActivateRockBossFight();
         }
@@ -28,7 +30,7 @@ public class EvColliderRockBossFight : MonoBehaviour
     {
         rockMonsterTimeline.Play();
         PlayerInput.Instance.isPlayingTimeline = true;
-        yield return new WaitForSeconds((float) rockMonsterTimeline.duration - 0.5f);
+        yield return new WaitForSeconds((float) rockMonsterTimeline.duration);
         PlayerInput.Instance.isPlayingTimeline = false;
         worldEvManager.ActivateRockBossFight();
     }
