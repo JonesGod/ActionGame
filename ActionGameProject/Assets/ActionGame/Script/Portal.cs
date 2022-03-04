@@ -5,10 +5,12 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     public GameObject portalPosition;
+    public GameObject portalParticle;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            Instantiate(portalParticle, GameManager.Instance.GetPlayer().transform.position, Quaternion.identity);
             StartCoroutine(StartTeleport());
         }
     }
