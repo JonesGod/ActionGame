@@ -24,6 +24,9 @@ public class DragonBossAttack : MonoBehaviour
 
     public GameObject screamAttackEffect;
 
+    /// Audio
+    public GameObject jumpAttackAudio;
+
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -71,6 +74,7 @@ public class DragonBossAttack : MonoBehaviour
     void PlayJumpAttackParticle()
     {
         Instantiate(jumpAttackEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
     }
     void PlayJumpClawGrassParticle()
     {
