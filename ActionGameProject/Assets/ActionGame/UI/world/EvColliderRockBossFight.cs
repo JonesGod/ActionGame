@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 
-    public class EvColliderRockBossFight : MonoBehaviour
+public class EvColliderRockBossFight : MonoBehaviour
+{
+    WorldEvManager worldEvManager;
+
+    public PlayableDirector rockMonsterTimeline; //Start RockBoss battle
+    private void Awake()
     {
-        WorldEvManager worldEvManager;
+        worldEvManager = FindObjectOfType<WorldEvManager>();
+    }
 
-        private void Awake()
+
+    //��������tag��Ĳ�o
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            worldEvManager = FindObjectOfType<WorldEvManager>();
-        }
-
-
-        //��������tag��Ĳ�o
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Player")
-            {
-                //worldEvManager.ActivateBossFight();
-                worldEvManager.ActivateRockBossFight();
-            }
+            StartCoroutine(PlayRockMonsterTimeline());
+            //worldEvManager.ActivateRockBossFight();
         }
     }
+    IEnumerator PlayRockMonsterTimeline()
+    {
+        rockMonsterTimeline.Play();
+        PlayerInput.Instance.isPlayingTimeline = true;
+        yield return new WaitForSeconds((float) rockMonsterTimeline.duration - 0.5f);
+        PlayerInput.Instance.isPlayingTimeline = false;
+        worldEvManager.ActivateRockBossFight();
+    }
+}

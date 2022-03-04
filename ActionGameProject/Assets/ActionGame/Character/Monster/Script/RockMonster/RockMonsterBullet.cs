@@ -36,6 +36,7 @@ public class RockMonsterBullet : MonoBehaviour
             player.PlayerHurt(30);                        
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
+            Debug.Log(collisionPoint);
             bulletPool.Recovery(this.gameObject);
         }
         else if(other.tag == "Monster")
@@ -54,6 +55,7 @@ public class RockMonsterBullet : MonoBehaviour
         {
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
+            Debug.Log(collisionPoint);
             bulletPool.Recovery(this.gameObject);
         }
     }

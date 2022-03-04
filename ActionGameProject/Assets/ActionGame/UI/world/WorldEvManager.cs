@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
     public class WorldEvManager : MonoBehaviour
     {
         public static WorldEvManager Instance
@@ -23,9 +22,10 @@ using UnityEngine;
 
 
 
-    public bool bossFightIsActive;      //正在打boss
+        public bool bossFightIsActive;      //正在打boss
         public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
         public bool bossHasBeenDefeated;    //boss被幹掉
+
 
         public void ActivateDragonBossFight()
         {
@@ -80,5 +80,4 @@ using UnityEngine;
                 fogWall.DeactivteFoWell();
             }
         }
-
-    }
+}

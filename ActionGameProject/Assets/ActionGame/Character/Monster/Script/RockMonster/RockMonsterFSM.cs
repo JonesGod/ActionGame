@@ -56,11 +56,28 @@ public class RockMonsterFSM : FSMBase
             doState();    
         }      
     }
-    public void StartBattle()
+    IEnumerator PlayStartAnimation()
     {
+        yield return new WaitForSeconds(1.0f);
+        animator.SetTrigger("BattleStart");
+        yield return new WaitForSeconds(5.0f);
+        currentEnemyTarget = null;
+        currentState = FSMState.Idle;
+        doState = DoIdleState;
+        checkState = CheckIdleState;
         currentEnemyTarget = GameManager.Instance.GetPlayer();
         isAwake = true;
-        animator.SetTrigger("BattleStart");
+    }
+    public void StartBattle()
+    {
+        StartCoroutine(PlayStartAnimation());
+        // currentEnemyTarget = null;
+        // currentState = FSMState.Idle;
+        // doState = DoIdleState;
+        // checkState = CheckIdleState;
+        // currentEnemyTarget = GameManager.Instance.GetPlayer();
+        // isAwake = true;
+        //animator.SetTrigger("BattleStart");
     }
     private GameObject CheckEnemyInBossArea()
 	{
