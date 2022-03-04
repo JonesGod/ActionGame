@@ -11,7 +11,6 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private Animator m_Am;
     private PlayerInput m_Input; //準備獲取玩家輸入
 
-
     private static float playerHp = 300;//玩家生命
     private static float playerMaxHp = 300;//玩家生命最大值
     private static float playerMp = 100;//玩家MP

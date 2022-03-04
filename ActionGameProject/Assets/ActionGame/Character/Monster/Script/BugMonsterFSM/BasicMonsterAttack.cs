@@ -7,6 +7,10 @@ public class BasicMonsterAttack : MonoBehaviour
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
     private Animator animator;
+
+    /// Audio
+    public GameObject hitAudio;
+    private AudioSource hitSource;
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -15,10 +19,13 @@ public class BasicMonsterAttack : MonoBehaviour
     {
         AttackColliderOff();
         animator = GetComponent<Animator>();
+
+        hitSource = hitAudio.GetComponent<AudioSource>();
     }
     void AttackColliderOn()
     {
         Debug.Log("AttackColliderOn");
+        hitSource.Play();
         basicAttackCollider.enabled = true;
     }
     void AttackColliderOff()
