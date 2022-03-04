@@ -26,6 +26,7 @@ public class DragonBossAttack : MonoBehaviour
 
     /// Audio
     public GameObject jumpAttackAudio;
+    public GameObject clawAudio;
 
     void Awake()
     {
@@ -64,10 +65,12 @@ public class DragonBossAttack : MonoBehaviour
     void PlayAngryClawParticle()
     {
         Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
+        Instantiate(clawAudio, angryClawPosition.transform.position, Quaternion.identity);
     }
     void PlayBasicClawGrassParticle()
     {
         Instantiate(grassEffect, angryClawPosition.transform.position, Quaternion.identity);
+        Instantiate(clawAudio, angryClawPosition.transform.position, Quaternion.identity);
     }
 
     //跳躍攻擊
@@ -79,6 +82,7 @@ public class DragonBossAttack : MonoBehaviour
     void PlayJumpClawGrassParticle()
     {
         Instantiate(grassEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
     }
     
 
