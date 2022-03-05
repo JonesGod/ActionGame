@@ -25,16 +25,20 @@ public class WorldEvManager : MonoBehaviour
     public bool bossHasBeenDefeated;    //boss被幹掉
 
     ///Audio
+    private AudioSource currentAudio;
     public GameObject BossBGM1Audio;
     private AudioSource BossBGM1Source;
     public GameObject BossBGM2Audio;
     private AudioSource BossBGM2Source;
     public GameObject normalBGMAudio;
     private AudioSource normalBGMSource;
+    
     public void ActivateDragonBossFight()
     {
-        normalBGMSource.Stop();
-        BossBGM1Source.Play();
+        //normalBGMSource.Stop();
+        //BossBGM1Source.Play();
+        StartCoroutine(BGMChange(currentAudio, BossBGM1Source));
+        currentAudio = BossBGM1Source;
 
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
@@ -48,8 +52,10 @@ public class WorldEvManager : MonoBehaviour
     }
     public void ActivateRockBossFight()
     {
-        normalBGMSource.Stop();
-        BossBGM2Source.Play();
+        //normalBGMSource.Stop();
+        //BossBGM2Source.Play();
+        StartCoroutine(BGMChange(currentAudio, BossBGM2Source));
+        currentAudio = BossBGM2Source;
 
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
@@ -70,15 +76,18 @@ public class WorldEvManager : MonoBehaviour
         BossBGM1Source = BossBGM1Audio.GetComponent<AudioSource>();
         BossBGM2Source = BossBGM2Audio.GetComponent<AudioSource>();
         normalBGMSource = normalBGMAudio.GetComponent<AudioSource>();
+
+        currentAudio = normalBGMSource;
     }
 
     public void BossHasBeenDefeated()
     {
-        BossBGM1Source.Stop();
-        BossBGM2Source.Stop();
-        normalBGMSource.Play();
-        //BGMStop(BossBGM1Source);
-        //BGMStop(BossBGM2Source);
+        //BossBGM1Source.Stop();
+        //BossBGM2Source.Stop();
+        //normalBGMSource.Play();
+        StartCoroutine(BGMChange(currentAudio, normalBGMSource));
+        currentAudio = normalBGMSource;
+
         var player=GameManager.Instance.m_Player.GetComponent<PlayerControl>();
         player.UnlockSkill(2);
 
@@ -100,12 +109,23 @@ public class WorldEvManager : MonoBehaviour
             fogWall.DeactivteFoWell();
         }
     }
-    void BGMStop(AudioSource audio)
-    {
-        audio.volume = Mathf.Lerp(audio.volume,0f,0.1f);
-        if(Mathf.Approximately(audio.volume,0f))
+    protected IEnumerator BGMChange(AudioSource stopAudio,AudioSource startAudio)
+    {       
+        while(!Mathf.Approximately(stopAudio.volume,0f))
         {
-            audio.volume = 0f;
+            stopAudio.volume = Mathf.MoveTowards(stopAudio.volume, 0f, 0.2f*Time.deltaTime);
+            yield return null;
         }
+        stopAudio.volume = 0f;
+        stopAudio.Stop();
+
+        startAudio.volume = 0f;
+        startAudio.Play();
+        while (!Mathf.Approximately(startAudio.volume, 0.4f))
+        {
+            startAudio.volume = Mathf.MoveTowards(startAudio.volume, 0.4f, 0.2f * Time.deltaTime);
+            yield return null;
+        }
+        startAudio.volume = 0.4f;
     }
 }
