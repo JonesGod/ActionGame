@@ -29,11 +29,13 @@ public class WorldEvManager : MonoBehaviour
     private AudioSource BossBGM1Source;
     public GameObject BossBGM2Audio;
     private AudioSource BossBGM2Source;
-    public GameObject BattleBGMAudio;
-    private AudioSource BattleBGMSource;
+    public GameObject normalBGMAudio;
+    private AudioSource normalBGMSource;
     public void ActivateDragonBossFight()
     {
+        normalBGMSource.Stop();
         BossBGM1Source.Play();
+
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
         dragonBossHPBar.SetUIHPBarToActive();
@@ -46,7 +48,9 @@ public class WorldEvManager : MonoBehaviour
     }
     public void ActivateRockBossFight()
     {
+        normalBGMSource.Stop();
         BossBGM2Source.Play();
+
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
         rockBossHPBar.SetUIHPBarToActive();
@@ -65,13 +69,14 @@ public class WorldEvManager : MonoBehaviour
 
         BossBGM1Source = BossBGM1Audio.GetComponent<AudioSource>();
         BossBGM2Source = BossBGM2Audio.GetComponent<AudioSource>();
-        BattleBGMSource = BattleBGMAudio.GetComponent<AudioSource>();
+        normalBGMSource = normalBGMAudio.GetComponent<AudioSource>();
     }
 
     public void BossHasBeenDefeated()
     {
         BossBGM1Source.Stop();
         BossBGM2Source.Stop();
+        normalBGMSource.Play();
         //BGMStop(BossBGM1Source);
         //BGMStop(BossBGM2Source);
         var player=GameManager.Instance.m_Player.GetComponent<PlayerControl>();
