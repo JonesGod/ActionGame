@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 454262}
   - component: {fileID: 19875214}
   - component: {fileID: 19923122}
+  - component: {fileID: 865800733660669833}
   m_Layer: 0
   m_Name: DustDirtyPoofSoft
   m_TagString: Untagged
@@ -4776,6 +4777,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &865800733660669833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef358c5150ffa24e97004ba7cb1b5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 2
 --- !u!1 &170514
 GameObject:
   m_ObjectHideFlags: 0

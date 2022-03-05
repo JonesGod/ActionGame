@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour 
 {
@@ -71,11 +72,12 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator PlayEndingTimeLine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(6.0f);
         endingTimeline.Play();
         PlayerInput.Instance.isPlayingTimeline = true;
         yield return new WaitForSeconds((float) endingTimeline.duration);
-        PlayerInput.Instance.isPlayingTimeline = false;
+        PlayerInput.Instance.isPlayingTimeline = false;        
         //回到主選單場景
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -14,7 +14,6 @@ public class RockMonsterBullet : MonoBehaviour
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
         bulletPool = GameObject.Find("RockMonsterBulletPool").GetComponent<RockMonsterBulletPool>();
         lifeTime = 0.0f;
-        transform.LookAt(player.transform.position);
     }
 
     void Update()
