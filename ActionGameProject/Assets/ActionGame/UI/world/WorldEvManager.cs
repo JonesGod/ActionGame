@@ -91,4 +91,12 @@ public class WorldEvManager : MonoBehaviour
             fogWall.DeactivteFoWell();
         }
     }
+    void BGMStop(AudioSource audio)
+    {
+        audio.volume = Mathf.Lerp(audio.volume,0f,0.1f);
+        if(Mathf.Approximately(audio.volume,0f))
+        {
+            audio.volume = 0f;
+        }
+    }
 }
