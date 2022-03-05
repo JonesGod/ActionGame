@@ -429,11 +429,11 @@ public class RockMonsterFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            data.strafeTime = Random.Range(2.0f, 2.5f);
+            waitTime = Random.Range(1.5f, 2.5f);
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
-            doState = DoStrafeState;
-            checkState = CheckStrafeState;
+            doState = DoWaitState;
+            checkState = CheckWaitState;
         }        
     }    
     public void DoRangeAttackState()
