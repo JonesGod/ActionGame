@@ -19,6 +19,8 @@ public class WorldEvManager : MonoBehaviour
     //public EnemyBossManager boss;
     public GameObject hintbox;
     public GameObject hide;
+    public GameObject getskill;
+
 
     public bool bossFightIsActive;      //正在打boss
     public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
@@ -72,6 +74,7 @@ public class WorldEvManager : MonoBehaviour
     public void Start()
     {
         hintbox.SetActive(false);
+        getskill.SetActive(false);
 
         BossBGM1Source = BossBGM1Audio.GetComponent<AudioSource>();
         BossBGM2Source = BossBGM2Audio.GetComponent<AudioSource>();
@@ -101,6 +104,8 @@ public class WorldEvManager : MonoBehaviour
         {
             hintbox.SetActive(true);
             hide.SetActive(false);
+            getskill.SetActive(true);
+
         }
 
         //out wall(?)
