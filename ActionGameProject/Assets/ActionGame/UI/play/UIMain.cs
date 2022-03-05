@@ -73,7 +73,7 @@ public class UIMain : MonoBehaviour
     }
     public IEnumerator SwordSkillUnLock()
     {
-        GameObject swordSkillLock = skillWindow.transform.GetChild(4).gameObject;
+        GameObject swordSkillLock = skillWindow.transform.GetChild(3).gameObject;
 
         licened.SetActive(true);
         while (skillWindow.activeSelf==false)
@@ -86,7 +86,7 @@ public class UIMain : MonoBehaviour
     }
     public IEnumerator BowUnlock()
     {
-        GameObject BowLock = skillWindow.transform.GetChild(5).gameObject;
+        GameObject BowLock = skillWindow.transform.GetChild(4).gameObject;
 
         licened.SetActive(true);
         while (skillWindow.activeSelf == false)
@@ -99,7 +99,7 @@ public class UIMain : MonoBehaviour
     }
     public IEnumerator ExplodeArrowUnlock()
     {
-        GameObject ArrowLock = skillWindow.transform.GetChild(6).gameObject;
+        GameObject ArrowLock = skillWindow.transform.GetChild(5).gameObject;
 
         licened.SetActive(true);
         while (skillWindow.activeSelf == false)

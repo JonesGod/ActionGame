@@ -72,6 +72,10 @@ public class WorldEvManager : MonoBehaviour
     {
         BossBGM1Source.Stop();
         BossBGM2Source.Stop();
+        //BGMStop(BossBGM1Source);
+        //BGMStop(BossBGM2Source);
+        var player=GameManager.Instance.m_Player.GetComponent<PlayerControl>();
+        player.UnlockSkill(2);
 
         bossHasBeenDefeated = true;
         bossFightIsActive = false;

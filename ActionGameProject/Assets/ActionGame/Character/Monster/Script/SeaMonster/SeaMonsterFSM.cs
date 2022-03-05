@@ -207,6 +207,10 @@ public class SeaMonsterFSM : FSMBase
             }                    
         }
         animator.SetTrigger("Die");
+
+        var player = GameManager.Instance.m_Player.GetComponent<PlayerControl>();
+        player.UnlockSkill(1);
+
         myRigidbody.isKinematic = true;
         //CharacterCollisionBlocker.enabled = false;
     }

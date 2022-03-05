@@ -45,7 +45,7 @@ public class DragonBossFSM : FSMBase
         screamCD += Time.deltaTime;
         // Quaternion targetRotation = Quaternion.LookRotation(GameManager.Instance.GetPlayer().transform.position - transform.position);
         // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f);
-        if(data.hp <= maxHp / 2 && isAngry == false)
+        if(data.hp <= maxHp / 1.5 && isAngry == false)
         {
             screamCD = 16.0f;
             isAngry = true;     
