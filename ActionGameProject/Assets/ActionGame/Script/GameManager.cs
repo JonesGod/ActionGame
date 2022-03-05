@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public ParticleSystem healHpEffect;
     public ParticleSystem healMpEffect;        
     public GameObject effectPosition;
-    
+
     public PlayableDirector endingTimeline;
 
     void Update()
@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < allMonster.Length; i++)
         {            
             player.Subscribe(allMonster[i].GetComponent<FSMBase>()); 
-        }        
+        }
+
     }
 
     public GameObject GetPlayer()

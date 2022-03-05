@@ -24,8 +24,16 @@ public class WorldEvManager : MonoBehaviour
     public bool bossHasBeenAwakened;    //woke the boss/watched cutscene but died during fight
     public bool bossHasBeenDefeated;    //boss被幹掉
 
+    ///Audio
+    public GameObject BossBGM1Audio;
+    private AudioSource BossBGM1Source;
+    public GameObject BossBGM2Audio;
+    private AudioSource BossBGM2Source;
+    public GameObject BattleBGMAudio;
+    private AudioSource BattleBGMSource;
     public void ActivateDragonBossFight()
     {
+        BossBGM1Source.Play();
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
         dragonBossHPBar.SetUIHPBarToActive();
@@ -38,6 +46,7 @@ public class WorldEvManager : MonoBehaviour
     }
     public void ActivateRockBossFight()
     {
+        BossBGM2Source.Play();
         bossFightIsActive = true;
         bossHasBeenAwakened = true;
         rockBossHPBar.SetUIHPBarToActive();
@@ -53,10 +62,17 @@ public class WorldEvManager : MonoBehaviour
     public void Start()
     {
         hintbox.SetActive(false);
+
+        BossBGM1Source = BossBGM1Audio.GetComponent<AudioSource>();
+        BossBGM2Source = BossBGM2Audio.GetComponent<AudioSource>();
+        BattleBGMSource = BattleBGMAudio.GetComponent<AudioSource>();
     }
 
     public void BossHasBeenDefeated()
     {
+        BossBGM1Source.Stop();
+        BossBGM2Source.Stop();
+
         bossHasBeenDefeated = true;
         bossFightIsActive = false;
         dragonBossHPBar.SetHPBarToInActive();

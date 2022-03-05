@@ -150,7 +150,8 @@ public class PlayerControl : MonoBehaviour, BeObserver
 
         chargeAudioSource = chargeAudio.GetComponent<AudioSource>();
         runAudioSource = RunAudio.GetComponent<AudioSource>();
-}
+        
+    }
 void Update()
     {
         if(Input.GetKeyDown("f1"))
