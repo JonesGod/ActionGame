@@ -17,6 +17,8 @@ public class DragonBossAttack : MonoBehaviour
     private Animator animator;
 
     public GameObject grassEffect;
+    public GameObject jumpAttackGrassEffect;
+    public GameObject jumpAttackGrassEffect2;
     
     public GameObject angryClawEffect;
     public GameObject angryClawPosition;
@@ -88,13 +90,17 @@ public class DragonBossAttack : MonoBehaviour
     }
     void PlayJumpClawGrassParticle()
     {
-        for(int i = 0; i < jumpDustPosition.Length; i++)
-        {
-            Instantiate(grassEffect, jumpDustPosition[i].transform.position, jumpDustPosition[i].transform.rotation);
-        }
-        //Instantiate(grassEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
-        Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        // Instantiate(jumpAttackGrassEffect, jumpAttackPosition.transform.position, Quaternion.identity);
+        // Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        StartCoroutine(JumpAttack());
     }    
+    IEnumerator JumpAttack()
+    {
+        Instantiate(jumpAttackGrassEffect, jumpAttackPosition.transform.position, Quaternion.identity);
+        Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(jumpAttackGrassEffect2, jumpAttackPosition.transform.position, Quaternion.identity);
+    }
 
     //吼叫攻擊
     void PlayScreamAttackParticle()

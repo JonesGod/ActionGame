@@ -160,6 +160,8 @@ MonoBehaviour:
   headAttackObject: {fileID: 429462}
   angryClawAttackCollider: {fileID: 5661212391396551499}
   grassEffect: {fileID: 8921984386994154724, guid: 2e1a3cfb730e7864191550811f2aa8c8, type: 3}
+  jumpAttackGrassEffect: {fileID: 6552157599665965472, guid: cefd00a97cb3bbe4c955bebe2410ac3e, type: 3}
+  jumpAttackGrassEffect2: {fileID: 5549924294412376878, guid: 09a380945aa8eaa4b9da12a12b6f9a1e, type: 3}
   angryClawEffect: {fileID: 6174527592921153203, guid: e1099e0d35dd37d4682aa0df6998531c, type: 3}
   angryClawPosition: {fileID: 1734730798166180099}
   jumpAttackEffect: {fileID: 3134780102409223173, guid: 4d823c6322f827849841b99531b267fd, type: 3}
