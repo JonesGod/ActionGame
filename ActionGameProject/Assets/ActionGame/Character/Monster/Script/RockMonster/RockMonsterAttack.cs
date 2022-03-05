@@ -54,8 +54,7 @@ public class RockMonsterAttack : MonoBehaviour
     }
     public void ShootBullet()
     {
-        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);
-        PlayMagicBallShootAudio();
+        monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
     public void PlayPullParticle()
     {
@@ -111,8 +110,5 @@ public class RockMonsterAttack : MonoBehaviour
     {
         Instantiate(punchAudio, transform.position, transform.rotation);
     }
-    void PlayMagicBallShootAudio()
-    {
-        Instantiate(magicBallShootAudio, transform.position, transform.rotation);
-    }
+
 }
