@@ -76,7 +76,8 @@ public class GameOverUI : MonoBehaviour
 
         canvers.gameObject.SetActive(true);
         yield return Instance.StartCoroutine(Instance.Fade(1f, canvers));
-        Cursor.visible = true;
+        if(fadeType== FadeType.swordSkill)
+            Cursor.visible = true;
     }
     /// <summary>
     /// The FadeIn Process
