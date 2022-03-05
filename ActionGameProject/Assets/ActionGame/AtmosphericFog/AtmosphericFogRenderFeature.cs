@@ -2,7 +2,7 @@
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace OD {
+
     public class AtmosphericFogRenderFeature : ScriptableRendererFeature {
         class CustomRenderPass : ScriptableRenderPass{
             static readonly int _Color = Shader.PropertyToID("_Color");
@@ -126,4 +126,3 @@ namespace OD {
             renderer.EnqueuePass(m_ScriptablePass);
         }
     }
-}

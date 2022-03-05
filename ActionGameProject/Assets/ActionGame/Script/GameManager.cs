@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour 
 {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject effectPosition;
 
     public PlayableDirector endingTimeline;
+    public AtmosphericFogRenderFeature test;
 
     void Update()
     {
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             GetPlayer().transform.position = new Vector3(testNewPosition2.transform.position.x, testNewPosition2.transform.position.y, testNewPosition2.transform.position.z);
         }
+        
     }
     private void Awake()
     {
@@ -47,7 +50,6 @@ public class GameManager : MonoBehaviour
         {            
             player.Subscribe(allMonster[i].GetComponent<FSMBase>()); 
         }
-
     }
 
     public GameObject GetPlayer()
@@ -78,7 +80,8 @@ public class GameManager : MonoBehaviour
         PlayerInput.Instance.isPlayingTimeline = true;
         yield return new WaitForSeconds((float) endingTimeline.duration);
         PlayerInput.Instance.isPlayingTimeline = false;        
-        //回到主選單場景
+        //回到主選單場景        
+        test.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 }
