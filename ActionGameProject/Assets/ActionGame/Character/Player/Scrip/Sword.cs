@@ -167,11 +167,11 @@ public class Sword : MonoBehaviour
     }
     private void WeaponOnDissolve()
     {
-        StartCoroutine(WeaponOn(dissolveAmount, endDissolveAmount, dissolveTime));
+        StartCoroutine(WeaponOn(dissolveAmount, endDissolveAmount, dissolveTime));        
     }
     private void WeaponOffDissolve()
     {
-        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.15f));
+        StartCoroutine(WeaponOff(dissolveAmount, startDissolveAmount, 0.1f));        
     }
     void SlashEffect(int number)
     {
