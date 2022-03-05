@@ -19,6 +19,7 @@ public class RockMonsterAttack : MonoBehaviour
     public GameObject smashEffectGround;
 
     public GameObject pullAttackEffect;
+    public GameObject circleAttackEffect;
 
     public GameObject chargeParticle;
 
@@ -56,13 +57,10 @@ public class RockMonsterAttack : MonoBehaviour
     {
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }
-<<<<<<< Updated upstream
-=======
     public void ShootCircleBullet()
     {
         Instantiate(circleAttackEffect, bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.localRotation);   
     }
->>>>>>> Stashed changes
     public void PlayPullParticle()
     {
         Vector3 direction = GameManager.Instance.GetPlayer().transform.position - this.transform.position;
