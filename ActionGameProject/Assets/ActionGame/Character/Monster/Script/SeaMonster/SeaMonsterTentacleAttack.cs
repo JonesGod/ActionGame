@@ -7,6 +7,9 @@ public class SeaMonsterTentacleAttack : MonoBehaviour
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
     private Animator animator;
+
+    public GameObject attackAudio;
+    private AudioSource attackSource;
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
@@ -15,6 +18,8 @@ public class SeaMonsterTentacleAttack : MonoBehaviour
     {
         AttackColliderOff();
         animator = GetComponent<Animator>();
+
+        attackSource = attackAudio.GetComponent<AudioSource>();
     }
     void AttackColliderOn()
     {
@@ -27,5 +32,9 @@ public class SeaMonsterTentacleAttack : MonoBehaviour
     void ChangeAnimatorSpeed(float newSpeed)
     {
         animator.speed = newSpeed;
+    }
+    void PlayAttackAudio()
+    {
+        attackSource.Play();
     }
 }
