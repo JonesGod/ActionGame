@@ -10,7 +10,6 @@ public class EyeMonsterBullet : MonoBehaviour
     private float lifeTime;
     public ParticleSystem hitEffect;
 
-    public GameObject hitAudio;
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
@@ -56,6 +55,5 @@ public class EyeMonsterBullet : MonoBehaviour
     public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
     {
         Instantiate(particle, hitPosition, Quaternion.identity);
-        Instantiate(hitAudio, hitPosition, Quaternion.identity);
     }
 }
