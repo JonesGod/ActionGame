@@ -284,10 +284,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.95333254
-        functionName: SummonTentacles
+      - time: 0.106528156
+        functionName: PlayAppearAudio
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 1415beb184ba83d4d8012405ff9e1840, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 16f2b132c605d064ca4ed72ae0a6205b, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -295,6 +295,13 @@ ModelImporter:
         functionName: PlayScreamAudio
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 16f2b132c605d064ca4ed72ae0a6205b, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.95333254
+        functionName: SummonTentacles
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 1415beb184ba83d4d8012405ff9e1840, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
