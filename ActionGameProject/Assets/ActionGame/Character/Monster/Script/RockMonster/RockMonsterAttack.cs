@@ -19,6 +19,7 @@ public class RockMonsterAttack : MonoBehaviour
     public GameObject smashEffectGround;
 
     public GameObject pullAttackEffect;
+    public GameObject circleAttackEffect;
 
     public GameObject chargeParticle;
 
@@ -55,6 +56,11 @@ public class RockMonsterAttack : MonoBehaviour
     public void ShootBullet()
     {
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
+    }
+    public void ShootCircleBullet()
+    {
+        Instantiate(circleAttackEffect, bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.localRotation);       
+        PlayMagicBallShootAudio();
     }
     public void PlayPullParticle()
     {

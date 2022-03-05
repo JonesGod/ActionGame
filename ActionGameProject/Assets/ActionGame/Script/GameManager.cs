@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
     public void PlayParticleSystem(ParticleSystem particle)
     {
-        Instantiate(particle, effectPosition.transform.position, effectPosition.transform.rotation);
+        Instantiate(particle, effectPosition.transform.position, effectPosition.transform.localRotation);
     }
     public void PlayEnding()
     {

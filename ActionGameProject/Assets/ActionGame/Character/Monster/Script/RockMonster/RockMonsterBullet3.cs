@@ -2,26 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockMonsterBullet2 : MonoBehaviour
+public class RockMonsterBullet3 : MonoBehaviour
 {
     PlayerControl player;
     public float speed;
     private float lifeTime;
     public ParticleSystem hitEffect;
-    private bool canFly = false;     
+    Vector3 flyDirection; 
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();
-        transform.LookAt(player.transform.position + new Vector3(0, 2.0f, 0));
-        StartCoroutine(Wait());
+        //transform.LookAt(player.transform.position + new Vector3(0, 2.0f, 0));
+        flyDirection = transform.forward;
+        flyDirection.y = flyDirection.y - 0.0f;
     }
 
     void Update()
     {
-        if(canFly == true)
-        {
-            transform.position += transform.forward * speed * Time.deltaTime;
-        }        
+        transform.position += flyDirection * speed * Time.deltaTime;        
     }
     private void OnTriggerEnter(Collider other) 
     {      
@@ -33,7 +31,7 @@ public class RockMonsterBullet2 : MonoBehaviour
             player.PlayerHurt(30);                        
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
-            Destroy(this.gameObject);
+
         }
         else if(other.tag == "Monster")
         {
@@ -51,17 +49,10 @@ public class RockMonsterBullet2 : MonoBehaviour
         {
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
-            Destroy(this.gameObject);
         }
     }
     public void PlayParticleSystem(ParticleSystem particle, Vector3 hitPosition)
     {
         Instantiate(particle, hitPosition, Quaternion.identity);
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2.0f);
-        transform.LookAt(player.transform.position + new Vector3(0, 2.0f, 0));
-        canFly = true;
     }
 }
