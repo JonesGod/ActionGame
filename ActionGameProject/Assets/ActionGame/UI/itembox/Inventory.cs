@@ -33,6 +33,8 @@ public class Inventory : MonoBehaviour
 
     public bool canConsume;
 
+    public GameObject healAudio;
+    private AudioSource healSouce;
 
     void Start()
     {
@@ -41,6 +43,8 @@ public class Inventory : MonoBehaviour
 
         yourInventory[1] = Database.itemList[2];
         yourInventory[1].stack += 0;
+
+        healSouce = healAudio.GetComponent<AudioSource>();
     }
 
    
@@ -162,6 +166,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+                healSouce.Play();
                 slotStack[b]--;
                 PlayerControl.HpIncrease(yourInventory[b].nutritionalValue);
             }
@@ -186,6 +191,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+                healSouce.Play();
                 slotStack[a]--;
                 PlayerControl.MpIncrease(yourInventory[a].nutritionalValue);
             }
