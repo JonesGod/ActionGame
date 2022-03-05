@@ -64,7 +64,11 @@ public class GameManager : MonoBehaviour
     }
     public void PlayParticleSystem(ParticleSystem particle)
     {
+<<<<<<< Updated upstream
         Instantiate(particle, effectPosition.transform.position, effectPosition.transform.rotation);
+=======
+        Instantiate(particle, effectPosition.transform.position, Quaternion.identity);
+>>>>>>> Stashed changes
     }
     public void PlayEnding()
     {
