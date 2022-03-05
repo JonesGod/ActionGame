@@ -10,7 +10,6 @@ public class SeaMonsterBullet : MonoBehaviour
     private float lifeTime;
     public ParticleSystem hitEffect;
 
-    public GameObject hitAudio;
     void OnEnable()
     {
         player = GameManager.Instance.GetPlayer().GetComponent<PlayerControl>();

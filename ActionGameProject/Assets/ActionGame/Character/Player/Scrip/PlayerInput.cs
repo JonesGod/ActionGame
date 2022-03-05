@@ -84,6 +84,8 @@ public class PlayerInput : MonoBehaviour
         {
             m_Movement = Vector2.zero;
             m_Mouse = Vector2.zero;
+            moveFlagH = false;
+            moveFlagV = false;
             return;
         }
 

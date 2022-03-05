@@ -6,6 +6,9 @@ public class SeaMonsterAttack : MonoBehaviour
 {
     public GameObject bulletSpawnPosition;
     public SeaMonsterBulletPool monsterBulletPool;
+
+    public GameObject shootAudio;
+    
     public void ShootBullet()
     {
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
