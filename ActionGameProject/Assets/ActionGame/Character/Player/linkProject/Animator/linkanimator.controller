@@ -4521,103 +4521,115 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: RunBool
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BowBool
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: AttackTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: AvoidTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: SpecialAttackTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BowAngle
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: RunBlend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: RightRunBlend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BowTotalMoveInput
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: HurtTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: dead
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: getup
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BattleBool
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BowAttackTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: ChargeTime
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BowTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: SwordSkillLock01
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: SwordSkillLock02
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -5121,11 +5133,16 @@ AnimatorStateMachine:
   - {fileID: -4750504509118083709}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -4270770723277815197}
-    second: []
   - first: {fileID: -3626878606468843675}
     second:
     - {fileID: 6867206379624034873}
+  - first: {fileID: -4270770723277815197}
+    second: []
+  - first: {fileID: 6706398822682234826}
+    second:
+    - {fileID: -8283065628008347271}
+    - {fileID: -4399885380751025078}
+    - {fileID: 4172883432445550744}
   - first: {fileID: -78554092575598839}
     second:
     - {fileID: -1398466538686805916}
@@ -5133,11 +5150,6 @@ AnimatorStateMachine:
     - {fileID: 33123175299573963}
     - {fileID: -7240790939555444478}
     - {fileID: -9130533584424126026}
-  - first: {fileID: 6706398822682234826}
-    second:
-    - {fileID: -8283065628008347271}
-    - {fileID: -4399885380751025078}
-    - {fileID: 4172883432445550744}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 460, y: 40, z: 0}
   m_EntryPosition: {x: 840, y: 220, z: 0}
@@ -5480,6 +5492,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: StateTime
     m_EventTreshold: 1
+  - m_ConditionMode: 1
+    m_ConditionEvent: SwordSkillLock01
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8148233973816564559}
   m_Solo: 0
@@ -7838,16 +7853,16 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1080008484223435064}
-    second:
-    - {fileID: -6123560018959805895}
-    - {fileID: 2961240864390835}
-    - {fileID: -2476170180217244722}
   - first: {fileID: 5054457186314652138}
     second:
     - {fileID: -6594868903910446452}
     - {fileID: -7816023660516955046}
     - {fileID: -388082384266295336}
+  - first: {fileID: 1080008484223435064}
+    second:
+    - {fileID: -6123560018959805895}
+    - {fileID: 2961240864390835}
+    - {fileID: -2476170180217244722}
   m_StateMachineBehaviours:
   - {fileID: -996107057737364744}
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
@@ -8852,6 +8867,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: StateTime
     m_EventTreshold: 1
+  - m_ConditionMode: 1
+    m_ConditionEvent: SwordSkillLock02
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7801993378939269596}
   m_Solo: 0

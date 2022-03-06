@@ -210,6 +210,7 @@ public class SeaMonsterFSM : FSMBase
 
         var player = GameManager.Instance.m_Player.GetComponent<PlayerControl>();
         player.UnlockSkill(1);
+        player.UnlockSkill(2);
 
         myRigidbody.isKinematic = true;
         //CharacterCollisionBlocker.enabled = false;

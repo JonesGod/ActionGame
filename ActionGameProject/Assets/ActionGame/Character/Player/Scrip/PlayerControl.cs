@@ -244,11 +244,10 @@ void Update()
         }
         if(m_Input.specialAttack)   //右鍵攻擊
         {
-            if (!swordSkillLock)
-            {
-                m_Am.ResetTrigger("AttackTrigger");
-                m_Am.SetTrigger("SpecialAttackTrigger");
-            }
+            
+            m_Am.ResetTrigger("AttackTrigger");
+            m_Am.SetTrigger("SpecialAttackTrigger");
+            
             m_Input.specialAttack = false;
         }
         if (m_Input.bowAttack)  //弓左鍵射擊
@@ -858,11 +857,11 @@ void Update()
                 StartCoroutine(UIMain.Instance().ExplodeArrowUnlock());
                 break;
             case 2:
-                swordSkillLock = false;
+                m_Am.SetBool("SwordSkillLock01",true);
                 StartCoroutine(UIMain.Instance().SwordSkillUnLock01());
                 break;
             case 3:
-                swordSkillLock = false;
+                m_Am.SetBool("SwordSkillLock02", true);
                 StartCoroutine(UIMain.Instance().SwordSkillUnLock02());
                 break;
         }

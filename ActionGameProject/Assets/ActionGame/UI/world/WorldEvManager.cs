@@ -92,7 +92,7 @@ public class WorldEvManager : MonoBehaviour
         currentAudio = normalBGMSource;
 
         var player=GameManager.Instance.m_Player.GetComponent<PlayerControl>();
-        player.UnlockSkill(2);
+        player.UnlockSkill(3);
 
         bossHasBeenDefeated = true;
         bossFightIsActive = false;
