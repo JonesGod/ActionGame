@@ -45,6 +45,12 @@ public class EyeMonsterBullet : MonoBehaviour
         else if(other.transform.name == "Arrow(Clone)")
         {
         }
+        else if(other.transform.name == "HitBox")
+        {
+        }
+        else if(other.tag == "Monster")
+        {
+        }
         else
         {
             var collisionPoint = other.ClosestPoint(transform.position);

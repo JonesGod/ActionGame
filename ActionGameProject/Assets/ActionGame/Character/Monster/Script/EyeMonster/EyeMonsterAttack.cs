@@ -17,7 +17,6 @@ public class EyeMonsterAttack : MonoBehaviour
     }
     public void ShootBullet()
     {
-        Debug.Log("shoot");
         shootSource.Play();
         monsterBulletPool.ReUse(bulletSpawnPosition.transform.position, bulletSpawnPosition.transform.rotation);       
     }

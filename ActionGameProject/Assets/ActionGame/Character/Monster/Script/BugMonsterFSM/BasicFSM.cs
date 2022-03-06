@@ -259,7 +259,6 @@ public class BasicFSM : FSMBase
         Ray ray = new Ray(transform.position, -Vector3.up);
         if (Physics.Raycast(ray, out hit, 1.0f, Physics.AllLayers))
         {
-            Debug.Log("hit");
             transform.up = hit.normal;
         }
         data.targetPosition = new Vector3(data.target.transform.position.x, this.transform.position.y, data.target.transform.position.z);
@@ -359,7 +358,6 @@ public class BasicFSM : FSMBase
             currentTime = 0.0f;
             currentState = FSMState.Strafe;
             strafeDirection = Random.Range(0, 3);
-            Debug.Log(strafeDirection);
             doState = DoStrafeState;
             checkState = CheckStrafeState;
         }        
