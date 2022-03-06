@@ -16,7 +16,8 @@ public class GameOverUI : MonoBehaviour
     public bool m_IsFading;
     public CanvasGroup gameOver;
 
-    public CanvasGroup swordSkillLock;
+    public CanvasGroup swordSkillLock01;
+    public CanvasGroup swordSkillLock02;
     public CanvasGroup bowLock;
     public CanvasGroup explodeLock;
     public CanvasGroup portalScreen;
@@ -24,10 +25,11 @@ public class GameOverUI : MonoBehaviour
     public enum FadeType
     {
         GameOver=1,
-        swordSkill = 2,
+        swordSkill01 = 2,
         bow = 3,
         eplodeArrow = 4,
-        Teleport = 5
+        Teleport = 5,
+        swordSkill02 = 6,
     }
     private void Awake()
     {
@@ -49,8 +51,8 @@ public class GameOverUI : MonoBehaviour
             case FadeType.GameOver:
                 canversgroup = Instance.gameOver;
                 break;
-            case FadeType.swordSkill:
-                canversgroup = Instance.swordSkillLock;
+            case FadeType.swordSkill01:
+                canversgroup = Instance.swordSkillLock01;
                 break;
             case FadeType.bow:
                 canversgroup = Instance.bowLock;
@@ -60,6 +62,9 @@ public class GameOverUI : MonoBehaviour
                 break;
             case FadeType.Teleport:
                 canversgroup = Instance.portalScreen;
+                break;
+            case FadeType.swordSkill02:
+                canversgroup = Instance.swordSkillLock02;
                 break;
         }
         return canversgroup;
@@ -76,7 +81,7 @@ public class GameOverUI : MonoBehaviour
 
         canvers.gameObject.SetActive(true);
         yield return Instance.StartCoroutine(Instance.Fade(1f, canvers));
-        if(fadeType== FadeType.swordSkill)
+        if (fadeType == FadeType.GameOver)
             Cursor.visible = true;
     }
     /// <summary>

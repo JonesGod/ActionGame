@@ -163,7 +163,11 @@ void Update()
         {
             UnlockSkill(2);
         }
-        if(Input.GetKeyDown("f3"))
+        if (Input.GetKeyDown("f4"))
+        {
+            UnlockSkill(3);
+        }
+        if (Input.GetKeyDown("f3"))
         {
             PlayerHurt(100);
         }
@@ -855,7 +859,11 @@ void Update()
                 break;
             case 2:
                 swordSkillLock = false;
-                StartCoroutine(UIMain.Instance().SwordSkillUnLock());
+                StartCoroutine(UIMain.Instance().SwordSkillUnLock01());
+                break;
+            case 3:
+                swordSkillLock = false;
+                StartCoroutine(UIMain.Instance().SwordSkillUnLock02());
                 break;
         }
         

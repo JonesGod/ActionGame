@@ -71,7 +71,7 @@ public class UIMain : MonoBehaviour
             return false;
         }
     }
-    public IEnumerator SwordSkillUnLock()
+    public IEnumerator SwordSkillUnLock01()
     {
         GameObject swordSkillLock = skillWindow.transform.GetChild(3).gameObject;
 
@@ -81,8 +81,21 @@ public class UIMain : MonoBehaviour
             yield return null;
         }
 
-        yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.swordSkill));
+        yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.swordSkill01));
         swordSkillLock.SetActive(false);     
+    }
+    public IEnumerator SwordSkillUnLock02()
+    {
+        GameObject swordSkillLock = skillWindow.transform.GetChild(8).gameObject;
+
+        licened.SetActive(true);
+        while (skillWindow.activeSelf == false)
+        {
+            yield return null;
+        }
+
+        yield return StartCoroutine(GameOverUI.ScreenFadeIn(GameOverUI.FadeType.swordSkill02));
+        swordSkillLock.SetActive(false);
     }
     public IEnumerator BowUnlock()
     {

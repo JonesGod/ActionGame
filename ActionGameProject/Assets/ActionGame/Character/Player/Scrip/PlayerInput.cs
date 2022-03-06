@@ -76,7 +76,7 @@ public class PlayerInput : MonoBehaviour
         ///技能視窗
         if (Input.GetButtonDown("SkillWindow"))
         {
-            skillWindowIsOpen = UIMain.Instance().OpenSkillWindow();
+            skillWindowIsOpen = UIMain.Instance().OpenSkillWindow();           
             m_Movement = Vector2.zero;
             m_Mouse = Vector2.zero;
         }
