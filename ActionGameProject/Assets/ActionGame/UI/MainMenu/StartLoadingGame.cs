@@ -20,8 +20,10 @@ public class StartLoadingGame : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);        
 
         while (!operation.isDone)
-        {   
+        {
             float progress = Mathf.Clamp01(operation.progress / .9f);
+            
+            Debug.Log(progress);
 
             loadText.text = (progress * 100.0f) + "%";
 
