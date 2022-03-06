@@ -27,6 +27,9 @@ public class WorldEvManager : MonoBehaviour
     public bool bossHasBeenDefeated;    //boss被幹掉
 
     ///Audio
+    private float audioVolume=0.2f;
+    private float currentVolume;
+
     private AudioSource currentAudio;
     public GameObject BossBGM1Audio;
     private AudioSource BossBGM1Source;
@@ -84,6 +87,7 @@ public class WorldEvManager : MonoBehaviour
         normalBGMSource = normalBGMAudio.GetComponent<AudioSource>();
 
         currentAudio = normalBGMSource;
+        currentVolume = audioVolume;
     }
 
     public void BossHasBeenDefeated(bool isDrageon)
@@ -123,22 +127,38 @@ public class WorldEvManager : MonoBehaviour
     }
     protected IEnumerator BGMChange(AudioSource stopAudio,AudioSource startAudio)
     {       
+        if((stopAudio == BossBGM1Source))
+        {
+            currentVolume = 0.4f;
+        }
+        else
+        {
+            currentVolume = 0.2f;
+        }
         while(!Mathf.Approximately(stopAudio.volume,0f))
         {
-            stopAudio.volume = Mathf.MoveTowards(stopAudio.volume, 0f, 0.2f*Time.deltaTime);
+            stopAudio.volume = Mathf.MoveTowards(stopAudio.volume, 0f, (currentVolume/2)*Time.deltaTime);
             yield return null;
         }
         stopAudio.volume = 0f;
         stopAudio.Stop();
 
+        if ((startAudio == BossBGM1Source))
+        {
+            currentVolume = 0.4f;
+        }
+        else
+        {
+            currentVolume = 0.2f;
+        }
         startAudio.volume = 0f;
         startAudio.Play();
-        while (!Mathf.Approximately(startAudio.volume, 0.4f))
+        while (!Mathf.Approximately(startAudio.volume, currentVolume))
         {
-            startAudio.volume = Mathf.MoveTowards(startAudio.volume, 0.4f, 0.2f * Time.deltaTime);
+            startAudio.volume = Mathf.MoveTowards(startAudio.volume, currentVolume, (currentVolume / 2) * Time.deltaTime);
             yield return null;
         }
-        startAudio.volume = 0.4f;
+        startAudio.volume = currentVolume;
     }
     public void ShowGetSkillUI()
     {

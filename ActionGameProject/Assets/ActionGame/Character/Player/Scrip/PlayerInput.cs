@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 m_Mouse;//存取滑鼠滑動
 
     private bool skillWindowIsOpen = false;//技能視窗是否開啟
+    public GameObject WindLine;
     public bool isPlayingTimeline = false; 
 
     ///提供布林值給PlayerControl判斷
@@ -87,6 +88,11 @@ public class PlayerInput : MonoBehaviour
             moveFlagH = false;
             moveFlagV = false;
             return;
+        }
+        ///微風尋路按鈕
+        if(Input.GetButtonDown("WindSeek"))
+        {           
+            WindLine.GetComponent<WindSeek>().PlayWindSeek();
         }
 
         ///WASD輸入

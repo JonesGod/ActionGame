@@ -233,6 +233,8 @@ void Update()
             ResetAttackTrigger();          
 
             m_Am.SetTrigger("AvoidTrigger");
+
+            charge = 0f;
             PlayerInput.Instance.bowState = false;
             m_Input.avoid = false;
         }
@@ -672,6 +674,8 @@ void Update()
             return;
 
         AttackMoveStop();
+        charge = 0f;
+
         HpReduce(damage);
         if (playerHp <= 0)
         {
