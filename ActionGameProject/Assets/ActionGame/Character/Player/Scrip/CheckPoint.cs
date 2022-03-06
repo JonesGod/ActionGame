@@ -13,12 +13,11 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerControl player=other.GetComponent<PlayerControl>();
-
-        if (player = null)
-            return;
-
-        player.SetCheckPoint(this);
+        if (other.name == "NewLink")
+        {
+            PlayerControl player = other.GetComponent<PlayerControl>();
+            player.SetCheckPoint(this);
+        }
 
     }
 }
