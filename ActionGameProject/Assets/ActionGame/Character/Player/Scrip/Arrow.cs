@@ -70,7 +70,6 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {       
-      
             if (explodeFlag)
             {
                 //ArrowExplode();

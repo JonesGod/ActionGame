@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   data:
-    hp: 400
+    hp: 180
     shield: 0
     speed: 5
     target: {fileID: 0}
@@ -866,6 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 8561230274456557976}
+  hitAudio: {fileID: 0}
 --- !u!114 &7585815164166209436
 MonoBehaviour:
   m_ObjectHideFlags: 0

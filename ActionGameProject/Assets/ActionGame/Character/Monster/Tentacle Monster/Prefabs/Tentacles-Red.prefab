@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackObject: {fileID: 2773519701645087667}
+  attackAudio: {fileID: 0}
 --- !u!114 &5884876128752926669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,8 +1127,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1, z: 2.4448743}
-  m_Center: {x: 0, y: 0, z: 0.72243726}
+  m_Size: {x: 0.4, y: 1, z: 2.0034633}
+  m_Center: {x: 0, y: 0, z: 0.50173175}
 --- !u!114 &7047802492665264168
 MonoBehaviour:
   m_ObjectHideFlags: 0

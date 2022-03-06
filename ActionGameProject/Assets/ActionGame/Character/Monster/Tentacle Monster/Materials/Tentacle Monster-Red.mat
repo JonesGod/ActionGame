@@ -36,7 +36,7 @@ Material:
     - _CelShadeGradient: 0.5
     - _CutOff: 0
     - _DissolveAmount: -0.05
-    - _DissolveWidth: 0.02
+    - _DissolveWidth: 0
     - _FresnelPow: 0
     - _FringeShadowOffset: 0
     - _FringeShadowThreshold: 0.001
@@ -56,6 +56,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _ColorGlitter: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveColor: {r: 1.6386833, g: 1.9937315, b: 3.482202, a: 1}
     - _Emission: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
