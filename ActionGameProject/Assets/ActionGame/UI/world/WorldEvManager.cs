@@ -70,7 +70,10 @@ public class WorldEvManager : MonoBehaviour
             fogWall.ActivateFogWell();
         }
     }
-
+    public void Awake()
+    {
+        s_Instance = this;
+    }
     public void Start()
     {
         hintbox.SetActive(false);
@@ -107,7 +110,7 @@ public class WorldEvManager : MonoBehaviour
         {
             hintbox.SetActive(true);
             hide.SetActive(false);
-            getskill.SetActive(true);
+            ShowGetSkillUI();
 
             var player = GameManager.Instance.m_Player.GetComponent<PlayerControl>();
             player.UnlockSkill(3);  
@@ -136,5 +139,9 @@ public class WorldEvManager : MonoBehaviour
             yield return null;
         }
         startAudio.volume = 0.4f;
+    }
+    public void ShowGetSkillUI()
+    {
+        getskill.SetActive(true);
     }
 }

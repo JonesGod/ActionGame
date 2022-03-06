@@ -209,6 +209,7 @@ public class SeaMonsterFSM : FSMBase
         animator.SetTrigger("Die");
 
         var player = GameManager.Instance.m_Player.GetComponent<PlayerControl>();
+        WorldEvManager.Instance.ShowGetSkillUI();
         player.UnlockSkill(1);
         player.UnlockSkill(2);
 
