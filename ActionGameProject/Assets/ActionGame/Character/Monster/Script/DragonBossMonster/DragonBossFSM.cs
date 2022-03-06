@@ -439,7 +439,7 @@ public class DragonBossFSM : FSMBase
         // {
         //     angryEffect[i].SetActive(false);  
         // }       
-        worldEvManager.BossHasBeenDefeated();
+        worldEvManager.BossHasBeenDefeated(true);
     }
     private void CheckChargeAttackState()
     {

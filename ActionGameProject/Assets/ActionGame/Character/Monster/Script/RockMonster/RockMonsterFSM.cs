@@ -664,7 +664,7 @@ public class RockMonsterFSM : FSMBase
         animator.SetTrigger("Die");
         myRigidbody.isKinematic = true;
         CharacterCollisionBlocker.enabled = false;
-        worldEvManager.BossHasBeenDefeated();
+        worldEvManager.BossHasBeenDefeated(false);
         GameManager.Instance.PlayEnding();
     }
 

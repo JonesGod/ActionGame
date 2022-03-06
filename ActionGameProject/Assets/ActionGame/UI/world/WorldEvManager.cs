@@ -83,31 +83,35 @@ public class WorldEvManager : MonoBehaviour
         currentAudio = normalBGMSource;
     }
 
-    public void BossHasBeenDefeated()
+    public void BossHasBeenDefeated(bool isDrageon)
     {
         //BossBGM1Source.Stop();
         //BossBGM2Source.Stop();
         //normalBGMSource.Play();
-        StartCoroutine(BGMChange(currentAudio, normalBGMSource));
-        currentAudio = normalBGMSource;
+        if(isDrageon == true)
+        {
+            StartCoroutine(BGMChange(currentAudio, normalBGMSource));
+            currentAudio = normalBGMSource;  
+        }
+        else if(isDrageon == false)
+        {
+            currentAudio.Stop();  
+        }            
 
-        var player=GameManager.Instance.m_Player.GetComponent<PlayerControl>();
-        player.UnlockSkill(3);
-
-        bossHasBeenDefeated = true;
         bossFightIsActive = false;
         dragonBossHPBar.SetHPBarToInActive();
         rockBossHPBar.SetHPBarToInActive();
         rockBossShieldBar.SetShieldBarToInActive();
 
-        if (bossHasBeenDefeated == true)
+        if (isDrageon == true)
         {
             hintbox.SetActive(true);
             hide.SetActive(false);
             getskill.SetActive(true);
 
+            var player = GameManager.Instance.m_Player.GetComponent<PlayerControl>();
+            player.UnlockSkill(3);  
         }
-
         //out wall(?)
         foreach (var fogWall in fogWells)
         {
