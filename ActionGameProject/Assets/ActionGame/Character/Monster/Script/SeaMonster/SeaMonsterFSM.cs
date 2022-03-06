@@ -12,10 +12,14 @@ public class SeaMonsterFSM : FSMBase
     private GameObject currentEnemyTarget;
     private Animator animator;
     private float currentTime;
-    
+
+
+    public GameObject getskill;
+
+
     //Rigidbody myRigidbody;
     //public BoxCollider CharacterCollisionBlocker; 
-    
+
     public SeaMonsterTentacleFSM[] partnerMonster;
     Vector3 myPosition;
     private MonsterDeadDissolve monsterHurt;
@@ -212,6 +216,8 @@ public class SeaMonsterFSM : FSMBase
         WorldEvManager.Instance.ShowGetSkillUI();
         player.UnlockSkill(1);
         player.UnlockSkill(2);
+        getskill.SetActive(true);
+
 
         myRigidbody.isKinematic = true;
         //CharacterCollisionBlocker.enabled = false;
