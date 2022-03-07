@@ -192,6 +192,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 healSouce.Play();
+                GameManager.Instance.PlayParticleSystem(GameManager.Instance.healMpEffect);
                 slotStack[a]--;
                 PlayerControl.MpIncrease(yourInventory[a].nutritionalValue);
             }

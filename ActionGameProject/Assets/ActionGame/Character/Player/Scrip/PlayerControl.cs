@@ -27,6 +27,7 @@ public class PlayerControl : MonoBehaviour, BeObserver
     private float bowRightMove;//弓狀態下的WASD輸入總和
     private float lockDistancs = 15.0f;//一般攻擊自動鎖定距離
     private float attackMoveSpeed;//攻擊時的移動速度
+    private float mpPlusTime;//自動回魔時間
 
     private List<FSMBase> monster;//存取怪物資訊
 
@@ -195,6 +196,11 @@ void Update()
         GetAttackState();
         GetCurrentState();
         GetNextState();
+
+        if (playerCurrnetState == PlayerState.live)
+        {
+            AutoMpPlus();
+        }
 
         if (m_Input.bowState)   //弓狀態與一般狀態的基本參數改變
         {
@@ -726,7 +732,17 @@ void Update()
             playerMp = playerMaxMp;
 
         UIMain.Instance().UpdateMpBar(playerMp / playerMaxMp);
-        GameManager.Instance.PlayParticleSystem(GameManager.Instance.healMpEffect);
+        //GameManager.Instance.PlayParticleSystem(GameManager.Instance.healMpEffect);
+    }
+    void AutoMpPlus()
+    {
+        mpPlusTime += Time.deltaTime;
+
+        if(mpPlusTime>=1.0f)
+        {
+            MpIncrease(5.0f);
+            mpPlusTime = 0f;
+        }
     }
     /// <summary>
     /// 開始攻擊中移動
