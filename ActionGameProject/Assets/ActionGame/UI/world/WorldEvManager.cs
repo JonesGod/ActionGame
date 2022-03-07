@@ -27,7 +27,7 @@ public class WorldEvManager : MonoBehaviour
     public bool bossHasBeenDefeated;    //boss被幹掉
 
     ///Audio
-    private float audioVolume=0.2f;
+    private float audioVolume=0.15f;
     private float currentVolume;
 
     private AudioSource currentAudio;
@@ -129,13 +129,17 @@ public class WorldEvManager : MonoBehaviour
     {       
         if((stopAudio == BossBGM1Source))
         {
-            currentVolume = 0.4f;
+            currentVolume = 0.5f;
+        }
+        else if(stopAudio == normalBGMSource)
+        {
+            currentVolume = 0.15f;
         }
         else
         {
             currentVolume = 0.2f;
         }
-        while(!Mathf.Approximately(stopAudio.volume,0f))
+        while (!Mathf.Approximately(stopAudio.volume,0f))
         {
             stopAudio.volume = Mathf.MoveTowards(stopAudio.volume, 0f, (currentVolume/2)*Time.deltaTime);
             yield return null;
@@ -145,7 +149,11 @@ public class WorldEvManager : MonoBehaviour
 
         if ((startAudio == BossBGM1Source))
         {
-            currentVolume = 0.4f;
+            currentVolume = 0.5f;
+        }
+        else if (startAudio == normalBGMSource)
+        {
+            currentVolume = 0.15f;
         }
         else
         {

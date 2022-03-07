@@ -5,7 +5,6 @@ using UnityEngine;
 public class TrapArea2 : MonoBehaviour
 {
     public BasicFSM[] trapMonsters;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -14,7 +13,7 @@ public class TrapArea2 : MonoBehaviour
             {
                 trapMonsters[i].transform.gameObject.SetActive(true);
                 trapMonsters[i].data.sightRange = 57.6f;
-            }     
+            }
             Destroy(this.gameObject);
         }
     }
