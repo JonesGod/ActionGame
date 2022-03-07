@@ -78,6 +78,7 @@ public class DragonBossAttack : MonoBehaviour
     }
     void PlayBasicClawGrassParticle()
     {
+        StartCoroutine(FolowCamera.Instance.CameraShake(1.5f, 1.35f));
         Instantiate(grassEffect, angryClawPosition.transform.position, Quaternion.identity);
         Instantiate(clawAudio, angryClawPosition.transform.position, Quaternion.identity);
     }
@@ -85,6 +86,7 @@ public class DragonBossAttack : MonoBehaviour
     //跳躍攻擊
     void PlayJumpAttackParticle()
     {
+        StartCoroutine(FolowCamera.Instance.CameraShake(1.5f, 1.35f));
         Instantiate(jumpAttackEffect, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
         Instantiate(jumpAttackAudio, jumpAttackPosition.transform.position, jumpAttackPosition.transform.rotation);
     }

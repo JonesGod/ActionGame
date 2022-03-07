@@ -109,6 +109,7 @@ public class RockMonsterAttack : MonoBehaviour
     }
     void PlayStampAudio()
     {
+        StartCoroutine(FolowCamera.Instance.CameraShake(1.5f, 1.5f));
         Instantiate(stampAudio, transform.position, transform.rotation);
     }
     void PlayPunchAudio()
