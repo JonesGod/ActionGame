@@ -740,7 +740,7 @@ void Update()
 
         if(mpPlusTime>=1.0f)
         {
-            MpIncrease(5.0f);
+            MpIncrease(2.0f);
             mpPlusTime = 0f;
         }
     }
