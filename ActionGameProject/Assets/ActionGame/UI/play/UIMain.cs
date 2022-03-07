@@ -18,11 +18,14 @@ public class UIMain : MonoBehaviour
     public GameObject licened;
     public GameObject Scope;
 
+    public GameObject[] skillInfo;
+
     private void Awake()
     {
         mInstance = this;
 
         Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
+        
     }
     public void ScopeOpen()
     {
@@ -66,6 +69,11 @@ public class UIMain : MonoBehaviour
         }
         else
         {
+            for(int i=0;i< skillInfo.Length;i++)
+            {
+                skillInfo[i].SetActive(false);
+            }
+
             skillWindow.SetActive(false);
             Cursor.visible = false;
             return false;
@@ -86,7 +94,7 @@ public class UIMain : MonoBehaviour
     }
     public IEnumerator SwordSkillUnLock02()
     {
-        GameObject swordSkillLock = skillWindow.transform.GetChild(8).gameObject;
+        GameObject swordSkillLock = skillWindow.transform.GetChild(10).gameObject;
 
         licened.SetActive(true);
         while (skillWindow.activeSelf == false)
