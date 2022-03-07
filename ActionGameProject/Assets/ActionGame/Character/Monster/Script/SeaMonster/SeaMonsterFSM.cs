@@ -235,8 +235,8 @@ public class SeaMonsterFSM : FSMBase
             {
                 data.target = GameManager.Instance.GetPlayer();
             }
-            doState = DoHurtState;
-            checkState = CheckHurtState;
+            // doState = DoHurtState;
+            // checkState = CheckHurtState;
         }                
     }
 
