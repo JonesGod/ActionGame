@@ -27,14 +27,14 @@ public class RockMonsterBullet2 : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {      
         Debug.Log(other.name);
-        if(other.transform.name == "NewLink")
+        if(other.name == "NewLink")
         {
             Debug.Log("子彈打到玩家");            
             //呼叫玩家腳本的受傷function
             player.PlayerHurt(30);                        
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
         else if(other.tag == "Monster")
         {
@@ -42,7 +42,7 @@ public class RockMonsterBullet2 : MonoBehaviour
         else if(other.transform.name == "CoreHitBox")
         {
         }
-        else if(other.transform.name == "ShieldHitBox")
+        else if(other.transform.name == "HitBox")
         {
         }
         else if(other.transform.name == "Arrow(Clone)")
@@ -50,6 +50,7 @@ public class RockMonsterBullet2 : MonoBehaviour
         }
         else
         {
+            Debug.Log(this.name);
             var collisionPoint = other.ClosestPoint(transform.position);
             PlayParticleSystem(hitEffect, collisionPoint);
             Destroy(this.gameObject);
