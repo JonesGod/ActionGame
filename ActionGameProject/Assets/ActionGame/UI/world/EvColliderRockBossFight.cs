@@ -24,6 +24,7 @@ public class EvColliderRockBossFight : MonoBehaviour
             rockMonsterFSM.StartBattle();
             StartCoroutine(PlayRockMonsterTimeline());
             //worldEvManager.ActivateRockBossFight();
+            Destroy(GetComponent<BoxCollider>());
         }
     }
     IEnumerator PlayRockMonsterTimeline()
