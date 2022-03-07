@@ -211,7 +211,6 @@ public class SeaMonsterTentacleFSM : FSMBase
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            animator.SetTrigger("ReLife");
             currentTime = 0.0f;
             data.strafeTime = Random.Range(2.5f, 3.0f);
             currentState = FSMState.Idle;
@@ -232,6 +231,10 @@ public class SeaMonsterTentacleFSM : FSMBase
             //Debug.Log("IsInTransition");
             return;
         }
+        animator.SetTrigger("ReLife");        
+    }
+    public void OpenHitBox()
+    {
         tentacleCollider.enabled = true;
     }
     public override void CallHurt(float damageAmount, bool isHead, bool isHurtAnimation)
