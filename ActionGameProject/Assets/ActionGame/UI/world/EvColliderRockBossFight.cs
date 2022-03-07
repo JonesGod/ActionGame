@@ -8,6 +8,7 @@ public class EvColliderRockBossFight : MonoBehaviour
 {
     WorldEvManager worldEvManager;
     public RockMonsterFSM rockMonsterFSM;
+    private bool firstTime = true;
 
     public PlayableDirector rockMonsterTimeline; //Start RockBoss battle
     private void Awake()
@@ -22,9 +23,16 @@ public class EvColliderRockBossFight : MonoBehaviour
         if (other.tag == "Player")
         {
             rockMonsterFSM.StartBattle();
-            StartCoroutine(PlayRockMonsterTimeline());
-            //worldEvManager.ActivateRockBossFight();
-            Destroy(GetComponent<BoxCollider>());
+            if(firstTime == true)
+            {
+                StartCoroutine(PlayRockMonsterTimeline());
+                firstTime = false;
+            }
+            else if(firstTime == false)
+            {
+                worldEvManager.ActivateRockBossFight();
+            }
+            //Destroy(GetComponent<BoxCollider>());
         }
     }
     IEnumerator PlayRockMonsterTimeline()

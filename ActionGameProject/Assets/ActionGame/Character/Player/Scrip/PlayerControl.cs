@@ -776,6 +776,8 @@ void Update()
         {
             m.PlayerIsDead();
         }   
+        WorldEvManager.Instance.PlayerDead();
+
     }
     public void NotifyLife()
     {

@@ -172,4 +172,17 @@ public class WorldEvManager : MonoBehaviour
     {
         getskill.SetActive(true);
     }
+    public void PlayerDead()
+    {
+        foreach (var fogWall in fogWells)
+        {
+            fogWall.DeactivteFoWell();
+        }
+        bossFightIsActive = false;
+        dragonBossHPBar.SetHPBarToInActive();
+        rockBossHPBar.SetHPBarToInActive();
+        rockBossShieldBar.SetShieldBarToInActive();
+        StartCoroutine(BGMChange(currentAudio, normalBGMSource));
+        currentAudio = normalBGMSource;  
+    }
 }

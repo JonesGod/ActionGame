@@ -708,6 +708,16 @@ public class RockMonsterFSM : FSMBase
             yield return null;
         }
     }
+    public override void PlayerIsDead()
+    {
+        currentEnemyTarget = null;
+        currentState = FSMState.Idle;
+        animator.SetBool("IsWalk", false);
+        animator.SetBool("IsIdle", true);
+        checkState = DoIdleState;
+        doState = DoIdleState;
+        return;
+    }
 
     private void OnDrawGizmos() 
     {
