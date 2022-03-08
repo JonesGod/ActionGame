@@ -146,8 +146,12 @@ public class Arrow : MonoBehaviour
         {
             StartCoroutine(FolowCamera.Instance.CameraShake(0.5f, 1.35f));
         }
+        else if (liveTime < 0.9f)
+        {
+            StartCoroutine(FolowCamera.Instance.CameraShake(0.25f, 1.35f));
+        }
 
-        collider.radius = 25.0f;
+        collider.radius = 9.0f;
         arrowSpeed = 0.0f;
         gravity = 0.0f;
         explodeParticle.Play();
