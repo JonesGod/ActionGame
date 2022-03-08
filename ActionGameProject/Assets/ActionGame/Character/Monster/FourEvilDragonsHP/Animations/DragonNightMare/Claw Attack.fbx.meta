@@ -779,13 +779,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.64339423
-        functionName: PlayAngryClawParticle
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: bc7cd83440a93ed40a2ec54a76b3e295, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.51375246
         functionName: PlayBasicClawGrassParticle
         data: 

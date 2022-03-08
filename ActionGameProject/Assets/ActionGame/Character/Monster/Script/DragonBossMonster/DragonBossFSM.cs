@@ -26,6 +26,7 @@ public class DragonBossFSM : FSMBase
     public GameObject[] angryEffect;
 
     WorldEvManager worldEvManager;
+    DragonBossAttack bossAttack;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class DragonBossFSM : FSMBase
         maxHp = data.hp;
         monsterHurt = this.GetComponent<MonsterDeadDissolve>();
         worldEvManager = FindObjectOfType<WorldEvManager>();
+        bossAttack = this.GetComponent<DragonBossAttack>();
     }
 
     void Update()
@@ -439,7 +441,9 @@ public class DragonBossFSM : FSMBase
         // {
         //     angryEffect[i].SetActive(false);  
         // }       
+        bossAttack.StopScreamAttackParticle();
         worldEvManager.BossHasBeenDefeated(true);
+        
     }
     private void CheckChargeAttackState()
     {

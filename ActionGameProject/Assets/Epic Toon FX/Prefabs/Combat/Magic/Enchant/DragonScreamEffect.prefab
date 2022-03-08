@@ -14338,3 +14338,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEffect: {fileID: 3248609244622206592, guid: f06f1124184651c46b73cdaa2bd0fb7d, type: 3}
+  waitTime: 0.8

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragonBossAttack : MonoBehaviour
 {
     Vector3 playerPosition;
+    DragonBossFSM myFSM;
     //BasicAttack
     public Transform basicAttackObject;
     private BoxCollider basicAttackCollider;
@@ -20,7 +21,7 @@ public class DragonBossAttack : MonoBehaviour
     public GameObject jumpAttackGrassEffect;
     public GameObject jumpAttackGrassEffect2;
     
-    public GameObject angryClawEffect;
+    //public GameObject angryClawEffect;
     public GameObject angryClawPosition;
 
     public GameObject jumpAttackEffect;
@@ -36,11 +37,13 @@ public class DragonBossAttack : MonoBehaviour
     public GameObject biteAudio;
     public GameObject hornAudio;
     public GameObject magicBallAudio;
+    IEnumerator iEnumeratorScreamAttack;
 
     void Awake()
     {
         basicAttackCollider = basicAttackObject.GetComponent<BoxCollider>();
         headAttackCollider = headAttackObject.GetComponent<BoxCollider>();
+        myFSM = this.gameObject.GetComponent<DragonBossFSM>();
     }
     void Start()
     {
@@ -71,11 +74,11 @@ public class DragonBossAttack : MonoBehaviour
     }
 
     //爪擊
-    void PlayAngryClawParticle()
-    {
-        Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
-        Instantiate(clawAudio, angryClawPosition.transform.position, Quaternion.identity);
-    }
+    // void PlayAngryClawParticle()
+    // {
+    //     Instantiate(angryClawEffect, angryClawPosition.transform.position, Quaternion.identity);
+    //     Instantiate(clawAudio, angryClawPosition.transform.position, Quaternion.identity);
+    // }
     void PlayBasicClawGrassParticle()
     {
         StartCoroutine(FolowCamera.Instance.CameraShake(1.5f, 1.35f));
@@ -107,13 +110,14 @@ public class DragonBossAttack : MonoBehaviour
     //吼叫攻擊
     void PlayScreamAttackParticle()
     {
-        StartCoroutine(PlayScreamAttack());
+        iEnumeratorScreamAttack = PlayScreamAttack();
+        StartCoroutine(iEnumeratorScreamAttack);
     }
     IEnumerator PlayScreamAttack()
     {
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
-        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);        
         yield return new WaitForSeconds(2.0f);
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
@@ -125,7 +129,12 @@ public class DragonBossAttack : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         playerPosition = GameManager.Instance.GetPlayer().transform.position + new Vector3(0.0f, 1.0f, 0.0f);
         Instantiate(screamAttackEffect, playerPosition, Quaternion.identity);
-        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);
+        Instantiate(magicBallAudio, playerPosition, Quaternion.identity);        
+    }
+    public void StopScreamAttackParticle()
+    {
+        Debug.Log("StopScream");
+        StopCoroutine(iEnumeratorScreamAttack);
     }
     /// <summary>
     /// 吼叫聲
