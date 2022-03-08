@@ -25,7 +25,7 @@ public class StartLoadingGame : MonoBehaviour
             
             Debug.Log(progress);
 
-            loadText.text = (progress * 100.0f) + "%";
+            loadText.text = (int)(progress * 100.0f) + "%";
 
             slider.value = progress;
             yield return null;
