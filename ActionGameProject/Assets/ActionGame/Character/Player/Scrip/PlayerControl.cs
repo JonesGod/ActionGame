@@ -197,7 +197,7 @@ void Update()
         GetCurrentState();
         GetNextState();
 
-        if (playerCurrnetState == PlayerState.live)
+        if (playerCurrnetState == PlayerState.live)//自動回復MP
         {
             AutoMpPlus();
         }
@@ -581,10 +581,19 @@ void Update()
     void BowAngle()
     {
         mouseSlide-=PlayerInput.Instance.MouseInput.y*sensitivity;
-        if (mouseSlide > 250f)
-            mouseSlide = 250f;
+
+        if (mouseSlide > 710f)///一般狀態bowangel限制
+            mouseSlide = 710f;
         else if (mouseSlide < -240f)
             mouseSlide = -240f;
+
+        if (m_Input.bowState)///弓狀態bowangel限制
+        {
+            if (mouseSlide > 250f)
+                mouseSlide = 250f;
+            else if (mouseSlide < -240f)
+                mouseSlide = -240f;
+        }
 
         m_Am.SetFloat("BowAngle",mouseSlide+500f);
     }
