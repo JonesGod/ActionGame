@@ -134,5 +134,5 @@ MonoBehaviour:
     blurMaterial: {fileID: 2100000, guid: 704bf2bbb2115014f8f4408f69a4c968, type: 2}
     downsample: 1
     loop: 3
-    blur: 0.1
+    blur: 0
     passTag: mypassTag
