@@ -9,6 +9,7 @@ public class CursorChange : MonoBehaviour
     private void Awake()
     {
         Cursor.SetCursor(pointerImage, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = true;
     }
     void Start()
     {
