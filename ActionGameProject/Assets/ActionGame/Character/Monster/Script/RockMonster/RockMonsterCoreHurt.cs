@@ -14,7 +14,7 @@ public class RockMonsterCoreHurt : MonoBehaviour
         }
         if(other.transform.name == "ExplosiveArrow" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(50, false, true);
+            myFSM.CallHurt(100, false, true);
         }
     }
 }

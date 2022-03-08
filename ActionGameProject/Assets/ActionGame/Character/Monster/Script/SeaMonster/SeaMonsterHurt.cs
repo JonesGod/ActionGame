@@ -14,8 +14,7 @@ public class SeaMonsterHurt : MonoBehaviour
         }
             
         if(other.transform.name == "Arrow(Clone)" && myFSM.currentState != FSMState.Dead)
-        {
-            Debug.Log("asdasdas");
+        {            
             myFSM.CallHurt(20, false, false);
         }
         if(other.transform.name == "ExplosiveArrow" && myFSM.currentState != FSMState.Dead)

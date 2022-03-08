@@ -19,7 +19,7 @@ public class BasicMonsterHurt : MonoBehaviour
         }
         if(other.transform.name == "ExplosiveArrow" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(20, false, true);
+            myFSM.CallHurt(60, false, true);
         }
         if (other.transform.name == "AOE (1)" && myFSM.currentState != FSMState.Dead)
         {

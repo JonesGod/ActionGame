@@ -19,7 +19,7 @@ public class DragonBossBodyHurt : MonoBehaviour
         }
         if(other.transform.name == "ExplosiveArrow" && myFSM.currentState != FSMState.Dead)
         {
-            myFSM.CallHurt(20, false, false);
+            myFSM.CallHurt(60, false, false);
         }
         if (other.transform.name == "AOE (1)" && myFSM.currentState != FSMState.Dead)
         {
