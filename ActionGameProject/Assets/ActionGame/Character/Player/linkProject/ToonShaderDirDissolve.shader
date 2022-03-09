@@ -41,7 +41,7 @@ Shader "URPShader/Practice/ToonShaderDirDissolve"
         // BasicWay
         // _RimPower ("RimPower", Float) = 1
         // _RimScale ("RimScale", Float) = 1
-        [Header(Dessolve)]
+        [Header(Dissolve)]
         [HDR]_DissolveColor ("DissolveColor", Color) = (1, 1, 1, 1)
         _DissolveMap ("DissolveTexture", 2D) = "white"{}
         _DissolveAmount ("DissolveAmount", Range(-1.0, 1.5)) = 0.0

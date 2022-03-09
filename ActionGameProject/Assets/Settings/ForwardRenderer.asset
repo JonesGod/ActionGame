@@ -28,6 +28,28 @@ MonoBehaviour:
     directionalIntesity: 1
     directionalPower: 3.19
     fogMaterial: {fileID: 2100000, guid: 39e0dc4bc7017be498814375f5033d21, type: 2}
+--- !u!114 &-5652121290140917257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
+  m_Name: NewScreenSpaceAmbientOcclusion
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
+  m_Settings:
+    Downsample: 1
+    Source: 0
+    NormalSamples: 1
+    Intensity: 1.09
+    DirectLightingStrength: 0.294
+    Radius: 0.86
+    SampleCount: 4
 --- !u!114 &-1051590253777677871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +85,8 @@ MonoBehaviour:
   - {fileID: 9023383167564348174}
   - {fileID: -5844997397404430459}
   - {fileID: -1051590253777677871}
-  m_RendererFeatureMap: 9701517a4a1bf81b0e7be9d62e7f397d854fa0ced565e2aed191515a3c0068f1
+  - {fileID: -5652121290140917257}
+  m_RendererFeatureMap: 9701517a4a1bf81b0e7be9d62e7f397d854fa0ced565e2aed191515a3c0068f1f761ba01a2a18fb1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:

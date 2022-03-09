@@ -28,6 +28,7 @@ public class RockMonsterFSM : FSMBase
     public GameObject shieldHitBox;
     WorldEvManager worldEvManager;
     private bool canRestoreShield = true;
+    public ShieldHurtBlink shieldHurt;
 
     void Start()
     {
@@ -67,7 +68,8 @@ public class RockMonsterFSM : FSMBase
         checkState = CheckIdleState;
         currentEnemyTarget = GameManager.Instance.GetPlayer();
         isAwake = true;
-        shieldHitBox.SetActive(true);
+        //shieldHitBox.SetActive(true);
+        shieldHurt.StartRecoverShield();
     }
     public void StartBattle()
     {
@@ -672,6 +674,7 @@ public class RockMonsterFSM : FSMBase
     {        
         data.shield -= damageAmount;
         myShield.ModifyShield(damageAmount);
+        shieldHurt.HitFlash();
         if(data.target == null)
         {
             data.target = GameManager.Instance.GetPlayer();
@@ -680,13 +683,15 @@ public class RockMonsterFSM : FSMBase
         if(data.shield <= 0)
         {
             coreHitBox.enabled = true;
-            shieldHitBox.SetActive(false);
+            shieldHurt.StartDissolveShield();
+            //shieldHitBox.SetActive(false);
         }
     }
     public void RestoreShield()
     {                
         coreHitBox.enabled = false;
-        shieldHitBox.SetActive(true);
+        //shieldHitBox.SetActive(true);
+        shieldHurt.StartRecoverShield();
         myShield.ModifyShield(-maxShield + data.shield);
         data.shield = maxShield;
     }
