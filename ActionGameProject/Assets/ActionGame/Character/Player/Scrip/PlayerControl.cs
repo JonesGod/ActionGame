@@ -219,6 +219,7 @@ void Update()
         else
         {
             m_Am.SetBool("BowBool", false);
+            BowEffectReset();
         }
 
         if (m_Input.moveFlagH || m_Input.moveFlagV)       //移動旗標
@@ -688,6 +689,8 @@ void Update()
         if (battleRollState || battleRollIsNext)
             return;
 
+        BowEffectReset();
+
         AttackMoveStop();
         charge = 0f;
 
@@ -897,6 +900,12 @@ void Update()
                 break;
         }
         
+    }
+    void BowEffectReset()
+    {
+        charge = 0f;
+        magicCircleEffect.SetActive(false);
+        chargeAudioSource.Stop();
     }
     void RunAudioPlay()
     {

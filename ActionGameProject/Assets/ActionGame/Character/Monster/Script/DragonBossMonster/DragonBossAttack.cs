@@ -133,7 +133,7 @@ public class DragonBossAttack : MonoBehaviour
     }
     public void StopScreamAttackParticle()
     {
-        Debug.Log("StopScream");
+        Debug.Log("StopScream");      
         StopCoroutine(iEnumeratorScreamAttack);
     }
     /// <summary>
